@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE log4j:configuration PUBLIC "-//APACHE//DTD LOG4J 1.2//EN" "log4j.dtd">
+<log4j:configuration xmlns:log4j="http://jakarta.apache.org/log4j/">
+
+	<!-- Appenders -->
+	<appender name="MainConsole" class="org.apache.log4j.ConsoleAppender">
+		<layout class="org.apache.log4j.PatternLayout">
+			<param name="ConversionPattern" value="%-5p %d{yyyy-MM-dd HH:mm:ss}: %C{1} - %m%n" />
+		</layout>
+	</appender>
+	<appender name="activexAppender" class="org.apache.log4j.DailyRollingFileAppender">     
+        <param name="File" value="/app/logs/schedule/med-schedule.log" />       
+        <param name="DatePattern" value="'.'yyyy-MM-dd'.log'" />       
+        <layout class="org.apache.log4j.PatternLayout">     
+         <param name="ConversionPattern"       
+            value="[%d{MMdd HH:mm:ss SSS\} %-5p] [%t] %c{3\} - %m%n" />     
+        </layout>       
+    </appender>  
+     <category name="org.apache.commons.httpclient.util" >
+				 <priority value="info" /> 
+	 </category>
+	<!-- Application Loggers -->
+	 <category name="org.apache.http" >
+				 <priority value="debug" /> 
+	 </category>
+	  <category name="com.shanyuan" >
+				 <priority value="debug" /> 
+	 </category>
+	   <category name="org.springframework" >
+				 <priority value="info" /> 
+	 </category>
+	 
+	 <category name="apache.zookeeper" >
+				 <priority value="info" /> 
+	 </category>
+	 <category name="metamorphosis.network" >
+				 <priority value="info" /> 
+	 </category>
+	<!-- Root Logger -->
+	<root>
+		<priority value="debug" />
+		<!--<appender-ref ref="MainConsole" />-->
+		<appender-ref ref="activexAppender" />
+		
+	</root>
+	
+</log4j:configuration>
