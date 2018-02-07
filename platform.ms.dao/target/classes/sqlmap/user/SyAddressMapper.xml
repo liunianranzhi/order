@@ -1,0 +1,331 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.shanyuan.platform.ms.dao.user.mapper.SyAddressMapper">
+  <resultMap id="BaseResultMap" type="com.shanyuan.platform.ms.dao.user.entity.SyAddress">
+    <id column="address_id" jdbcType="INTEGER" property="addressId" />
+    <result column="member_id" jdbcType="INTEGER" property="memberId" />
+    <result column="true_name" jdbcType="VARCHAR" property="trueName" />
+    <result column="area_id" jdbcType="BIGINT" property="areaId" />
+    <result column="city_id" jdbcType="BIGINT" property="cityId" />
+    <result column="area_info" jdbcType="VARCHAR" property="areaInfo" />
+    <result column="address" jdbcType="VARCHAR" property="address" />
+    <result column="tel_phone" jdbcType="VARCHAR" property="telPhone" />
+    <result column="mob_phone" jdbcType="VARCHAR" property="mobPhone" />
+    <result column="is_default" jdbcType="CHAR" property="isDefault" />
+    <result column="address_type" jdbcType="TINYINT" property="addressType" />
+    <result column="last_id" jdbcType="BIGINT" property="lastId" />
+  </resultMap>
+  <sql id="Example_Where_Clause">
+    <where>
+      <foreach collection="oredCriteria" item="criteria" separator="or">
+        <if test="criteria.valid">
+          <trim prefix="(" prefixOverrides="and" suffix=")">
+            <foreach collection="criteria.criteria" item="criterion">
+              <choose>
+                <when test="criterion.noValue">
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue">
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue">
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue">
+                  and ${criterion.condition}
+                  <foreach close=")" collection="criterion.value" item="listItem" open="(" separator=",">
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Update_By_Example_Where_Clause">
+    <where>
+      <foreach collection="example.oredCriteria" item="criteria" separator="or">
+        <if test="criteria.valid">
+          <trim prefix="(" prefixOverrides="and" suffix=")">
+            <foreach collection="criteria.criteria" item="criterion">
+              <choose>
+                <when test="criterion.noValue">
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue">
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue">
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue">
+                  and ${criterion.condition}
+                  <foreach close=")" collection="criterion.value" item="listItem" open="(" separator=",">
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Base_Column_List">
+    address_id, member_id, true_name, area_id, city_id, area_info, address, tel_phone, 
+    mob_phone, is_default, address_type, last_id
+  </sql>
+  <select id="selectByExample" parameterType="com.shanyuan.platform.ms.dao.user.entity.SyAddressExample" resultMap="BaseResultMap">
+    select
+    <if test="distinct">
+      distinct
+    </if>
+    <include refid="Base_Column_List" />
+    from sy_address
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null">
+      order by ${orderByClause}
+    </if>
+  </select>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from sy_address
+    where address_id = #{addressId,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+    delete from sy_address
+    where address_id = #{addressId,jdbcType=INTEGER}
+  </delete>
+  <delete id="deleteByExample" parameterType="com.shanyuan.platform.ms.dao.user.entity.SyAddressExample">
+    delete from sy_address
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+  </delete>
+  <insert id="insert" parameterType="com.shanyuan.platform.ms.dao.user.entity.SyAddress">
+   <selectKey resultType="java.lang.Integer" keyProperty="addressId" order="AFTER" >
+      SELECT LAST_INSERT_ID()
+    </selectKey>
+    insert into sy_address (address_id, member_id, true_name, 
+      area_id, city_id, area_info, 
+      address, tel_phone, mob_phone, 
+      is_default, address_type, last_id
+      )
+    values (#{addressId,jdbcType=INTEGER}, #{memberId,jdbcType=INTEGER}, #{trueName,jdbcType=VARCHAR}, 
+      #{areaId,jdbcType=BIGINT}, #{cityId,jdbcType=BIGINT}, #{areaInfo,jdbcType=VARCHAR}, 
+      #{address,jdbcType=VARCHAR}, #{telPhone,jdbcType=VARCHAR}, #{mobPhone,jdbcType=VARCHAR}, 
+      #{isDefault,jdbcType=CHAR}, #{addressType,jdbcType=TINYINT}, #{lastId,jdbcType=BIGINT}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="com.shanyuan.platform.ms.dao.user.entity.SyAddress">
+  <selectKey resultType="java.lang.Integer" keyProperty="addressId" order="AFTER" >
+      SELECT LAST_INSERT_ID()
+    </selectKey>
+    insert into sy_address
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="addressId != null">
+        address_id,
+      </if>
+      <if test="memberId != null">
+        member_id,
+      </if>
+      <if test="trueName != null">
+        true_name,
+      </if>
+      <if test="areaId != null">
+        area_id,
+      </if>
+      <if test="cityId != null">
+        city_id,
+      </if>
+      <if test="areaInfo != null">
+        area_info,
+      </if>
+      <if test="address != null">
+        address,
+      </if>
+      <if test="telPhone != null">
+        tel_phone,
+      </if>
+      <if test="mobPhone != null">
+        mob_phone,
+      </if>
+      <if test="isDefault != null">
+        is_default,
+      </if>
+      <if test="addressType != null">
+        address_type,
+      </if>
+      <if test="lastId != null">
+        last_id,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="addressId != null">
+        #{addressId,jdbcType=INTEGER},
+      </if>
+      <if test="memberId != null">
+        #{memberId,jdbcType=INTEGER},
+      </if>
+      <if test="trueName != null">
+        #{trueName,jdbcType=VARCHAR},
+      </if>
+      <if test="areaId != null">
+        #{areaId,jdbcType=BIGINT},
+      </if>
+      <if test="cityId != null">
+        #{cityId,jdbcType=BIGINT},
+      </if>
+      <if test="areaInfo != null">
+        #{areaInfo,jdbcType=VARCHAR},
+      </if>
+      <if test="address != null">
+        #{address,jdbcType=VARCHAR},
+      </if>
+      <if test="telPhone != null">
+        #{telPhone,jdbcType=VARCHAR},
+      </if>
+      <if test="mobPhone != null">
+        #{mobPhone,jdbcType=VARCHAR},
+      </if>
+      <if test="isDefault != null">
+        #{isDefault,jdbcType=CHAR},
+      </if>
+      <if test="addressType != null">
+        #{addressType,jdbcType=TINYINT},
+      </if>
+      <if test="lastId != null">
+        #{lastId,jdbcType=BIGINT},
+      </if>
+    </trim>
+  </insert>
+  <select id="countByExample" parameterType="com.shanyuan.platform.ms.dao.user.entity.SyAddressExample" resultType="java.lang.Integer">
+    select count(1) from sy_address
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+  </select>
+  <update id="updateByExampleSelective" parameterType="map">
+    update sy_address
+    <set>
+      <if test="record.addressId != null">
+        address_id = #{record.addressId,jdbcType=INTEGER},
+      </if>
+      <if test="record.memberId != null">
+        member_id = #{record.memberId,jdbcType=INTEGER},
+      </if>
+      <if test="record.trueName != null">
+        true_name = #{record.trueName,jdbcType=VARCHAR},
+      </if>
+      <if test="record.areaId != null">
+        area_id = #{record.areaId,jdbcType=BIGINT},
+      </if>
+      <if test="record.cityId != null">
+        city_id = #{record.cityId,jdbcType=BIGINT},
+      </if>
+      <if test="record.areaInfo != null">
+        area_info = #{record.areaInfo,jdbcType=VARCHAR},
+      </if>
+      <if test="record.address != null">
+        address = #{record.address,jdbcType=VARCHAR},
+      </if>
+      <if test="record.telPhone != null">
+        tel_phone = #{record.telPhone,jdbcType=VARCHAR},
+      </if>
+      <if test="record.mobPhone != null">
+        mob_phone = #{record.mobPhone,jdbcType=VARCHAR},
+      </if>
+      <if test="record.isDefault != null">
+        is_default = #{record.isDefault,jdbcType=CHAR},
+      </if>
+      <if test="record.addressType != null">
+        address_type = #{record.addressType,jdbcType=TINYINT},
+      </if>
+      <if test="record.lastId != null">
+        last_id = #{record.lastId,jdbcType=BIGINT},
+      </if>
+    </set>
+    <if test="_parameter != null">
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByExample" parameterType="map">
+    update sy_address
+    set address_id = #{record.addressId,jdbcType=INTEGER},
+      member_id = #{record.memberId,jdbcType=INTEGER},
+      true_name = #{record.trueName,jdbcType=VARCHAR},
+      area_id = #{record.areaId,jdbcType=BIGINT},
+      city_id = #{record.cityId,jdbcType=BIGINT},
+      area_info = #{record.areaInfo,jdbcType=VARCHAR},
+      address = #{record.address,jdbcType=VARCHAR},
+      tel_phone = #{record.telPhone,jdbcType=VARCHAR},
+      mob_phone = #{record.mobPhone,jdbcType=VARCHAR},
+      is_default = #{record.isDefault,jdbcType=CHAR},
+      address_type = #{record.addressType,jdbcType=TINYINT},
+      last_id = #{record.lastId,jdbcType=BIGINT}
+    <if test="_parameter != null">
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <!--  <update ></update> -->
+  <update id="updateByPrimaryKeySelective" parameterType="com.shanyuan.platform.ms.dao.user.entity.SyAddress">
+  
+    update sy_address
+    <set>
+      <if test="memberId != null">
+        member_id = #{memberId,jdbcType=INTEGER},
+      </if>
+      <if test="trueName != null">
+        true_name = #{trueName,jdbcType=VARCHAR},
+      </if>
+      <if test="areaId != null">
+        area_id = #{areaId,jdbcType=BIGINT},
+      </if>
+      <if test="cityId != null">
+        city_id = #{cityId,jdbcType=BIGINT},
+      </if>
+      <if test="areaInfo != null">
+        area_info = #{areaInfo,jdbcType=VARCHAR},
+      </if>
+      <if test="address != null">
+        address = #{address,jdbcType=VARCHAR},
+      </if>
+      <if test="telPhone != null">
+        tel_phone = #{telPhone,jdbcType=VARCHAR},
+      </if>
+      <if test="mobPhone != null">
+        mob_phone = #{mobPhone,jdbcType=VARCHAR},
+      </if>
+      <if test="isDefault != null">
+        is_default = #{isDefault,jdbcType=CHAR},
+      </if>
+      <if test="addressType != null">
+        address_type = #{addressType,jdbcType=TINYINT},
+      </if>
+      <if test="lastId != null">
+        last_id = #{lastId,jdbcType=BIGINT},
+      </if>
+    </set>
+    where address_id = #{addressId,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.shanyuan.platform.ms.dao.user.entity.SyAddress">
+    update sy_address
+    set member_id = #{memberId,jdbcType=INTEGER},
+      true_name = #{trueName,jdbcType=VARCHAR},
+      area_id = #{areaId,jdbcType=BIGINT},
+      city_id = #{cityId,jdbcType=BIGINT},
+      area_info = #{areaInfo,jdbcType=VARCHAR},
+      address = #{address,jdbcType=VARCHAR},
+      tel_phone = #{telPhone,jdbcType=VARCHAR},
+      mob_phone = #{mobPhone,jdbcType=VARCHAR},
+      is_default = #{isDefault,jdbcType=CHAR},
+      address_type = #{addressType,jdbcType=TINYINT},
+      last_id = #{lastId,jdbcType=BIGINT}
+    where address_id = #{addressId,jdbcType=INTEGER}
+  </update>
+</mapper>

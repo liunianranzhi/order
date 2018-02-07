@@ -1,0 +1,422 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.shanyuan.platform.ms.dao.goods.mapper.SyGoodsClassMapper" >
+  <resultMap id="BaseResultMap" type="com.shanyuan.platform.ms.dao.goods.entity.SyGoodsClass" >
+    <id column="gc_id" property="gcId" jdbcType="INTEGER" />
+    <result column="gc_name" property="gcName" jdbcType="VARCHAR" />
+    <result column="type_id" property="typeId" jdbcType="INTEGER" />
+    <result column="type_name" property="typeName" jdbcType="VARCHAR" />
+    <result column="gc_parent_id" property="gcParentId" jdbcType="INTEGER" />
+    <result column="gc_sort" property="gcSort" jdbcType="SMALLINT" />
+    <result column="gc_title" property="gcTitle" jdbcType="VARCHAR" />
+    <result column="gc_keywords" property="gcKeywords" jdbcType="VARCHAR" />
+    <result column="gc_description" property="gcDescription" jdbcType="VARCHAR" />
+    <result column="gc_code" property="gcCode" jdbcType="VARCHAR" />
+    <result column="goods_name_template" property="goodsNameTemplate" jdbcType="VARCHAR" />
+    <result column="goods_project_type" property="goodsProjectType" jdbcType="INTEGER" />
+    <result column="depreciation_rate" property="depreciationRate" jdbcType="REAL" />
+    <result column="show_state" property="showState" jdbcType="CHAR" />
+    <result column="module" property="module" jdbcType="INTEGER" />
+    <result column="gc_image" property="gcImage" jdbcType="VARCHAR" />
+  </resultMap>
+  <resultMap type="com.shanyuan.platform.ms.dao.goods.entity.SyGoodsClassInfo" id="ClassInfo">
+ 	<id column="gc_id" property="gcId" jdbcType="INTEGER" />
+   	<result column="gc_name" property="gcName" jdbcType="VARCHAR" />
+   	<result column="gc_parent_id" property="gcParentId" jdbcType="INTEGER" />
+   	<result column="gc_image" property="gcImage" jdbcType="VARCHAR" />
+  </resultMap>
+  <sql id="Example_Where_Clause" >
+    <where >
+      <foreach collection="oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Update_By_Example_Where_Clause" >
+    <where >
+      <foreach collection="example.oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Base_Column_List" >
+    gc_id, gc_name, type_id, type_name, gc_parent_id, gc_sort, gc_title, gc_keywords, 
+    gc_description, gc_code, goods_name_template, goods_project_type, depreciation_rate, 
+    show_state, module, gc_image 
+  </sql>
+  <select id="selectByExample" resultMap="BaseResultMap" parameterType="com.shanyuan.platform.ms.dao.goods.entity.SyGoodsClassExample" >
+    select
+    <if test="distinct" >
+      distinct
+    </if>
+    <include refid="Base_Column_List" />
+    from sy_goods_class
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null" >
+      order by ${orderByClause}
+    </if>
+  </select>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+    select 
+    <include refid="Base_Column_List" />
+    from sy_goods_class
+    where gc_id = #{gcId,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+    delete from sy_goods_class
+    where gc_id = #{gcId,jdbcType=INTEGER}
+  </delete>
+  <delete id="deleteByExample" parameterType="com.shanyuan.platform.ms.dao.goods.entity.SyGoodsClassExample" >
+    delete from sy_goods_class
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </delete>
+  <insert id="insert" parameterType="com.shanyuan.platform.ms.dao.goods.entity.SyGoodsClass" >
+    <selectKey resultType="java.lang.Integer" keyProperty="gcId" order="AFTER" >
+      SELECT LAST_INSERT_ID()
+    </selectKey>
+    insert into sy_goods_class (gc_name, type_id, type_name, 
+      gc_parent_id, gc_sort, gc_title, 
+      gc_keywords, gc_description, gc_code, 
+      goods_name_template, goods_project_type, depreciation_rate, 
+      show_state, module, gc_image)
+    values (#{gcName,jdbcType=VARCHAR}, #{typeId,jdbcType=INTEGER}, #{typeName,jdbcType=VARCHAR}, 
+      #{gcParentId,jdbcType=INTEGER}, #{gcSort,jdbcType=SMALLINT}, #{gcTitle,jdbcType=VARCHAR}, 
+      #{gcKeywords,jdbcType=VARCHAR}, #{gcDescription,jdbcType=VARCHAR}, #{gcCode,jdbcType=VARCHAR}, 
+      #{goodsNameTemplate,jdbcType=VARCHAR}, #{goodsProjectType,jdbcType=INTEGER}, #{depreciationRate,jdbcType=REAL}, 
+      #{showState,jdbcType=CHAR}), #{module,jdbcType=INTEGER}, 
+      #{gcImage,jdbcType=VARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="com.shanyuan.platform.ms.dao.goods.entity.SyGoodsClass" >
+    <selectKey resultType="java.lang.Integer" keyProperty="gcId" order="AFTER" >
+      SELECT LAST_INSERT_ID()
+    </selectKey>
+    insert into sy_goods_class
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="gcName != null" >
+        gc_name,
+      </if>
+      <if test="typeId != null" >
+        type_id,
+      </if>
+      <if test="typeName != null" >
+        type_name,
+      </if>
+      <if test="gcParentId != null" >
+        gc_parent_id,
+      </if>
+      <if test="gcSort != null" >
+        gc_sort,
+      </if>
+      <if test="gcTitle != null" >
+        gc_title,
+      </if>
+      <if test="gcKeywords != null" >
+        gc_keywords,
+      </if>
+      <if test="gcDescription != null" >
+        gc_description,
+      </if>
+      <if test="gcCode != null" >
+        gc_code,
+      </if>
+      <if test="goodsNameTemplate != null" >
+        goods_name_template,
+      </if>
+      <if test="goodsProjectType != null" >
+        goods_project_type,
+      </if>
+      <if test="depreciationRate != null" >
+        depreciation_rate,
+      </if>
+      <if test="showState != null" >
+        show_state,
+      </if>
+      <if test="module != null" >
+        module,
+      </if>
+      <if test="gcImage != null" >
+        gc_image,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="gcName != null" >
+        #{gcName,jdbcType=VARCHAR},
+      </if>
+      <if test="typeId != null" >
+        #{typeId,jdbcType=INTEGER},
+      </if>
+      <if test="typeName != null" >
+        #{typeName,jdbcType=VARCHAR},
+      </if>
+      <if test="gcParentId != null" >
+        #{gcParentId,jdbcType=INTEGER},
+      </if>
+      <if test="gcSort != null" >
+        #{gcSort,jdbcType=SMALLINT},
+      </if>
+      <if test="gcTitle != null" >
+        #{gcTitle,jdbcType=VARCHAR},
+      </if>
+      <if test="gcKeywords != null" >
+        #{gcKeywords,jdbcType=VARCHAR},
+      </if>
+      <if test="gcDescription != null" >
+        #{gcDescription,jdbcType=VARCHAR},
+      </if>
+      <if test="gcCode != null" >
+        #{gcCode,jdbcType=VARCHAR},
+      </if>
+      <if test="goodsNameTemplate != null" >
+        #{goodsNameTemplate,jdbcType=VARCHAR},
+      </if>
+      <if test="goodsProjectType != null" >
+        #{goodsProjectType,jdbcType=INTEGER},
+      </if>
+      <if test="depreciationRate != null" >
+        #{depreciationRate,jdbcType=REAL},
+      </if>
+      <if test="showState != null" >
+        #{showState,jdbcType=CHAR},
+      </if>
+      <if test="module != null" >
+        #{module,jdbcType=INTEGER},
+      </if>
+      <if test="gcImage != null" >
+        #{gcImage,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <select id="countByExample" parameterType="com.shanyuan.platform.ms.dao.goods.entity.SyGoodsClassExample" resultType="java.lang.Integer" >
+    select count(*) from sy_goods_class
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </select>
+  <update id="updateByExampleSelective" parameterType="map" >
+    update sy_goods_class
+    <set >
+      <if test="record.gcId != null" >
+        gc_id = #{record.gcId,jdbcType=INTEGER},
+      </if>
+      <if test="record.gcName != null" >
+        gc_name = #{record.gcName,jdbcType=VARCHAR},
+      </if>
+      <if test="record.typeId != null" >
+        type_id = #{record.typeId,jdbcType=INTEGER},
+      </if>
+      <if test="record.typeName != null" >
+        type_name = #{record.typeName,jdbcType=VARCHAR},
+      </if>
+      <if test="record.gcParentId != null" >
+        gc_parent_id = #{record.gcParentId,jdbcType=INTEGER},
+      </if>
+      <if test="record.gcSort != null" >
+        gc_sort = #{record.gcSort,jdbcType=SMALLINT},
+      </if>
+      <if test="record.gcTitle != null" >
+        gc_title = #{record.gcTitle,jdbcType=VARCHAR},
+      </if>
+      <if test="record.gcKeywords != null" >
+        gc_keywords = #{record.gcKeywords,jdbcType=VARCHAR},
+      </if>
+      <if test="record.gcDescription != null" >
+        gc_description = #{record.gcDescription,jdbcType=VARCHAR},
+      </if>
+      <if test="record.gcCode != null" >
+        gc_code = #{record.gcCode,jdbcType=VARCHAR},
+      </if>
+      <if test="record.goodsNameTemplate != null" >
+        goods_name_template = #{record.goodsNameTemplate,jdbcType=VARCHAR},
+      </if>
+      <if test="record.goodsProjectType != null" >
+        goods_project_type = #{record.goodsProjectType,jdbcType=INTEGER},
+      </if>
+      <if test="record.depreciationRate != null" >
+        depreciation_rate = #{record.depreciationRate,jdbcType=REAL},
+      </if>
+      <if test="record.showState != null" >
+        show_state = #{record.showState,jdbcType=CHAR},
+      </if>
+      <if test="record.module != null" >
+        module = #{record.module,jdbcType=INTEGER},
+      </if>
+      <if test="record.gcImage != null" >
+        gc_image = #{record.gcImage,jdbcType=VARCHAR},
+      </if>
+    </set>
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByExample" parameterType="map" >
+    update sy_goods_class
+    set gc_id = #{record.gcId,jdbcType=INTEGER},
+      gc_name = #{record.gcName,jdbcType=VARCHAR},
+      type_id = #{record.typeId,jdbcType=INTEGER},
+      type_name = #{record.typeName,jdbcType=VARCHAR},
+      gc_parent_id = #{record.gcParentId,jdbcType=INTEGER},
+      gc_sort = #{record.gcSort,jdbcType=SMALLINT},
+      gc_title = #{record.gcTitle,jdbcType=VARCHAR},
+      gc_keywords = #{record.gcKeywords,jdbcType=VARCHAR},
+      gc_description = #{record.gcDescription,jdbcType=VARCHAR},
+      gc_code = #{record.gcCode,jdbcType=VARCHAR},
+      goods_name_template = #{record.goodsNameTemplate,jdbcType=VARCHAR},
+      goods_project_type = #{record.goodsProjectType,jdbcType=INTEGER},
+      depreciation_rate = #{record.depreciationRate,jdbcType=REAL},
+      show_state = #{record.showState,jdbcType=CHAR},
+      module = #{record.module,jdbcType=INTEGER},
+      gc_image = #{record.gcImage,jdbcType=VARCHAR}
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByPrimaryKeySelective" parameterType="com.shanyuan.platform.ms.dao.goods.entity.SyGoodsClass" >
+    update sy_goods_class
+    <set >
+      <if test="gcName != null" >
+        gc_name = #{gcName,jdbcType=VARCHAR},
+      </if>
+      <if test="typeId != null" >
+        type_id = #{typeId,jdbcType=INTEGER},
+      </if>
+      <if test="typeName != null" >
+        type_name = #{typeName,jdbcType=VARCHAR},
+      </if>
+      <if test="gcParentId != null" >
+        gc_parent_id = #{gcParentId,jdbcType=INTEGER},
+      </if>
+      <if test="gcSort != null" >
+        gc_sort = #{gcSort,jdbcType=SMALLINT},
+      </if>
+      <if test="gcTitle != null" >
+        gc_title = #{gcTitle,jdbcType=VARCHAR},
+      </if>
+      <if test="gcKeywords != null" >
+        gc_keywords = #{gcKeywords,jdbcType=VARCHAR},
+      </if>
+      <if test="gcDescription != null" >
+        gc_description = #{gcDescription,jdbcType=VARCHAR},
+      </if>
+      <if test="gcCode != null" >
+        gc_code = #{gcCode,jdbcType=VARCHAR},
+      </if>
+      <if test="goodsNameTemplate != null" >
+        goods_name_template = #{goodsNameTemplate,jdbcType=VARCHAR},
+      </if>
+      <if test="goodsProjectType != null" >
+        goods_project_type = #{goodsProjectType,jdbcType=INTEGER},
+      </if>
+      <if test="depreciationRate != null" >
+        depreciation_rate = #{depreciationRate,jdbcType=REAL},
+      </if>
+      <if test="showState != null" >
+        show_state = #{showState,jdbcType=CHAR},
+      </if>
+      <if test="module != null" >
+        module = #{module,jdbcType=CHAR},
+      </if>
+      <if test="gcImage != null" >
+        gc_image = #{gcImage,jdbcType=CHAR},
+      </if>
+    </set>
+    where gc_id = #{gcId,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.shanyuan.platform.ms.dao.goods.entity.SyGoodsClass" >
+    update sy_goods_class
+    set gc_name = #{gcName,jdbcType=VARCHAR},
+      type_id = #{typeId,jdbcType=INTEGER},
+      type_name = #{typeName,jdbcType=VARCHAR},
+      gc_parent_id = #{gcParentId,jdbcType=INTEGER},
+      gc_sort = #{gcSort,jdbcType=SMALLINT},
+      gc_title = #{gcTitle,jdbcType=VARCHAR},
+      gc_keywords = #{gcKeywords,jdbcType=VARCHAR},
+      gc_description = #{gcDescription,jdbcType=VARCHAR},
+      gc_code = #{gcCode,jdbcType=VARCHAR},
+      goods_name_template = #{goodsNameTemplate,jdbcType=VARCHAR},
+      goods_project_type = #{goodsProjectType,jdbcType=INTEGER},
+      depreciation_rate = #{depreciationRate,jdbcType=REAL},
+      show_state = #{showState,jdbcType=CHAR},
+      module = #{record.module,jdbcType=INTEGER},
+      gc_image = #{record.gcImage,jdbcType=VARCHAR}
+    where gc_id = #{gcId,jdbcType=INTEGER}
+  </update>
+  
+  <select id="selectGoodsClassListByModule" parameterType="java.lang.Integer" resultMap="BaseResultMap" >
+    SELECT GC_ID,GC_NAME,GC_SORT,GC_IMAGE,GC_PARENT_ID FROM SY_GOODS_CLASS 
+    WHERE SHOW_STATE='1' AND MODULE=#{module,jdbcType=INTEGER} 
+    ORDER BY GC_SORT
+  </select>
+  
+  <select id="selectGoodsClassListByParentId" parameterType="java.lang.Integer" resultMap="ClassInfo" >
+    SELECT gc_id,gc_name,gc_parent_id, gc_image FROM sy_goods_class 
+    WHERE gc_parent_id=#{gcParentId,jdbcType=INTEGER} 
+    ORDER BY GC_SORT
+  </select>
+  <!--zy   -->
+  <select id="selectGoodsClassByParentIds" parameterType="java.util.List" resultMap="ClassInfo" >
+    SELECT gc_id,gc_name,gc_parent_id, gc_image FROM sy_goods_class 
+    WHERE gc_parent_id IN
+    <foreach collection="gcParentId" index="index" item="item" open="(" separator="," close=")"> 
+		  #{item}
+	</foreach>
+    ORDER BY GC_SORT
+  </select>
+ 
+  
+  <select id="selectGoodsClassList" parameterType="java.lang.Integer" resultMap="BaseResultMap" >
+    SELECT gc_id, gc_name, gc_sort, gc_parent_id,gc_image FROM sy_goods_class 
+	WHERE gc_parent_id IN (SELECT gc_id FROM sy_goods_class WHERE gc_parent_id=#{moduleClassId,jdbcType=INTEGER}) 
+	or 
+	gc_parent_id=#{moduleClassId,jdbcType=INTEGER} 
+	or  
+	gc_id=#{moduleClassId,jdbcType=INTEGER} 
+  </select>
+</mapper>

@@ -1,0 +1,324 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.shanyuan.platform.ms.dao.statistics.mapper.AssistStatisticsBaseDataMapper" >
+  <resultMap id="BaseResultMap" type="com.shanyuan.platform.ms.dao.statistics.entity.AssistStatisticsBaseData" >
+    <id column="rec_id" property="recId" jdbcType="INTEGER" />
+    <result column="c_time" property="cTime" jdbcType="INTEGER" />
+    <result column="union_id" property="unionId" jdbcType="INTEGER" />
+    <result column="union_name" property="unionName" jdbcType="VARCHAR" />
+    <result column="channel" property="channel" jdbcType="VARCHAR" />
+    <result column="employee_deal_amount" property="employeeDealAmount" jdbcType="DECIMAL" />
+    <result column="yk_deal_amount" property="ykDealAmount" jdbcType="DECIMAL" />
+    <result column="user_added_num" property="userAddedNum" jdbcType="BIGINT" />
+    <result column="user_total_num" property="userTotalNum" jdbcType="BIGINT" />
+    <result column="invite_yk_num" property="inviteYkNum" jdbcType="BIGINT" />
+    <result column="reg_employee_num" property="regEmployeeNum" jdbcType="BIGINT" />
+  </resultMap>
+  <sql id="Example_Where_Clause" >
+    <where >
+      <foreach collection="oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Update_By_Example_Where_Clause" >
+    <where >
+      <foreach collection="example.oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Base_Column_List" >
+    rec_id, c_time, union_id, union_name, channel, employee_deal_amount, yk_deal_amount, 
+    user_added_num, user_total_num, invite_yk_num, reg_employee_num
+  </sql>
+  <select id="selectByExample" resultMap="BaseResultMap" parameterType="com.shanyuan.platform.ms.dao.statistics.entity.AssistStatisticsBaseDataExample" >
+    select
+    <if test="distinct" >
+      distinct
+    </if>
+    <include refid="Base_Column_List" />
+    from statistics_assist_base_data
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null" >
+      order by ${orderByClause}
+    </if>
+  </select>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+    select 
+    <include refid="Base_Column_List" />
+    from statistics_assist_base_data
+    where rec_id = #{recId,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+    delete from statistics_assist_base_data
+    where rec_id = #{recId,jdbcType=INTEGER}
+  </delete>
+  <delete id="deleteByExample" parameterType="com.shanyuan.platform.ms.dao.statistics.entity.AssistStatisticsBaseDataExample" >
+    delete from statistics_assist_base_data
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </delete>
+  <insert id="insert" parameterType="com.shanyuan.platform.ms.dao.statistics.entity.AssistStatisticsBaseData" >
+    <selectKey resultType="java.lang.Integer" keyProperty="recId" order="AFTER" >
+      SELECT LAST_INSERT_ID()
+    </selectKey>
+    insert into statistics_assist_base_data (c_time, union_id, union_name, 
+      channel, employee_deal_amount, yk_deal_amount, 
+      user_added_num, user_total_num, invite_yk_num, 
+      reg_employee_num)
+    values (#{cTime,jdbcType=INTEGER}, #{unionId,jdbcType=INTEGER}, #{unionName,jdbcType=VARCHAR}, 
+      #{channel,jdbcType=VARCHAR}, #{employeeDealAmount,jdbcType=DECIMAL}, #{ykDealAmount,jdbcType=DECIMAL}, 
+      #{userAddedNum,jdbcType=BIGINT}, #{userTotalNum,jdbcType=BIGINT}, #{inviteYkNum,jdbcType=BIGINT}, 
+      #{regEmployeeNum,jdbcType=BIGINT})
+  </insert>
+  <insert id="insertSelective" parameterType="com.shanyuan.platform.ms.dao.statistics.entity.AssistStatisticsBaseData" >
+    <selectKey resultType="java.lang.Integer" keyProperty="recId" order="AFTER" >
+      SELECT LAST_INSERT_ID()
+    </selectKey>
+    insert into statistics_assist_base_data
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="cTime != null" >
+        c_time,
+      </if>
+      <if test="unionId != null" >
+        union_id,
+      </if>
+      <if test="unionName != null" >
+        union_name,
+      </if>
+      <if test="channel != null" >
+        channel,
+      </if>
+      <if test="employeeDealAmount != null" >
+        employee_deal_amount,
+      </if>
+      <if test="ykDealAmount != null" >
+        yk_deal_amount,
+      </if>
+      <if test="userAddedNum != null" >
+        user_added_num,
+      </if>
+      <if test="userTotalNum != null" >
+        user_total_num,
+      </if>
+      <if test="inviteYkNum != null" >
+        invite_yk_num,
+      </if>
+      <if test="regEmployeeNum != null" >
+        reg_employee_num,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="cTime != null" >
+        #{cTime,jdbcType=INTEGER},
+      </if>
+      <if test="unionId != null" >
+        #{unionId,jdbcType=INTEGER},
+      </if>
+      <if test="unionName != null" >
+        #{unionName,jdbcType=VARCHAR},
+      </if>
+      <if test="channel != null" >
+        #{channel,jdbcType=VARCHAR},
+      </if>
+      <if test="employeeDealAmount != null" >
+        #{employeeDealAmount,jdbcType=DECIMAL},
+      </if>
+      <if test="ykDealAmount != null" >
+        #{ykDealAmount,jdbcType=DECIMAL},
+      </if>
+      <if test="userAddedNum != null" >
+        #{userAddedNum,jdbcType=BIGINT},
+      </if>
+      <if test="userTotalNum != null" >
+        #{userTotalNum,jdbcType=BIGINT},
+      </if>
+      <if test="inviteYkNum != null" >
+        #{inviteYkNum,jdbcType=BIGINT},
+      </if>
+      <if test="regEmployeeNum != null" >
+        #{regEmployeeNum,jdbcType=BIGINT},
+      </if>
+    </trim>
+  </insert>
+  <select id="countByExample" parameterType="com.shanyuan.platform.ms.dao.statistics.entity.AssistStatisticsBaseDataExample" resultType="java.lang.Integer" >
+    select count(*) from statistics_assist_base_data
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </select>
+  <update id="updateByExampleSelective" parameterType="map" >
+    update statistics_assist_base_data
+    <set >
+      <if test="record.recId != null" >
+        rec_id = #{record.recId,jdbcType=INTEGER},
+      </if>
+      <if test="record.cTime != null" >
+        c_time = #{record.cTime,jdbcType=INTEGER},
+      </if>
+      <if test="record.unionId != null" >
+        union_id = #{record.unionId,jdbcType=INTEGER},
+      </if>
+      <if test="record.unionName != null" >
+        union_name = #{record.unionName,jdbcType=VARCHAR},
+      </if>
+      <if test="record.channel != null" >
+        channel = #{record.channel,jdbcType=VARCHAR},
+      </if>
+      <if test="record.employeeDealAmount != null" >
+        employee_deal_amount = #{record.employeeDealAmount,jdbcType=DECIMAL},
+      </if>
+      <if test="record.ykDealAmount != null" >
+        yk_deal_amount = #{record.ykDealAmount,jdbcType=DECIMAL},
+      </if>
+      <if test="record.userAddedNum != null" >
+        user_added_num = #{record.userAddedNum,jdbcType=BIGINT},
+      </if>
+      <if test="record.userTotalNum != null" >
+        user_total_num = #{record.userTotalNum,jdbcType=BIGINT},
+      </if>
+      <if test="record.inviteYkNum != null" >
+        invite_yk_num = #{record.inviteYkNum,jdbcType=BIGINT},
+      </if>
+      <if test="record.regEmployeeNum != null" >
+        reg_employee_num = #{record.regEmployeeNum,jdbcType=BIGINT},
+      </if>
+    </set>
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByExample" parameterType="map" >
+    update statistics_assist_base_data
+    set rec_id = #{record.recId,jdbcType=INTEGER},
+      c_time = #{record.cTime,jdbcType=INTEGER},
+      union_id = #{record.unionId,jdbcType=INTEGER},
+      union_name = #{record.unionName,jdbcType=VARCHAR},
+      channel = #{record.channel,jdbcType=VARCHAR},
+      employee_deal_amount = #{record.employeeDealAmount,jdbcType=DECIMAL},
+      yk_deal_amount = #{record.ykDealAmount,jdbcType=DECIMAL},
+      user_added_num = #{record.userAddedNum,jdbcType=BIGINT},
+      user_total_num = #{record.userTotalNum,jdbcType=BIGINT},
+      invite_yk_num = #{record.inviteYkNum,jdbcType=BIGINT},
+      reg_employee_num = #{record.regEmployeeNum,jdbcType=BIGINT}
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByPrimaryKeySelective" parameterType="com.shanyuan.platform.ms.dao.statistics.entity.AssistStatisticsBaseData" >
+    update statistics_assist_base_data
+    <set >
+      <if test="cTime != null" >
+        c_time = #{cTime,jdbcType=INTEGER},
+      </if>
+      <if test="unionId != null" >
+        union_id = #{unionId,jdbcType=INTEGER},
+      </if>
+      <if test="unionName != null" >
+        union_name = #{unionName,jdbcType=VARCHAR},
+      </if>
+      <if test="channel != null" >
+        channel = #{channel,jdbcType=VARCHAR},
+      </if>
+      <if test="employeeDealAmount != null" >
+        employee_deal_amount = #{employeeDealAmount,jdbcType=DECIMAL},
+      </if>
+      <if test="ykDealAmount != null" >
+        yk_deal_amount = #{ykDealAmount,jdbcType=DECIMAL},
+      </if>
+      <if test="userAddedNum != null" >
+        user_added_num = #{userAddedNum,jdbcType=BIGINT},
+      </if>
+      <if test="userTotalNum != null" >
+        user_total_num = #{userTotalNum,jdbcType=BIGINT},
+      </if>
+      <if test="inviteYkNum != null" >
+        invite_yk_num = #{inviteYkNum,jdbcType=BIGINT},
+      </if>
+      <if test="regEmployeeNum != null" >
+        reg_employee_num = #{regEmployeeNum,jdbcType=BIGINT},
+      </if>
+    </set>
+    where rec_id = #{recId,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.shanyuan.platform.ms.dao.statistics.entity.AssistStatisticsBaseData" >
+    update statistics_assist_base_data
+    set c_time = #{cTime,jdbcType=INTEGER},
+      union_id = #{unionId,jdbcType=INTEGER},
+      union_name = #{unionName,jdbcType=VARCHAR},
+      channel = #{channel,jdbcType=VARCHAR},
+      employee_deal_amount = #{employeeDealAmount,jdbcType=DECIMAL},
+      yk_deal_amount = #{ykDealAmount,jdbcType=DECIMAL},
+      user_added_num = #{userAddedNum,jdbcType=BIGINT},
+      user_total_num = #{userTotalNum,jdbcType=BIGINT},
+      invite_yk_num = #{inviteYkNum,jdbcType=BIGINT},
+      reg_employee_num = #{regEmployeeNum,jdbcType=BIGINT}
+    where rec_id = #{recId,jdbcType=INTEGER}
+  </update>
+  
+  <insert id="batchInsert" parameterType="map">
+		<selectKey keyProperty="id" order="AFTER" resultType="java.lang.Integer">
+			SELECT LAST_INSERT_ID()
+		</selectKey>
+		insert into statistics_assist_base_data
+		 (c_time, union_id, union_name, 
+      channel, employee_deal_amount, yk_deal_amount, 
+      user_added_num, user_total_num, invite_yk_num, 
+      reg_employee_num)
+		values 
+		<foreach collection="records" item="item" index="index" separator=",">
+        	(#{item.cTime,jdbcType=INTEGER}, #{item.unionId,jdbcType=INTEGER}, #{item.unionName,jdbcType=VARCHAR}, 
+      #{item.channel,jdbcType=VARCHAR}, #{item.employeeDealAmount,jdbcType=DECIMAL}, #{item.ykDealAmount,jdbcType=DECIMAL}, 
+      #{item.userAddedNum,jdbcType=BIGINT}, #{item.userTotalNum,jdbcType=BIGINT}, #{item.inviteYkNum,jdbcType=BIGINT}, 
+      #{item.regEmployeeNum,jdbcType=BIGINT})
+		</foreach>
+	</insert>
+</mapper>

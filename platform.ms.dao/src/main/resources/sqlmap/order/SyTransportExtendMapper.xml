@@ -1,0 +1,359 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.shanyuan.platform.ms.dao.order.mapper.SyTransportExtendMapper">
+  <resultMap id="BaseResultMap" type="com.shanyuan.platform.ms.dao.order.entity.SyTransportExtend">
+    <id column="id" jdbcType="INTEGER" property="id" />
+    <result column="snum" jdbcType="INTEGER" property="snum" />
+    <result column="sprice" jdbcType="DECIMAL" property="sprice" />
+    <result column="xnum" jdbcType="INTEGER" property="xnum" />
+    <result column="xprice" jdbcType="DECIMAL" property="xprice" />
+    <result column="is_default" jdbcType="CHAR" property="isDefault" />
+    <result column="transport_id" jdbcType="INTEGER" property="transportId" />
+    <result column="transport_title" jdbcType="VARCHAR" property="transportTitle" />
+  </resultMap>
+  <resultMap extends="BaseResultMap" id="ResultMapWithBLOBs" type="com.shanyuan.platform.ms.dao.order.entity.SyTransportExtendWithBLOBs">
+    <result column="area_id" jdbcType="LONGVARCHAR" property="areaId" />
+    <result column="top_area_id" jdbcType="LONGVARCHAR" property="topAreaId" />
+    <result column="area_name" jdbcType="LONGVARCHAR" property="areaName" />
+  </resultMap>
+  <sql id="Example_Where_Clause">
+    <where>
+      <foreach collection="oredCriteria" item="criteria" separator="or">
+        <if test="criteria.valid">
+          <trim prefix="(" prefixOverrides="and" suffix=")">
+            <foreach collection="criteria.criteria" item="criterion">
+              <choose>
+                <when test="criterion.noValue">
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue">
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue">
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue">
+                  and ${criterion.condition}
+                  <foreach close=")" collection="criterion.value" item="listItem" open="(" separator=",">
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Update_By_Example_Where_Clause">
+    <where>
+      <foreach collection="example.oredCriteria" item="criteria" separator="or">
+        <if test="criteria.valid">
+          <trim prefix="(" prefixOverrides="and" suffix=")">
+            <foreach collection="criteria.criteria" item="criterion">
+              <choose>
+                <when test="criterion.noValue">
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue">
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue">
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue">
+                  and ${criterion.condition}
+                  <foreach close=")" collection="criterion.value" item="listItem" open="(" separator=",">
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Base_Column_List">
+    id, snum, sprice, xnum, xprice, is_default, transport_id, transport_title
+  </sql>
+  <sql id="Blob_Column_List">
+    area_id, top_area_id, area_name
+  </sql>
+  <select id="selectByExampleWithBLOBs" parameterType="com.shanyuan.platform.ms.dao.order.entity.SyTransportExtendExample" resultMap="ResultMapWithBLOBs">
+    select
+    <if test="distinct">
+      distinct
+    </if>
+    <include refid="Base_Column_List" />
+    ,
+    <include refid="Blob_Column_List" />
+    from sy_transport_extend
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null">
+      order by ${orderByClause}
+    </if>
+  </select>
+  <select id="selectByExample" parameterType="com.shanyuan.platform.ms.dao.order.entity.SyTransportExtendExample" resultMap="BaseResultMap">
+    select
+    <if test="distinct">
+      distinct
+    </if>
+    <include refid="Base_Column_List" />
+    from sy_transport_extend
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null">
+      order by ${orderByClause}
+    </if>
+  </select>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="ResultMapWithBLOBs">
+    select 
+    <include refid="Base_Column_List" />
+    ,
+    <include refid="Blob_Column_List" />
+    from sy_transport_extend
+    where id = #{id,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+    delete from sy_transport_extend
+    where id = #{id,jdbcType=INTEGER}
+  </delete>
+  <delete id="deleteByExample" parameterType="com.shanyuan.platform.ms.dao.order.entity.SyTransportExtendExample">
+    delete from sy_transport_extend
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+  </delete>
+  <insert id="insert" parameterType="com.shanyuan.platform.ms.dao.order.entity.SyTransportExtendWithBLOBs">
+    <selectKey keyProperty="id" order="AFTER" resultType="java.lang.Integer">
+      SELECT LAST_INSERT_ID()
+    </selectKey>
+    insert into sy_transport_extend (snum, sprice, xnum, 
+      xprice, is_default, transport_id, 
+      transport_title, area_id, top_area_id, 
+      area_name)
+    values (#{snum,jdbcType=INTEGER}, #{sprice,jdbcType=DECIMAL}, #{xnum,jdbcType=INTEGER}, 
+      #{xprice,jdbcType=DECIMAL}, #{isDefault,jdbcType=CHAR}, #{transportId,jdbcType=INTEGER}, 
+      #{transportTitle,jdbcType=VARCHAR}, #{areaId,jdbcType=LONGVARCHAR}, #{topAreaId,jdbcType=LONGVARCHAR}, 
+      #{areaName,jdbcType=LONGVARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="com.shanyuan.platform.ms.dao.order.entity.SyTransportExtendWithBLOBs">
+    <selectKey keyProperty="id" order="AFTER" resultType="java.lang.Integer">
+      SELECT LAST_INSERT_ID()
+    </selectKey>
+    insert into sy_transport_extend
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="snum != null">
+        snum,
+      </if>
+      <if test="sprice != null">
+        sprice,
+      </if>
+      <if test="xnum != null">
+        xnum,
+      </if>
+      <if test="xprice != null">
+        xprice,
+      </if>
+      <if test="isDefault != null">
+        is_default,
+      </if>
+      <if test="transportId != null">
+        transport_id,
+      </if>
+      <if test="transportTitle != null">
+        transport_title,
+      </if>
+      <if test="areaId != null">
+        area_id,
+      </if>
+      <if test="topAreaId != null">
+        top_area_id,
+      </if>
+      <if test="areaName != null">
+        area_name,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="snum != null">
+        #{snum,jdbcType=INTEGER},
+      </if>
+      <if test="sprice != null">
+        #{sprice,jdbcType=DECIMAL},
+      </if>
+      <if test="xnum != null">
+        #{xnum,jdbcType=INTEGER},
+      </if>
+      <if test="xprice != null">
+        #{xprice,jdbcType=DECIMAL},
+      </if>
+      <if test="isDefault != null">
+        #{isDefault,jdbcType=CHAR},
+      </if>
+      <if test="transportId != null">
+        #{transportId,jdbcType=INTEGER},
+      </if>
+      <if test="transportTitle != null">
+        #{transportTitle,jdbcType=VARCHAR},
+      </if>
+      <if test="areaId != null">
+        #{areaId,jdbcType=LONGVARCHAR},
+      </if>
+      <if test="topAreaId != null">
+        #{topAreaId,jdbcType=LONGVARCHAR},
+      </if>
+      <if test="areaName != null">
+        #{areaName,jdbcType=LONGVARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <select id="countByExample" parameterType="com.shanyuan.platform.ms.dao.order.entity.SyTransportExtendExample" resultType="java.lang.Integer">
+    select count(*) from sy_transport_extend
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+  </select>
+  <update id="updateByExampleSelective" parameterType="map">
+    update sy_transport_extend
+    <set>
+      <if test="record.id != null">
+        id = #{record.id,jdbcType=INTEGER},
+      </if>
+      <if test="record.snum != null">
+        snum = #{record.snum,jdbcType=INTEGER},
+      </if>
+      <if test="record.sprice != null">
+        sprice = #{record.sprice,jdbcType=DECIMAL},
+      </if>
+      <if test="record.xnum != null">
+        xnum = #{record.xnum,jdbcType=INTEGER},
+      </if>
+      <if test="record.xprice != null">
+        xprice = #{record.xprice,jdbcType=DECIMAL},
+      </if>
+      <if test="record.isDefault != null">
+        is_default = #{record.isDefault,jdbcType=CHAR},
+      </if>
+      <if test="record.transportId != null">
+        transport_id = #{record.transportId,jdbcType=INTEGER},
+      </if>
+      <if test="record.transportTitle != null">
+        transport_title = #{record.transportTitle,jdbcType=VARCHAR},
+      </if>
+      <if test="record.areaId != null">
+        area_id = #{record.areaId,jdbcType=LONGVARCHAR},
+      </if>
+      <if test="record.topAreaId != null">
+        top_area_id = #{record.topAreaId,jdbcType=LONGVARCHAR},
+      </if>
+      <if test="record.areaName != null">
+        area_name = #{record.areaName,jdbcType=LONGVARCHAR},
+      </if>
+    </set>
+    <if test="_parameter != null">
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByExampleWithBLOBs" parameterType="map">
+    update sy_transport_extend
+    set id = #{record.id,jdbcType=INTEGER},
+      snum = #{record.snum,jdbcType=INTEGER},
+      sprice = #{record.sprice,jdbcType=DECIMAL},
+      xnum = #{record.xnum,jdbcType=INTEGER},
+      xprice = #{record.xprice,jdbcType=DECIMAL},
+      is_default = #{record.isDefault,jdbcType=CHAR},
+      transport_id = #{record.transportId,jdbcType=INTEGER},
+      transport_title = #{record.transportTitle,jdbcType=VARCHAR},
+      area_id = #{record.areaId,jdbcType=LONGVARCHAR},
+      top_area_id = #{record.topAreaId,jdbcType=LONGVARCHAR},
+      area_name = #{record.areaName,jdbcType=LONGVARCHAR}
+    <if test="_parameter != null">
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByExample" parameterType="map">
+    update sy_transport_extend
+    set id = #{record.id,jdbcType=INTEGER},
+      snum = #{record.snum,jdbcType=INTEGER},
+      sprice = #{record.sprice,jdbcType=DECIMAL},
+      xnum = #{record.xnum,jdbcType=INTEGER},
+      xprice = #{record.xprice,jdbcType=DECIMAL},
+      is_default = #{record.isDefault,jdbcType=CHAR},
+      transport_id = #{record.transportId,jdbcType=INTEGER},
+      transport_title = #{record.transportTitle,jdbcType=VARCHAR}
+    <if test="_parameter != null">
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByPrimaryKeySelective" parameterType="com.shanyuan.platform.ms.dao.order.entity.SyTransportExtendWithBLOBs">
+    update sy_transport_extend
+    <set>
+      <if test="snum != null">
+        snum = #{snum,jdbcType=INTEGER},
+      </if>
+      <if test="sprice != null">
+        sprice = #{sprice,jdbcType=DECIMAL},
+      </if>
+      <if test="xnum != null">
+        xnum = #{xnum,jdbcType=INTEGER},
+      </if>
+      <if test="xprice != null">
+        xprice = #{xprice,jdbcType=DECIMAL},
+      </if>
+      <if test="isDefault != null">
+        is_default = #{isDefault,jdbcType=CHAR},
+      </if>
+      <if test="transportId != null">
+        transport_id = #{transportId,jdbcType=INTEGER},
+      </if>
+      <if test="transportTitle != null">
+        transport_title = #{transportTitle,jdbcType=VARCHAR},
+      </if>
+      <if test="areaId != null">
+        area_id = #{areaId,jdbcType=LONGVARCHAR},
+      </if>
+      <if test="topAreaId != null">
+        top_area_id = #{topAreaId,jdbcType=LONGVARCHAR},
+      </if>
+      <if test="areaName != null">
+        area_name = #{areaName,jdbcType=LONGVARCHAR},
+      </if>
+    </set>
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKeyWithBLOBs" parameterType="com.shanyuan.platform.ms.dao.order.entity.SyTransportExtendWithBLOBs">
+    update sy_transport_extend
+    set snum = #{snum,jdbcType=INTEGER},
+      sprice = #{sprice,jdbcType=DECIMAL},
+      xnum = #{xnum,jdbcType=INTEGER},
+      xprice = #{xprice,jdbcType=DECIMAL},
+      is_default = #{isDefault,jdbcType=CHAR},
+      transport_id = #{transportId,jdbcType=INTEGER},
+      transport_title = #{transportTitle,jdbcType=VARCHAR},
+      area_id = #{areaId,jdbcType=LONGVARCHAR},
+      top_area_id = #{topAreaId,jdbcType=LONGVARCHAR},
+      area_name = #{areaName,jdbcType=LONGVARCHAR}
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.shanyuan.platform.ms.dao.order.entity.SyTransportExtend">
+    update sy_transport_extend
+    set snum = #{snum,jdbcType=INTEGER},
+      sprice = #{sprice,jdbcType=DECIMAL},
+      xnum = #{xnum,jdbcType=INTEGER},
+      xprice = #{xprice,jdbcType=DECIMAL},
+      is_default = #{isDefault,jdbcType=CHAR},
+      transport_id = #{transportId,jdbcType=INTEGER},
+      transport_title = #{transportTitle,jdbcType=VARCHAR}
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+  <select id="selectTransportInfo" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from sy_transport_extend
+    where transport_id = #{transportId,jdbcType=INTEGER}
+  </select>
+</mapper>

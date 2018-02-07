@@ -1,0 +1,419 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.shanyuan.platform.ms.dao.user.mapper.SyRoleMapper" >
+  <resultMap id="BaseResultMap" type="com.shanyuan.platform.ms.dao.user.entity.SyRole" >
+    <id column="role_id" property="roleId" jdbcType="INTEGER" />
+    <result column="member_id" property="memberId" jdbcType="INTEGER" />
+    <result column="address_id" property="addressId" jdbcType="INTEGER" />
+    <result column="role_type" property="roleType" jdbcType="TINYINT" />
+    <result column="m_fee_rate" property="mFeeRate" jdbcType="SMALLINT" />
+    <result column="sure_agreement" property="sureAgreement" jdbcType="TINYINT" />
+    <result column="sure_agreement_time" property="sureAgreementTime" jdbcType="INTEGER" />
+    <result column="sure_poor" property="surePoor" jdbcType="TINYINT" />
+    <result column="sure_poor_time" property="surePoorTime" jdbcType="INTEGER" />
+    <result column="recommend_reason" property="recommendReason" jdbcType="VARCHAR" />
+    <result column="recommend" property="recommend" jdbcType="CHAR" />
+    <result column="recommend_time" property="recommendTime" jdbcType="INTEGER" />
+    <result column="fund_fee_rate" property="fundFeeRate" jdbcType="SMALLINT" />
+    <result column="channel" property="channel" jdbcType="VARCHAR" />
+    <result column="areaid_1" property="areaid1" jdbcType="BIGINT" />
+    <result column="areaid_2" property="areaid2" jdbcType="BIGINT" />
+    <result column="areaid_3" property="areaid3" jdbcType="BIGINT" />
+  </resultMap>
+  <sql id="Example_Where_Clause" >
+    <where >
+      <foreach collection="oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Update_By_Example_Where_Clause" >
+    <where >
+      <foreach collection="example.oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Base_Column_List" >
+    role_id, member_id, address_id, role_type, m_fee_rate, sure_agreement, sure_agreement_time, 
+    sure_poor, sure_poor_time, recommend_reason, recommend, recommend_time, fund_fee_rate, 
+    channel, areaid_1, areaid_2, areaid_3
+  </sql>
+  <select id="selectByExample" resultMap="BaseResultMap" parameterType="com.shanyuan.platform.ms.dao.user.entity.SyRoleExample" >
+    select
+    <if test="distinct" >
+      distinct
+    </if>
+    <include refid="Base_Column_List" />
+    from sy_role
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null" >
+      order by ${orderByClause}
+    </if>
+  </select>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+    select 
+    <include refid="Base_Column_List" />
+    from sy_role
+    where role_id = #{roleId,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+    delete from sy_role
+    where role_id = #{roleId,jdbcType=INTEGER}
+  </delete>
+  <delete id="deleteByExample" parameterType="com.shanyuan.platform.ms.dao.user.entity.SyRoleExample" >
+    delete from sy_role
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </delete>
+  <insert id="insert" parameterType="com.shanyuan.platform.ms.dao.user.entity.SyRole" >
+    <selectKey resultType="java.lang.Integer" keyProperty="roleId" order="AFTER" >
+      SELECT LAST_INSERT_ID()
+    </selectKey>
+    insert into sy_role (member_id, address_id, role_type, 
+      m_fee_rate, sure_agreement, sure_agreement_time, 
+      sure_poor, sure_poor_time, recommend_reason, 
+      recommend, recommend_time, fund_fee_rate, 
+      channel, areaid_1, areaid_2, 
+      areaid_3)
+    values (#{memberId,jdbcType=INTEGER}, #{addressId,jdbcType=INTEGER}, #{roleType,jdbcType=TINYINT}, 
+      #{mFeeRate,jdbcType=SMALLINT}, #{sureAgreement,jdbcType=TINYINT}, #{sureAgreementTime,jdbcType=INTEGER}, 
+      #{surePoor,jdbcType=TINYINT}, #{surePoorTime,jdbcType=INTEGER}, #{recommendReason,jdbcType=VARCHAR}, 
+      #{recommend,jdbcType=CHAR}, #{recommendTime,jdbcType=INTEGER}, #{fundFeeRate,jdbcType=SMALLINT}, 
+      #{channel,jdbcType=VARCHAR}, #{areaid1,jdbcType=BIGINT}, #{areaid2,jdbcType=BIGINT}, 
+      #{areaid3,jdbcType=BIGINT})
+  </insert>
+  <insert id="insertSelective" parameterType="com.shanyuan.platform.ms.dao.user.entity.SyRole" >
+    <selectKey resultType="java.lang.Integer" keyProperty="roleId" order="AFTER" >
+      SELECT LAST_INSERT_ID()
+    </selectKey>
+    insert into sy_role
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="memberId != null" >
+        member_id,
+      </if>
+      <if test="addressId != null" >
+        address_id,
+      </if>
+      <if test="roleType != null" >
+        role_type,
+      </if>
+      <if test="mFeeRate != null" >
+        m_fee_rate,
+      </if>
+      <if test="sureAgreement != null" >
+        sure_agreement,
+      </if>
+      <if test="sureAgreementTime != null" >
+        sure_agreement_time,
+      </if>
+      <if test="surePoor != null" >
+        sure_poor,
+      </if>
+      <if test="surePoorTime != null" >
+        sure_poor_time,
+      </if>
+      <if test="recommendReason != null" >
+        recommend_reason,
+      </if>
+      <if test="recommend != null" >
+        recommend,
+      </if>
+      <if test="recommendTime != null" >
+        recommend_time,
+      </if>
+      <if test="fundFeeRate != null" >
+        fund_fee_rate,
+      </if>
+      <if test="channel != null" >
+        channel,
+      </if>
+      <if test="areaid1 != null" >
+        areaid_1,
+      </if>
+      <if test="areaid2 != null" >
+        areaid_2,
+      </if>
+      <if test="areaid3 != null" >
+        areaid_3,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="memberId != null" >
+        #{memberId,jdbcType=INTEGER},
+      </if>
+      <if test="addressId != null" >
+        #{addressId,jdbcType=INTEGER},
+      </if>
+      <if test="roleType != null" >
+        #{roleType,jdbcType=TINYINT},
+      </if>
+      <if test="mFeeRate != null" >
+        #{mFeeRate,jdbcType=SMALLINT},
+      </if>
+      <if test="sureAgreement != null" >
+        #{sureAgreement,jdbcType=TINYINT},
+      </if>
+      <if test="sureAgreementTime != null" >
+        #{sureAgreementTime,jdbcType=INTEGER},
+      </if>
+      <if test="surePoor != null" >
+        #{surePoor,jdbcType=TINYINT},
+      </if>
+      <if test="surePoorTime != null" >
+        #{surePoorTime,jdbcType=INTEGER},
+      </if>
+      <if test="recommendReason != null" >
+        #{recommendReason,jdbcType=VARCHAR},
+      </if>
+      <if test="recommend != null" >
+        #{recommend,jdbcType=CHAR},
+      </if>
+      <if test="recommendTime != null" >
+        #{recommendTime,jdbcType=INTEGER},
+      </if>
+      <if test="fundFeeRate != null" >
+        #{fundFeeRate,jdbcType=SMALLINT},
+      </if>
+      <if test="channel != null" >
+        #{channel,jdbcType=VARCHAR},
+      </if>
+      <if test="areaid1 != null" >
+        #{areaid1,jdbcType=BIGINT},
+      </if>
+      <if test="areaid2 != null" >
+        #{areaid2,jdbcType=BIGINT},
+      </if>
+      <if test="areaid3 != null" >
+        #{areaid3,jdbcType=BIGINT},
+      </if>
+    </trim>
+  </insert>
+  <select id="countByExample" parameterType="com.shanyuan.platform.ms.dao.user.entity.SyRoleExample" resultType="java.lang.Integer" >
+    select count(*) from sy_role
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </select>
+  <update id="updateByExampleSelective" parameterType="map" >
+    update sy_role
+    <set >
+      <if test="record.roleId != null" >
+        role_id = #{record.roleId,jdbcType=INTEGER},
+      </if>
+      <if test="record.memberId != null" >
+        member_id = #{record.memberId,jdbcType=INTEGER},
+      </if>
+      <if test="record.addressId != null" >
+        address_id = #{record.addressId,jdbcType=INTEGER},
+      </if>
+      <if test="record.roleType != null" >
+        role_type = #{record.roleType,jdbcType=TINYINT},
+      </if>
+      <if test="record.mFeeRate != null" >
+        m_fee_rate = #{record.mFeeRate,jdbcType=SMALLINT},
+      </if>
+      <if test="record.sureAgreement != null" >
+        sure_agreement = #{record.sureAgreement,jdbcType=TINYINT},
+      </if>
+      <if test="record.sureAgreementTime != null" >
+        sure_agreement_time = #{record.sureAgreementTime,jdbcType=INTEGER},
+      </if>
+      <if test="record.surePoor != null" >
+        sure_poor = #{record.surePoor,jdbcType=TINYINT},
+      </if>
+      <if test="record.surePoorTime != null" >
+        sure_poor_time = #{record.surePoorTime,jdbcType=INTEGER},
+      </if>
+      <if test="record.recommendReason != null" >
+        recommend_reason = #{record.recommendReason,jdbcType=VARCHAR},
+      </if>
+      <if test="record.recommend != null" >
+        recommend = #{record.recommend,jdbcType=CHAR},
+      </if>
+      <if test="record.recommendTime != null" >
+        recommend_time = #{record.recommendTime,jdbcType=INTEGER},
+      </if>
+      <if test="record.fundFeeRate != null" >
+        fund_fee_rate = #{record.fundFeeRate,jdbcType=SMALLINT},
+      </if>
+      <if test="record.channel != null" >
+        channel = #{record.channel,jdbcType=VARCHAR},
+      </if>
+      <if test="record.areaid1 != null" >
+        areaid_1 = #{record.areaid1,jdbcType=BIGINT},
+      </if>
+      <if test="record.areaid2 != null" >
+        areaid_2 = #{record.areaid2,jdbcType=BIGINT},
+      </if>
+      <if test="record.areaid3 != null" >
+        areaid_3 = #{record.areaid3,jdbcType=BIGINT},
+      </if>
+    </set>
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByExample" parameterType="map" >
+    update sy_role
+    set role_id = #{record.roleId,jdbcType=INTEGER},
+      member_id = #{record.memberId,jdbcType=INTEGER},
+      address_id = #{record.addressId,jdbcType=INTEGER},
+      role_type = #{record.roleType,jdbcType=TINYINT},
+      m_fee_rate = #{record.mFeeRate,jdbcType=SMALLINT},
+      sure_agreement = #{record.sureAgreement,jdbcType=TINYINT},
+      sure_agreement_time = #{record.sureAgreementTime,jdbcType=INTEGER},
+      sure_poor = #{record.surePoor,jdbcType=TINYINT},
+      sure_poor_time = #{record.surePoorTime,jdbcType=INTEGER},
+      recommend_reason = #{record.recommendReason,jdbcType=VARCHAR},
+      recommend = #{record.recommend,jdbcType=CHAR},
+      recommend_time = #{record.recommendTime,jdbcType=INTEGER},
+      fund_fee_rate = #{record.fundFeeRate,jdbcType=SMALLINT},
+      channel = #{record.channel,jdbcType=VARCHAR},
+      areaid_1 = #{record.areaid1,jdbcType=BIGINT},
+      areaid_2 = #{record.areaid2,jdbcType=BIGINT},
+      areaid_3 = #{record.areaid3,jdbcType=BIGINT}
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByPrimaryKeySelective" parameterType="com.shanyuan.platform.ms.dao.user.entity.SyRole" >
+    update sy_role
+    <set >
+      <if test="memberId != null" >
+        member_id = #{memberId,jdbcType=INTEGER},
+      </if>
+      <if test="addressId != null" >
+        address_id = #{addressId,jdbcType=INTEGER},
+      </if>
+      <if test="roleType != null" >
+        role_type = #{roleType,jdbcType=TINYINT},
+      </if>
+      <if test="mFeeRate != null" >
+        m_fee_rate = #{mFeeRate,jdbcType=SMALLINT},
+      </if>
+      <if test="sureAgreement != null" >
+        sure_agreement = #{sureAgreement,jdbcType=TINYINT},
+      </if>
+      <if test="sureAgreementTime != null" >
+        sure_agreement_time = #{sureAgreementTime,jdbcType=INTEGER},
+      </if>
+      <if test="surePoor != null" >
+        sure_poor = #{surePoor,jdbcType=TINYINT},
+      </if>
+      <if test="surePoorTime != null" >
+        sure_poor_time = #{surePoorTime,jdbcType=INTEGER},
+      </if>
+      <if test="recommendReason != null" >
+        recommend_reason = #{recommendReason,jdbcType=VARCHAR},
+      </if>
+      <if test="recommend != null" >
+        recommend = #{recommend,jdbcType=CHAR},
+      </if>
+      <if test="recommendTime != null" >
+        recommend_time = #{recommendTime,jdbcType=INTEGER},
+      </if>
+      <if test="fundFeeRate != null" >
+        fund_fee_rate = #{fundFeeRate,jdbcType=SMALLINT},
+      </if>
+      <if test="channel != null" >
+        channel = #{channel,jdbcType=VARCHAR},
+      </if>
+      <if test="areaid1 != null" >
+        areaid_1 = #{areaid1,jdbcType=BIGINT},
+      </if>
+      <if test="areaid2 != null" >
+        areaid_2 = #{areaid2,jdbcType=BIGINT},
+      </if>
+      <if test="areaid3 != null" >
+        areaid_3 = #{areaid3,jdbcType=BIGINT},
+      </if>
+    </set>
+    where role_id = #{roleId,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.shanyuan.platform.ms.dao.user.entity.SyRole" >
+    update sy_role
+    set member_id = #{memberId,jdbcType=INTEGER},
+      address_id = #{addressId,jdbcType=INTEGER},
+      role_type = #{roleType,jdbcType=TINYINT},
+      m_fee_rate = #{mFeeRate,jdbcType=SMALLINT},
+      sure_agreement = #{sureAgreement,jdbcType=TINYINT},
+      sure_agreement_time = #{sureAgreementTime,jdbcType=INTEGER},
+      sure_poor = #{surePoor,jdbcType=TINYINT},
+      sure_poor_time = #{surePoorTime,jdbcType=INTEGER},
+      recommend_reason = #{recommendReason,jdbcType=VARCHAR},
+      recommend = #{recommend,jdbcType=CHAR},
+      recommend_time = #{recommendTime,jdbcType=INTEGER},
+      fund_fee_rate = #{fundFeeRate,jdbcType=SMALLINT},
+      channel = #{channel,jdbcType=VARCHAR},
+      areaid_1 = #{areaid1,jdbcType=BIGINT},
+      areaid_2 = #{areaid2,jdbcType=BIGINT},
+      areaid_3 = #{areaid3,jdbcType=BIGINT}
+    where role_id = #{roleId,jdbcType=INTEGER}
+  </update>
+  
+  <select id="selectRoleInfo" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+    select 
+    <include refid="Base_Column_List" />
+    from sy_role
+    where member_id = #{publisherId,jdbcType=INTEGER}
+  </select>
+ 
+  <select id="selectRoleList" resultMap="BaseResultMap"  >
+  	SELECT 
+  	a.role_id,a.member_id,a.areaid_3,a.channel 
+  	FROM sy_role a
+  </select>
+  <select id="selectRole" resultMap="BaseResultMap"  >
+  	SELECT 
+  	role_id,member_id,areaid_3,channel,recommend_reason
+  	FROM sy_role   WHERE role_type IN (1,2,3,4)  ORDER BY recommend_time DESC 
+  </select>
+</mapper>

@@ -1,0 +1,420 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.shanyuan.platform.ms.dao.goods.mapper.SyOrgActivityMapper" >
+  <resultMap id="BaseResultMap" type="com.shanyuan.platform.ms.dao.goods.entity.SyOrgActivity" >
+    <id column="activity_id" property="activityId" jdbcType="INTEGER" />
+    <result column="activity_title" property="activityTitle" jdbcType="VARCHAR" />
+    <result column="activity_type" property="activityType" jdbcType="VARCHAR" />
+    <result column="activity_banner" property="activityBanner" jdbcType="VARCHAR" /> 
+    <result column="activity_addtime" property="activityAddtime" jdbcType="INTEGER" />
+    <result column="activity_edittime" property="activityEdittime" jdbcType="INTEGER" />
+    <result column="activity_sort" property="activitySort" jdbcType="INTEGER" />
+    <result column="activity_state" property="activityState" jdbcType="TINYINT" />
+    <result column="activity_owner_id" property="activityOwnerId" jdbcType="INTEGER" />
+    <result column="parent_activity_id" property="parentActivityId" jdbcType="INTEGER" />
+    <result column="activity_image" property="activityImage" jdbcType="VARCHAR" />
+    <result column="activity_intro" property="activityIntro" jdbcType="VARCHAR" />
+    <result column="activity_template" property="activityTemplate" jdbcType="VARCHAR" />
+  </resultMap>
+  <resultMap id="ResultMapWithBLOBs" type="com.shanyuan.platform.ms.dao.goods.entity.SyOrgActivity" extends="BaseResultMap" >
+    <result column="activity_desc" property="activityDesc" jdbcType="LONGVARCHAR" />
+  </resultMap>
+  <sql id="Example_Where_Clause" >
+    <where >
+      <foreach collection="oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Update_By_Example_Where_Clause" >
+    <where >
+      <foreach collection="example.oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Base_Column_List" >
+    activity_id, activity_title, activity_type, activity_banner, activity_addtime, activity_edittime, 
+    activity_sort, activity_state, activity_owner_id, parent_activity_id, activity_image, 
+    activity_intro, activity_template
+  </sql>
+  <sql id="Blob_Column_List" >
+    activity_desc
+  </sql>
+  <select id="selectByExampleWithBLOBs" resultMap="ResultMapWithBLOBs" parameterType="com.shanyuan.platform.ms.dao.goods.entity.SyOrgActivityExample" >
+    select
+    <if test="distinct" >
+      distinct
+    </if>
+    <include refid="Base_Column_List" />
+    ,
+    <include refid="Blob_Column_List" />
+    from sy_org_activity
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null" >
+      order by ${orderByClause}
+    </if>
+  </select>
+  <select id="selectByExample" resultMap="BaseResultMap" parameterType="com.shanyuan.platform.ms.dao.goods.entity.SyOrgActivityExample" >
+    select
+    <if test="distinct" >
+      distinct
+    </if>
+    <include refid="Base_Column_List" />
+    from sy_org_activity
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null" >
+      order by ${orderByClause}
+    </if>
+  </select>
+  <select id="selectByPrimaryKey" resultMap="ResultMapWithBLOBs" parameterType="java.lang.Integer" >
+    select 
+    <include refid="Base_Column_List" />
+    ,
+    <include refid="Blob_Column_List" />
+    from sy_org_activity
+    where activity_id = #{activityId,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+    delete from sy_org_activity
+    where activity_id = #{activityId,jdbcType=INTEGER}
+  </delete>
+  <delete id="deleteByExample" parameterType="com.shanyuan.platform.ms.dao.goods.entity.SyOrgActivityExample" >
+    delete from sy_org_activity
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </delete>
+  <insert id="insert" parameterType="com.shanyuan.platform.ms.dao.goods.entity.SyOrgActivity" >
+    <selectKey resultType="java.lang.Integer" keyProperty="activityId" order="AFTER" >
+      SELECT LAST_INSERT_ID()
+    </selectKey>
+    insert into sy_org_activity (activity_title, activity_type, activity_banner, 
+      activity_addtime, activity_edittime, activity_sort, 
+      activity_state, activity_owner_id, parent_activity_id, 
+      activity_image, activity_intro, activity_template, 
+      activity_desc)
+    values (#{activityTitle,jdbcType=VARCHAR}, #{activityType,jdbcType=VARCHAR}, #{activityBanner,jdbcType=VARCHAR}, 
+      #{activityAddtime,jdbcType=INTEGER}, #{activityEdittime,jdbcType=INTEGER}, #{activitySort,jdbcType=INTEGER}, 
+      #{activityState,jdbcType=TINYINT}, #{activityOwnerId,jdbcType=INTEGER}, #{parentActivityId,jdbcType=INTEGER}, 
+      #{activityImage,jdbcType=VARCHAR}, #{activityIntro,jdbcType=VARCHAR}, #{activityTemplate,jdbcType=VARCHAR}, 
+      #{activityDesc,jdbcType=LONGVARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="com.shanyuan.platform.ms.dao.goods.entity.SyOrgActivity" >
+    <selectKey resultType="java.lang.Integer" keyProperty="activityId" order="AFTER" >
+      SELECT LAST_INSERT_ID()
+    </selectKey>
+    insert into sy_org_activity
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="activityTitle != null" >
+        activity_title,
+      </if>
+      <if test="activityType != null" >
+        activity_type,
+      </if>
+      <if test="activityBanner != null" >
+        activity_banner,
+      </if>
+      <if test="activityAddtime != null" >
+        activity_addtime,
+      </if>
+      <if test="activityEdittime != null" >
+        activity_edittime,
+      </if>
+      <if test="activitySort != null" >
+        activity_sort,
+      </if>
+      <if test="activityState != null" >
+        activity_state,
+      </if>
+      <if test="activityOwnerId != null" >
+        activity_owner_id,
+      </if>
+      <if test="parentActivityId != null" >
+        parent_activity_id,
+      </if>
+      <if test="activityImage != null" >
+        activity_image,
+      </if>
+      <if test="activityIntro != null" >
+        activity_intro,
+      </if>
+      <if test="activityTemplate != null" >
+        activity_template,
+      </if>
+      <if test="activityDesc != null" >
+        activity_desc,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="activityTitle != null" >
+        #{activityTitle,jdbcType=VARCHAR},
+      </if>
+      <if test="activityType != null" >
+        #{activityType,jdbcType=VARCHAR},
+      </if>
+      <if test="activityBanner != null" >
+        #{activityBanner,jdbcType=VARCHAR},
+      </if>
+      <if test="activityAddtime != null" >
+        #{activityAddtime,jdbcType=INTEGER},
+      </if>
+      <if test="activityEdittime != null" >
+        #{activityEdittime,jdbcType=INTEGER},
+      </if>
+      <if test="activitySort != null" >
+        #{activitySort,jdbcType=INTEGER},
+      </if>
+      <if test="activityState != null" >
+        #{activityState,jdbcType=TINYINT},
+      </if>
+      <if test="activityOwnerId != null" >
+        #{activityOwnerId,jdbcType=INTEGER},
+      </if>
+      <if test="parentActivityId != null" >
+        #{parentActivityId,jdbcType=INTEGER},
+      </if>
+      <if test="activityImage != null" >
+        #{activityImage,jdbcType=VARCHAR},
+      </if>
+      <if test="activityIntro != null" >
+        #{activityIntro,jdbcType=VARCHAR},
+      </if>
+      <if test="activityTemplate != null" >
+        #{activityTemplate,jdbcType=VARCHAR},
+      </if>
+      <if test="activityDesc != null" >
+        #{activityDesc,jdbcType=LONGVARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <select id="countByExample" parameterType="com.shanyuan.platform.ms.dao.goods.entity.SyOrgActivityExample" resultType="java.lang.Integer" >
+    select count(*) from sy_org_activity
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </select>
+  <update id="updateByExampleSelective" parameterType="map" >
+    update sy_org_activity
+    <set >
+      <if test="record.activityId != null" >
+        activity_id = #{record.activityId,jdbcType=INTEGER},
+      </if>
+      <if test="record.activityTitle != null" >
+        activity_title = #{record.activityTitle,jdbcType=VARCHAR},
+      </if>
+      <if test="record.activityType != null" >
+        activity_type = #{record.activityType,jdbcType=VARCHAR},
+      </if>
+      <if test="record.activityBanner != null" >
+        activity_banner = #{record.activityBanner,jdbcType=VARCHAR},
+      </if>
+      <if test="record.activityAddtime != null" >
+        activity_addtime = #{record.activityAddtime,jdbcType=INTEGER},
+      </if>
+      <if test="record.activityEdittime != null" >
+        activity_edittime = #{record.activityEdittime,jdbcType=INTEGER},
+      </if>
+      <if test="record.activitySort != null" >
+        activity_sort = #{record.activitySort,jdbcType=INTEGER},
+      </if>
+      <if test="record.activityState != null" >
+        activity_state = #{record.activityState,jdbcType=TINYINT},
+      </if>
+      <if test="record.activityOwnerId != null" >
+        activity_owner_id = #{record.activityOwnerId,jdbcType=INTEGER},
+      </if>
+      <if test="record.parentActivityId != null" >
+        parent_activity_id = #{record.parentActivityId,jdbcType=INTEGER},
+      </if>
+      <if test="record.activityImage != null" >
+        activity_image = #{record.activityImage,jdbcType=VARCHAR},
+      </if>
+      <if test="record.activityIntro != null" >
+        activity_intro = #{record.activityIntro,jdbcType=VARCHAR},
+      </if>
+      <if test="record.activityTemplate != null" >
+        activity_template = #{record.activityTemplate,jdbcType=VARCHAR},
+      </if>
+      <if test="record.activityDesc != null" >
+        activity_desc = #{record.activityDesc,jdbcType=LONGVARCHAR},
+      </if>
+    </set>
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByExampleWithBLOBs" parameterType="map" >
+    update sy_org_activity
+    set activity_id = #{record.activityId,jdbcType=INTEGER},
+      activity_title = #{record.activityTitle,jdbcType=VARCHAR},
+      activity_type = #{record.activityType,jdbcType=VARCHAR},
+      activity_banner = #{record.activityBanner,jdbcType=VARCHAR},
+      activity_addtime = #{record.activityAddtime,jdbcType=INTEGER},
+      activity_edittime = #{record.activityEdittime,jdbcType=INTEGER},
+      activity_sort = #{record.activitySort,jdbcType=INTEGER},
+      activity_state = #{record.activityState,jdbcType=TINYINT},
+      activity_owner_id = #{record.activityOwnerId,jdbcType=INTEGER},
+      parent_activity_id = #{record.parentActivityId,jdbcType=INTEGER},
+      activity_image = #{record.activityImage,jdbcType=VARCHAR},
+      activity_intro = #{record.activityIntro,jdbcType=VARCHAR},
+      activity_template = #{record.activityTemplate,jdbcType=VARCHAR},
+      activity_desc = #{record.activityDesc,jdbcType=LONGVARCHAR}
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByExample" parameterType="map" >
+    update sy_org_activity
+    set activity_id = #{record.activityId,jdbcType=INTEGER},
+      activity_title = #{record.activityTitle,jdbcType=VARCHAR},
+      activity_type = #{record.activityType,jdbcType=VARCHAR},
+      activity_banner = #{record.activityBanner,jdbcType=VARCHAR},
+      activity_addtime = #{record.activityAddtime,jdbcType=INTEGER},
+      activity_edittime = #{record.activityEdittime,jdbcType=INTEGER},
+      activity_sort = #{record.activitySort,jdbcType=INTEGER},
+      activity_state = #{record.activityState,jdbcType=TINYINT},
+      activity_owner_id = #{record.activityOwnerId,jdbcType=INTEGER},
+      parent_activity_id = #{record.parentActivityId,jdbcType=INTEGER},
+      activity_image = #{record.activityImage,jdbcType=VARCHAR},
+      activity_intro = #{record.activityIntro,jdbcType=VARCHAR},
+      activity_template = #{record.activityTemplate,jdbcType=VARCHAR}
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByPrimaryKeySelective" parameterType="com.shanyuan.platform.ms.dao.goods.entity.SyOrgActivity" >
+    update sy_org_activity
+    <set >
+      <if test="activityTitle != null" >
+        activity_title = #{activityTitle,jdbcType=VARCHAR},
+      </if>
+      <if test="activityType != null" >
+        activity_type = #{activityType,jdbcType=VARCHAR},
+      </if>
+      <if test="activityBanner != null" >
+        activity_banner = #{activityBanner,jdbcType=VARCHAR},
+      </if>
+      <if test="activityAddtime != null" >
+        activity_addtime = #{activityAddtime,jdbcType=INTEGER},
+      </if>
+      <if test="activityEdittime != null" >
+        activity_edittime = #{activityEdittime,jdbcType=INTEGER},
+      </if>
+      <if test="activitySort != null" >
+        activity_sort = #{activitySort,jdbcType=INTEGER},
+      </if>
+      <if test="activityState != null" >
+        activity_state = #{activityState,jdbcType=TINYINT},
+      </if>
+      <if test="activityOwnerId != null" >
+        activity_owner_id = #{activityOwnerId,jdbcType=INTEGER},
+      </if>
+      <if test="parentActivityId != null" >
+        parent_activity_id = #{parentActivityId,jdbcType=INTEGER},
+      </if>
+      <if test="activityImage != null" >
+        activity_image = #{activityImage,jdbcType=VARCHAR},
+      </if>
+      <if test="activityIntro != null" >
+        activity_intro = #{activityIntro,jdbcType=VARCHAR},
+      </if>
+      <if test="activityTemplate != null" >
+        activity_template = #{activityTemplate,jdbcType=VARCHAR},
+      </if>
+      <if test="activityDesc != null" >
+        activity_desc = #{activityDesc,jdbcType=LONGVARCHAR},
+      </if>
+    </set>
+    where activity_id = #{activityId,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKeyWithBLOBs" parameterType="com.shanyuan.platform.ms.dao.goods.entity.SyOrgActivity" >
+    update sy_org_activity
+    set activity_title = #{activityTitle,jdbcType=VARCHAR},
+      activity_type = #{activityType,jdbcType=VARCHAR},
+      activity_banner = #{activityBanner,jdbcType=VARCHAR},
+      activity_addtime = #{activityAddtime,jdbcType=INTEGER},
+      activity_edittime = #{activityEdittime,jdbcType=INTEGER},
+      activity_sort = #{activitySort,jdbcType=INTEGER},
+      activity_state = #{activityState,jdbcType=TINYINT},
+      activity_owner_id = #{activityOwnerId,jdbcType=INTEGER},
+      parent_activity_id = #{parentActivityId,jdbcType=INTEGER},
+      activity_image = #{activityImage,jdbcType=VARCHAR},
+      activity_intro = #{activityIntro,jdbcType=VARCHAR},
+      activity_template = #{activityTemplate,jdbcType=VARCHAR},
+      activity_desc = #{activityDesc,jdbcType=LONGVARCHAR}
+    where activity_id = #{activityId,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.shanyuan.platform.ms.dao.goods.entity.SyOrgActivity" >
+    update sy_org_activity
+    set activity_title = #{activityTitle,jdbcType=VARCHAR},
+      activity_type = #{activityType,jdbcType=VARCHAR},
+      activity_banner = #{activityBanner,jdbcType=VARCHAR},
+      activity_addtime = #{activityAddtime,jdbcType=INTEGER},
+      activity_edittime = #{activityEdittime,jdbcType=INTEGER},
+      activity_sort = #{activitySort,jdbcType=INTEGER},
+      activity_state = #{activityState,jdbcType=TINYINT},
+      activity_owner_id = #{activityOwnerId,jdbcType=INTEGER},
+      parent_activity_id = #{parentActivityId,jdbcType=INTEGER},
+      activity_image = #{activityImage,jdbcType=VARCHAR},
+      activity_intro = #{activityIntro,jdbcType=VARCHAR},
+      activity_template = #{activityTemplate,jdbcType=VARCHAR}
+    where activity_id = #{activityId,jdbcType=INTEGER}
+  </update>
+  
+  <select id="selectByGoodsId" parameterType="int" resultMap="BaseResultMap">
+		SELECT c.activity_id,c.activity_title,c.activity_image,c.activity_owner_id
+		FROM sy_goods a,sy_goods_common b,sy_org_activity c
+		WHERE a.goods_commonid=b.goods_commonid
+		AND b.goods_activity_id=c.activity_id
+		AND a.goods_id=#{goodsId}
+  </select>
+</mapper>

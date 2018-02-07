@@ -1,0 +1,638 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.shanyuan.platform.ms.dao.biz.mapper.SyBizMainOrderMapper" >
+  <resultMap id="BaseResultMap" type="com.shanyuan.platform.ms.dao.biz.entity.SyBizMainOrder" >
+    <id column="main_order_id" property="mainOrderId" jdbcType="INTEGER" />
+    <result column="order_sn" property="orderSn" jdbcType="BIGINT" />
+    <result column="coupon_batch_sn" property="couponBatchSn" jdbcType="BIGINT" />
+    <result column="buyer_id" property="buyerId" jdbcType="INTEGER" />
+    <result column="buyer_name" property="buyerName" jdbcType="VARCHAR" />
+    <result column="add_time" property="addTime" jdbcType="INTEGER" />
+    <result column="payment_time" property="paymentTime" jdbcType="INTEGER" />
+    <result column="ship_time" property="shipTime" jdbcType="INTEGER" />
+    <result column="finnshed_time" property="finnshedTime" jdbcType="INTEGER" />
+    <result column="order_amount" property="orderAmount" jdbcType="DECIMAL" />
+    <result column="coupon_value" property="couponValue" jdbcType="DECIMAL" />
+    <result column="coupon_num" property="couponNum" jdbcType="INTEGER" />
+    <result column="coupon_creator" property="couponCreator" jdbcType="VARCHAR" />
+    <result column="inv_info" property="invInfo" jdbcType="VARCHAR" />
+    <result column="circle_id" property="circleId" jdbcType="INTEGER" />
+    <result column="apply_circle_name" property="applyCircleName" jdbcType="VARCHAR" />
+    <result column="paper_contract" property="paperContract" jdbcType="CHAR" />
+    <result column="payment_role" property="paymentRole" jdbcType="CHAR" />
+    <result column="payment_model" property="paymentModel" jdbcType="CHAR" />
+    <result column="order_type" property="orderType" jdbcType="CHAR" />
+    <result column="order_state" property="orderState" jdbcType="CHAR" />
+    <result column="inv_state" property="invState" jdbcType="CHAR" />
+    <result column="pay_state" property="payState" jdbcType="CHAR" />
+    <result column="goods_state" property="goodsState" jdbcType="CHAR" />
+    <result column="points_state" property="pointsState" jdbcType="CHAR" />
+    <result column="mark" property="mark" jdbcType="VARCHAR" />
+    <result column="start_time" property="startTime" jdbcType="INTEGER" />
+    <result column="expired_time" property="expiredTime" jdbcType="INTEGER" />
+    <result column="cancle_state" property="cancleState" jdbcType="CHAR" />
+    <result column="agree_ship_time" property="agreeShipTime" jdbcType="INTEGER" />
+    <result column="all_shiped_time" property="allShipedTime" jdbcType="INTEGER" />
+    <result column="receive_time" property="receiveTime" jdbcType="INTEGER" />
+  </resultMap>
+  <sql id="Example_Where_Clause" >
+    <where >
+      <foreach collection="oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Update_By_Example_Where_Clause" >
+    <where >
+      <foreach collection="example.oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Base_Column_List" >
+    main_order_id, order_sn, coupon_batch_sn, buyer_id, buyer_name, add_time, payment_time, 
+    ship_time, finnshed_time, order_amount, coupon_value, coupon_num, coupon_creator, 
+    inv_info, circle_id, apply_circle_name, paper_contract, payment_role, payment_model, 
+    order_type, order_state, inv_state, pay_state, goods_state, points_state, mark, start_time, 
+    expired_time, cancle_state, agree_ship_time, all_shiped_time, receive_time
+  </sql>
+  <select id="selectByExample" resultMap="BaseResultMap" parameterType="com.shanyuan.platform.ms.dao.biz.entity.SyBizMainOrderExample" >
+    select
+    <if test="distinct" >
+      distinct
+    </if>
+    <include refid="Base_Column_List" />
+    from sy_biz_main_order
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null" >
+      order by ${orderByClause}
+    </if>
+  </select>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+    select 
+    <include refid="Base_Column_List" />
+    from sy_biz_main_order
+    where main_order_id = #{mainOrderId,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+    delete from sy_biz_main_order
+    where main_order_id = #{mainOrderId,jdbcType=INTEGER}
+  </delete>
+  <delete id="deleteByExample" parameterType="com.shanyuan.platform.ms.dao.biz.entity.SyBizMainOrderExample" >
+    delete from sy_biz_main_order
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </delete>
+  <insert id="insert" parameterType="com.shanyuan.platform.ms.dao.biz.entity.SyBizMainOrder" >
+    insert into sy_biz_main_order (main_order_id, order_sn, coupon_batch_sn, 
+      buyer_id, buyer_name, add_time, 
+      payment_time, ship_time, finnshed_time, 
+      order_amount, coupon_value, coupon_num, 
+      coupon_creator, inv_info, circle_id, 
+      apply_circle_name, paper_contract, payment_role, 
+      payment_model, order_type, order_state, 
+      inv_state, pay_state, goods_state, 
+      points_state, mark, start_time, 
+      expired_time, cancle_state, agree_ship_time, 
+      all_shiped_time, receive_time)
+    values (#{mainOrderId,jdbcType=INTEGER}, #{orderSn,jdbcType=BIGINT}, #{couponBatchSn,jdbcType=BIGINT}, 
+      #{buyerId,jdbcType=INTEGER}, #{buyerName,jdbcType=VARCHAR}, #{addTime,jdbcType=INTEGER}, 
+      #{paymentTime,jdbcType=INTEGER}, #{shipTime,jdbcType=INTEGER}, #{finnshedTime,jdbcType=INTEGER}, 
+      #{orderAmount,jdbcType=DECIMAL}, #{couponValue,jdbcType=DECIMAL}, #{couponNum,jdbcType=INTEGER}, 
+      #{couponCreator,jdbcType=VARCHAR}, #{invInfo,jdbcType=VARCHAR}, #{circleId,jdbcType=INTEGER}, 
+      #{applyCircleName,jdbcType=VARCHAR}, #{paperContract,jdbcType=CHAR}, #{paymentRole,jdbcType=CHAR}, 
+      #{paymentModel,jdbcType=CHAR}, #{orderType,jdbcType=CHAR}, #{orderState,jdbcType=CHAR}, 
+      #{invState,jdbcType=CHAR}, #{payState,jdbcType=CHAR}, #{goodsState,jdbcType=CHAR}, 
+      #{pointsState,jdbcType=CHAR}, #{mark,jdbcType=VARCHAR}, #{startTime,jdbcType=INTEGER}, 
+      #{expiredTime,jdbcType=INTEGER}, #{cancleState,jdbcType=CHAR}, #{agreeShipTime,jdbcType=INTEGER}, 
+      #{allShipedTime,jdbcType=INTEGER}, #{receiveTime,jdbcType=INTEGER})
+  </insert>
+  <insert id="insertSelective" parameterType="com.shanyuan.platform.ms.dao.biz.entity.SyBizMainOrder" >
+    insert into sy_biz_main_order
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="mainOrderId != null" >
+        main_order_id,
+      </if>
+      <if test="orderSn != null" >
+        order_sn,
+      </if>
+      <if test="couponBatchSn != null" >
+        coupon_batch_sn,
+      </if>
+      <if test="buyerId != null" >
+        buyer_id,
+      </if>
+      <if test="buyerName != null" >
+        buyer_name,
+      </if>
+      <if test="addTime != null" >
+        add_time,
+      </if>
+      <if test="paymentTime != null" >
+        payment_time,
+      </if>
+      <if test="shipTime != null" >
+        ship_time,
+      </if>
+      <if test="finnshedTime != null" >
+        finnshed_time,
+      </if>
+      <if test="orderAmount != null" >
+        order_amount,
+      </if>
+      <if test="couponValue != null" >
+        coupon_value,
+      </if>
+      <if test="couponNum != null" >
+        coupon_num,
+      </if>
+      <if test="couponCreator != null" >
+        coupon_creator,
+      </if>
+      <if test="invInfo != null" >
+        inv_info,
+      </if>
+      <if test="circleId != null" >
+        circle_id,
+      </if>
+      <if test="applyCircleName != null" >
+        apply_circle_name,
+      </if>
+      <if test="paperContract != null" >
+        paper_contract,
+      </if>
+      <if test="paymentRole != null" >
+        payment_role,
+      </if>
+      <if test="paymentModel != null" >
+        payment_model,
+      </if>
+      <if test="orderType != null" >
+        order_type,
+      </if>
+      <if test="orderState != null" >
+        order_state,
+      </if>
+      <if test="invState != null" >
+        inv_state,
+      </if>
+      <if test="payState != null" >
+        pay_state,
+      </if>
+      <if test="goodsState != null" >
+        goods_state,
+      </if>
+      <if test="pointsState != null" >
+        points_state,
+      </if>
+      <if test="mark != null" >
+        mark,
+      </if>
+      <if test="startTime != null" >
+        start_time,
+      </if>
+      <if test="expiredTime != null" >
+        expired_time,
+      </if>
+      <if test="cancleState != null" >
+        cancle_state,
+      </if>
+      <if test="agreeShipTime != null" >
+        agree_ship_time,
+      </if>
+      <if test="allShipedTime != null" >
+        all_shiped_time,
+      </if>
+      <if test="receiveTime != null" >
+        receive_time,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="mainOrderId != null" >
+        #{mainOrderId,jdbcType=INTEGER},
+      </if>
+      <if test="orderSn != null" >
+        #{orderSn,jdbcType=BIGINT},
+      </if>
+      <if test="couponBatchSn != null" >
+        #{couponBatchSn,jdbcType=BIGINT},
+      </if>
+      <if test="buyerId != null" >
+        #{buyerId,jdbcType=INTEGER},
+      </if>
+      <if test="buyerName != null" >
+        #{buyerName,jdbcType=VARCHAR},
+      </if>
+      <if test="addTime != null" >
+        #{addTime,jdbcType=INTEGER},
+      </if>
+      <if test="paymentTime != null" >
+        #{paymentTime,jdbcType=INTEGER},
+      </if>
+      <if test="shipTime != null" >
+        #{shipTime,jdbcType=INTEGER},
+      </if>
+      <if test="finnshedTime != null" >
+        #{finnshedTime,jdbcType=INTEGER},
+      </if>
+      <if test="orderAmount != null" >
+        #{orderAmount,jdbcType=DECIMAL},
+      </if>
+      <if test="couponValue != null" >
+        #{couponValue,jdbcType=DECIMAL},
+      </if>
+      <if test="couponNum != null" >
+        #{couponNum,jdbcType=INTEGER},
+      </if>
+      <if test="couponCreator != null" >
+        #{couponCreator,jdbcType=VARCHAR},
+      </if>
+      <if test="invInfo != null" >
+        #{invInfo,jdbcType=VARCHAR},
+      </if>
+      <if test="circleId != null" >
+        #{circleId,jdbcType=INTEGER},
+      </if>
+      <if test="applyCircleName != null" >
+        #{applyCircleName,jdbcType=VARCHAR},
+      </if>
+      <if test="paperContract != null" >
+        #{paperContract,jdbcType=CHAR},
+      </if>
+      <if test="paymentRole != null" >
+        #{paymentRole,jdbcType=CHAR},
+      </if>
+      <if test="paymentModel != null" >
+        #{paymentModel,jdbcType=CHAR},
+      </if>
+      <if test="orderType != null" >
+        #{orderType,jdbcType=CHAR},
+      </if>
+      <if test="orderState != null" >
+        #{orderState,jdbcType=CHAR},
+      </if>
+      <if test="invState != null" >
+        #{invState,jdbcType=CHAR},
+      </if>
+      <if test="payState != null" >
+        #{payState,jdbcType=CHAR},
+      </if>
+      <if test="goodsState != null" >
+        #{goodsState,jdbcType=CHAR},
+      </if>
+      <if test="pointsState != null" >
+        #{pointsState,jdbcType=CHAR},
+      </if>
+      <if test="mark != null" >
+        #{mark,jdbcType=VARCHAR},
+      </if>
+      <if test="startTime != null" >
+        #{startTime,jdbcType=INTEGER},
+      </if>
+      <if test="expiredTime != null" >
+        #{expiredTime,jdbcType=INTEGER},
+      </if>
+      <if test="cancleState != null" >
+        #{cancleState,jdbcType=CHAR},
+      </if>
+      <if test="agreeShipTime != null" >
+        #{agreeShipTime,jdbcType=INTEGER},
+      </if>
+      <if test="allShipedTime != null" >
+        #{allShipedTime,jdbcType=INTEGER},
+      </if>
+      <if test="receiveTime != null" >
+        #{receiveTime,jdbcType=INTEGER},
+      </if>
+    </trim>
+  </insert>
+  <select id="countByExample" parameterType="com.shanyuan.platform.ms.dao.biz.entity.SyBizMainOrderExample" resultType="java.lang.Integer" >
+    select count(*) from sy_biz_main_order
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </select>
+  <update id="updateByExampleSelective" parameterType="map" >
+    update sy_biz_main_order
+    <set >
+      <if test="record.mainOrderId != null" >
+        main_order_id = #{record.mainOrderId,jdbcType=INTEGER},
+      </if>
+      <if test="record.orderSn != null" >
+        order_sn = #{record.orderSn,jdbcType=BIGINT},
+      </if>
+      <if test="record.couponBatchSn != null" >
+        coupon_batch_sn = #{record.couponBatchSn,jdbcType=BIGINT},
+      </if>
+      <if test="record.buyerId != null" >
+        buyer_id = #{record.buyerId,jdbcType=INTEGER},
+      </if>
+      <if test="record.buyerName != null" >
+        buyer_name = #{record.buyerName,jdbcType=VARCHAR},
+      </if>
+      <if test="record.addTime != null" >
+        add_time = #{record.addTime,jdbcType=INTEGER},
+      </if>
+      <if test="record.paymentTime != null" >
+        payment_time = #{record.paymentTime,jdbcType=INTEGER},
+      </if>
+      <if test="record.shipTime != null" >
+        ship_time = #{record.shipTime,jdbcType=INTEGER},
+      </if>
+      <if test="record.finnshedTime != null" >
+        finnshed_time = #{record.finnshedTime,jdbcType=INTEGER},
+      </if>
+      <if test="record.orderAmount != null" >
+        order_amount = #{record.orderAmount,jdbcType=DECIMAL},
+      </if>
+      <if test="record.couponValue != null" >
+        coupon_value = #{record.couponValue,jdbcType=DECIMAL},
+      </if>
+      <if test="record.couponNum != null" >
+        coupon_num = #{record.couponNum,jdbcType=INTEGER},
+      </if>
+      <if test="record.couponCreator != null" >
+        coupon_creator = #{record.couponCreator,jdbcType=VARCHAR},
+      </if>
+      <if test="record.invInfo != null" >
+        inv_info = #{record.invInfo,jdbcType=VARCHAR},
+      </if>
+      <if test="record.circleId != null" >
+        circle_id = #{record.circleId,jdbcType=INTEGER},
+      </if>
+      <if test="record.applyCircleName != null" >
+        apply_circle_name = #{record.applyCircleName,jdbcType=VARCHAR},
+      </if>
+      <if test="record.paperContract != null" >
+        paper_contract = #{record.paperContract,jdbcType=CHAR},
+      </if>
+      <if test="record.paymentRole != null" >
+        payment_role = #{record.paymentRole,jdbcType=CHAR},
+      </if>
+      <if test="record.paymentModel != null" >
+        payment_model = #{record.paymentModel,jdbcType=CHAR},
+      </if>
+      <if test="record.orderType != null" >
+        order_type = #{record.orderType,jdbcType=CHAR},
+      </if>
+      <if test="record.orderState != null" >
+        order_state = #{record.orderState,jdbcType=CHAR},
+      </if>
+      <if test="record.invState != null" >
+        inv_state = #{record.invState,jdbcType=CHAR},
+      </if>
+      <if test="record.payState != null" >
+        pay_state = #{record.payState,jdbcType=CHAR},
+      </if>
+      <if test="record.goodsState != null" >
+        goods_state = #{record.goodsState,jdbcType=CHAR},
+      </if>
+      <if test="record.pointsState != null" >
+        points_state = #{record.pointsState,jdbcType=CHAR},
+      </if>
+      <if test="record.mark != null" >
+        mark = #{record.mark,jdbcType=VARCHAR},
+      </if>
+      <if test="record.startTime != null" >
+        start_time = #{record.startTime,jdbcType=INTEGER},
+      </if>
+      <if test="record.expiredTime != null" >
+        expired_time = #{record.expiredTime,jdbcType=INTEGER},
+      </if>
+      <if test="record.cancleState != null" >
+        cancle_state = #{record.cancleState,jdbcType=CHAR},
+      </if>
+      <if test="record.agreeShipTime != null" >
+        agree_ship_time = #{record.agreeShipTime,jdbcType=INTEGER},
+      </if>
+      <if test="record.allShipedTime != null" >
+        all_shiped_time = #{record.allShipedTime,jdbcType=INTEGER},
+      </if>
+      <if test="record.receiveTime != null" >
+        receive_time = #{record.receiveTime,jdbcType=INTEGER},
+      </if>
+    </set>
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByExample" parameterType="map" >
+    update sy_biz_main_order
+    set main_order_id = #{record.mainOrderId,jdbcType=INTEGER},
+      order_sn = #{record.orderSn,jdbcType=BIGINT},
+      coupon_batch_sn = #{record.couponBatchSn,jdbcType=BIGINT},
+      buyer_id = #{record.buyerId,jdbcType=INTEGER},
+      buyer_name = #{record.buyerName,jdbcType=VARCHAR},
+      add_time = #{record.addTime,jdbcType=INTEGER},
+      payment_time = #{record.paymentTime,jdbcType=INTEGER},
+      ship_time = #{record.shipTime,jdbcType=INTEGER},
+      finnshed_time = #{record.finnshedTime,jdbcType=INTEGER},
+      order_amount = #{record.orderAmount,jdbcType=DECIMAL},
+      coupon_value = #{record.couponValue,jdbcType=DECIMAL},
+      coupon_num = #{record.couponNum,jdbcType=INTEGER},
+      coupon_creator = #{record.couponCreator,jdbcType=VARCHAR},
+      inv_info = #{record.invInfo,jdbcType=VARCHAR},
+      circle_id = #{record.circleId,jdbcType=INTEGER},
+      apply_circle_name = #{record.applyCircleName,jdbcType=VARCHAR},
+      paper_contract = #{record.paperContract,jdbcType=CHAR},
+      payment_role = #{record.paymentRole,jdbcType=CHAR},
+      payment_model = #{record.paymentModel,jdbcType=CHAR},
+      order_type = #{record.orderType,jdbcType=CHAR},
+      order_state = #{record.orderState,jdbcType=CHAR},
+      inv_state = #{record.invState,jdbcType=CHAR},
+      pay_state = #{record.payState,jdbcType=CHAR},
+      goods_state = #{record.goodsState,jdbcType=CHAR},
+      points_state = #{record.pointsState,jdbcType=CHAR},
+      mark = #{record.mark,jdbcType=VARCHAR},
+      start_time = #{record.startTime,jdbcType=INTEGER},
+      expired_time = #{record.expiredTime,jdbcType=INTEGER},
+      cancle_state = #{record.cancleState,jdbcType=CHAR},
+      agree_ship_time = #{record.agreeShipTime,jdbcType=INTEGER},
+      all_shiped_time = #{record.allShipedTime,jdbcType=INTEGER},
+      receive_time = #{record.receiveTime,jdbcType=INTEGER}
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByPrimaryKeySelective" parameterType="com.shanyuan.platform.ms.dao.biz.entity.SyBizMainOrder" >
+    update sy_biz_main_order
+    <set >
+      <if test="orderSn != null" >
+        order_sn = #{orderSn,jdbcType=BIGINT},
+      </if>
+      <if test="couponBatchSn != null" >
+        coupon_batch_sn = #{couponBatchSn,jdbcType=BIGINT},
+      </if>
+      <if test="buyerId != null" >
+        buyer_id = #{buyerId,jdbcType=INTEGER},
+      </if>
+      <if test="buyerName != null" >
+        buyer_name = #{buyerName,jdbcType=VARCHAR},
+      </if>
+      <if test="addTime != null" >
+        add_time = #{addTime,jdbcType=INTEGER},
+      </if>
+      <if test="paymentTime != null" >
+        payment_time = #{paymentTime,jdbcType=INTEGER},
+      </if>
+      <if test="shipTime != null" >
+        ship_time = #{shipTime,jdbcType=INTEGER},
+      </if>
+      <if test="finnshedTime != null" >
+        finnshed_time = #{finnshedTime,jdbcType=INTEGER},
+      </if>
+      <if test="orderAmount != null" >
+        order_amount = #{orderAmount,jdbcType=DECIMAL},
+      </if>
+      <if test="couponValue != null" >
+        coupon_value = #{couponValue,jdbcType=DECIMAL},
+      </if>
+      <if test="couponNum != null" >
+        coupon_num = #{couponNum,jdbcType=INTEGER},
+      </if>
+      <if test="couponCreator != null" >
+        coupon_creator = #{couponCreator,jdbcType=VARCHAR},
+      </if>
+      <if test="invInfo != null" >
+        inv_info = #{invInfo,jdbcType=VARCHAR},
+      </if>
+      <if test="circleId != null" >
+        circle_id = #{circleId,jdbcType=INTEGER},
+      </if>
+      <if test="applyCircleName != null" >
+        apply_circle_name = #{applyCircleName,jdbcType=VARCHAR},
+      </if>
+      <if test="paperContract != null" >
+        paper_contract = #{paperContract,jdbcType=CHAR},
+      </if>
+      <if test="paymentRole != null" >
+        payment_role = #{paymentRole,jdbcType=CHAR},
+      </if>
+      <if test="paymentModel != null" >
+        payment_model = #{paymentModel,jdbcType=CHAR},
+      </if>
+      <if test="orderType != null" >
+        order_type = #{orderType,jdbcType=CHAR},
+      </if>
+      <if test="orderState != null" >
+        order_state = #{orderState,jdbcType=CHAR},
+      </if>
+      <if test="invState != null" >
+        inv_state = #{invState,jdbcType=CHAR},
+      </if>
+      <if test="payState != null" >
+        pay_state = #{payState,jdbcType=CHAR},
+      </if>
+      <if test="goodsState != null" >
+        goods_state = #{goodsState,jdbcType=CHAR},
+      </if>
+      <if test="pointsState != null" >
+        points_state = #{pointsState,jdbcType=CHAR},
+      </if>
+      <if test="mark != null" >
+        mark = #{mark,jdbcType=VARCHAR},
+      </if>
+      <if test="startTime != null" >
+        start_time = #{startTime,jdbcType=INTEGER},
+      </if>
+      <if test="expiredTime != null" >
+        expired_time = #{expiredTime,jdbcType=INTEGER},
+      </if>
+      <if test="cancleState != null" >
+        cancle_state = #{cancleState,jdbcType=CHAR},
+      </if>
+      <if test="agreeShipTime != null" >
+        agree_ship_time = #{agreeShipTime,jdbcType=INTEGER},
+      </if>
+      <if test="allShipedTime != null" >
+        all_shiped_time = #{allShipedTime,jdbcType=INTEGER},
+      </if>
+      <if test="receiveTime != null" >
+        receive_time = #{receiveTime,jdbcType=INTEGER},
+      </if>
+    </set>
+    where main_order_id = #{mainOrderId,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.shanyuan.platform.ms.dao.biz.entity.SyBizMainOrder" >
+    update sy_biz_main_order
+    set order_sn = #{orderSn,jdbcType=BIGINT},
+      coupon_batch_sn = #{couponBatchSn,jdbcType=BIGINT},
+      buyer_id = #{buyerId,jdbcType=INTEGER},
+      buyer_name = #{buyerName,jdbcType=VARCHAR},
+      add_time = #{addTime,jdbcType=INTEGER},
+      payment_time = #{paymentTime,jdbcType=INTEGER},
+      ship_time = #{shipTime,jdbcType=INTEGER},
+      finnshed_time = #{finnshedTime,jdbcType=INTEGER},
+      order_amount = #{orderAmount,jdbcType=DECIMAL},
+      coupon_value = #{couponValue,jdbcType=DECIMAL},
+      coupon_num = #{couponNum,jdbcType=INTEGER},
+      coupon_creator = #{couponCreator,jdbcType=VARCHAR},
+      inv_info = #{invInfo,jdbcType=VARCHAR},
+      circle_id = #{circleId,jdbcType=INTEGER},
+      apply_circle_name = #{applyCircleName,jdbcType=VARCHAR},
+      paper_contract = #{paperContract,jdbcType=CHAR},
+      payment_role = #{paymentRole,jdbcType=CHAR},
+      payment_model = #{paymentModel,jdbcType=CHAR},
+      order_type = #{orderType,jdbcType=CHAR},
+      order_state = #{orderState,jdbcType=CHAR},
+      inv_state = #{invState,jdbcType=CHAR},
+      pay_state = #{payState,jdbcType=CHAR},
+      goods_state = #{goodsState,jdbcType=CHAR},
+      points_state = #{pointsState,jdbcType=CHAR},
+      mark = #{mark,jdbcType=VARCHAR},
+      start_time = #{startTime,jdbcType=INTEGER},
+      expired_time = #{expiredTime,jdbcType=INTEGER},
+      cancle_state = #{cancleState,jdbcType=CHAR},
+      agree_ship_time = #{agreeShipTime,jdbcType=INTEGER},
+      all_shiped_time = #{allShipedTime,jdbcType=INTEGER},
+      receive_time = #{receiveTime,jdbcType=INTEGER}
+    where main_order_id = #{mainOrderId,jdbcType=INTEGER}
+  </update>
+</mapper>

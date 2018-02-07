@@ -1,0 +1,243 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.shanyuan.platform.ms.dao.user.mapper.SyInviteCircleMemberMapper" >
+  <resultMap id="BaseResultMap" type="com.shanyuan.platform.ms.dao.user.entity.SyInviteCircleMember" >
+    <id column="rec_id" property="recId" jdbcType="INTEGER" />
+    <result column="member_id" property="memberId" jdbcType="INTEGER" />
+    <result column="circle_id" property="circleId" jdbcType="INTEGER" />
+    <result column="add_time" property="addTime" jdbcType="INTEGER" />
+    <result column="invite_member_id" property="inviteMemberId" jdbcType="INTEGER" />
+    <result column="invite_circle_id" property="inviteCircleId" jdbcType="INTEGER" />
+    <result column="unit_name" property="unitName" jdbcType="VARCHAR" />
+  </resultMap>
+  <sql id="Example_Where_Clause" >
+    <where >
+      <foreach collection="oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Update_By_Example_Where_Clause" >
+    <where >
+      <foreach collection="example.oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Base_Column_List" >
+    rec_id, member_id, circle_id, add_time, invite_member_id, invite_circle_id, unit_name
+  </sql>
+  <select id="selectByExample" resultMap="BaseResultMap" parameterType="com.shanyuan.platform.ms.dao.user.entity.SyInviteCircleMemberExample" >
+    select
+    <if test="distinct" >
+      distinct
+    </if>
+    <include refid="Base_Column_List" />
+    from sy_invite_circle_member
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null" >
+      order by ${orderByClause}
+    </if>
+  </select>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+    select 
+    <include refid="Base_Column_List" />
+    from sy_invite_circle_member
+    where rec_id = #{recId,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+    delete from sy_invite_circle_member
+    where rec_id = #{recId,jdbcType=INTEGER}
+  </delete>
+  <delete id="deleteByExample" parameterType="com.shanyuan.platform.ms.dao.user.entity.SyInviteCircleMemberExample" >
+    delete from sy_invite_circle_member
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </delete>
+  <insert id="insert" parameterType="com.shanyuan.platform.ms.dao.user.entity.SyInviteCircleMember" >
+    <selectKey resultType="java.lang.Integer" keyProperty="recId" order="AFTER" >
+      SELECT LAST_INSERT_ID()
+    </selectKey>
+    insert into sy_invite_circle_member (member_id, circle_id, add_time, 
+      invite_member_id, invite_circle_id, unit_name
+      )
+    values (#{memberId,jdbcType=INTEGER}, #{circleId,jdbcType=INTEGER}, #{addTime,jdbcType=INTEGER}, 
+      #{inviteMemberId,jdbcType=INTEGER}, #{inviteCircleId,jdbcType=INTEGER}, #{unitName,jdbcType=VARCHAR}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="com.shanyuan.platform.ms.dao.user.entity.SyInviteCircleMember" >
+    <selectKey resultType="java.lang.Integer" keyProperty="recId" order="AFTER" >
+      SELECT LAST_INSERT_ID()
+    </selectKey>
+    insert into sy_invite_circle_member
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="memberId != null" >
+        member_id,
+      </if>
+      <if test="circleId != null" >
+        circle_id,
+      </if>
+      <if test="addTime != null" >
+        add_time,
+      </if>
+      <if test="inviteMemberId != null" >
+        invite_member_id,
+      </if>
+      <if test="inviteCircleId != null" >
+        invite_circle_id,
+      </if>
+      <if test="unitName != null" >
+        unit_name,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="memberId != null" >
+        #{memberId,jdbcType=INTEGER},
+      </if>
+      <if test="circleId != null" >
+        #{circleId,jdbcType=INTEGER},
+      </if>
+      <if test="addTime != null" >
+        #{addTime,jdbcType=INTEGER},
+      </if>
+      <if test="inviteMemberId != null" >
+        #{inviteMemberId,jdbcType=INTEGER},
+      </if>
+      <if test="inviteCircleId != null" >
+        #{inviteCircleId,jdbcType=INTEGER},
+      </if>
+      <if test="unitName != null" >
+        #{unitName,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <select id="countByExample" parameterType="com.shanyuan.platform.ms.dao.user.entity.SyInviteCircleMemberExample" resultType="java.lang.Integer" >
+    select count(*) from sy_invite_circle_member
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </select>
+  <update id="updateByExampleSelective" parameterType="map" >
+    update sy_invite_circle_member
+    <set >
+      <if test="record.recId != null" >
+        rec_id = #{record.recId,jdbcType=INTEGER},
+      </if>
+      <if test="record.memberId != null" >
+        member_id = #{record.memberId,jdbcType=INTEGER},
+      </if>
+      <if test="record.circleId != null" >
+        circle_id = #{record.circleId,jdbcType=INTEGER},
+      </if>
+      <if test="record.addTime != null" >
+        add_time = #{record.addTime,jdbcType=INTEGER},
+      </if>
+      <if test="record.inviteMemberId != null" >
+        invite_member_id = #{record.inviteMemberId,jdbcType=INTEGER},
+      </if>
+      <if test="record.inviteCircleId != null" >
+        invite_circle_id = #{record.inviteCircleId,jdbcType=INTEGER},
+      </if>
+      <if test="record.unitName != null" >
+        unit_name = #{record.unitName,jdbcType=VARCHAR},
+      </if>
+    </set>
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByExample" parameterType="map" >
+    update sy_invite_circle_member
+    set rec_id = #{record.recId,jdbcType=INTEGER},
+      member_id = #{record.memberId,jdbcType=INTEGER},
+      circle_id = #{record.circleId,jdbcType=INTEGER},
+      add_time = #{record.addTime,jdbcType=INTEGER},
+      invite_member_id = #{record.inviteMemberId,jdbcType=INTEGER},
+      invite_circle_id = #{record.inviteCircleId,jdbcType=INTEGER},
+      unit_name = #{record.unitName,jdbcType=VARCHAR}
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByPrimaryKeySelective" parameterType="com.shanyuan.platform.ms.dao.user.entity.SyInviteCircleMember" >
+    update sy_invite_circle_member
+    <set >
+      <if test="memberId != null" >
+        member_id = #{memberId,jdbcType=INTEGER},
+      </if>
+      <if test="circleId != null" >
+        circle_id = #{circleId,jdbcType=INTEGER},
+      </if>
+      <if test="addTime != null" >
+        add_time = #{addTime,jdbcType=INTEGER},
+      </if>
+      <if test="inviteMemberId != null" >
+        invite_member_id = #{inviteMemberId,jdbcType=INTEGER},
+      </if>
+      <if test="inviteCircleId != null" >
+        invite_circle_id = #{inviteCircleId,jdbcType=INTEGER},
+      </if>
+      <if test="unitName != null" >
+        unit_name = #{unitName,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where rec_id = #{recId,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.shanyuan.platform.ms.dao.user.entity.SyInviteCircleMember" >
+    update sy_invite_circle_member
+    set member_id = #{memberId,jdbcType=INTEGER},
+      circle_id = #{circleId,jdbcType=INTEGER},
+      add_time = #{addTime,jdbcType=INTEGER},
+      invite_member_id = #{inviteMemberId,jdbcType=INTEGER},
+      invite_circle_id = #{inviteCircleId,jdbcType=INTEGER},
+      unit_name = #{unitName,jdbcType=VARCHAR}
+    where rec_id = #{recId,jdbcType=INTEGER}
+  </update>
+</mapper>

@@ -1,0 +1,1388 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.shanyuan.platform.ms.dao.order.mapper.SyOrderMapper" >
+  <resultMap id="BaseResultMap" type="com.shanyuan.platform.ms.dao.order.entity.SyOrder" >
+    <id column="order_id" property="orderId" jdbcType="INTEGER" />
+    <result column="order_sn" property="orderSn" jdbcType="BIGINT" />
+    <result column="pay_sn" property="paySn" jdbcType="BIGINT" />
+    <result column="store_id" property="storeId" jdbcType="INTEGER" />
+    <result column="store_name" property="storeName" jdbcType="VARCHAR" />
+    <result column="buyer_id" property="buyerId" jdbcType="INTEGER" />
+    <result column="buyer_name" property="buyerName" jdbcType="VARCHAR" />
+    <result column="buyer_email" property="buyerEmail" jdbcType="VARCHAR" />
+    <result column="add_time" property="addTime" jdbcType="INTEGER" />
+    <result column="payment_code" property="paymentCode" jdbcType="VARCHAR" />
+    <result column="payment_time" property="paymentTime" jdbcType="INTEGER" />
+    <result column="finnshed_time" property="finnshedTime" jdbcType="INTEGER" />
+    <result column="goods_amount" property="goodsAmount" jdbcType="DECIMAL" />
+    <result column="order_amount" property="orderAmount" jdbcType="DECIMAL" />
+    <result column="pd_amount" property="pdAmount" jdbcType="DECIMAL" />
+    <result column="shipping_fee" property="shippingFee" jdbcType="DECIMAL" />
+    <result column="evaluation_state" property="evaluationState" jdbcType="CHAR" />
+    <result column="order_state" property="orderState" jdbcType="CHAR" />
+    <result column="refund_state" property="refundState" jdbcType="TINYINT" />
+    <result column="lock_state" property="lockState" jdbcType="TINYINT" />
+    <result column="refund_amount" property="refundAmount" jdbcType="DECIMAL" />
+    <result column="delay_time" property="delayTime" jdbcType="INTEGER" />
+    <result column="order_from" property="orderFrom" jdbcType="CHAR" />
+    <result column="shipping_code" property="shippingCode" jdbcType="VARCHAR" />
+    <result column="goods_project_type" property="goodsProjectType" jdbcType="INTEGER" />
+    <result column="order_service_startime" property="orderServiceStartime" jdbcType="INTEGER" />
+    <result column="order_service_endtime" property="orderServiceEndtime" jdbcType="INTEGER" />
+    <result column="order_service_info" property="orderServiceInfo" jdbcType="VARCHAR" />
+    <result column="reward" property="reward" jdbcType="TINYINT" />
+    <result column="applyer_id" property="applyerId" jdbcType="INTEGER" />
+    <result column="service_fee_rate" property="serviceFeeRate" jdbcType="SMALLINT" />
+    <result column="service_fee" property="serviceFee" jdbcType="DECIMAL" />
+    <result column="agent_fee" property="agentFee" jdbcType="DECIMAL" />
+    <result column="sender_id" property="senderId" jdbcType="INTEGER" />
+    <result column="ship_time" property="shipTime" jdbcType="INTEGER" />
+    <result column="refund_time" property="refundTime" jdbcType="INTEGER" />
+    <result column="trade_no" property="tradeNo" jdbcType="VARCHAR" />
+    <result column="store_looked_order_state" property="storeLookedOrderState" jdbcType="TINYINT" />
+    <result column="store_looked_refund_state" property="storeLookedRefundState" jdbcType="TINYINT" />
+    <result column="buyer_looked_order_state" property="buyerLookedOrderState" jdbcType="TINYINT" />
+    <result column="buyer_looked_refund_state" property="buyerLookedRefundState" jdbcType="TINYINT" />
+    <result column="publisher_id" property="publisherId" jdbcType="INTEGER" />
+    <result column="sy_points" property="syPoints" jdbcType="DECIMAL" />
+    <result column="channel" property="channel" jdbcType="VARCHAR" />
+    <result column="extend_type" property="extendType" jdbcType="VARCHAR" />
+    <result column="fund_fee_rate" property="fundFeeRate" jdbcType="SMALLINT" />
+    <result column="fund_fee" property="fundFee" jdbcType="DECIMAL" />
+    <result column="last_consult_time" property="lastConsultTime" jdbcType="INTEGER" />
+    <result column="remind_buyer_time" property="remindBuyerTime" jdbcType="INTEGER" />
+    <result column="last_consult_state" property="lastConsultState" jdbcType="TINYINT" />
+    <result column="refund_id" property="refundId" jdbcType="INTEGER" />
+    <result column="coupon_pay" property="couponPay" jdbcType="DECIMAL" />
+    <result column="money_pay" property="moneyPay" jdbcType="DECIMAL" />
+    <result column="assist_id" property="assistId" jdbcType="INTEGER" />
+    <result column="ver" property="ver" jdbcType="TINYINT" />
+    <result column="balance_state" property="balanceState" jdbcType="TINYINT" />
+    <result column="remind_seller_time" property="remindSellerTime" jdbcType="INTEGER" />
+    <result column="warn_level" property="warnLevel" jdbcType="TINYINT" />
+    <result column="communication_status" property="communicationStatus" jdbcType="TINYINT" />
+    <result column="delayed_delivery_state" property="delayedDeliveryState" jdbcType="CHAR" />
+    <result column="delayed_receive_duration" property="delayedReceiveDuration" jdbcType="INTEGER" />
+    <result column="app_variant" property="appVariant" jdbcType="VARCHAR" />
+    <result column="trade_mode" property="tradeMode" jdbcType="CHAR" />
+    <result column="presell_time" property="presellTime" jdbcType="INTEGER" />
+    <result column="support_county_id" property="supportCountyId" jdbcType="BIGINT" />
+    <result column="buyer_channel" property="buyerChannel" jdbcType="VARCHAR" />
+    <result column="discount_amount" property="discountAmount" jdbcType="DECIMAL" />
+    <result column="deleted" property="deleted" jdbcType="TINYINT" />
+    <result column="biz_operation_mid" property="bizOperationMid" jdbcType="INTEGER" />
+    <result column="platform_pay" property="platformPay" jdbcType="DECIMAL" />
+    <result column="order_num" property="orderNum" jdbcType="INTEGER" />
+  </resultMap>
+  <sql id="Example_Where_Clause" >
+    <where >
+      <foreach collection="oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Update_By_Example_Where_Clause" >
+    <where >
+      <foreach collection="example.oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Base_Column_List" >
+    order_id, order_sn, pay_sn, store_id, store_name, buyer_id, buyer_name, buyer_email, 
+    add_time, payment_code, payment_time, finnshed_time, goods_amount, order_amount, 
+    pd_amount, shipping_fee, evaluation_state, order_state, refund_state, lock_state, 
+    refund_amount, delay_time, order_from, shipping_code, goods_project_type, order_service_startime, 
+    order_service_endtime, order_service_info, reward, applyer_id, service_fee_rate, 
+    service_fee, agent_fee, sender_id, ship_time, refund_time, trade_no, store_looked_order_state, 
+    store_looked_refund_state, buyer_looked_order_state, buyer_looked_refund_state, publisher_id, 
+    sy_points, channel, extend_type, fund_fee_rate, fund_fee, last_consult_time, remind_buyer_time, 
+    last_consult_state, refund_id, coupon_pay, money_pay, assist_id, ver, balance_state, 
+    remind_seller_time, warn_level, communication_status, delayed_delivery_state, delayed_receive_duration, 
+    app_variant, trade_mode, presell_time, support_county_id, buyer_channel, discount_amount, 
+    deleted, biz_operation_mid, platform_pay
+  </sql>
+    <sql id="Use_Column_List" >
+    order_id, order_sn, pay_sn, store_id, store_name, buyer_id, buyer_name, 
+    payment_time, finnshed_time, goods_amount, order_amount, order_state,  
+    refund_amount, delay_time,  goods_project_type, service_fee_rate, service_fee, 
+    publisher_id, sy_points, channel,  fund_fee_rate, fund_fee,
+    coupon_pay, money_pay, assist_id, trade_mode, presell_time, support_county_id,
+    buyer_channel, discount_amount,  biz_operation_mid, platform_pay
+ 
+  </sql>
+   <select id="selectOrderPaySnList" resultMap="BaseResultMap" parameterType="com.shanyuan.platform.ms.dao.order.entity.SyOrder">
+SELECT
+	s.pay_sn,s.buyer_id,s.order_state,count(1)order_num,
+	sum(s.coupon_pay)coupon_pay,sum(s.platform_pay) platform_pay,sum(s.order_amount) order_amount,sum(s.shipping_fee)shipping_fee ,
+	sum(s.goods_amount)goods_amount,sum(s.money_pay) money_pay ,sum(s.discount_amount) discount_amount 
+ FROM sy_order s
+ WHERE s.buyer_id=#{buyerId} AND s.deleted=#{deleted}
+	<if test="orderState != null" >AND  s.order_state = #{orderState}</if>
+	GROUP BY s.pay_sn ORDER BY s.order_id DESC
+  </select>
+  <!-- 单个记录 -->
+   <select id="selectOrderMoneyByPaySn" resultMap="BaseResultMap" parameterType="com.shanyuan.platform.ms.dao.order.entity.SyOrder">
+SELECT
+	s.pay_sn,s.buyer_id,s.order_state,count(order_id) order_num,
+	sum(s.coupon_pay)coupon_pay,sum(s.platform_pay) platform_pay,sum(s.order_amount) order_amount,sum(s.shipping_fee)shipping_fee ,
+	sum(s.goods_amount)goods_amount,sum(s.money_pay) money_pay ,sum(s.discount_amount) discount_amount 
+ FROM sy_order s
+ WHERE s.pay_sn=#{paySn} AND s.deleted=#{deleted}
+  </select>
+  <!--  -->
+  <select id="selectOrderListByPaySn"  resultMap="BaseResultMap" parameterType="com.shanyuan.platform.ms.dao.order.entity.SyOrder">
+  SELECT
+   <include refid="Base_Column_List" />
+  FROM sy_order
+  WHERE  
+ pay_sn=#{paySn}  AND deleted='0'  ORDER BY order_id DESC
+  </select>
+  <!--  -->
+  <select id="selectOrderListByState"  resultMap="BaseResultMap" parameterType="com.shanyuan.platform.ms.dao.order.entity.SyOrder">
+  SELECT
+   <include refid="Use_Column_List" />
+  FROM sy_order
+  WHERE  
+  buyer_id=#{buyerId} 
+  <if test="orderState != null" >
+  AND order_state = #{orderState}
+  </if>
+  AND deleted='0' ORDER BY order_id DESC
+  </select>
+  <!--  -->
+  <select id="selectOrderListByIds"  resultMap="BaseResultMap" parameterType="java.util.List">
+  SELECT
+   <include refid="Use_Column_List" />
+  FROM sy_order
+  WHERE  
+ order_id IN 
+	 <foreach collection="list" index="index"
+				item="oId" open="(" separator="," close=")">
+				#{oId}
+	</foreach>   
+ ORDER BY order_id DESC
+  </select>
+  <select id="selectByExample" resultMap="BaseResultMap" parameterType="com.shanyuan.platform.ms.dao.order.entity.SyOrderExample" >
+    select
+    <if test="distinct" >
+      distinct
+    </if>
+    <include refid="Base_Column_List" />
+    from sy_order
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null" >
+      order by ${orderByClause}
+    </if>
+    </select>
+    <select id="selectCountByExample" resultType="java.lang.Integer" parameterType="com.shanyuan.platform.ms.dao.order.entity.SyOrderExample" >
+    select
+     count(order_id)
+    from sy_order
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null" >
+      order by ${orderByClause}
+    </if>
+  </select>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+    select 
+    <include refid="Base_Column_List" />
+    from sy_order
+    where order_id = #{orderId,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+    delete from sy_order
+    where order_id = #{orderId,jdbcType=INTEGER}
+  </delete>
+  <delete id="deleteByExample" parameterType="com.shanyuan.platform.ms.dao.order.entity.SyOrderExample" >
+    delete from sy_order
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </delete>
+  <insert id="insert" parameterType="com.shanyuan.platform.ms.dao.order.entity.SyOrder" >
+    <selectKey resultType="java.lang.Integer" keyProperty="orderId" order="AFTER" >
+      SELECT LAST_INSERT_ID()
+    </selectKey>
+    insert into sy_order (order_sn, pay_sn, store_id, 
+      store_name, buyer_id, buyer_name, 
+      buyer_email, add_time, payment_code, 
+      payment_time, finnshed_time, goods_amount, 
+      order_amount, pd_amount, shipping_fee, 
+      evaluation_state, order_state, refund_state, 
+      lock_state, refund_amount, delay_time, 
+      order_from, shipping_code, goods_project_type, 
+      order_service_startime, order_service_endtime, 
+      order_service_info, reward, applyer_id, 
+      service_fee_rate, service_fee, agent_fee, 
+      sender_id, ship_time, refund_time, 
+      trade_no, store_looked_order_state, store_looked_refund_state, 
+      buyer_looked_order_state, buyer_looked_refund_state, 
+      publisher_id, sy_points, channel, 
+      extend_type, fund_fee_rate, fund_fee, 
+      last_consult_time, remind_buyer_time, last_consult_state, 
+      refund_id, coupon_pay, money_pay, 
+      assist_id, ver, balance_state, 
+      remind_seller_time, warn_level, communication_status, 
+      delayed_delivery_state, delayed_receive_duration, 
+      app_variant, trade_mode, presell_time, 
+      support_county_id, buyer_channel, discount_amount, 
+      deleted, biz_operation_mid, platform_pay
+      )
+    values (#{orderSn,jdbcType=BIGINT}, #{paySn,jdbcType=BIGINT}, #{storeId,jdbcType=INTEGER}, 
+      #{storeName,jdbcType=VARCHAR}, #{buyerId,jdbcType=INTEGER}, #{buyerName,jdbcType=VARCHAR}, 
+      #{buyerEmail,jdbcType=VARCHAR}, #{addTime,jdbcType=INTEGER}, #{paymentCode,jdbcType=VARCHAR}, 
+      #{paymentTime,jdbcType=INTEGER}, #{finnshedTime,jdbcType=INTEGER}, #{goodsAmount,jdbcType=DECIMAL}, 
+      #{orderAmount,jdbcType=DECIMAL}, #{pdAmount,jdbcType=DECIMAL}, #{shippingFee,jdbcType=DECIMAL}, 
+      #{evaluationState,jdbcType=CHAR}, #{orderState,jdbcType=CHAR}, #{refundState,jdbcType=TINYINT}, 
+      #{lockState,jdbcType=TINYINT}, #{refundAmount,jdbcType=DECIMAL}, #{delayTime,jdbcType=INTEGER}, 
+      #{orderFrom,jdbcType=CHAR}, #{shippingCode,jdbcType=VARCHAR}, #{goodsProjectType,jdbcType=INTEGER}, 
+      #{orderServiceStartime,jdbcType=INTEGER}, #{orderServiceEndtime,jdbcType=INTEGER}, 
+      #{orderServiceInfo,jdbcType=VARCHAR}, #{reward,jdbcType=TINYINT}, #{applyerId,jdbcType=INTEGER}, 
+      #{serviceFeeRate,jdbcType=SMALLINT}, #{serviceFee,jdbcType=DECIMAL}, #{agentFee,jdbcType=DECIMAL}, 
+      #{senderId,jdbcType=INTEGER}, #{shipTime,jdbcType=INTEGER}, #{refundTime,jdbcType=INTEGER}, 
+      #{tradeNo,jdbcType=VARCHAR}, #{storeLookedOrderState,jdbcType=TINYINT}, #{storeLookedRefundState,jdbcType=TINYINT}, 
+      #{buyerLookedOrderState,jdbcType=TINYINT}, #{buyerLookedRefundState,jdbcType=TINYINT}, 
+      #{publisherId,jdbcType=INTEGER}, #{syPoints,jdbcType=DECIMAL}, #{channel,jdbcType=VARCHAR}, 
+      #{extendType,jdbcType=VARCHAR}, #{fundFeeRate,jdbcType=SMALLINT}, #{fundFee,jdbcType=DECIMAL}, 
+      #{lastConsultTime,jdbcType=INTEGER}, #{remindBuyerTime,jdbcType=INTEGER}, #{lastConsultState,jdbcType=TINYINT}, 
+      #{refundId,jdbcType=INTEGER}, #{couponPay,jdbcType=DECIMAL}, #{moneyPay,jdbcType=DECIMAL}, 
+      #{assistId,jdbcType=INTEGER}, #{ver,jdbcType=TINYINT}, #{balanceState,jdbcType=TINYINT}, 
+      #{remindSellerTime,jdbcType=INTEGER}, #{warnLevel,jdbcType=TINYINT}, #{communicationStatus,jdbcType=TINYINT}, 
+      #{delayedDeliveryState,jdbcType=CHAR}, #{delayedReceiveDuration,jdbcType=INTEGER}, 
+      #{appVariant,jdbcType=VARCHAR}, #{tradeMode,jdbcType=CHAR}, #{presellTime,jdbcType=INTEGER}, 
+      #{supportCountyId,jdbcType=BIGINT}, #{buyerChannel,jdbcType=VARCHAR}, #{discountAmount,jdbcType=DECIMAL}, 
+      #{deleted,jdbcType=TINYINT}, #{bizOperationMid,jdbcType=INTEGER}, #{platformPay,jdbcType=DECIMAL}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="com.shanyuan.platform.ms.dao.order.entity.SyOrder" >
+    <selectKey resultType="java.lang.Integer" keyProperty="orderId" order="AFTER" >
+      SELECT LAST_INSERT_ID()
+    </selectKey>
+    insert into sy_order
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="orderSn != null" >
+        order_sn,
+      </if>
+      <if test="paySn != null" >
+        pay_sn,
+      </if>
+      <if test="storeId != null" >
+        store_id,
+      </if>
+      <if test="storeName != null" >
+        store_name,
+      </if>
+      <if test="buyerId != null" >
+        buyer_id,
+      </if>
+      <if test="buyerName != null" >
+        buyer_name,
+      </if>
+      <if test="buyerEmail != null" >
+        buyer_email,
+      </if>
+      <if test="addTime != null" >
+        add_time,
+      </if>
+      <if test="paymentCode != null" >
+        payment_code,
+      </if>
+      <if test="paymentTime != null" >
+        payment_time,
+      </if>
+      <if test="finnshedTime != null" >
+        finnshed_time,
+      </if>
+      <if test="goodsAmount != null" >
+        goods_amount,
+      </if>
+      <if test="orderAmount != null" >
+        order_amount,
+      </if>
+      <if test="pdAmount != null" >
+        pd_amount,
+      </if>
+      <if test="shippingFee != null" >
+        shipping_fee,
+      </if>
+      <if test="evaluationState != null" >
+        evaluation_state,
+      </if>
+      <if test="orderState != null" >
+        order_state,
+      </if>
+      <if test="refundState != null" >
+        refund_state,
+      </if>
+      <if test="lockState != null" >
+        lock_state,
+      </if>
+      <if test="refundAmount != null" >
+        refund_amount,
+      </if>
+      <if test="delayTime != null" >
+        delay_time,
+      </if>
+      <if test="orderFrom != null" >
+        order_from,
+      </if>
+      <if test="shippingCode != null" >
+        shipping_code,
+      </if>
+      <if test="goodsProjectType != null" >
+        goods_project_type,
+      </if>
+      <if test="orderServiceStartime != null" >
+        order_service_startime,
+      </if>
+      <if test="orderServiceEndtime != null" >
+        order_service_endtime,
+      </if>
+      <if test="orderServiceInfo != null" >
+        order_service_info,
+      </if>
+      <if test="reward != null" >
+        reward,
+      </if>
+      <if test="applyerId != null" >
+        applyer_id,
+      </if>
+      <if test="serviceFeeRate != null" >
+        service_fee_rate,
+      </if>
+      <if test="serviceFee != null" >
+        service_fee,
+      </if>
+      <if test="agentFee != null" >
+        agent_fee,
+      </if>
+      <if test="senderId != null" >
+        sender_id,
+      </if>
+      <if test="shipTime != null" >
+        ship_time,
+      </if>
+      <if test="refundTime != null" >
+        refund_time,
+      </if>
+      <if test="tradeNo != null" >
+        trade_no,
+      </if>
+      <if test="storeLookedOrderState != null" >
+        store_looked_order_state,
+      </if>
+      <if test="storeLookedRefundState != null" >
+        store_looked_refund_state,
+      </if>
+      <if test="buyerLookedOrderState != null" >
+        buyer_looked_order_state,
+      </if>
+      <if test="buyerLookedRefundState != null" >
+        buyer_looked_refund_state,
+      </if>
+      <if test="publisherId != null" >
+        publisher_id,
+      </if>
+      <if test="syPoints != null" >
+        sy_points,
+      </if>
+      <if test="channel != null" >
+        channel,
+      </if>
+      <if test="extendType != null" >
+        extend_type,
+      </if>
+      <if test="fundFeeRate != null" >
+        fund_fee_rate,
+      </if>
+      <if test="fundFee != null" >
+        fund_fee,
+      </if>
+      <if test="lastConsultTime != null" >
+        last_consult_time,
+      </if>
+      <if test="remindBuyerTime != null" >
+        remind_buyer_time,
+      </if>
+      <if test="lastConsultState != null" >
+        last_consult_state,
+      </if>
+      <if test="refundId != null" >
+        refund_id,
+      </if>
+      <if test="couponPay != null" >
+        coupon_pay,
+      </if>
+      <if test="moneyPay != null" >
+        money_pay,
+      </if>
+      <if test="assistId != null" >
+        assist_id,
+      </if>
+      <if test="ver != null" >
+        ver,
+      </if>
+      <if test="balanceState != null" >
+        balance_state,
+      </if>
+      <if test="remindSellerTime != null" >
+        remind_seller_time,
+      </if>
+      <if test="warnLevel != null" >
+        warn_level,
+      </if>
+      <if test="communicationStatus != null" >
+        communication_status,
+      </if>
+      <if test="delayedDeliveryState != null" >
+        delayed_delivery_state,
+      </if>
+      <if test="delayedReceiveDuration != null" >
+        delayed_receive_duration,
+      </if>
+      <if test="appVariant != null" >
+        app_variant,
+      </if>
+      <if test="tradeMode != null" >
+        trade_mode,
+      </if>
+      <if test="presellTime != null" >
+        presell_time,
+      </if>
+      <if test="supportCountyId != null" >
+        support_county_id,
+      </if>
+      <if test="buyerChannel != null" >
+        buyer_channel,
+      </if>
+      <if test="discountAmount != null" >
+        discount_amount,
+      </if>
+      <if test="deleted != null" >
+        deleted,
+      </if>
+      <if test="bizOperationMid != null" >
+        biz_operation_mid,
+      </if>
+      <if test="platformPay != null" >
+        platform_pay,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="orderSn != null" >
+        #{orderSn,jdbcType=BIGINT},
+      </if>
+      <if test="paySn != null" >
+        #{paySn,jdbcType=BIGINT},
+      </if>
+      <if test="storeId != null" >
+        #{storeId,jdbcType=INTEGER},
+      </if>
+      <if test="storeName != null" >
+        #{storeName,jdbcType=VARCHAR},
+      </if>
+      <if test="buyerId != null" >
+        #{buyerId,jdbcType=INTEGER},
+      </if>
+      <if test="buyerName != null" >
+        #{buyerName,jdbcType=VARCHAR},
+      </if>
+      <if test="buyerEmail != null" >
+        #{buyerEmail,jdbcType=VARCHAR},
+      </if>
+      <if test="addTime != null" >
+        #{addTime,jdbcType=INTEGER},
+      </if>
+      <if test="paymentCode != null" >
+        #{paymentCode,jdbcType=VARCHAR},
+      </if>
+      <if test="paymentTime != null" >
+        #{paymentTime,jdbcType=INTEGER},
+      </if>
+      <if test="finnshedTime != null" >
+        #{finnshedTime,jdbcType=INTEGER},
+      </if>
+      <if test="goodsAmount != null" >
+        #{goodsAmount,jdbcType=DECIMAL},
+      </if>
+      <if test="orderAmount != null" >
+        #{orderAmount,jdbcType=DECIMAL},
+      </if>
+      <if test="pdAmount != null" >
+        #{pdAmount,jdbcType=DECIMAL},
+      </if>
+      <if test="shippingFee != null" >
+        #{shippingFee,jdbcType=DECIMAL},
+      </if>
+      <if test="evaluationState != null" >
+        #{evaluationState,jdbcType=CHAR},
+      </if>
+      <if test="orderState != null" >
+        #{orderState,jdbcType=CHAR},
+      </if>
+      <if test="refundState != null" >
+        #{refundState,jdbcType=TINYINT},
+      </if>
+      <if test="lockState != null" >
+        #{lockState,jdbcType=TINYINT},
+      </if>
+      <if test="refundAmount != null" >
+        #{refundAmount,jdbcType=DECIMAL},
+      </if>
+      <if test="delayTime != null" >
+        #{delayTime,jdbcType=INTEGER},
+      </if>
+      <if test="orderFrom != null" >
+        #{orderFrom,jdbcType=CHAR},
+      </if>
+      <if test="shippingCode != null" >
+        #{shippingCode,jdbcType=VARCHAR},
+      </if>
+      <if test="goodsProjectType != null" >
+        #{goodsProjectType,jdbcType=INTEGER},
+      </if>
+      <if test="orderServiceStartime != null" >
+        #{orderServiceStartime,jdbcType=INTEGER},
+      </if>
+      <if test="orderServiceEndtime != null" >
+        #{orderServiceEndtime,jdbcType=INTEGER},
+      </if>
+      <if test="orderServiceInfo != null" >
+        #{orderServiceInfo,jdbcType=VARCHAR},
+      </if>
+      <if test="reward != null" >
+        #{reward,jdbcType=TINYINT},
+      </if>
+      <if test="applyerId != null" >
+        #{applyerId,jdbcType=INTEGER},
+      </if>
+      <if test="serviceFeeRate != null" >
+        #{serviceFeeRate,jdbcType=SMALLINT},
+      </if>
+      <if test="serviceFee != null" >
+        #{serviceFee,jdbcType=DECIMAL},
+      </if>
+      <if test="agentFee != null" >
+        #{agentFee,jdbcType=DECIMAL},
+      </if>
+      <if test="senderId != null" >
+        #{senderId,jdbcType=INTEGER},
+      </if>
+      <if test="shipTime != null" >
+        #{shipTime,jdbcType=INTEGER},
+      </if>
+      <if test="refundTime != null" >
+        #{refundTime,jdbcType=INTEGER},
+      </if>
+      <if test="tradeNo != null" >
+        #{tradeNo,jdbcType=VARCHAR},
+      </if>
+      <if test="storeLookedOrderState != null" >
+        #{storeLookedOrderState,jdbcType=TINYINT},
+      </if>
+      <if test="storeLookedRefundState != null" >
+        #{storeLookedRefundState,jdbcType=TINYINT},
+      </if>
+      <if test="buyerLookedOrderState != null" >
+        #{buyerLookedOrderState,jdbcType=TINYINT},
+      </if>
+      <if test="buyerLookedRefundState != null" >
+        #{buyerLookedRefundState,jdbcType=TINYINT},
+      </if>
+      <if test="publisherId != null" >
+        #{publisherId,jdbcType=INTEGER},
+      </if>
+      <if test="syPoints != null" >
+        #{syPoints,jdbcType=DECIMAL},
+      </if>
+      <if test="channel != null" >
+        #{channel,jdbcType=VARCHAR},
+      </if>
+      <if test="extendType != null" >
+        #{extendType,jdbcType=VARCHAR},
+      </if>
+      <if test="fundFeeRate != null" >
+        #{fundFeeRate,jdbcType=SMALLINT},
+      </if>
+      <if test="fundFee != null" >
+        #{fundFee,jdbcType=DECIMAL},
+      </if>
+      <if test="lastConsultTime != null" >
+        #{lastConsultTime,jdbcType=INTEGER},
+      </if>
+      <if test="remindBuyerTime != null" >
+        #{remindBuyerTime,jdbcType=INTEGER},
+      </if>
+      <if test="lastConsultState != null" >
+        #{lastConsultState,jdbcType=TINYINT},
+      </if>
+      <if test="refundId != null" >
+        #{refundId,jdbcType=INTEGER},
+      </if>
+      <if test="couponPay != null" >
+        #{couponPay,jdbcType=DECIMAL},
+      </if>
+      <if test="moneyPay != null" >
+        #{moneyPay,jdbcType=DECIMAL},
+      </if>
+      <if test="assistId != null" >
+        #{assistId,jdbcType=INTEGER},
+      </if>
+      <if test="ver != null" >
+        #{ver,jdbcType=TINYINT},
+      </if>
+      <if test="balanceState != null" >
+        #{balanceState,jdbcType=TINYINT},
+      </if>
+      <if test="remindSellerTime != null" >
+        #{remindSellerTime,jdbcType=INTEGER},
+      </if>
+      <if test="warnLevel != null" >
+        #{warnLevel,jdbcType=TINYINT},
+      </if>
+      <if test="communicationStatus != null" >
+        #{communicationStatus,jdbcType=TINYINT},
+      </if>
+      <if test="delayedDeliveryState != null" >
+        #{delayedDeliveryState,jdbcType=CHAR},
+      </if>
+      <if test="delayedReceiveDuration != null" >
+        #{delayedReceiveDuration,jdbcType=INTEGER},
+      </if>
+      <if test="appVariant != null" >
+        #{appVariant,jdbcType=VARCHAR},
+      </if>
+      <if test="tradeMode != null" >
+        #{tradeMode,jdbcType=CHAR},
+      </if>
+      <if test="presellTime != null" >
+        #{presellTime,jdbcType=INTEGER},
+      </if>
+      <if test="supportCountyId != null" >
+        #{supportCountyId,jdbcType=BIGINT},
+      </if>
+      <if test="buyerChannel != null" >
+        #{buyerChannel,jdbcType=VARCHAR},
+      </if>
+      <if test="discountAmount != null" >
+        #{discountAmount,jdbcType=DECIMAL},
+      </if>
+      <if test="deleted != null" >
+        #{deleted,jdbcType=TINYINT},
+      </if>
+      <if test="bizOperationMid != null" >
+        #{bizOperationMid,jdbcType=INTEGER},
+      </if>
+      <if test="platformPay != null" >
+        #{platformPay,jdbcType=DECIMAL},
+      </if>
+    </trim>
+  </insert>
+  <select id="countByExample" parameterType="com.shanyuan.platform.ms.dao.order.entity.SyOrderExample" resultType="java.lang.Integer" >
+    select count(1) from sy_order
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </select>
+  <update id="updateByExampleSelective" parameterType="map" >
+    update sy_order
+    <set >
+      <if test="record.orderId != null" >
+        order_id = #{record.orderId,jdbcType=INTEGER},
+      </if>
+      <if test="record.orderSn != null" >
+        order_sn = #{record.orderSn,jdbcType=BIGINT},
+      </if>
+      <if test="record.paySn != null" >
+        pay_sn = #{record.paySn,jdbcType=BIGINT},
+      </if>
+      <if test="record.storeId != null" >
+        store_id = #{record.storeId,jdbcType=INTEGER},
+      </if>
+      <if test="record.storeName != null" >
+        store_name = #{record.storeName,jdbcType=VARCHAR},
+      </if>
+      <if test="record.buyerId != null" >
+        buyer_id = #{record.buyerId,jdbcType=INTEGER},
+      </if>
+      <if test="record.buyerName != null" >
+        buyer_name = #{record.buyerName,jdbcType=VARCHAR},
+      </if>
+      <if test="record.buyerEmail != null" >
+        buyer_email = #{record.buyerEmail,jdbcType=VARCHAR},
+      </if>
+      <if test="record.addTime != null" >
+        add_time = #{record.addTime,jdbcType=INTEGER},
+      </if>
+      <if test="record.paymentCode != null" >
+        payment_code = #{record.paymentCode,jdbcType=VARCHAR},
+      </if>
+      <if test="record.paymentTime != null" >
+        payment_time = #{record.paymentTime,jdbcType=INTEGER},
+      </if>
+      <if test="record.finnshedTime != null" >
+        finnshed_time = #{record.finnshedTime,jdbcType=INTEGER},
+      </if>
+      <if test="record.goodsAmount != null" >
+        goods_amount = #{record.goodsAmount,jdbcType=DECIMAL},
+      </if>
+      <if test="record.orderAmount != null" >
+        order_amount = #{record.orderAmount,jdbcType=DECIMAL},
+      </if>
+      <if test="record.pdAmount != null" >
+        pd_amount = #{record.pdAmount,jdbcType=DECIMAL},
+      </if>
+      <if test="record.shippingFee != null" >
+        shipping_fee = #{record.shippingFee,jdbcType=DECIMAL},
+      </if>
+      <if test="record.evaluationState != null" >
+        evaluation_state = #{record.evaluationState,jdbcType=CHAR},
+      </if>
+      <if test="record.orderState != null" >
+        order_state = #{record.orderState,jdbcType=CHAR},
+      </if>
+      <if test="record.refundState != null" >
+        refund_state = #{record.refundState,jdbcType=TINYINT},
+      </if>
+      <if test="record.lockState != null" >
+        lock_state = #{record.lockState,jdbcType=TINYINT},
+      </if>
+      <if test="record.refundAmount != null" >
+        refund_amount = #{record.refundAmount,jdbcType=DECIMAL},
+      </if>
+      <if test="record.delayTime != null" >
+        delay_time = #{record.delayTime,jdbcType=INTEGER},
+      </if>
+      <if test="record.orderFrom != null" >
+        order_from = #{record.orderFrom,jdbcType=CHAR},
+      </if>
+      <if test="record.shippingCode != null" >
+        shipping_code = #{record.shippingCode,jdbcType=VARCHAR},
+      </if>
+      <if test="record.goodsProjectType != null" >
+        goods_project_type = #{record.goodsProjectType,jdbcType=INTEGER},
+      </if>
+      <if test="record.orderServiceStartime != null" >
+        order_service_startime = #{record.orderServiceStartime,jdbcType=INTEGER},
+      </if>
+      <if test="record.orderServiceEndtime != null" >
+        order_service_endtime = #{record.orderServiceEndtime,jdbcType=INTEGER},
+      </if>
+      <if test="record.orderServiceInfo != null" >
+        order_service_info = #{record.orderServiceInfo,jdbcType=VARCHAR},
+      </if>
+      <if test="record.reward != null" >
+        reward = #{record.reward,jdbcType=TINYINT},
+      </if>
+      <if test="record.applyerId != null" >
+        applyer_id = #{record.applyerId,jdbcType=INTEGER},
+      </if>
+      <if test="record.serviceFeeRate != null" >
+        service_fee_rate = #{record.serviceFeeRate,jdbcType=SMALLINT},
+      </if>
+      <if test="record.serviceFee != null" >
+        service_fee = #{record.serviceFee,jdbcType=DECIMAL},
+      </if>
+      <if test="record.agentFee != null" >
+        agent_fee = #{record.agentFee,jdbcType=DECIMAL},
+      </if>
+      <if test="record.senderId != null" >
+        sender_id = #{record.senderId,jdbcType=INTEGER},
+      </if>
+      <if test="record.shipTime != null" >
+        ship_time = #{record.shipTime,jdbcType=INTEGER},
+      </if>
+      <if test="record.refundTime != null" >
+        refund_time = #{record.refundTime,jdbcType=INTEGER},
+      </if>
+      <if test="record.tradeNo != null" >
+        trade_no = #{record.tradeNo,jdbcType=VARCHAR},
+      </if>
+      <if test="record.storeLookedOrderState != null" >
+        store_looked_order_state = #{record.storeLookedOrderState,jdbcType=TINYINT},
+      </if>
+      <if test="record.storeLookedRefundState != null" >
+        store_looked_refund_state = #{record.storeLookedRefundState,jdbcType=TINYINT},
+      </if>
+      <if test="record.buyerLookedOrderState != null" >
+        buyer_looked_order_state = #{record.buyerLookedOrderState,jdbcType=TINYINT},
+      </if>
+      <if test="record.buyerLookedRefundState != null" >
+        buyer_looked_refund_state = #{record.buyerLookedRefundState,jdbcType=TINYINT},
+      </if>
+      <if test="record.publisherId != null" >
+        publisher_id = #{record.publisherId,jdbcType=INTEGER},
+      </if>
+      <if test="record.syPoints != null" >
+        sy_points = #{record.syPoints,jdbcType=DECIMAL},
+      </if>
+      <if test="record.channel != null" >
+        channel = #{record.channel,jdbcType=VARCHAR},
+      </if>
+      <if test="record.extendType != null" >
+        extend_type = #{record.extendType,jdbcType=VARCHAR},
+      </if>
+      <if test="record.fundFeeRate != null" >
+        fund_fee_rate = #{record.fundFeeRate,jdbcType=SMALLINT},
+      </if>
+      <if test="record.fundFee != null" >
+        fund_fee = #{record.fundFee,jdbcType=DECIMAL},
+      </if>
+      <if test="record.lastConsultTime != null" >
+        last_consult_time = #{record.lastConsultTime,jdbcType=INTEGER},
+      </if>
+      <if test="record.remindBuyerTime != null" >
+        remind_buyer_time = #{record.remindBuyerTime,jdbcType=INTEGER},
+      </if>
+      <if test="record.lastConsultState != null" >
+        last_consult_state = #{record.lastConsultState,jdbcType=TINYINT},
+      </if>
+      <if test="record.refundId != null" >
+        refund_id = #{record.refundId,jdbcType=INTEGER},
+      </if>
+      <if test="record.couponPay != null" >
+        coupon_pay = #{record.couponPay,jdbcType=DECIMAL},
+      </if>
+      <if test="record.moneyPay != null" >
+        money_pay = #{record.moneyPay,jdbcType=DECIMAL},
+      </if>
+      <if test="record.assistId != null" >
+        assist_id = #{record.assistId,jdbcType=INTEGER},
+      </if>
+      <if test="record.ver != null" >
+        ver = #{record.ver,jdbcType=TINYINT},
+      </if>
+      <if test="record.balanceState != null" >
+        balance_state = #{record.balanceState,jdbcType=TINYINT},
+      </if>
+      <if test="record.remindSellerTime != null" >
+        remind_seller_time = #{record.remindSellerTime,jdbcType=INTEGER},
+      </if>
+      <if test="record.warnLevel != null" >
+        warn_level = #{record.warnLevel,jdbcType=TINYINT},
+      </if>
+      <if test="record.communicationStatus != null" >
+        communication_status = #{record.communicationStatus,jdbcType=TINYINT},
+      </if>
+      <if test="record.delayedDeliveryState != null" >
+        delayed_delivery_state = #{record.delayedDeliveryState,jdbcType=CHAR},
+      </if>
+      <if test="record.delayedReceiveDuration != null" >
+        delayed_receive_duration = #{record.delayedReceiveDuration,jdbcType=INTEGER},
+      </if>
+      <if test="record.appVariant != null" >
+        app_variant = #{record.appVariant,jdbcType=VARCHAR},
+      </if>
+      <if test="record.tradeMode != null" >
+        trade_mode = #{record.tradeMode,jdbcType=CHAR},
+      </if>
+      <if test="record.presellTime != null" >
+        presell_time = #{record.presellTime,jdbcType=INTEGER},
+      </if>
+      <if test="record.supportCountyId != null" >
+        support_county_id = #{record.supportCountyId,jdbcType=BIGINT},
+      </if>
+      <if test="record.buyerChannel != null" >
+        buyer_channel = #{record.buyerChannel,jdbcType=VARCHAR},
+      </if>
+      <if test="record.discountAmount != null" >
+        discount_amount = #{record.discountAmount,jdbcType=DECIMAL},
+      </if>
+      <if test="record.deleted != null" >
+        deleted = #{record.deleted,jdbcType=TINYINT},
+      </if>
+      <if test="record.bizOperationMid != null" >
+        biz_operation_mid = #{record.bizOperationMid,jdbcType=INTEGER},
+      </if>
+      <if test="record.platformPay != null" >
+        platform_pay = #{record.platformPay,jdbcType=DECIMAL},
+      </if>
+    </set>
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByExample" parameterType="map" >
+    update sy_order
+    set order_id = #{record.orderId,jdbcType=INTEGER},
+      order_sn = #{record.orderSn,jdbcType=BIGINT},
+      pay_sn = #{record.paySn,jdbcType=BIGINT},
+      store_id = #{record.storeId,jdbcType=INTEGER},
+      store_name = #{record.storeName,jdbcType=VARCHAR},
+      buyer_id = #{record.buyerId,jdbcType=INTEGER},
+      buyer_name = #{record.buyerName,jdbcType=VARCHAR},
+      buyer_email = #{record.buyerEmail,jdbcType=VARCHAR},
+      add_time = #{record.addTime,jdbcType=INTEGER},
+      payment_code = #{record.paymentCode,jdbcType=VARCHAR},
+      payment_time = #{record.paymentTime,jdbcType=INTEGER},
+      finnshed_time = #{record.finnshedTime,jdbcType=INTEGER},
+      goods_amount = #{record.goodsAmount,jdbcType=DECIMAL},
+      order_amount = #{record.orderAmount,jdbcType=DECIMAL},
+      pd_amount = #{record.pdAmount,jdbcType=DECIMAL},
+      shipping_fee = #{record.shippingFee,jdbcType=DECIMAL},
+      evaluation_state = #{record.evaluationState,jdbcType=CHAR},
+      order_state = #{record.orderState,jdbcType=CHAR},
+      refund_state = #{record.refundState,jdbcType=TINYINT},
+      lock_state = #{record.lockState,jdbcType=TINYINT},
+      refund_amount = #{record.refundAmount,jdbcType=DECIMAL},
+      delay_time = #{record.delayTime,jdbcType=INTEGER},
+      order_from = #{record.orderFrom,jdbcType=CHAR},
+      shipping_code = #{record.shippingCode,jdbcType=VARCHAR},
+      goods_project_type = #{record.goodsProjectType,jdbcType=INTEGER},
+      order_service_startime = #{record.orderServiceStartime,jdbcType=INTEGER},
+      order_service_endtime = #{record.orderServiceEndtime,jdbcType=INTEGER},
+      order_service_info = #{record.orderServiceInfo,jdbcType=VARCHAR},
+      reward = #{record.reward,jdbcType=TINYINT},
+      applyer_id = #{record.applyerId,jdbcType=INTEGER},
+      service_fee_rate = #{record.serviceFeeRate,jdbcType=SMALLINT},
+      service_fee = #{record.serviceFee,jdbcType=DECIMAL},
+      agent_fee = #{record.agentFee,jdbcType=DECIMAL},
+      sender_id = #{record.senderId,jdbcType=INTEGER},
+      ship_time = #{record.shipTime,jdbcType=INTEGER},
+      refund_time = #{record.refundTime,jdbcType=INTEGER},
+      trade_no = #{record.tradeNo,jdbcType=VARCHAR},
+      store_looked_order_state = #{record.storeLookedOrderState,jdbcType=TINYINT},
+      store_looked_refund_state = #{record.storeLookedRefundState,jdbcType=TINYINT},
+      buyer_looked_order_state = #{record.buyerLookedOrderState,jdbcType=TINYINT},
+      buyer_looked_refund_state = #{record.buyerLookedRefundState,jdbcType=TINYINT},
+      publisher_id = #{record.publisherId,jdbcType=INTEGER},
+      sy_points = #{record.syPoints,jdbcType=DECIMAL},
+      channel = #{record.channel,jdbcType=VARCHAR},
+      extend_type = #{record.extendType,jdbcType=VARCHAR},
+      fund_fee_rate = #{record.fundFeeRate,jdbcType=SMALLINT},
+      fund_fee = #{record.fundFee,jdbcType=DECIMAL},
+      last_consult_time = #{record.lastConsultTime,jdbcType=INTEGER},
+      remind_buyer_time = #{record.remindBuyerTime,jdbcType=INTEGER},
+      last_consult_state = #{record.lastConsultState,jdbcType=TINYINT},
+      refund_id = #{record.refundId,jdbcType=INTEGER},
+      coupon_pay = #{record.couponPay,jdbcType=DECIMAL},
+      money_pay = #{record.moneyPay,jdbcType=DECIMAL},
+      assist_id = #{record.assistId,jdbcType=INTEGER},
+      ver = #{record.ver,jdbcType=TINYINT},
+      balance_state = #{record.balanceState,jdbcType=TINYINT},
+      remind_seller_time = #{record.remindSellerTime,jdbcType=INTEGER},
+      warn_level = #{record.warnLevel,jdbcType=TINYINT},
+      communication_status = #{record.communicationStatus,jdbcType=TINYINT},
+      delayed_delivery_state = #{record.delayedDeliveryState,jdbcType=CHAR},
+      delayed_receive_duration = #{record.delayedReceiveDuration,jdbcType=INTEGER},
+      app_variant = #{record.appVariant,jdbcType=VARCHAR},
+      trade_mode = #{record.tradeMode,jdbcType=CHAR},
+      presell_time = #{record.presellTime,jdbcType=INTEGER},
+      support_county_id = #{record.supportCountyId,jdbcType=BIGINT},
+      buyer_channel = #{record.buyerChannel,jdbcType=VARCHAR},
+      discount_amount = #{record.discountAmount,jdbcType=DECIMAL},
+      deleted = #{record.deleted,jdbcType=TINYINT},
+      biz_operation_mid = #{record.bizOperationMid,jdbcType=INTEGER},
+      platform_pay = #{record.platformPay,jdbcType=DECIMAL}
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByPrimaryKeySelective" parameterType="com.shanyuan.platform.ms.dao.order.entity.SyOrder" >
+    update sy_order
+    <set >
+      <if test="orderSn != null" >
+        order_sn = #{orderSn,jdbcType=BIGINT},
+      </if>
+      <if test="paySn != null" >
+        pay_sn = #{paySn,jdbcType=BIGINT},
+      </if>
+      <if test="storeId != null" >
+        store_id = #{storeId,jdbcType=INTEGER},
+      </if>
+      <if test="storeName != null" >
+        store_name = #{storeName,jdbcType=VARCHAR},
+      </if>
+      <if test="buyerId != null" >
+        buyer_id = #{buyerId,jdbcType=INTEGER},
+      </if>
+      <if test="buyerName != null" >
+        buyer_name = #{buyerName,jdbcType=VARCHAR},
+      </if>
+      <if test="buyerEmail != null" >
+        buyer_email = #{buyerEmail,jdbcType=VARCHAR},
+      </if>
+      <if test="addTime != null" >
+        add_time = #{addTime,jdbcType=INTEGER},
+      </if>
+      <if test="paymentCode != null" >
+        payment_code = #{paymentCode,jdbcType=VARCHAR},
+      </if>
+      <if test="paymentTime != null" >
+        payment_time = #{paymentTime,jdbcType=INTEGER},
+      </if>
+      <if test="finnshedTime != null" >
+        finnshed_time = #{finnshedTime,jdbcType=INTEGER},
+      </if>
+      <if test="goodsAmount != null" >
+        goods_amount = #{goodsAmount,jdbcType=DECIMAL},
+      </if>
+      <if test="orderAmount != null" >
+        order_amount = #{orderAmount,jdbcType=DECIMAL},
+      </if>
+      <if test="pdAmount != null" >
+        pd_amount = #{pdAmount,jdbcType=DECIMAL},
+      </if>
+      <if test="shippingFee != null" >
+        shipping_fee = #{shippingFee,jdbcType=DECIMAL},
+      </if>
+      <if test="evaluationState != null" >
+        evaluation_state = #{evaluationState,jdbcType=CHAR},
+      </if>
+      <if test="orderState != null" >
+        order_state = #{orderState,jdbcType=CHAR},
+      </if>
+      <if test="refundState != null" >
+        refund_state = #{refundState,jdbcType=TINYINT},
+      </if>
+      <if test="lockState != null" >
+        lock_state = #{lockState,jdbcType=TINYINT},
+      </if>
+      <if test="refundAmount != null" >
+        refund_amount = #{refundAmount,jdbcType=DECIMAL},
+      </if>
+      <if test="delayTime != null" >
+        delay_time = #{delayTime,jdbcType=INTEGER},
+      </if>
+      <if test="orderFrom != null" >
+        order_from = #{orderFrom,jdbcType=CHAR},
+      </if>
+      <if test="shippingCode != null" >
+        shipping_code = #{shippingCode,jdbcType=VARCHAR},
+      </if>
+      <if test="goodsProjectType != null" >
+        goods_project_type = #{goodsProjectType,jdbcType=INTEGER},
+      </if>
+      <if test="orderServiceStartime != null" >
+        order_service_startime = #{orderServiceStartime,jdbcType=INTEGER},
+      </if>
+      <if test="orderServiceEndtime != null" >
+        order_service_endtime = #{orderServiceEndtime,jdbcType=INTEGER},
+      </if>
+      <if test="orderServiceInfo != null" >
+        order_service_info = #{orderServiceInfo,jdbcType=VARCHAR},
+      </if>
+      <if test="reward != null" >
+        reward = #{reward,jdbcType=TINYINT},
+      </if>
+      <if test="applyerId != null" >
+        applyer_id = #{applyerId,jdbcType=INTEGER},
+      </if>
+      <if test="serviceFeeRate != null" >
+        service_fee_rate = #{serviceFeeRate,jdbcType=SMALLINT},
+      </if>
+      <if test="serviceFee != null" >
+        service_fee = #{serviceFee,jdbcType=DECIMAL},
+      </if>
+      <if test="agentFee != null" >
+        agent_fee = #{agentFee,jdbcType=DECIMAL},
+      </if>
+      <if test="senderId != null" >
+        sender_id = #{senderId,jdbcType=INTEGER},
+      </if>
+      <if test="shipTime != null" >
+        ship_time = #{shipTime,jdbcType=INTEGER},
+      </if>
+      <if test="refundTime != null" >
+        refund_time = #{refundTime,jdbcType=INTEGER},
+      </if>
+      <if test="tradeNo != null" >
+        trade_no = #{tradeNo,jdbcType=VARCHAR},
+      </if>
+      <if test="storeLookedOrderState != null" >
+        store_looked_order_state = #{storeLookedOrderState,jdbcType=TINYINT},
+      </if>
+      <if test="storeLookedRefundState != null" >
+        store_looked_refund_state = #{storeLookedRefundState,jdbcType=TINYINT},
+      </if>
+      <if test="buyerLookedOrderState != null" >
+        buyer_looked_order_state = #{buyerLookedOrderState,jdbcType=TINYINT},
+      </if>
+      <if test="buyerLookedRefundState != null" >
+        buyer_looked_refund_state = #{buyerLookedRefundState,jdbcType=TINYINT},
+      </if>
+      <if test="publisherId != null" >
+        publisher_id = #{publisherId,jdbcType=INTEGER},
+      </if>
+      <if test="syPoints != null" >
+        sy_points = #{syPoints,jdbcType=DECIMAL},
+      </if>
+      <if test="channel != null" >
+        channel = #{channel,jdbcType=VARCHAR},
+      </if>
+      <if test="extendType != null" >
+        extend_type = #{extendType,jdbcType=VARCHAR},
+      </if>
+      <if test="fundFeeRate != null" >
+        fund_fee_rate = #{fundFeeRate,jdbcType=SMALLINT},
+      </if>
+      <if test="fundFee != null" >
+        fund_fee = #{fundFee,jdbcType=DECIMAL},
+      </if>
+      <if test="lastConsultTime != null" >
+        last_consult_time = #{lastConsultTime,jdbcType=INTEGER},
+      </if>
+      <if test="remindBuyerTime != null" >
+        remind_buyer_time = #{remindBuyerTime,jdbcType=INTEGER},
+      </if>
+      <if test="lastConsultState != null" >
+        last_consult_state = #{lastConsultState,jdbcType=TINYINT},
+      </if>
+      <if test="refundId != null" >
+        refund_id = #{refundId,jdbcType=INTEGER},
+      </if>
+      <if test="couponPay != null" >
+        coupon_pay = #{couponPay,jdbcType=DECIMAL},
+      </if>
+      <if test="moneyPay != null" >
+        money_pay = #{moneyPay,jdbcType=DECIMAL},
+      </if>
+      <if test="assistId != null" >
+        assist_id = #{assistId,jdbcType=INTEGER},
+      </if>
+      <if test="ver != null" >
+        ver = #{ver,jdbcType=TINYINT},
+      </if>
+      <if test="balanceState != null" >
+        balance_state = #{balanceState,jdbcType=TINYINT},
+      </if>
+      <if test="remindSellerTime != null" >
+        remind_seller_time = #{remindSellerTime,jdbcType=INTEGER},
+      </if>
+      <if test="warnLevel != null" >
+        warn_level = #{warnLevel,jdbcType=TINYINT},
+      </if>
+      <if test="communicationStatus != null" >
+        communication_status = #{communicationStatus,jdbcType=TINYINT},
+      </if>
+      <if test="delayedDeliveryState != null" >
+        delayed_delivery_state = #{delayedDeliveryState,jdbcType=CHAR},
+      </if>
+      <if test="delayedReceiveDuration != null" >
+        delayed_receive_duration = #{delayedReceiveDuration,jdbcType=INTEGER},
+      </if>
+      <if test="appVariant != null" >
+        app_variant = #{appVariant,jdbcType=VARCHAR},
+      </if>
+      <if test="tradeMode != null" >
+        trade_mode = #{tradeMode,jdbcType=CHAR},
+      </if>
+      <if test="presellTime != null" >
+        presell_time = #{presellTime,jdbcType=INTEGER},
+      </if>
+      <if test="supportCountyId != null" >
+        support_county_id = #{supportCountyId,jdbcType=BIGINT},
+      </if>
+      <if test="buyerChannel != null" >
+        buyer_channel = #{buyerChannel,jdbcType=VARCHAR},
+      </if>
+      <if test="discountAmount != null" >
+        discount_amount = #{discountAmount,jdbcType=DECIMAL},
+      </if>
+      <if test="deleted != null" >
+        deleted = #{deleted,jdbcType=TINYINT},
+      </if>
+      <if test="bizOperationMid != null" >
+        biz_operation_mid = #{bizOperationMid,jdbcType=INTEGER},
+      </if>
+      <if test="platformPay != null" >
+        platform_pay = #{platformPay,jdbcType=DECIMAL},
+      </if>
+    </set>
+    where order_id = #{orderId,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.shanyuan.platform.ms.dao.order.entity.SyOrder" >
+    update sy_order
+    set order_sn = #{orderSn,jdbcType=BIGINT},
+      pay_sn = #{paySn,jdbcType=BIGINT},
+      store_id = #{storeId,jdbcType=INTEGER},
+      store_name = #{storeName,jdbcType=VARCHAR},
+      buyer_id = #{buyerId,jdbcType=INTEGER},
+      buyer_name = #{buyerName,jdbcType=VARCHAR},
+      buyer_email = #{buyerEmail,jdbcType=VARCHAR},
+      add_time = #{addTime,jdbcType=INTEGER},
+      payment_code = #{paymentCode,jdbcType=VARCHAR},
+      payment_time = #{paymentTime,jdbcType=INTEGER},
+      finnshed_time = #{finnshedTime,jdbcType=INTEGER},
+      goods_amount = #{goodsAmount,jdbcType=DECIMAL},
+      order_amount = #{orderAmount,jdbcType=DECIMAL},
+      pd_amount = #{pdAmount,jdbcType=DECIMAL},
+      shipping_fee = #{shippingFee,jdbcType=DECIMAL},
+      evaluation_state = #{evaluationState,jdbcType=CHAR},
+      order_state = #{orderState,jdbcType=CHAR},
+      refund_state = #{refundState,jdbcType=TINYINT},
+      lock_state = #{lockState,jdbcType=TINYINT},
+      refund_amount = #{refundAmount,jdbcType=DECIMAL},
+      delay_time = #{delayTime,jdbcType=INTEGER},
+      order_from = #{orderFrom,jdbcType=CHAR},
+      shipping_code = #{shippingCode,jdbcType=VARCHAR},
+      goods_project_type = #{goodsProjectType,jdbcType=INTEGER},
+      order_service_startime = #{orderServiceStartime,jdbcType=INTEGER},
+      order_service_endtime = #{orderServiceEndtime,jdbcType=INTEGER},
+      order_service_info = #{orderServiceInfo,jdbcType=VARCHAR},
+      reward = #{reward,jdbcType=TINYINT},
+      applyer_id = #{applyerId,jdbcType=INTEGER},
+      service_fee_rate = #{serviceFeeRate,jdbcType=SMALLINT},
+      service_fee = #{serviceFee,jdbcType=DECIMAL},
+      agent_fee = #{agentFee,jdbcType=DECIMAL},
+      sender_id = #{senderId,jdbcType=INTEGER},
+      ship_time = #{shipTime,jdbcType=INTEGER},
+      refund_time = #{refundTime,jdbcType=INTEGER},
+      trade_no = #{tradeNo,jdbcType=VARCHAR},
+      store_looked_order_state = #{storeLookedOrderState,jdbcType=TINYINT},
+      store_looked_refund_state = #{storeLookedRefundState,jdbcType=TINYINT},
+      buyer_looked_order_state = #{buyerLookedOrderState,jdbcType=TINYINT},
+      buyer_looked_refund_state = #{buyerLookedRefundState,jdbcType=TINYINT},
+      publisher_id = #{publisherId,jdbcType=INTEGER},
+      sy_points = #{syPoints,jdbcType=DECIMAL},
+      channel = #{channel,jdbcType=VARCHAR},
+      extend_type = #{extendType,jdbcType=VARCHAR},
+      fund_fee_rate = #{fundFeeRate,jdbcType=SMALLINT},
+      fund_fee = #{fundFee,jdbcType=DECIMAL},
+      last_consult_time = #{lastConsultTime,jdbcType=INTEGER},
+      remind_buyer_time = #{remindBuyerTime,jdbcType=INTEGER},
+      last_consult_state = #{lastConsultState,jdbcType=TINYINT},
+      refund_id = #{refundId,jdbcType=INTEGER},
+      coupon_pay = #{couponPay,jdbcType=DECIMAL},
+      money_pay = #{moneyPay,jdbcType=DECIMAL},
+      assist_id = #{assistId,jdbcType=INTEGER},
+      ver = #{ver,jdbcType=TINYINT},
+      balance_state = #{balanceState,jdbcType=TINYINT},
+      remind_seller_time = #{remindSellerTime,jdbcType=INTEGER},
+      warn_level = #{warnLevel,jdbcType=TINYINT},
+      communication_status = #{communicationStatus,jdbcType=TINYINT},
+      delayed_delivery_state = #{delayedDeliveryState,jdbcType=CHAR},
+      delayed_receive_duration = #{delayedReceiveDuration,jdbcType=INTEGER},
+      app_variant = #{appVariant,jdbcType=VARCHAR},
+      trade_mode = #{tradeMode,jdbcType=CHAR},
+      presell_time = #{presellTime,jdbcType=INTEGER},
+      support_county_id = #{supportCountyId,jdbcType=BIGINT},
+      buyer_channel = #{buyerChannel,jdbcType=VARCHAR},
+      discount_amount = #{discountAmount,jdbcType=DECIMAL},
+      deleted = #{deleted,jdbcType=TINYINT},
+      biz_operation_mid = #{bizOperationMid,jdbcType=INTEGER},
+      platform_pay = #{platformPay,jdbcType=DECIMAL}
+    where order_id = #{orderId,jdbcType=INTEGER}
+  </update>
+  <select id="selectFundFeeByOrderId" resultMap="BaseResultMap" parameterType="java.util.Map">
+	SELECT 
+		sum(fund_fee) AS fund_fee,publisher_id,goods_project_type,assist_id 
+	FROM sy_order WHERE order_id IN
+    <foreach collection="orderIds" index="index" item="item" open="(" separator="," close=")"> 
+		  #{item}
+	</foreach>
+	<if test="goodsProjectType != null">
+	AND goods_project_type = #{goodsProjectType} 
+	</if>
+	GROUP BY publisher_id
+  </select>
+  
+  <!-- 订单的总金额 -->
+  <select id="selectOrderAmount" resultType="double">
+  		SELECT SUM(order_amount)/100 
+			FROM sy_order 
+			WHERE goods_project_type = 17
+			AND order_state IN (15, 30, 40)
+  </select>
+  
+   <!-- 发布者已完成订单的总金额 -->
+  <select id="selectOrderAmountByMemberId" resultType="double" parameterType="java.lang.Integer">
+  		SELECT 
+  		IFNULL(SUM(order_amount)/100,0) 
+		FROM sy_order 
+		WHERE goods_project_type = 17
+		AND order_state IN ('15', '30', '40') 
+		and publisher_id=#{memberId}
+  </select>
+  
+  <select id="selectSendSpeed" resultType="long" >
+  	SELECT IFNULL(AVG(ship_time-payment_time)/3600,0) FROM sy_order 
+	WHERE order_state IN ('15', '30', '40') 
+	AND ship_time>presell_time 
+	AND publisher_id=#{memberId} 
+	<if test="startTime != null">
+	AND ship_time > #{startTime} 
+	</if>
+	<if test="endTime != null">
+	AND ship_time &lt; #{endTime} 
+	</if>
+  </select>
+  
+  <select id="selectRefundCount" resultType="long" >
+  	SELECT COUNT(a.order_id) FROM sy_order a 
+	LEFT JOIN sy_refund_return b ON a.order_id=b.order_id 
+	WHERE a.order_state='50' 
+	AND b.refund_reason IN (0,4,5,6) 
+	AND a.publisher_id=#{memberId} 
+	<if test="startTime != null">
+	AND a.refund_time > #{startTime} 
+	</if>
+	<if test="endTime != null">
+	AND a.refund_time &lt; #{endTime} 
+	</if>
+	<if test="sendSpeed != 0">
+	AND a.refund_time >= #{sendSpeed} + a.payment_time
+	</if>
+  </select>
+  
+  <select id="selectOrderCount" resultType="java.lang.Integer" >
+  	SELECT COUNT(order_id) FROM sy_order
+	WHERE order_state IN ('15', '30', '40','50') 
+	AND publisher_id=#{memberId} 
+	<if test="startTime != null">
+	AND payment_time > #{startTime} 
+	</if>
+	<if test="endTime != null">
+	AND payment_time &lt; #{endTime} 
+	</if>
+  </select>  
+</mapper>

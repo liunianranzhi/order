@@ -1,0 +1,1015 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.shanyuan.platform.ms.dao.store.mapper.SyStoreJoininMapper" >
+  <resultMap id="BaseResultMap" type="com.shanyuan.platform.ms.dao.store.entity.SyStoreJoinin" >
+    <id column="member_id" property="memberId" jdbcType="INTEGER" />
+    <result column="member_name" property="memberName" jdbcType="VARCHAR" />
+    <result column="company_name" property="companyName" jdbcType="VARCHAR" />
+    <result column="company_address" property="companyAddress" jdbcType="VARCHAR" />
+    <result column="company_address_detail" property="companyAddressDetail" jdbcType="VARCHAR" />
+    <result column="company_phone" property="companyPhone" jdbcType="VARCHAR" />
+    <result column="company_employee_count" property="companyEmployeeCount" jdbcType="INTEGER" />
+    <result column="company_registered_capital" property="companyRegisteredCapital" jdbcType="INTEGER" />
+    <result column="contacts_name" property="contactsName" jdbcType="VARCHAR" />
+    <result column="contacts_phone" property="contactsPhone" jdbcType="VARCHAR" />
+    <result column="contacts_email" property="contactsEmail" jdbcType="VARCHAR" />
+    <result column="business_licence_number" property="businessLicenceNumber" jdbcType="VARCHAR" />
+    <result column="business_licence_address" property="businessLicenceAddress" jdbcType="VARCHAR" />
+    <result column="business_licence_start" property="businessLicenceStart" jdbcType="DATE" />
+    <result column="business_licence_end" property="businessLicenceEnd" jdbcType="DATE" />
+    <result column="business_sphere" property="businessSphere" jdbcType="VARCHAR" />
+    <result column="business_licence_number_electronic" property="businessLicenceNumberElectronic" jdbcType="VARCHAR" />
+    <result column="organization_code" property="organizationCode" jdbcType="VARCHAR" />
+    <result column="organization_code_electronic" property="organizationCodeElectronic" jdbcType="VARCHAR" />
+    <result column="general_taxpayer" property="generalTaxpayer" jdbcType="VARCHAR" />
+    <result column="bank_account_name" property="bankAccountName" jdbcType="VARCHAR" />
+    <result column="bank_account_number" property="bankAccountNumber" jdbcType="VARCHAR" />
+    <result column="bank_name" property="bankName" jdbcType="VARCHAR" />
+    <result column="bank_code" property="bankCode" jdbcType="VARCHAR" />
+    <result column="bank_address" property="bankAddress" jdbcType="VARCHAR" />
+    <result column="bank_licence_electronic" property="bankLicenceElectronic" jdbcType="VARCHAR" />
+    <result column="is_settlement_account" property="isSettlementAccount" jdbcType="TINYINT" />
+    <result column="settlement_bank_account_name" property="settlementBankAccountName" jdbcType="VARCHAR" />
+    <result column="settlement_bank_account_number" property="settlementBankAccountNumber" jdbcType="VARCHAR" />
+    <result column="settlement_bank_name" property="settlementBankName" jdbcType="VARCHAR" />
+    <result column="settlement_bank_code" property="settlementBankCode" jdbcType="VARCHAR" />
+    <result column="settlement_bank_address" property="settlementBankAddress" jdbcType="VARCHAR" />
+    <result column="tax_registration_certificate" property="taxRegistrationCertificate" jdbcType="VARCHAR" />
+    <result column="taxpayer_id" property="taxpayerId" jdbcType="VARCHAR" />
+    <result column="tax_registration_certificate_electronic" property="taxRegistrationCertificateElectronic" jdbcType="VARCHAR" />
+    <result column="seller_name" property="sellerName" jdbcType="VARCHAR" />
+    <result column="store_name" property="storeName" jdbcType="VARCHAR" />
+    <result column="store_class_ids" property="storeClassIds" jdbcType="VARCHAR" />
+    <result column="store_class_names" property="storeClassNames" jdbcType="VARCHAR" />
+    <result column="joinin_state" property="joininState" jdbcType="VARCHAR" />
+    <result column="joinin_message" property="joininMessage" jdbcType="VARCHAR" />
+    <result column="sg_name" property="sgName" jdbcType="VARCHAR" />
+    <result column="sg_id" property="sgId" jdbcType="INTEGER" />
+    <result column="sc_name" property="scName" jdbcType="VARCHAR" />
+    <result column="sc_id" property="scId" jdbcType="INTEGER" />
+    <result column="store_class_commis_rates" property="storeClassCommisRates" jdbcType="VARCHAR" />
+    <result column="paying_money_certificate" property="payingMoneyCertificate" jdbcType="VARCHAR" />
+    <result column="paying_money_certificate_explain" property="payingMoneyCertificateExplain" jdbcType="VARCHAR" />
+    <result column="car_num" property="carNum" jdbcType="INTEGER" />
+    <result column="warehouse_area" property="warehouseArea" jdbcType="INTEGER" />
+    <result column="single_device_num" property="singleDeviceNum" jdbcType="INTEGER" />
+    <result column="computer_num" property="computerNum" jdbcType="INTEGER" />
+    <result column="logistics_name" property="logisticsName" jdbcType="VARCHAR" />
+    <result column="rental_agreement" property="rentalAgreement" jdbcType="VARCHAR" />
+    <result column="single_device_img" property="singleDeviceImg" jdbcType="VARCHAR" />
+  </resultMap>
+  <sql id="Example_Where_Clause" >
+    <where >
+      <foreach collection="oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Update_By_Example_Where_Clause" >
+    <where >
+      <foreach collection="example.oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Base_Column_List" >
+    member_id, member_name, company_name, company_address, company_address_detail, company_phone, 
+    company_employee_count, company_registered_capital, contacts_name, contacts_phone, 
+    contacts_email, business_licence_number, business_licence_address, business_licence_start, 
+    business_licence_end, business_sphere, business_licence_number_electronic, organization_code, 
+    organization_code_electronic, general_taxpayer, bank_account_name, bank_account_number, 
+    bank_name, bank_code, bank_address, bank_licence_electronic, is_settlement_account, 
+    settlement_bank_account_name, settlement_bank_account_number, settlement_bank_name, 
+    settlement_bank_code, settlement_bank_address, tax_registration_certificate, taxpayer_id, 
+    tax_registration_certificate_electronic, seller_name, store_name, store_class_ids, 
+    store_class_names, joinin_state, joinin_message, sg_name, sg_id, sc_name, sc_id, 
+    store_class_commis_rates, paying_money_certificate, paying_money_certificate_explain, 
+    car_num, warehouse_area, single_device_num, computer_num, logistics_name, rental_agreement, 
+    single_device_img
+  </sql>
+  <select id="selectByExample" resultMap="BaseResultMap" parameterType="com.shanyuan.platform.ms.dao.store.entity.SyStoreJoininExample" >
+    select
+    <if test="distinct" >
+      distinct
+    </if>
+    <include refid="Base_Column_List" />
+    from sy_store_joinin
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null" >
+      order by ${orderByClause}
+    </if>
+  </select>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+    select 
+    <include refid="Base_Column_List" />
+    from sy_store_joinin
+    where member_id = #{memberId,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+    delete from sy_store_joinin
+    where member_id = #{memberId,jdbcType=INTEGER}
+  </delete>
+  <delete id="deleteByExample" parameterType="com.shanyuan.platform.ms.dao.store.entity.SyStoreJoininExample" >
+    delete from sy_store_joinin
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </delete>
+  <insert id="insert" parameterType="com.shanyuan.platform.ms.dao.store.entity.SyStoreJoinin" >
+    insert into sy_store_joinin (member_id, member_name, company_name, 
+      company_address, company_address_detail, company_phone, 
+      company_employee_count, company_registered_capital, 
+      contacts_name, contacts_phone, contacts_email, 
+      business_licence_number, business_licence_address, 
+      business_licence_start, business_licence_end, business_sphere, 
+      business_licence_number_electronic, organization_code, 
+      organization_code_electronic, general_taxpayer, 
+      bank_account_name, bank_account_number, bank_name, 
+      bank_code, bank_address, bank_licence_electronic, 
+      is_settlement_account, settlement_bank_account_name, 
+      settlement_bank_account_number, settlement_bank_name, 
+      settlement_bank_code, settlement_bank_address, 
+      tax_registration_certificate, taxpayer_id, 
+      tax_registration_certificate_electronic, seller_name, 
+      store_name, store_class_ids, store_class_names, 
+      joinin_state, joinin_message, sg_name, 
+      sg_id, sc_name, sc_id, 
+      store_class_commis_rates, paying_money_certificate, 
+      paying_money_certificate_explain, car_num, 
+      warehouse_area, single_device_num, computer_num, 
+      logistics_name, rental_agreement, single_device_img
+      )
+    values (#{memberId,jdbcType=INTEGER}, #{memberName,jdbcType=VARCHAR}, #{companyName,jdbcType=VARCHAR}, 
+      #{companyAddress,jdbcType=VARCHAR}, #{companyAddressDetail,jdbcType=VARCHAR}, #{companyPhone,jdbcType=VARCHAR}, 
+      #{companyEmployeeCount,jdbcType=INTEGER}, #{companyRegisteredCapital,jdbcType=INTEGER}, 
+      #{contactsName,jdbcType=VARCHAR}, #{contactsPhone,jdbcType=VARCHAR}, #{contactsEmail,jdbcType=VARCHAR}, 
+      #{businessLicenceNumber,jdbcType=VARCHAR}, #{businessLicenceAddress,jdbcType=VARCHAR}, 
+      #{businessLicenceStart,jdbcType=DATE}, #{businessLicenceEnd,jdbcType=DATE}, #{businessSphere,jdbcType=VARCHAR}, 
+      #{businessLicenceNumberElectronic,jdbcType=VARCHAR}, #{organizationCode,jdbcType=VARCHAR}, 
+      #{organizationCodeElectronic,jdbcType=VARCHAR}, #{generalTaxpayer,jdbcType=VARCHAR}, 
+      #{bankAccountName,jdbcType=VARCHAR}, #{bankAccountNumber,jdbcType=VARCHAR}, #{bankName,jdbcType=VARCHAR}, 
+      #{bankCode,jdbcType=VARCHAR}, #{bankAddress,jdbcType=VARCHAR}, #{bankLicenceElectronic,jdbcType=VARCHAR}, 
+      #{isSettlementAccount,jdbcType=TINYINT}, #{settlementBankAccountName,jdbcType=VARCHAR}, 
+      #{settlementBankAccountNumber,jdbcType=VARCHAR}, #{settlementBankName,jdbcType=VARCHAR}, 
+      #{settlementBankCode,jdbcType=VARCHAR}, #{settlementBankAddress,jdbcType=VARCHAR}, 
+      #{taxRegistrationCertificate,jdbcType=VARCHAR}, #{taxpayerId,jdbcType=VARCHAR}, 
+      #{taxRegistrationCertificateElectronic,jdbcType=VARCHAR}, #{sellerName,jdbcType=VARCHAR}, 
+      #{storeName,jdbcType=VARCHAR}, #{storeClassIds,jdbcType=VARCHAR}, #{storeClassNames,jdbcType=VARCHAR}, 
+      #{joininState,jdbcType=VARCHAR}, #{joininMessage,jdbcType=VARCHAR}, #{sgName,jdbcType=VARCHAR}, 
+      #{sgId,jdbcType=INTEGER}, #{scName,jdbcType=VARCHAR}, #{scId,jdbcType=INTEGER}, 
+      #{storeClassCommisRates,jdbcType=VARCHAR}, #{payingMoneyCertificate,jdbcType=VARCHAR}, 
+      #{payingMoneyCertificateExplain,jdbcType=VARCHAR}, #{carNum,jdbcType=INTEGER}, 
+      #{warehouseArea,jdbcType=INTEGER}, #{singleDeviceNum,jdbcType=INTEGER}, #{computerNum,jdbcType=INTEGER}, 
+      #{logisticsName,jdbcType=VARCHAR}, #{rentalAgreement,jdbcType=VARCHAR}, #{singleDeviceImg,jdbcType=VARCHAR}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="com.shanyuan.platform.ms.dao.store.entity.SyStoreJoinin" >
+    insert into sy_store_joinin
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="memberId != null" >
+        member_id,
+      </if>
+      <if test="memberName != null" >
+        member_name,
+      </if>
+      <if test="companyName != null" >
+        company_name,
+      </if>
+      <if test="companyAddress != null" >
+        company_address,
+      </if>
+      <if test="companyAddressDetail != null" >
+        company_address_detail,
+      </if>
+      <if test="companyPhone != null" >
+        company_phone,
+      </if>
+      <if test="companyEmployeeCount != null" >
+        company_employee_count,
+      </if>
+      <if test="companyRegisteredCapital != null" >
+        company_registered_capital,
+      </if>
+      <if test="contactsName != null" >
+        contacts_name,
+      </if>
+      <if test="contactsPhone != null" >
+        contacts_phone,
+      </if>
+      <if test="contactsEmail != null" >
+        contacts_email,
+      </if>
+      <if test="businessLicenceNumber != null" >
+        business_licence_number,
+      </if>
+      <if test="businessLicenceAddress != null" >
+        business_licence_address,
+      </if>
+      <if test="businessLicenceStart != null" >
+        business_licence_start,
+      </if>
+      <if test="businessLicenceEnd != null" >
+        business_licence_end,
+      </if>
+      <if test="businessSphere != null" >
+        business_sphere,
+      </if>
+      <if test="businessLicenceNumberElectronic != null" >
+        business_licence_number_electronic,
+      </if>
+      <if test="organizationCode != null" >
+        organization_code,
+      </if>
+      <if test="organizationCodeElectronic != null" >
+        organization_code_electronic,
+      </if>
+      <if test="generalTaxpayer != null" >
+        general_taxpayer,
+      </if>
+      <if test="bankAccountName != null" >
+        bank_account_name,
+      </if>
+      <if test="bankAccountNumber != null" >
+        bank_account_number,
+      </if>
+      <if test="bankName != null" >
+        bank_name,
+      </if>
+      <if test="bankCode != null" >
+        bank_code,
+      </if>
+      <if test="bankAddress != null" >
+        bank_address,
+      </if>
+      <if test="bankLicenceElectronic != null" >
+        bank_licence_electronic,
+      </if>
+      <if test="isSettlementAccount != null" >
+        is_settlement_account,
+      </if>
+      <if test="settlementBankAccountName != null" >
+        settlement_bank_account_name,
+      </if>
+      <if test="settlementBankAccountNumber != null" >
+        settlement_bank_account_number,
+      </if>
+      <if test="settlementBankName != null" >
+        settlement_bank_name,
+      </if>
+      <if test="settlementBankCode != null" >
+        settlement_bank_code,
+      </if>
+      <if test="settlementBankAddress != null" >
+        settlement_bank_address,
+      </if>
+      <if test="taxRegistrationCertificate != null" >
+        tax_registration_certificate,
+      </if>
+      <if test="taxpayerId != null" >
+        taxpayer_id,
+      </if>
+      <if test="taxRegistrationCertificateElectronic != null" >
+        tax_registration_certificate_electronic,
+      </if>
+      <if test="sellerName != null" >
+        seller_name,
+      </if>
+      <if test="storeName != null" >
+        store_name,
+      </if>
+      <if test="storeClassIds != null" >
+        store_class_ids,
+      </if>
+      <if test="storeClassNames != null" >
+        store_class_names,
+      </if>
+      <if test="joininState != null" >
+        joinin_state,
+      </if>
+      <if test="joininMessage != null" >
+        joinin_message,
+      </if>
+      <if test="sgName != null" >
+        sg_name,
+      </if>
+      <if test="sgId != null" >
+        sg_id,
+      </if>
+      <if test="scName != null" >
+        sc_name,
+      </if>
+      <if test="scId != null" >
+        sc_id,
+      </if>
+      <if test="storeClassCommisRates != null" >
+        store_class_commis_rates,
+      </if>
+      <if test="payingMoneyCertificate != null" >
+        paying_money_certificate,
+      </if>
+      <if test="payingMoneyCertificateExplain != null" >
+        paying_money_certificate_explain,
+      </if>
+      <if test="carNum != null" >
+        car_num,
+      </if>
+      <if test="warehouseArea != null" >
+        warehouse_area,
+      </if>
+      <if test="singleDeviceNum != null" >
+        single_device_num,
+      </if>
+      <if test="computerNum != null" >
+        computer_num,
+      </if>
+      <if test="logisticsName != null" >
+        logistics_name,
+      </if>
+      <if test="rentalAgreement != null" >
+        rental_agreement,
+      </if>
+      <if test="singleDeviceImg != null" >
+        single_device_img,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="memberId != null" >
+        #{memberId,jdbcType=INTEGER},
+      </if>
+      <if test="memberName != null" >
+        #{memberName,jdbcType=VARCHAR},
+      </if>
+      <if test="companyName != null" >
+        #{companyName,jdbcType=VARCHAR},
+      </if>
+      <if test="companyAddress != null" >
+        #{companyAddress,jdbcType=VARCHAR},
+      </if>
+      <if test="companyAddressDetail != null" >
+        #{companyAddressDetail,jdbcType=VARCHAR},
+      </if>
+      <if test="companyPhone != null" >
+        #{companyPhone,jdbcType=VARCHAR},
+      </if>
+      <if test="companyEmployeeCount != null" >
+        #{companyEmployeeCount,jdbcType=INTEGER},
+      </if>
+      <if test="companyRegisteredCapital != null" >
+        #{companyRegisteredCapital,jdbcType=INTEGER},
+      </if>
+      <if test="contactsName != null" >
+        #{contactsName,jdbcType=VARCHAR},
+      </if>
+      <if test="contactsPhone != null" >
+        #{contactsPhone,jdbcType=VARCHAR},
+      </if>
+      <if test="contactsEmail != null" >
+        #{contactsEmail,jdbcType=VARCHAR},
+      </if>
+      <if test="businessLicenceNumber != null" >
+        #{businessLicenceNumber,jdbcType=VARCHAR},
+      </if>
+      <if test="businessLicenceAddress != null" >
+        #{businessLicenceAddress,jdbcType=VARCHAR},
+      </if>
+      <if test="businessLicenceStart != null" >
+        #{businessLicenceStart,jdbcType=DATE},
+      </if>
+      <if test="businessLicenceEnd != null" >
+        #{businessLicenceEnd,jdbcType=DATE},
+      </if>
+      <if test="businessSphere != null" >
+        #{businessSphere,jdbcType=VARCHAR},
+      </if>
+      <if test="businessLicenceNumberElectronic != null" >
+        #{businessLicenceNumberElectronic,jdbcType=VARCHAR},
+      </if>
+      <if test="organizationCode != null" >
+        #{organizationCode,jdbcType=VARCHAR},
+      </if>
+      <if test="organizationCodeElectronic != null" >
+        #{organizationCodeElectronic,jdbcType=VARCHAR},
+      </if>
+      <if test="generalTaxpayer != null" >
+        #{generalTaxpayer,jdbcType=VARCHAR},
+      </if>
+      <if test="bankAccountName != null" >
+        #{bankAccountName,jdbcType=VARCHAR},
+      </if>
+      <if test="bankAccountNumber != null" >
+        #{bankAccountNumber,jdbcType=VARCHAR},
+      </if>
+      <if test="bankName != null" >
+        #{bankName,jdbcType=VARCHAR},
+      </if>
+      <if test="bankCode != null" >
+        #{bankCode,jdbcType=VARCHAR},
+      </if>
+      <if test="bankAddress != null" >
+        #{bankAddress,jdbcType=VARCHAR},
+      </if>
+      <if test="bankLicenceElectronic != null" >
+        #{bankLicenceElectronic,jdbcType=VARCHAR},
+      </if>
+      <if test="isSettlementAccount != null" >
+        #{isSettlementAccount,jdbcType=TINYINT},
+      </if>
+      <if test="settlementBankAccountName != null" >
+        #{settlementBankAccountName,jdbcType=VARCHAR},
+      </if>
+      <if test="settlementBankAccountNumber != null" >
+        #{settlementBankAccountNumber,jdbcType=VARCHAR},
+      </if>
+      <if test="settlementBankName != null" >
+        #{settlementBankName,jdbcType=VARCHAR},
+      </if>
+      <if test="settlementBankCode != null" >
+        #{settlementBankCode,jdbcType=VARCHAR},
+      </if>
+      <if test="settlementBankAddress != null" >
+        #{settlementBankAddress,jdbcType=VARCHAR},
+      </if>
+      <if test="taxRegistrationCertificate != null" >
+        #{taxRegistrationCertificate,jdbcType=VARCHAR},
+      </if>
+      <if test="taxpayerId != null" >
+        #{taxpayerId,jdbcType=VARCHAR},
+      </if>
+      <if test="taxRegistrationCertificateElectronic != null" >
+        #{taxRegistrationCertificateElectronic,jdbcType=VARCHAR},
+      </if>
+      <if test="sellerName != null" >
+        #{sellerName,jdbcType=VARCHAR},
+      </if>
+      <if test="storeName != null" >
+        #{storeName,jdbcType=VARCHAR},
+      </if>
+      <if test="storeClassIds != null" >
+        #{storeClassIds,jdbcType=VARCHAR},
+      </if>
+      <if test="storeClassNames != null" >
+        #{storeClassNames,jdbcType=VARCHAR},
+      </if>
+      <if test="joininState != null" >
+        #{joininState,jdbcType=VARCHAR},
+      </if>
+      <if test="joininMessage != null" >
+        #{joininMessage,jdbcType=VARCHAR},
+      </if>
+      <if test="sgName != null" >
+        #{sgName,jdbcType=VARCHAR},
+      </if>
+      <if test="sgId != null" >
+        #{sgId,jdbcType=INTEGER},
+      </if>
+      <if test="scName != null" >
+        #{scName,jdbcType=VARCHAR},
+      </if>
+      <if test="scId != null" >
+        #{scId,jdbcType=INTEGER},
+      </if>
+      <if test="storeClassCommisRates != null" >
+        #{storeClassCommisRates,jdbcType=VARCHAR},
+      </if>
+      <if test="payingMoneyCertificate != null" >
+        #{payingMoneyCertificate,jdbcType=VARCHAR},
+      </if>
+      <if test="payingMoneyCertificateExplain != null" >
+        #{payingMoneyCertificateExplain,jdbcType=VARCHAR},
+      </if>
+      <if test="carNum != null" >
+        #{carNum,jdbcType=INTEGER},
+      </if>
+      <if test="warehouseArea != null" >
+        #{warehouseArea,jdbcType=INTEGER},
+      </if>
+      <if test="singleDeviceNum != null" >
+        #{singleDeviceNum,jdbcType=INTEGER},
+      </if>
+      <if test="computerNum != null" >
+        #{computerNum,jdbcType=INTEGER},
+      </if>
+      <if test="logisticsName != null" >
+        #{logisticsName,jdbcType=VARCHAR},
+      </if>
+      <if test="rentalAgreement != null" >
+        #{rentalAgreement,jdbcType=VARCHAR},
+      </if>
+      <if test="singleDeviceImg != null" >
+        #{singleDeviceImg,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <select id="countByExample" parameterType="com.shanyuan.platform.ms.dao.store.entity.SyStoreJoininExample" resultType="java.lang.Integer" >
+    select count(*) from sy_store_joinin
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </select>
+  <update id="updateByExampleSelective" parameterType="map" >
+    update sy_store_joinin
+    <set >
+      <if test="record.memberId != null" >
+        member_id = #{record.memberId,jdbcType=INTEGER},
+      </if>
+      <if test="record.memberName != null" >
+        member_name = #{record.memberName,jdbcType=VARCHAR},
+      </if>
+      <if test="record.companyName != null" >
+        company_name = #{record.companyName,jdbcType=VARCHAR},
+      </if>
+      <if test="record.companyAddress != null" >
+        company_address = #{record.companyAddress,jdbcType=VARCHAR},
+      </if>
+      <if test="record.companyAddressDetail != null" >
+        company_address_detail = #{record.companyAddressDetail,jdbcType=VARCHAR},
+      </if>
+      <if test="record.companyPhone != null" >
+        company_phone = #{record.companyPhone,jdbcType=VARCHAR},
+      </if>
+      <if test="record.companyEmployeeCount != null" >
+        company_employee_count = #{record.companyEmployeeCount,jdbcType=INTEGER},
+      </if>
+      <if test="record.companyRegisteredCapital != null" >
+        company_registered_capital = #{record.companyRegisteredCapital,jdbcType=INTEGER},
+      </if>
+      <if test="record.contactsName != null" >
+        contacts_name = #{record.contactsName,jdbcType=VARCHAR},
+      </if>
+      <if test="record.contactsPhone != null" >
+        contacts_phone = #{record.contactsPhone,jdbcType=VARCHAR},
+      </if>
+      <if test="record.contactsEmail != null" >
+        contacts_email = #{record.contactsEmail,jdbcType=VARCHAR},
+      </if>
+      <if test="record.businessLicenceNumber != null" >
+        business_licence_number = #{record.businessLicenceNumber,jdbcType=VARCHAR},
+      </if>
+      <if test="record.businessLicenceAddress != null" >
+        business_licence_address = #{record.businessLicenceAddress,jdbcType=VARCHAR},
+      </if>
+      <if test="record.businessLicenceStart != null" >
+        business_licence_start = #{record.businessLicenceStart,jdbcType=DATE},
+      </if>
+      <if test="record.businessLicenceEnd != null" >
+        business_licence_end = #{record.businessLicenceEnd,jdbcType=DATE},
+      </if>
+      <if test="record.businessSphere != null" >
+        business_sphere = #{record.businessSphere,jdbcType=VARCHAR},
+      </if>
+      <if test="record.businessLicenceNumberElectronic != null" >
+        business_licence_number_electronic = #{record.businessLicenceNumberElectronic,jdbcType=VARCHAR},
+      </if>
+      <if test="record.organizationCode != null" >
+        organization_code = #{record.organizationCode,jdbcType=VARCHAR},
+      </if>
+      <if test="record.organizationCodeElectronic != null" >
+        organization_code_electronic = #{record.organizationCodeElectronic,jdbcType=VARCHAR},
+      </if>
+      <if test="record.generalTaxpayer != null" >
+        general_taxpayer = #{record.generalTaxpayer,jdbcType=VARCHAR},
+      </if>
+      <if test="record.bankAccountName != null" >
+        bank_account_name = #{record.bankAccountName,jdbcType=VARCHAR},
+      </if>
+      <if test="record.bankAccountNumber != null" >
+        bank_account_number = #{record.bankAccountNumber,jdbcType=VARCHAR},
+      </if>
+      <if test="record.bankName != null" >
+        bank_name = #{record.bankName,jdbcType=VARCHAR},
+      </if>
+      <if test="record.bankCode != null" >
+        bank_code = #{record.bankCode,jdbcType=VARCHAR},
+      </if>
+      <if test="record.bankAddress != null" >
+        bank_address = #{record.bankAddress,jdbcType=VARCHAR},
+      </if>
+      <if test="record.bankLicenceElectronic != null" >
+        bank_licence_electronic = #{record.bankLicenceElectronic,jdbcType=VARCHAR},
+      </if>
+      <if test="record.isSettlementAccount != null" >
+        is_settlement_account = #{record.isSettlementAccount,jdbcType=TINYINT},
+      </if>
+      <if test="record.settlementBankAccountName != null" >
+        settlement_bank_account_name = #{record.settlementBankAccountName,jdbcType=VARCHAR},
+      </if>
+      <if test="record.settlementBankAccountNumber != null" >
+        settlement_bank_account_number = #{record.settlementBankAccountNumber,jdbcType=VARCHAR},
+      </if>
+      <if test="record.settlementBankName != null" >
+        settlement_bank_name = #{record.settlementBankName,jdbcType=VARCHAR},
+      </if>
+      <if test="record.settlementBankCode != null" >
+        settlement_bank_code = #{record.settlementBankCode,jdbcType=VARCHAR},
+      </if>
+      <if test="record.settlementBankAddress != null" >
+        settlement_bank_address = #{record.settlementBankAddress,jdbcType=VARCHAR},
+      </if>
+      <if test="record.taxRegistrationCertificate != null" >
+        tax_registration_certificate = #{record.taxRegistrationCertificate,jdbcType=VARCHAR},
+      </if>
+      <if test="record.taxpayerId != null" >
+        taxpayer_id = #{record.taxpayerId,jdbcType=VARCHAR},
+      </if>
+      <if test="record.taxRegistrationCertificateElectronic != null" >
+        tax_registration_certificate_electronic = #{record.taxRegistrationCertificateElectronic,jdbcType=VARCHAR},
+      </if>
+      <if test="record.sellerName != null" >
+        seller_name = #{record.sellerName,jdbcType=VARCHAR},
+      </if>
+      <if test="record.storeName != null" >
+        store_name = #{record.storeName,jdbcType=VARCHAR},
+      </if>
+      <if test="record.storeClassIds != null" >
+        store_class_ids = #{record.storeClassIds,jdbcType=VARCHAR},
+      </if>
+      <if test="record.storeClassNames != null" >
+        store_class_names = #{record.storeClassNames,jdbcType=VARCHAR},
+      </if>
+      <if test="record.joininState != null" >
+        joinin_state = #{record.joininState,jdbcType=VARCHAR},
+      </if>
+      <if test="record.joininMessage != null" >
+        joinin_message = #{record.joininMessage,jdbcType=VARCHAR},
+      </if>
+      <if test="record.sgName != null" >
+        sg_name = #{record.sgName,jdbcType=VARCHAR},
+      </if>
+      <if test="record.sgId != null" >
+        sg_id = #{record.sgId,jdbcType=INTEGER},
+      </if>
+      <if test="record.scName != null" >
+        sc_name = #{record.scName,jdbcType=VARCHAR},
+      </if>
+      <if test="record.scId != null" >
+        sc_id = #{record.scId,jdbcType=INTEGER},
+      </if>
+      <if test="record.storeClassCommisRates != null" >
+        store_class_commis_rates = #{record.storeClassCommisRates,jdbcType=VARCHAR},
+      </if>
+      <if test="record.payingMoneyCertificate != null" >
+        paying_money_certificate = #{record.payingMoneyCertificate,jdbcType=VARCHAR},
+      </if>
+      <if test="record.payingMoneyCertificateExplain != null" >
+        paying_money_certificate_explain = #{record.payingMoneyCertificateExplain,jdbcType=VARCHAR},
+      </if>
+      <if test="record.carNum != null" >
+        car_num = #{record.carNum,jdbcType=INTEGER},
+      </if>
+      <if test="record.warehouseArea != null" >
+        warehouse_area = #{record.warehouseArea,jdbcType=INTEGER},
+      </if>
+      <if test="record.singleDeviceNum != null" >
+        single_device_num = #{record.singleDeviceNum,jdbcType=INTEGER},
+      </if>
+      <if test="record.computerNum != null" >
+        computer_num = #{record.computerNum,jdbcType=INTEGER},
+      </if>
+      <if test="record.logisticsName != null" >
+        logistics_name = #{record.logisticsName,jdbcType=VARCHAR},
+      </if>
+      <if test="record.rentalAgreement != null" >
+        rental_agreement = #{record.rentalAgreement,jdbcType=VARCHAR},
+      </if>
+      <if test="record.singleDeviceImg != null" >
+        single_device_img = #{record.singleDeviceImg,jdbcType=VARCHAR},
+      </if>
+    </set>
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByExample" parameterType="map" >
+    update sy_store_joinin
+    set member_id = #{record.memberId,jdbcType=INTEGER},
+      member_name = #{record.memberName,jdbcType=VARCHAR},
+      company_name = #{record.companyName,jdbcType=VARCHAR},
+      company_address = #{record.companyAddress,jdbcType=VARCHAR},
+      company_address_detail = #{record.companyAddressDetail,jdbcType=VARCHAR},
+      company_phone = #{record.companyPhone,jdbcType=VARCHAR},
+      company_employee_count = #{record.companyEmployeeCount,jdbcType=INTEGER},
+      company_registered_capital = #{record.companyRegisteredCapital,jdbcType=INTEGER},
+      contacts_name = #{record.contactsName,jdbcType=VARCHAR},
+      contacts_phone = #{record.contactsPhone,jdbcType=VARCHAR},
+      contacts_email = #{record.contactsEmail,jdbcType=VARCHAR},
+      business_licence_number = #{record.businessLicenceNumber,jdbcType=VARCHAR},
+      business_licence_address = #{record.businessLicenceAddress,jdbcType=VARCHAR},
+      business_licence_start = #{record.businessLicenceStart,jdbcType=DATE},
+      business_licence_end = #{record.businessLicenceEnd,jdbcType=DATE},
+      business_sphere = #{record.businessSphere,jdbcType=VARCHAR},
+      business_licence_number_electronic = #{record.businessLicenceNumberElectronic,jdbcType=VARCHAR},
+      organization_code = #{record.organizationCode,jdbcType=VARCHAR},
+      organization_code_electronic = #{record.organizationCodeElectronic,jdbcType=VARCHAR},
+      general_taxpayer = #{record.generalTaxpayer,jdbcType=VARCHAR},
+      bank_account_name = #{record.bankAccountName,jdbcType=VARCHAR},
+      bank_account_number = #{record.bankAccountNumber,jdbcType=VARCHAR},
+      bank_name = #{record.bankName,jdbcType=VARCHAR},
+      bank_code = #{record.bankCode,jdbcType=VARCHAR},
+      bank_address = #{record.bankAddress,jdbcType=VARCHAR},
+      bank_licence_electronic = #{record.bankLicenceElectronic,jdbcType=VARCHAR},
+      is_settlement_account = #{record.isSettlementAccount,jdbcType=TINYINT},
+      settlement_bank_account_name = #{record.settlementBankAccountName,jdbcType=VARCHAR},
+      settlement_bank_account_number = #{record.settlementBankAccountNumber,jdbcType=VARCHAR},
+      settlement_bank_name = #{record.settlementBankName,jdbcType=VARCHAR},
+      settlement_bank_code = #{record.settlementBankCode,jdbcType=VARCHAR},
+      settlement_bank_address = #{record.settlementBankAddress,jdbcType=VARCHAR},
+      tax_registration_certificate = #{record.taxRegistrationCertificate,jdbcType=VARCHAR},
+      taxpayer_id = #{record.taxpayerId,jdbcType=VARCHAR},
+      tax_registration_certificate_electronic = #{record.taxRegistrationCertificateElectronic,jdbcType=VARCHAR},
+      seller_name = #{record.sellerName,jdbcType=VARCHAR},
+      store_name = #{record.storeName,jdbcType=VARCHAR},
+      store_class_ids = #{record.storeClassIds,jdbcType=VARCHAR},
+      store_class_names = #{record.storeClassNames,jdbcType=VARCHAR},
+      joinin_state = #{record.joininState,jdbcType=VARCHAR},
+      joinin_message = #{record.joininMessage,jdbcType=VARCHAR},
+      sg_name = #{record.sgName,jdbcType=VARCHAR},
+      sg_id = #{record.sgId,jdbcType=INTEGER},
+      sc_name = #{record.scName,jdbcType=VARCHAR},
+      sc_id = #{record.scId,jdbcType=INTEGER},
+      store_class_commis_rates = #{record.storeClassCommisRates,jdbcType=VARCHAR},
+      paying_money_certificate = #{record.payingMoneyCertificate,jdbcType=VARCHAR},
+      paying_money_certificate_explain = #{record.payingMoneyCertificateExplain,jdbcType=VARCHAR},
+      car_num = #{record.carNum,jdbcType=INTEGER},
+      warehouse_area = #{record.warehouseArea,jdbcType=INTEGER},
+      single_device_num = #{record.singleDeviceNum,jdbcType=INTEGER},
+      computer_num = #{record.computerNum,jdbcType=INTEGER},
+      logistics_name = #{record.logisticsName,jdbcType=VARCHAR},
+      rental_agreement = #{record.rentalAgreement,jdbcType=VARCHAR},
+      single_device_img = #{record.singleDeviceImg,jdbcType=VARCHAR}
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByPrimaryKeySelective" parameterType="com.shanyuan.platform.ms.dao.store.entity.SyStoreJoinin" >
+    update sy_store_joinin
+    <set >
+      <if test="memberName != null" >
+        member_name = #{memberName,jdbcType=VARCHAR},
+      </if>
+      <if test="companyName != null" >
+        company_name = #{companyName,jdbcType=VARCHAR},
+      </if>
+      <if test="companyAddress != null" >
+        company_address = #{companyAddress,jdbcType=VARCHAR},
+      </if>
+      <if test="companyAddressDetail != null" >
+        company_address_detail = #{companyAddressDetail,jdbcType=VARCHAR},
+      </if>
+      <if test="companyPhone != null" >
+        company_phone = #{companyPhone,jdbcType=VARCHAR},
+      </if>
+      <if test="companyEmployeeCount != null" >
+        company_employee_count = #{companyEmployeeCount,jdbcType=INTEGER},
+      </if>
+      <if test="companyRegisteredCapital != null" >
+        company_registered_capital = #{companyRegisteredCapital,jdbcType=INTEGER},
+      </if>
+      <if test="contactsName != null" >
+        contacts_name = #{contactsName,jdbcType=VARCHAR},
+      </if>
+      <if test="contactsPhone != null" >
+        contacts_phone = #{contactsPhone,jdbcType=VARCHAR},
+      </if>
+      <if test="contactsEmail != null" >
+        contacts_email = #{contactsEmail,jdbcType=VARCHAR},
+      </if>
+      <if test="businessLicenceNumber != null" >
+        business_licence_number = #{businessLicenceNumber,jdbcType=VARCHAR},
+      </if>
+      <if test="businessLicenceAddress != null" >
+        business_licence_address = #{businessLicenceAddress,jdbcType=VARCHAR},
+      </if>
+      <if test="businessLicenceStart != null" >
+        business_licence_start = #{businessLicenceStart,jdbcType=DATE},
+      </if>
+      <if test="businessLicenceEnd != null" >
+        business_licence_end = #{businessLicenceEnd,jdbcType=DATE},
+      </if>
+      <if test="businessSphere != null" >
+        business_sphere = #{businessSphere,jdbcType=VARCHAR},
+      </if>
+      <if test="businessLicenceNumberElectronic != null" >
+        business_licence_number_electronic = #{businessLicenceNumberElectronic,jdbcType=VARCHAR},
+      </if>
+      <if test="organizationCode != null" >
+        organization_code = #{organizationCode,jdbcType=VARCHAR},
+      </if>
+      <if test="organizationCodeElectronic != null" >
+        organization_code_electronic = #{organizationCodeElectronic,jdbcType=VARCHAR},
+      </if>
+      <if test="generalTaxpayer != null" >
+        general_taxpayer = #{generalTaxpayer,jdbcType=VARCHAR},
+      </if>
+      <if test="bankAccountName != null" >
+        bank_account_name = #{bankAccountName,jdbcType=VARCHAR},
+      </if>
+      <if test="bankAccountNumber != null" >
+        bank_account_number = #{bankAccountNumber,jdbcType=VARCHAR},
+      </if>
+      <if test="bankName != null" >
+        bank_name = #{bankName,jdbcType=VARCHAR},
+      </if>
+      <if test="bankCode != null" >
+        bank_code = #{bankCode,jdbcType=VARCHAR},
+      </if>
+      <if test="bankAddress != null" >
+        bank_address = #{bankAddress,jdbcType=VARCHAR},
+      </if>
+      <if test="bankLicenceElectronic != null" >
+        bank_licence_electronic = #{bankLicenceElectronic,jdbcType=VARCHAR},
+      </if>
+      <if test="isSettlementAccount != null" >
+        is_settlement_account = #{isSettlementAccount,jdbcType=TINYINT},
+      </if>
+      <if test="settlementBankAccountName != null" >
+        settlement_bank_account_name = #{settlementBankAccountName,jdbcType=VARCHAR},
+      </if>
+      <if test="settlementBankAccountNumber != null" >
+        settlement_bank_account_number = #{settlementBankAccountNumber,jdbcType=VARCHAR},
+      </if>
+      <if test="settlementBankName != null" >
+        settlement_bank_name = #{settlementBankName,jdbcType=VARCHAR},
+      </if>
+      <if test="settlementBankCode != null" >
+        settlement_bank_code = #{settlementBankCode,jdbcType=VARCHAR},
+      </if>
+      <if test="settlementBankAddress != null" >
+        settlement_bank_address = #{settlementBankAddress,jdbcType=VARCHAR},
+      </if>
+      <if test="taxRegistrationCertificate != null" >
+        tax_registration_certificate = #{taxRegistrationCertificate,jdbcType=VARCHAR},
+      </if>
+      <if test="taxpayerId != null" >
+        taxpayer_id = #{taxpayerId,jdbcType=VARCHAR},
+      </if>
+      <if test="taxRegistrationCertificateElectronic != null" >
+        tax_registration_certificate_electronic = #{taxRegistrationCertificateElectronic,jdbcType=VARCHAR},
+      </if>
+      <if test="sellerName != null" >
+        seller_name = #{sellerName,jdbcType=VARCHAR},
+      </if>
+      <if test="storeName != null" >
+        store_name = #{storeName,jdbcType=VARCHAR},
+      </if>
+      <if test="storeClassIds != null" >
+        store_class_ids = #{storeClassIds,jdbcType=VARCHAR},
+      </if>
+      <if test="storeClassNames != null" >
+        store_class_names = #{storeClassNames,jdbcType=VARCHAR},
+      </if>
+      <if test="joininState != null" >
+        joinin_state = #{joininState,jdbcType=VARCHAR},
+      </if>
+      <if test="joininMessage != null" >
+        joinin_message = #{joininMessage,jdbcType=VARCHAR},
+      </if>
+      <if test="sgName != null" >
+        sg_name = #{sgName,jdbcType=VARCHAR},
+      </if>
+      <if test="sgId != null" >
+        sg_id = #{sgId,jdbcType=INTEGER},
+      </if>
+      <if test="scName != null" >
+        sc_name = #{scName,jdbcType=VARCHAR},
+      </if>
+      <if test="scId != null" >
+        sc_id = #{scId,jdbcType=INTEGER},
+      </if>
+      <if test="storeClassCommisRates != null" >
+        store_class_commis_rates = #{storeClassCommisRates,jdbcType=VARCHAR},
+      </if>
+      <if test="payingMoneyCertificate != null" >
+        paying_money_certificate = #{payingMoneyCertificate,jdbcType=VARCHAR},
+      </if>
+      <if test="payingMoneyCertificateExplain != null" >
+        paying_money_certificate_explain = #{payingMoneyCertificateExplain,jdbcType=VARCHAR},
+      </if>
+      <if test="carNum != null" >
+        car_num = #{carNum,jdbcType=INTEGER},
+      </if>
+      <if test="warehouseArea != null" >
+        warehouse_area = #{warehouseArea,jdbcType=INTEGER},
+      </if>
+      <if test="singleDeviceNum != null" >
+        single_device_num = #{singleDeviceNum,jdbcType=INTEGER},
+      </if>
+      <if test="computerNum != null" >
+        computer_num = #{computerNum,jdbcType=INTEGER},
+      </if>
+      <if test="logisticsName != null" >
+        logistics_name = #{logisticsName,jdbcType=VARCHAR},
+      </if>
+      <if test="rentalAgreement != null" >
+        rental_agreement = #{rentalAgreement,jdbcType=VARCHAR},
+      </if>
+      <if test="singleDeviceImg != null" >
+        single_device_img = #{singleDeviceImg,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where member_id = #{memberId,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.shanyuan.platform.ms.dao.store.entity.SyStoreJoinin" >
+    update sy_store_joinin
+    set member_name = #{memberName,jdbcType=VARCHAR},
+      company_name = #{companyName,jdbcType=VARCHAR},
+      company_address = #{companyAddress,jdbcType=VARCHAR},
+      company_address_detail = #{companyAddressDetail,jdbcType=VARCHAR},
+      company_phone = #{companyPhone,jdbcType=VARCHAR},
+      company_employee_count = #{companyEmployeeCount,jdbcType=INTEGER},
+      company_registered_capital = #{companyRegisteredCapital,jdbcType=INTEGER},
+      contacts_name = #{contactsName,jdbcType=VARCHAR},
+      contacts_phone = #{contactsPhone,jdbcType=VARCHAR},
+      contacts_email = #{contactsEmail,jdbcType=VARCHAR},
+      business_licence_number = #{businessLicenceNumber,jdbcType=VARCHAR},
+      business_licence_address = #{businessLicenceAddress,jdbcType=VARCHAR},
+      business_licence_start = #{businessLicenceStart,jdbcType=DATE},
+      business_licence_end = #{businessLicenceEnd,jdbcType=DATE},
+      business_sphere = #{businessSphere,jdbcType=VARCHAR},
+      business_licence_number_electronic = #{businessLicenceNumberElectronic,jdbcType=VARCHAR},
+      organization_code = #{organizationCode,jdbcType=VARCHAR},
+      organization_code_electronic = #{organizationCodeElectronic,jdbcType=VARCHAR},
+      general_taxpayer = #{generalTaxpayer,jdbcType=VARCHAR},
+      bank_account_name = #{bankAccountName,jdbcType=VARCHAR},
+      bank_account_number = #{bankAccountNumber,jdbcType=VARCHAR},
+      bank_name = #{bankName,jdbcType=VARCHAR},
+      bank_code = #{bankCode,jdbcType=VARCHAR},
+      bank_address = #{bankAddress,jdbcType=VARCHAR},
+      bank_licence_electronic = #{bankLicenceElectronic,jdbcType=VARCHAR},
+      is_settlement_account = #{isSettlementAccount,jdbcType=TINYINT},
+      settlement_bank_account_name = #{settlementBankAccountName,jdbcType=VARCHAR},
+      settlement_bank_account_number = #{settlementBankAccountNumber,jdbcType=VARCHAR},
+      settlement_bank_name = #{settlementBankName,jdbcType=VARCHAR},
+      settlement_bank_code = #{settlementBankCode,jdbcType=VARCHAR},
+      settlement_bank_address = #{settlementBankAddress,jdbcType=VARCHAR},
+      tax_registration_certificate = #{taxRegistrationCertificate,jdbcType=VARCHAR},
+      taxpayer_id = #{taxpayerId,jdbcType=VARCHAR},
+      tax_registration_certificate_electronic = #{taxRegistrationCertificateElectronic,jdbcType=VARCHAR},
+      seller_name = #{sellerName,jdbcType=VARCHAR},
+      store_name = #{storeName,jdbcType=VARCHAR},
+      store_class_ids = #{storeClassIds,jdbcType=VARCHAR},
+      store_class_names = #{storeClassNames,jdbcType=VARCHAR},
+      joinin_state = #{joininState,jdbcType=VARCHAR},
+      joinin_message = #{joininMessage,jdbcType=VARCHAR},
+      sg_name = #{sgName,jdbcType=VARCHAR},
+      sg_id = #{sgId,jdbcType=INTEGER},
+      sc_name = #{scName,jdbcType=VARCHAR},
+      sc_id = #{scId,jdbcType=INTEGER},
+      store_class_commis_rates = #{storeClassCommisRates,jdbcType=VARCHAR},
+      paying_money_certificate = #{payingMoneyCertificate,jdbcType=VARCHAR},
+      paying_money_certificate_explain = #{payingMoneyCertificateExplain,jdbcType=VARCHAR},
+      car_num = #{carNum,jdbcType=INTEGER},
+      warehouse_area = #{warehouseArea,jdbcType=INTEGER},
+      single_device_num = #{singleDeviceNum,jdbcType=INTEGER},
+      computer_num = #{computerNum,jdbcType=INTEGER},
+      logistics_name = #{logisticsName,jdbcType=VARCHAR},
+      rental_agreement = #{rentalAgreement,jdbcType=VARCHAR},
+      single_device_img = #{singleDeviceImg,jdbcType=VARCHAR}
+    where member_id = #{memberId,jdbcType=INTEGER}
+  </update>
+</mapper>

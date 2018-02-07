@@ -1,0 +1,507 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.shanyuan.platform.ms.dao.statistics.mapper.ProvideStatisticsBaseDataMapper" >
+  <resultMap id="BaseResultMap" type="com.shanyuan.platform.ms.dao.statistics.entity.ProvideStatisticsBaseData" >
+    <id column="rec_id" property="recId" jdbcType="INTEGER" />
+    <result column="c_time" property="cTime" jdbcType="INTEGER" />
+    <result column="province_id" property="provinceId" jdbcType="BIGINT" />
+    <result column="province_name" property="provinceName" jdbcType="VARCHAR" />
+    <result column="city_id" property="cityId" jdbcType="BIGINT" />
+    <result column="city_name" property="cityName" jdbcType="VARCHAR" />
+    <result column="country_id" property="countryId" jdbcType="BIGINT" />
+    <result column="country_name" property="countryName" jdbcType="VARCHAR" />
+    <result column="township_id" property="townshipId" jdbcType="BIGINT" />
+    <result column="township_name" property="townshipName" jdbcType="VARCHAR" />
+    <result column="village_id" property="villageId" jdbcType="BIGINT" />
+    <result column="village_name" property="villageName" jdbcType="VARCHAR" />
+    <result column="assist_sell_da" property="assistSellDa" jdbcType="DECIMAL" />
+    <result column="assist_sell_zx" property="assistSellZx" jdbcType="DECIMAL" />
+    <result column="assist_buy_da" property="assistBuyDa" jdbcType="DECIMAL" />
+    <result column="assist_buy_zx" property="assistBuyZx" jdbcType="DECIMAL" />
+    <result column="assist_total_num" property="assistTotalNum" jdbcType="INTEGER" />
+    <result column="self_emp_poor_total_family" property="selfEmpPoorTotalFamily" jdbcType="INTEGER" />
+    <result column="poor_total_family" property="poorTotalFamily" jdbcType="INTEGER" />
+    <result column="poor_total_num" property="poorTotalNum" jdbcType="INTEGER" />
+    <result column="assist_goods_total_num" property="assistGoodsTotalNum" jdbcType="BIGINT" />
+    <result column="poor_goods_total_num" property="poorGoodsTotalNum" jdbcType="BIGINT" />
+  </resultMap>
+  <sql id="Example_Where_Clause" >
+    <where >
+      <foreach collection="oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Update_By_Example_Where_Clause" >
+    <where >
+      <foreach collection="example.oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Base_Column_List" >
+    rec_id, c_time, province_id, province_name, city_id, city_name, country_id, country_name, 
+    township_id, township_name, village_id, village_name, assist_sell_da, assist_sell_zx, 
+    assist_buy_da, assist_buy_zx, assist_total_num, self_emp_poor_total_family, poor_total_family, 
+    poor_total_num, assist_goods_total_num, poor_goods_total_num
+  </sql>
+  <select id="selectByExample" resultMap="BaseResultMap" parameterType="com.shanyuan.platform.ms.dao.statistics.entity.ProvideStatisticsBaseDataExample" >
+    select
+    <if test="distinct" >
+      distinct
+    </if>
+    <include refid="Base_Column_List" />
+    from statistics_provide_base_data
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null" >
+      order by ${orderByClause}
+    </if>
+  </select>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+    select 
+    <include refid="Base_Column_List" />
+    from statistics_provide_base_data
+    where rec_id = #{recId,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+    delete from statistics_provide_base_data
+    where rec_id = #{recId,jdbcType=INTEGER}
+  </delete>
+  <delete id="deleteByExample" parameterType="com.shanyuan.platform.ms.dao.statistics.entity.ProvideStatisticsBaseDataExample" >
+    delete from statistics_provide_base_data
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </delete>
+  <insert id="insert" parameterType="com.shanyuan.platform.ms.dao.statistics.entity.ProvideStatisticsBaseData" >
+    <selectKey resultType="java.lang.Integer" keyProperty="recId" order="AFTER" >
+      SELECT LAST_INSERT_ID()
+    </selectKey>
+    insert into statistics_provide_base_data (c_time, province_id, province_name, 
+      city_id, city_name, country_id, 
+      country_name, township_id, township_name, 
+      village_id, village_name, assist_sell_da, 
+      assist_sell_zx, assist_buy_da, assist_buy_zx, 
+      assist_total_num, self_emp_poor_total_family, 
+      poor_total_family, poor_total_num, assist_goods_total_num, 
+      poor_goods_total_num)
+    values (#{cTime,jdbcType=INTEGER}, #{provinceId,jdbcType=BIGINT}, #{provinceName,jdbcType=VARCHAR}, 
+      #{cityId,jdbcType=BIGINT}, #{cityName,jdbcType=VARCHAR}, #{countryId,jdbcType=BIGINT}, 
+      #{countryName,jdbcType=VARCHAR}, #{townshipId,jdbcType=BIGINT}, #{townshipName,jdbcType=VARCHAR}, 
+      #{villageId,jdbcType=BIGINT}, #{villageName,jdbcType=VARCHAR}, #{assistSellDa,jdbcType=DECIMAL}, 
+      #{assistSellZx,jdbcType=DECIMAL}, #{assistBuyDa,jdbcType=DECIMAL}, #{assistBuyZx,jdbcType=DECIMAL}, 
+      #{assistTotalNum,jdbcType=INTEGER}, #{selfEmpPoorTotalFamily,jdbcType=INTEGER}, 
+      #{poorTotalFamily,jdbcType=INTEGER}, #{poorTotalNum,jdbcType=INTEGER}, #{assistGoodsTotalNum,jdbcType=BIGINT}, 
+      #{poorGoodsTotalNum,jdbcType=BIGINT})
+  </insert>
+  <insert id="insertSelective" parameterType="com.shanyuan.platform.ms.dao.statistics.entity.ProvideStatisticsBaseData" >
+    <selectKey resultType="java.lang.Integer" keyProperty="recId" order="AFTER" >
+      SELECT LAST_INSERT_ID()
+    </selectKey>
+    insert into statistics_provide_base_data
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="cTime != null" >
+        c_time,
+      </if>
+      <if test="provinceId != null" >
+        province_id,
+      </if>
+      <if test="provinceName != null" >
+        province_name,
+      </if>
+      <if test="cityId != null" >
+        city_id,
+      </if>
+      <if test="cityName != null" >
+        city_name,
+      </if>
+      <if test="countryId != null" >
+        country_id,
+      </if>
+      <if test="countryName != null" >
+        country_name,
+      </if>
+      <if test="townshipId != null" >
+        township_id,
+      </if>
+      <if test="townshipName != null" >
+        township_name,
+      </if>
+      <if test="villageId != null" >
+        village_id,
+      </if>
+      <if test="villageName != null" >
+        village_name,
+      </if>
+      <if test="assistSellDa != null" >
+        assist_sell_da,
+      </if>
+      <if test="assistSellZx != null" >
+        assist_sell_zx,
+      </if>
+      <if test="assistBuyDa != null" >
+        assist_buy_da,
+      </if>
+      <if test="assistBuyZx != null" >
+        assist_buy_zx,
+      </if>
+      <if test="assistTotalNum != null" >
+        assist_total_num,
+      </if>
+      <if test="selfEmpPoorTotalFamily != null" >
+        self_emp_poor_total_family,
+      </if>
+      <if test="poorTotalFamily != null" >
+        poor_total_family,
+      </if>
+      <if test="poorTotalNum != null" >
+        poor_total_num,
+      </if>
+      <if test="assistGoodsTotalNum != null" >
+        assist_goods_total_num,
+      </if>
+      <if test="poorGoodsTotalNum != null" >
+        poor_goods_total_num,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="cTime != null" >
+        #{cTime,jdbcType=INTEGER},
+      </if>
+      <if test="provinceId != null" >
+        #{provinceId,jdbcType=BIGINT},
+      </if>
+      <if test="provinceName != null" >
+        #{provinceName,jdbcType=VARCHAR},
+      </if>
+      <if test="cityId != null" >
+        #{cityId,jdbcType=BIGINT},
+      </if>
+      <if test="cityName != null" >
+        #{cityName,jdbcType=VARCHAR},
+      </if>
+      <if test="countryId != null" >
+        #{countryId,jdbcType=BIGINT},
+      </if>
+      <if test="countryName != null" >
+        #{countryName,jdbcType=VARCHAR},
+      </if>
+      <if test="townshipId != null" >
+        #{townshipId,jdbcType=BIGINT},
+      </if>
+      <if test="townshipName != null" >
+        #{townshipName,jdbcType=VARCHAR},
+      </if>
+      <if test="villageId != null" >
+        #{villageId,jdbcType=BIGINT},
+      </if>
+      <if test="villageName != null" >
+        #{villageName,jdbcType=VARCHAR},
+      </if>
+      <if test="assistSellDa != null" >
+        #{assistSellDa,jdbcType=DECIMAL},
+      </if>
+      <if test="assistSellZx != null" >
+        #{assistSellZx,jdbcType=DECIMAL},
+      </if>
+      <if test="assistBuyDa != null" >
+        #{assistBuyDa,jdbcType=DECIMAL},
+      </if>
+      <if test="assistBuyZx != null" >
+        #{assistBuyZx,jdbcType=DECIMAL},
+      </if>
+      <if test="assistTotalNum != null" >
+        #{assistTotalNum,jdbcType=INTEGER},
+      </if>
+      <if test="selfEmpPoorTotalFamily != null" >
+        #{selfEmpPoorTotalFamily,jdbcType=INTEGER},
+      </if>
+      <if test="poorTotalFamily != null" >
+        #{poorTotalFamily,jdbcType=INTEGER},
+      </if>
+      <if test="poorTotalNum != null" >
+        #{poorTotalNum,jdbcType=INTEGER},
+      </if>
+      <if test="assistGoodsTotalNum != null" >
+        #{assistGoodsTotalNum,jdbcType=BIGINT},
+      </if>
+      <if test="poorGoodsTotalNum != null" >
+        #{poorGoodsTotalNum,jdbcType=BIGINT},
+      </if>
+    </trim>
+  </insert>
+  <select id="countByExample" parameterType="com.shanyuan.platform.ms.dao.statistics.entity.ProvideStatisticsBaseDataExample" resultType="java.lang.Integer" >
+    select count(*) from statistics_provide_base_data
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </select>
+  <update id="updateByExampleSelective" parameterType="map" >
+    update statistics_provide_base_data
+    <set >
+      <if test="record.recId != null" >
+        rec_id = #{record.recId,jdbcType=INTEGER},
+      </if>
+      <if test="record.cTime != null" >
+        c_time = #{record.cTime,jdbcType=INTEGER},
+      </if>
+      <if test="record.provinceId != null" >
+        province_id = #{record.provinceId,jdbcType=BIGINT},
+      </if>
+      <if test="record.provinceName != null" >
+        province_name = #{record.provinceName,jdbcType=VARCHAR},
+      </if>
+      <if test="record.cityId != null" >
+        city_id = #{record.cityId,jdbcType=BIGINT},
+      </if>
+      <if test="record.cityName != null" >
+        city_name = #{record.cityName,jdbcType=VARCHAR},
+      </if>
+      <if test="record.countryId != null" >
+        country_id = #{record.countryId,jdbcType=BIGINT},
+      </if>
+      <if test="record.countryName != null" >
+        country_name = #{record.countryName,jdbcType=VARCHAR},
+      </if>
+      <if test="record.townshipId != null" >
+        township_id = #{record.townshipId,jdbcType=BIGINT},
+      </if>
+      <if test="record.townshipName != null" >
+        township_name = #{record.townshipName,jdbcType=VARCHAR},
+      </if>
+      <if test="record.villageId != null" >
+        village_id = #{record.villageId,jdbcType=BIGINT},
+      </if>
+      <if test="record.villageName != null" >
+        village_name = #{record.villageName,jdbcType=VARCHAR},
+      </if>
+      <if test="record.assistSellDa != null" >
+        assist_sell_da = #{record.assistSellDa,jdbcType=DECIMAL},
+      </if>
+      <if test="record.assistSellZx != null" >
+        assist_sell_zx = #{record.assistSellZx,jdbcType=DECIMAL},
+      </if>
+      <if test="record.assistBuyDa != null" >
+        assist_buy_da = #{record.assistBuyDa,jdbcType=DECIMAL},
+      </if>
+      <if test="record.assistBuyZx != null" >
+        assist_buy_zx = #{record.assistBuyZx,jdbcType=DECIMAL},
+      </if>
+      <if test="record.assistTotalNum != null" >
+        assist_total_num = #{record.assistTotalNum,jdbcType=INTEGER},
+      </if>
+      <if test="record.selfEmpPoorTotalFamily != null" >
+        self_emp_poor_total_family = #{record.selfEmpPoorTotalFamily,jdbcType=INTEGER},
+      </if>
+      <if test="record.poorTotalFamily != null" >
+        poor_total_family = #{record.poorTotalFamily,jdbcType=INTEGER},
+      </if>
+      <if test="record.poorTotalNum != null" >
+        poor_total_num = #{record.poorTotalNum,jdbcType=INTEGER},
+      </if>
+      <if test="record.assistGoodsTotalNum != null" >
+        assist_goods_total_num = #{record.assistGoodsTotalNum,jdbcType=BIGINT},
+      </if>
+      <if test="record.poorGoodsTotalNum != null" >
+        poor_goods_total_num = #{record.poorGoodsTotalNum,jdbcType=BIGINT},
+      </if>
+    </set>
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByExample" parameterType="map" >
+    update statistics_provide_base_data
+    set rec_id = #{record.recId,jdbcType=INTEGER},
+      c_time = #{record.cTime,jdbcType=INTEGER},
+      province_id = #{record.provinceId,jdbcType=BIGINT},
+      province_name = #{record.provinceName,jdbcType=VARCHAR},
+      city_id = #{record.cityId,jdbcType=BIGINT},
+      city_name = #{record.cityName,jdbcType=VARCHAR},
+      country_id = #{record.countryId,jdbcType=BIGINT},
+      country_name = #{record.countryName,jdbcType=VARCHAR},
+      township_id = #{record.townshipId,jdbcType=BIGINT},
+      township_name = #{record.townshipName,jdbcType=VARCHAR},
+      village_id = #{record.villageId,jdbcType=BIGINT},
+      village_name = #{record.villageName,jdbcType=VARCHAR},
+      assist_sell_da = #{record.assistSellDa,jdbcType=DECIMAL},
+      assist_sell_zx = #{record.assistSellZx,jdbcType=DECIMAL},
+      assist_buy_da = #{record.assistBuyDa,jdbcType=DECIMAL},
+      assist_buy_zx = #{record.assistBuyZx,jdbcType=DECIMAL},
+      assist_total_num = #{record.assistTotalNum,jdbcType=INTEGER},
+      self_emp_poor_total_family = #{record.selfEmpPoorTotalFamily,jdbcType=INTEGER},
+      poor_total_family = #{record.poorTotalFamily,jdbcType=INTEGER},
+      poor_total_num = #{record.poorTotalNum,jdbcType=INTEGER},
+      assist_goods_total_num = #{record.assistGoodsTotalNum,jdbcType=BIGINT},
+      poor_goods_total_num = #{record.poorGoodsTotalNum,jdbcType=BIGINT}
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByPrimaryKeySelective" parameterType="com.shanyuan.platform.ms.dao.statistics.entity.ProvideStatisticsBaseData" >
+    update statistics_provide_base_data
+    <set >
+      <if test="cTime != null" >
+        c_time = #{cTime,jdbcType=INTEGER},
+      </if>
+      <if test="provinceId != null" >
+        province_id = #{provinceId,jdbcType=BIGINT},
+      </if>
+      <if test="provinceName != null" >
+        province_name = #{provinceName,jdbcType=VARCHAR},
+      </if>
+      <if test="cityId != null" >
+        city_id = #{cityId,jdbcType=BIGINT},
+      </if>
+      <if test="cityName != null" >
+        city_name = #{cityName,jdbcType=VARCHAR},
+      </if>
+      <if test="countryId != null" >
+        country_id = #{countryId,jdbcType=BIGINT},
+      </if>
+      <if test="countryName != null" >
+        country_name = #{countryName,jdbcType=VARCHAR},
+      </if>
+      <if test="townshipId != null" >
+        township_id = #{townshipId,jdbcType=BIGINT},
+      </if>
+      <if test="townshipName != null" >
+        township_name = #{townshipName,jdbcType=VARCHAR},
+      </if>
+      <if test="villageId != null" >
+        village_id = #{villageId,jdbcType=BIGINT},
+      </if>
+      <if test="villageName != null" >
+        village_name = #{villageName,jdbcType=VARCHAR},
+      </if>
+      <if test="assistSellDa != null" >
+        assist_sell_da = #{assistSellDa,jdbcType=DECIMAL},
+      </if>
+      <if test="assistSellZx != null" >
+        assist_sell_zx = #{assistSellZx,jdbcType=DECIMAL},
+      </if>
+      <if test="assistBuyDa != null" >
+        assist_buy_da = #{assistBuyDa,jdbcType=DECIMAL},
+      </if>
+      <if test="assistBuyZx != null" >
+        assist_buy_zx = #{assistBuyZx,jdbcType=DECIMAL},
+      </if>
+      <if test="assistTotalNum != null" >
+        assist_total_num = #{assistTotalNum,jdbcType=INTEGER},
+      </if>
+      <if test="selfEmpPoorTotalFamily != null" >
+        self_emp_poor_total_family = #{selfEmpPoorTotalFamily,jdbcType=INTEGER},
+      </if>
+      <if test="poorTotalFamily != null" >
+        poor_total_family = #{poorTotalFamily,jdbcType=INTEGER},
+      </if>
+      <if test="poorTotalNum != null" >
+        poor_total_num = #{poorTotalNum,jdbcType=INTEGER},
+      </if>
+      <if test="assistGoodsTotalNum != null" >
+        assist_goods_total_num = #{assistGoodsTotalNum,jdbcType=BIGINT},
+      </if>
+      <if test="poorGoodsTotalNum != null" >
+        poor_goods_total_num = #{poorGoodsTotalNum,jdbcType=BIGINT},
+      </if>
+    </set>
+    where rec_id = #{recId,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.shanyuan.platform.ms.dao.statistics.entity.ProvideStatisticsBaseData" >
+    update statistics_provide_base_data
+    set c_time = #{cTime,jdbcType=INTEGER},
+      province_id = #{provinceId,jdbcType=BIGINT},
+      province_name = #{provinceName,jdbcType=VARCHAR},
+      city_id = #{cityId,jdbcType=BIGINT},
+      city_name = #{cityName,jdbcType=VARCHAR},
+      country_id = #{countryId,jdbcType=BIGINT},
+      country_name = #{countryName,jdbcType=VARCHAR},
+      township_id = #{townshipId,jdbcType=BIGINT},
+      township_name = #{townshipName,jdbcType=VARCHAR},
+      village_id = #{villageId,jdbcType=BIGINT},
+      village_name = #{villageName,jdbcType=VARCHAR},
+      assist_sell_da = #{assistSellDa,jdbcType=DECIMAL},
+      assist_sell_zx = #{assistSellZx,jdbcType=DECIMAL},
+      assist_buy_da = #{assistBuyDa,jdbcType=DECIMAL},
+      assist_buy_zx = #{assistBuyZx,jdbcType=DECIMAL},
+      assist_total_num = #{assistTotalNum,jdbcType=INTEGER},
+      self_emp_poor_total_family = #{selfEmpPoorTotalFamily,jdbcType=INTEGER},
+      poor_total_family = #{poorTotalFamily,jdbcType=INTEGER},
+      poor_total_num = #{poorTotalNum,jdbcType=INTEGER},
+      assist_goods_total_num = #{assistGoodsTotalNum,jdbcType=BIGINT},
+      poor_goods_total_num = #{poorGoodsTotalNum,jdbcType=BIGINT}
+    where rec_id = #{recId,jdbcType=INTEGER}
+  </update>
+  
+  <insert id="batchInsert" parameterType="map">
+		<selectKey keyProperty="id" order="AFTER" resultType="java.lang.Integer">
+			SELECT LAST_INSERT_ID()
+		</selectKey>
+		insert into statistics_provide_base_data
+		 (c_time, province_id, province_name, 
+      city_id, city_name, country_id, 
+      country_name, township_id, township_name, 
+      village_id, village_name, assist_sell_da, 
+      assist_sell_zx, assist_buy_da, assist_buy_zx, 
+      assist_total_num, self_emp_poor_total_family, 
+      poor_total_family, poor_total_num, assist_goods_total_num, 
+      poor_goods_total_num)
+		values 
+		<foreach collection="records" item="item" index="index" separator=",">
+        	(#{item.cTime,jdbcType=INTEGER}, #{item.provinceId,jdbcType=BIGINT}, #{item.provinceName,jdbcType=VARCHAR}, 
+      #{item.cityId,jdbcType=BIGINT}, #{item.cityName,jdbcType=VARCHAR}, #{item.countryId,jdbcType=BIGINT}, 
+      #{item.countryName,jdbcType=VARCHAR}, #{item.townshipId,jdbcType=BIGINT}, #{item.townshipName,jdbcType=VARCHAR}, 
+      #{item.villageId,jdbcType=BIGINT}, #{item.villageName,jdbcType=VARCHAR}, #{item.assistSellDa,jdbcType=DECIMAL}, 
+      #{item.assistSellZx,jdbcType=DECIMAL}, #{item.assistBuyDa,jdbcType=DECIMAL}, #{item.assistBuyZx,jdbcType=DECIMAL}, 
+      #{item.assistTotalNum,jdbcType=INTEGER}, #{item.selfEmpPoorTotalFamily,jdbcType=INTEGER}, 
+      #{item.poorTotalFamily,jdbcType=INTEGER}, #{item.poorTotalNum,jdbcType=INTEGER}, #{item.assistGoodsTotalNum,jdbcType=BIGINT}, 
+      #{item.poorGoodsTotalNum,jdbcType=BIGINT})
+		</foreach>
+	</insert>
+</mapper>

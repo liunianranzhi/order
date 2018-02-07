@@ -1,0 +1,220 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.shanyuan.platform.ms.dao.statistics.mapper.OrderStatisticsBuyerInfoMapper">
+	<resultMap id="BaseResultMap" type="com.shanyuan.platform.ms.dao.statistics.entity.OrderStatisticsBuyerInfo">
+		<id column="id" jdbcType="INTEGER" property="id" />
+		<result column="orderNum" jdbcType="INTEGER" property="orderNum" />
+		<result column="goodsNum" jdbcType="INTEGER" property="goodsNum" />
+		<result column="orderAmount" jdbcType="DECIMAL" property="orderAmount" />
+		<result column="helpPrice" jdbcType="DECIMAL" property="helpPrice" />
+		<result column="c_time" jdbcType="INTEGER" property="cTime" />
+		<result column="channel" jdbcType="VARCHAR" property="channelName" />
+		<result column="selfHelpPrice" jdbcType="VARCHAR" property="selfHelpPrice" />
+		<result column="goodsProjectType" jdbcType="INTEGER" property="goodsProjectType" />
+		<result column="assistId" jdbcType="INTEGER" property="assistId" />
+		<result column="sellerType" jdbcType="INTEGER" property="sellerType" />
+		<result column="countryName" jdbcType="VARCHAR" property="areaName" />
+		<result column="saleUnionId" jdbcType="VARCHAR" property="saleUnionId" />
+		<result column="sUnionName" jdbcType="VARCHAR" property="sUnionName" />
+		<result column="countryId" jdbcType="VARCHAR" property="areaId" />
+	</resultMap>
+    
+    <select id="selectStatisticsInfo" parameterType="com.shanyuan.platform.ms.dao.statistics.entity.OrderStatisticsSale" resultMap="BaseResultMap">
+		SELECT COUNT(1) AS orderNum,  SUM(goods_num) AS goodsNum, SUM(order_amount) AS orderAmount, SUM(help_price) AS helpPrice,SUM(fund_fee) AS fundFee, 
+		c_time,channel,goods_project_type as goodsProjectType,assist_id as assistId,seller_type  as sellerType,country_name as countryName
+		FROM statistics_order_base_data
+		WHERE c_time = ${startTime} 
+		<if test="goodsProjectType != null">
+		AND goods_project_type = ${goodsProjectType}
+		</if>
+		<if test="assistId != null">
+		
+			<if test="assistId == 0">
+				and assist_id = ${assistId}
+			</if>
+			<if test="assistId != 0">
+				and assist_id > 0
+			</if>
+		</if>
+		<if test="circleIdDeep1 != null">
+		AND circle_id_deep_1 = ${circleIdDeep1}
+		</if>
+		<if test="sellerType != null">
+		AND seller_type = ${sellerType}
+		</if>
+		<if test="countryId != null">
+		AND country_id = ${countryId}
+		</if>
+		<if test="circleIdDeep1 == null">
+		GROUP BY circle_id_deep_1 , country_id
+		</if>
+		<if test="circleIdDeep1 != null and countryId == null">
+		GROUP BY country_id
+		</if>
+	</select>
+	
+	<select id="selectFromOfflineInfo" parameterType="com.shanyuan.platform.ms.dao.statistics.entity.OrderStatisticsSale" resultMap="BaseResultMap">
+		SELECT c_time,a.channel,b.privince_name AS countryName,a.main_order_id,a.help_price AS helpPrice,order_amount AS orderAmount,goods_num AS goodsNum 
+		FROM statistics_order_offline_biz_order a LEFT JOIN statistics_order_offline_biz_order_goods b  ON a.main_order_id = b.main_order_id
+		WHERE c_time = ${startTime} AND country_id = ${countryId} AND assist_id = ${assistId}
+		GROUP BY a.main_order_id 
+	</select>
+
+	<select id="selectFromOfflineGoodsNum" parameterType="com.shanyuan.platform.ms.dao.statistics.entity.OrderStatisticsInfo" resultMap="BaseResultMap">
+		SELECT c_time,a.channel,b.privince_name AS countryName,a.main_order_id,a.help_price AS helpPrice,order_amount AS orderAmount,goods_num AS goodsNum 
+		FROM statistics_order_offline_biz_order a 
+		, statistics_order_offline_biz_order_goods b 
+		WHERE a.main_order_id = b.main_order_id 
+		AND c_time = ${startTime} AND country_id = ${countryId} AND assist_id = ${assistId}
+	</select>
+	
+	<select id="selectSelfPrice" parameterType="com.shanyuan.platform.ms.dao.statistics.entity.OrderStatisticsInfo" resultMap="BaseResultMap">
+		SELECT c_time,a.channel,b.privince_name AS countryName,a.main_order_id,a.help_price AS helpPrice,order_amount AS orderAmount,goods_num AS goodsNum 
+		FROM statistics_order_offline_biz_order a LEFT JOIN statistics_order_offline_biz_order_goods b  ON a.main_order_id = b.main_order_id
+		WHERE c_time = ${startTime} AND country_id = ${countryId} AND assist_id = ${assistId}
+		AND s_circle_id_deep_1 = circle_id_deep_1
+		GROUP BY a.main_order_id
+	</select>
+	
+	<select id="getSelfhelpPrice" parameterType="com.shanyuan.platform.ms.dao.statistics.entity.OrderStatisticsInfo" resultMap="BaseResultMap">
+		SELECT COUNT(1) AS orderNum,  SUM(goods_num) AS goodsNum, SUM(order_amount) AS orderAmount, SUM(help_price) AS selfHelpPrice,c_time,channel
+		FROM statistics_order_base_data
+		WHERE c_time = ${cTime}
+		AND s_union_id = union_id
+		<if test="assistId != null">
+		
+			<if test="assistId == 0">
+				and assist_id = ${assistId}
+			</if>
+			<if test="assistId != 0">
+				and assist_id > 0
+			</if>
+		</if>
+		<if test="goodsProjectType != null">
+		AND goods_project_type = ${goodsProjectType}
+		</if>
+		<if test="sUnionId != null">
+		AND s_union_id = ${sUnionId}
+		</if>
+		<if test="sellerType != null">
+		AND seller_type = ${sellerType}
+		</if>
+		<if test="countryName != null">
+		AND country_name = '${countryName}'
+		</if>
+	</select>
+    <select id="getOfflineInfo" parameterType="com.shanyuan.platform.ms.dao.statistics.entity.OrderStatisticsInfo" resultMap="BaseResultMap">
+		SELECT COUNT(1) AS orderNum, SUM(goods_num) AS goodsNum, SUM(order_amount) AS orderAmount, SUM(help_price) AS selfHelpPrice,c_time,channel
+		FROM statistics_order_offline_biz_order a,statistics_order_offline_biz_order_goods b
+		WHERE a.main_order_id = b.main_order_id	
+		AND c_time = ${cTime}
+		AND s_circle_id_deep_1 = circle_id_deep_1
+	</select>
+	
+	<select id="provideStatistics" parameterType="com.shanyuan.platform.ms.dao.statistics.entity.OrderStatisticsInfo" resultMap="BaseResultMap">
+		SELECT COUNT(1) AS orderNum,  SUM(goods_num) AS goodsNum, SUM(order_amount) AS orderAmount, SUM(help_price) AS helpPrice,SUM(fund_fee) AS fundFee, 
+		c_time,channel,goods_project_type as goodsProjectType,assist_id as assistId,seller_type  as sellerType,country_name as countryName
+		FROM statistics_order_base_data
+		WHERE c_time = ${cTime}
+		<if test="goodsProjectType != null">
+		AND goods_project_type = ${goodsProjectType}
+		</if>
+		<if test="assistId != null">
+		
+			<if test="assistId == 0">
+				and assist_id = ${assistId}
+			</if>
+			<if test="assistId != 0">
+				and assist_id > 0
+			</if>
+		</if>
+		<if test="circleIdDeep1 != null">
+		AND circle_id_deep_1 = ${circleIdDeep1}
+		</if>
+		<if test="sellerType != null">
+		AND seller_type = ${sellerType}
+		</if>
+		<if test="countryId != null">
+		AND country_id = ${countryId}
+		</if>
+		<if test="circleIdDeep1 == null">
+		GROUP BY circle_id_deep_1 , country_id
+		</if>
+		<if test="circleIdDeep1 != null and countryId == null">
+		GROUP BY country_id
+		</if>
+	</select>
+	
+	<select id="unionSaleStatistics" parameterType="com.shanyuan.platform.ms.dao.statistics.entity.OrderStatisticsSale" resultMap="BaseResultMap">
+		SELECT COUNT(1) AS orderNum,  SUM(goods_num) AS goodsNum, SUM(order_amount) AS orderAmount, SUM(help_price) AS helpPrice,SUM(fund_fee) AS fundFee, 
+		c_time,channel,goods_project_type as goodsProjectType,assist_id as assistId,seller_type  as sellerType,country_name as countryName,s_union_id as saleUnionId,s_union_name as sUnionName,
+		country_id as countryId
+		FROM statistics_order_base_data
+		WHERE c_time = ${startTime} AND country_id = ${countryId} AND s_union_id = ${unionId}
+		GROUP BY goods_project_type,assist_id,seller_type
+	</select>
+	
+	<select id="unionSelfHelpStatistics" parameterType="com.shanyuan.platform.ms.dao.statistics.entity.OrderStatisticsSale" resultMap="BaseResultMap">
+		SELECT COUNT(1) AS orderNum,  SUM(goods_num) AS goodsNum, SUM(order_amount) AS orderAmount, SUM(help_price) AS helpPrice,SUM(fund_fee) AS fundFee, 
+		c_time,channel,goods_project_type as goodsProjectType,assist_id as assistId,seller_type  as sellerType,country_name as countryName,s_union_id as saleUnionId,s_union_name as sUnionName,
+		country_id as countryId
+		FROM statistics_order_base_data
+		WHERE c_time = ${startTime} AND country_id = ${countryId} AND s_union_id = ${unionId}
+		AND s_union_id = union_id
+		GROUP BY goods_project_type,assist_id,seller_type
+	</select>
+	
+	<select id="selectPlatformStatisticsInfo" parameterType="com.shanyuan.platform.ms.dao.statistics.entity.OrderStatisticsInfo" resultMap="BaseResultMap">
+		SELECT COUNT(1) AS orderNum,  SUM(goods_num) AS goodsNum, SUM(order_amount) AS orderAmount, SUM(help_price) AS helpPrice
+		FROM statistics_order_base_data
+		WHERE c_time = ${startTime} AND goods_project_type = ${goodsProjectType}
+		<if test="assistId != null">
+		
+			<if test="assistId == 0">
+				and assist_id = ${assistId}
+			</if>
+			<if test="assistId != 0">
+				and assist_id > 0
+			</if>
+		</if>
+		<if test="sellerType != null">
+			AND seller_type = ${sellerType}
+		</if>
+		GROUP BY c_time
+	</select>
+	
+	<select id="getPlatformSelfhelpPrice" parameterType="com.shanyuan.platform.ms.dao.statistics.entity.OrderStatisticsInfo" resultMap="BaseResultMap">
+		SELECT COUNT(1) AS orderNum,  SUM(goods_num) AS goodsNum, SUM(order_amount) AS orderAmount, SUM(help_price) AS selfHelpPrice,c_time,channel
+		FROM statistics_order_base_data
+		WHERE c_time = ${cTime}
+		AND   s_circle_id_deep_1 = circle_id_deep_1
+		<if test="assistId != null">
+		
+			<if test="assistId == 0">
+				and assist_id = ${assistId}
+			</if>
+			<if test="assistId != 0">
+				and assist_id > 0
+			</if>
+		</if>
+		<if test="goodsProjectType != null">
+		AND goods_project_type = ${goodsProjectType}
+		</if>
+		<if test="circleIdDeep1 != null">
+		AND circle_id_deep_1 = ${circleIdDeep1}
+		</if>
+		<if test="sellerType != null">
+		AND seller_type = ${sellerType}
+		</if>
+	</select>
+	
+	<select id="unionBuyerStatistics" parameterType="com.shanyuan.platform.ms.dao.statistics.entity.OrderStatisticsSale" resultMap="BaseResultMap">
+		SELECT COUNT(1) AS orderNum,  SUM(goods_num) AS goodsNum, SUM(order_amount) AS orderAmount, SUM(help_price) AS helpPrice,SUM(fund_fee) AS fundFee, 
+		c_time,channel,goods_project_type as goodsProjectType,assist_id as assistId,seller_type  as sellerType,country_name as countryName,s_union_id as saleUnionId,s_union_name as sUnionName,
+		country_id as countryId
+		FROM statistics_order_base_data
+		WHERE c_time = #{startTime} AND channel = #{channel}
+		GROUP BY goods_project_type,assist_id,seller_type
+	</select>
+    
+</mapper>

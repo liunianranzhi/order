@@ -1,0 +1,447 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.shanyuan.platform.ms.dao.statistics.mapper.UnionBuyerStatisticsMapper" >
+  <resultMap id="BaseResultMap" type="com.shanyuan.platform.ms.dao.statistics.entity.UnionBuyerStatistics" >
+    <id column="id" property="id" jdbcType="INTEGER" />
+    <result column="dacs_order_num" property="dacsOrderNum" jdbcType="INTEGER" />
+    <result column="dacs_goods_num" property="dacsGoodsNum" jdbcType="INTEGER" />
+    <result column="dacs_goods_amount" property="dacsGoodsAmount" jdbcType="DECIMAL" />
+    <result column="dacs_help_price" property="dacsHelpPrice" jdbcType="DECIMAL" />
+    <result column="syzx_order_num" property="syzxOrderNum" jdbcType="INTEGER" />
+    <result column="syzx_goods_num" property="syzxGoodsNum" jdbcType="INTEGER" />
+    <result column="syzx_goods_amount" property="syzxGoodsAmount" jdbcType="DECIMAL" />
+    <result column="syzx_help_price" property="syzxHelpPrice" jdbcType="DECIMAL" />
+    <result column="sysc_order_num" property="syscOrderNum" jdbcType="INTEGER" />
+    <result column="sysc_goods_num" property="syscGoodsNum" jdbcType="INTEGER" />
+    <result column="sysc_goods_amount" property="syscGoodsAmount" jdbcType="DECIMAL" />
+    <result column="sysc_help_price" property="syscHelpPrice" jdbcType="DECIMAL" />
+    <result column="c_time" property="cTime" jdbcType="INTEGER" />
+    <result column="union_id" property="unionId" jdbcType="INTEGER" />
+    <result column="union_name" property="unionName" jdbcType="VARCHAR" />
+    <result column="channel" property="channel" jdbcType="VARCHAR" />
+  </resultMap>
+  <sql id="Example_Where_Clause" >
+    <where >
+      <foreach collection="oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Update_By_Example_Where_Clause" >
+    <where >
+      <foreach collection="example.oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Base_Column_List" >
+    id, dacs_order_num, dacs_goods_num, dacs_goods_amount, dacs_help_price, syzx_order_num, 
+    syzx_goods_num, syzx_goods_amount, syzx_help_price, sysc_order_num, sysc_goods_num, 
+    sysc_goods_amount, sysc_help_price, c_time, union_id, union_name, channel
+  </sql>
+  <select id="selectByExample" resultMap="BaseResultMap" parameterType="com.shanyuan.platform.ms.dao.statistics.entity.UnionBuyerStatisticsExample" >
+    select
+    <if test="distinct" >
+      distinct
+    </if>
+    <include refid="Base_Column_List" />
+    from statistics_union_buyer
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null" >
+      order by ${orderByClause}
+    </if>
+  </select>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+    select 
+    <include refid="Base_Column_List" />
+    from statistics_union_buyer
+    where id = #{id,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+    delete from statistics_union_buyer
+    where id = #{id,jdbcType=INTEGER}
+  </delete>
+  <delete id="deleteByExample" parameterType="com.shanyuan.platform.ms.dao.statistics.entity.UnionBuyerStatisticsExample" >
+    delete from statistics_union_buyer
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </delete>
+  <insert id="insert" parameterType="com.shanyuan.platform.ms.dao.statistics.entity.UnionBuyerStatistics" >
+    <selectKey resultType="java.lang.Integer" keyProperty="id" order="AFTER" >
+      SELECT LAST_INSERT_ID()
+    </selectKey>
+    insert into statistics_union_buyer (dacs_order_num, dacs_goods_num, dacs_goods_amount, 
+      dacs_help_price, syzx_order_num, syzx_goods_num, 
+      syzx_goods_amount, syzx_help_price, sysc_order_num, 
+      sysc_goods_num, sysc_goods_amount, sysc_help_price, 
+      c_time, union_id, union_name, 
+      channel)
+    values (#{dacsOrderNum,jdbcType=INTEGER}, #{dacsGoodsNum,jdbcType=INTEGER}, #{dacsGoodsAmount,jdbcType=DECIMAL}, 
+      #{dacsHelpPrice,jdbcType=DECIMAL}, #{syzxOrderNum,jdbcType=INTEGER}, #{syzxGoodsNum,jdbcType=INTEGER}, 
+      #{syzxGoodsAmount,jdbcType=DECIMAL}, #{syzxHelpPrice,jdbcType=DECIMAL}, #{syscOrderNum,jdbcType=INTEGER}, 
+      #{syscGoodsNum,jdbcType=INTEGER}, #{syscGoodsAmount,jdbcType=DECIMAL}, #{syscHelpPrice,jdbcType=DECIMAL}, 
+      #{cTime,jdbcType=INTEGER}, #{unionId,jdbcType=INTEGER}, #{unionName,jdbcType=VARCHAR}, 
+      #{channel,jdbcType=VARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="com.shanyuan.platform.ms.dao.statistics.entity.UnionBuyerStatistics" >
+    <selectKey resultType="java.lang.Integer" keyProperty="id" order="AFTER" >
+      SELECT LAST_INSERT_ID()
+    </selectKey>
+    insert into statistics_union_buyer
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="dacsOrderNum != null" >
+        dacs_order_num,
+      </if>
+      <if test="dacsGoodsNum != null" >
+        dacs_goods_num,
+      </if>
+      <if test="dacsGoodsAmount != null" >
+        dacs_goods_amount,
+      </if>
+      <if test="dacsHelpPrice != null" >
+        dacs_help_price,
+      </if>
+      <if test="syzxOrderNum != null" >
+        syzx_order_num,
+      </if>
+      <if test="syzxGoodsNum != null" >
+        syzx_goods_num,
+      </if>
+      <if test="syzxGoodsAmount != null" >
+        syzx_goods_amount,
+      </if>
+      <if test="syzxHelpPrice != null" >
+        syzx_help_price,
+      </if>
+      <if test="syscOrderNum != null" >
+        sysc_order_num,
+      </if>
+      <if test="syscGoodsNum != null" >
+        sysc_goods_num,
+      </if>
+      <if test="syscGoodsAmount != null" >
+        sysc_goods_amount,
+      </if>
+      <if test="syscHelpPrice != null" >
+        sysc_help_price,
+      </if>
+      <if test="cTime != null" >
+        c_time,
+      </if>
+      <if test="unionId != null" >
+        union_id,
+      </if>
+      <if test="unionName != null" >
+        union_name,
+      </if>
+      <if test="channel != null" >
+        channel,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="dacsOrderNum != null" >
+        #{dacsOrderNum,jdbcType=INTEGER},
+      </if>
+      <if test="dacsGoodsNum != null" >
+        #{dacsGoodsNum,jdbcType=INTEGER},
+      </if>
+      <if test="dacsGoodsAmount != null" >
+        #{dacsGoodsAmount,jdbcType=DECIMAL},
+      </if>
+      <if test="dacsHelpPrice != null" >
+        #{dacsHelpPrice,jdbcType=DECIMAL},
+      </if>
+      <if test="syzxOrderNum != null" >
+        #{syzxOrderNum,jdbcType=INTEGER},
+      </if>
+      <if test="syzxGoodsNum != null" >
+        #{syzxGoodsNum,jdbcType=INTEGER},
+      </if>
+      <if test="syzxGoodsAmount != null" >
+        #{syzxGoodsAmount,jdbcType=DECIMAL},
+      </if>
+      <if test="syzxHelpPrice != null" >
+        #{syzxHelpPrice,jdbcType=DECIMAL},
+      </if>
+      <if test="syscOrderNum != null" >
+        #{syscOrderNum,jdbcType=INTEGER},
+      </if>
+      <if test="syscGoodsNum != null" >
+        #{syscGoodsNum,jdbcType=INTEGER},
+      </if>
+      <if test="syscGoodsAmount != null" >
+        #{syscGoodsAmount,jdbcType=DECIMAL},
+      </if>
+      <if test="syscHelpPrice != null" >
+        #{syscHelpPrice,jdbcType=DECIMAL},
+      </if>
+      <if test="cTime != null" >
+        #{cTime,jdbcType=INTEGER},
+      </if>
+      <if test="unionId != null" >
+        #{unionId,jdbcType=INTEGER},
+      </if>
+      <if test="unionName != null" >
+        #{unionName,jdbcType=VARCHAR},
+      </if>
+      <if test="channel != null" >
+        #{channel,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <select id="countByExample" parameterType="com.shanyuan.platform.ms.dao.statistics.entity.UnionBuyerStatisticsExample" resultType="java.lang.Integer" >
+    select count(*) from statistics_union_buyer
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </select>
+  <update id="updateByExampleSelective" parameterType="map" >
+    update statistics_union_buyer
+    <set >
+      <if test="record.id != null" >
+        id = #{record.id,jdbcType=INTEGER},
+      </if>
+      <if test="record.dacsOrderNum != null" >
+        dacs_order_num = #{record.dacsOrderNum,jdbcType=INTEGER},
+      </if>
+      <if test="record.dacsGoodsNum != null" >
+        dacs_goods_num = #{record.dacsGoodsNum,jdbcType=INTEGER},
+      </if>
+      <if test="record.dacsGoodsAmount != null" >
+        dacs_goods_amount = #{record.dacsGoodsAmount,jdbcType=DECIMAL},
+      </if>
+      <if test="record.dacsHelpPrice != null" >
+        dacs_help_price = #{record.dacsHelpPrice,jdbcType=DECIMAL},
+      </if>
+      <if test="record.syzxOrderNum != null" >
+        syzx_order_num = #{record.syzxOrderNum,jdbcType=INTEGER},
+      </if>
+      <if test="record.syzxGoodsNum != null" >
+        syzx_goods_num = #{record.syzxGoodsNum,jdbcType=INTEGER},
+      </if>
+      <if test="record.syzxGoodsAmount != null" >
+        syzx_goods_amount = #{record.syzxGoodsAmount,jdbcType=DECIMAL},
+      </if>
+      <if test="record.syzxHelpPrice != null" >
+        syzx_help_price = #{record.syzxHelpPrice,jdbcType=DECIMAL},
+      </if>
+      <if test="record.syscOrderNum != null" >
+        sysc_order_num = #{record.syscOrderNum,jdbcType=INTEGER},
+      </if>
+      <if test="record.syscGoodsNum != null" >
+        sysc_goods_num = #{record.syscGoodsNum,jdbcType=INTEGER},
+      </if>
+      <if test="record.syscGoodsAmount != null" >
+        sysc_goods_amount = #{record.syscGoodsAmount,jdbcType=DECIMAL},
+      </if>
+      <if test="record.syscHelpPrice != null" >
+        sysc_help_price = #{record.syscHelpPrice,jdbcType=DECIMAL},
+      </if>
+      <if test="record.cTime != null" >
+        c_time = #{record.cTime,jdbcType=INTEGER},
+      </if>
+      <if test="record.unionId != null" >
+        union_id = #{record.unionId,jdbcType=INTEGER},
+      </if>
+      <if test="record.unionName != null" >
+        union_name = #{record.unionName,jdbcType=VARCHAR},
+      </if>
+      <if test="record.channel != null" >
+        channel = #{record.channel,jdbcType=VARCHAR},
+      </if>
+    </set>
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByExample" parameterType="map" >
+    update statistics_union_buyer
+    set id = #{record.id,jdbcType=INTEGER},
+      dacs_order_num = #{record.dacsOrderNum,jdbcType=INTEGER},
+      dacs_goods_num = #{record.dacsGoodsNum,jdbcType=INTEGER},
+      dacs_goods_amount = #{record.dacsGoodsAmount,jdbcType=DECIMAL},
+      dacs_help_price = #{record.dacsHelpPrice,jdbcType=DECIMAL},
+      syzx_order_num = #{record.syzxOrderNum,jdbcType=INTEGER},
+      syzx_goods_num = #{record.syzxGoodsNum,jdbcType=INTEGER},
+      syzx_goods_amount = #{record.syzxGoodsAmount,jdbcType=DECIMAL},
+      syzx_help_price = #{record.syzxHelpPrice,jdbcType=DECIMAL},
+      sysc_order_num = #{record.syscOrderNum,jdbcType=INTEGER},
+      sysc_goods_num = #{record.syscGoodsNum,jdbcType=INTEGER},
+      sysc_goods_amount = #{record.syscGoodsAmount,jdbcType=DECIMAL},
+      sysc_help_price = #{record.syscHelpPrice,jdbcType=DECIMAL},
+      c_time = #{record.cTime,jdbcType=INTEGER},
+      union_id = #{record.unionId,jdbcType=INTEGER},
+      union_name = #{record.unionName,jdbcType=VARCHAR},
+      channel = #{record.channel,jdbcType=VARCHAR}
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByPrimaryKeySelective" parameterType="com.shanyuan.platform.ms.dao.statistics.entity.UnionBuyerStatistics" >
+    update statistics_union_buyer
+    <set >
+      <if test="dacsOrderNum != null" >
+        dacs_order_num = #{dacsOrderNum,jdbcType=INTEGER},
+      </if>
+      <if test="dacsGoodsNum != null" >
+        dacs_goods_num = #{dacsGoodsNum,jdbcType=INTEGER},
+      </if>
+      <if test="dacsGoodsAmount != null" >
+        dacs_goods_amount = #{dacsGoodsAmount,jdbcType=DECIMAL},
+      </if>
+      <if test="dacsHelpPrice != null" >
+        dacs_help_price = #{dacsHelpPrice,jdbcType=DECIMAL},
+      </if>
+      <if test="syzxOrderNum != null" >
+        syzx_order_num = #{syzxOrderNum,jdbcType=INTEGER},
+      </if>
+      <if test="syzxGoodsNum != null" >
+        syzx_goods_num = #{syzxGoodsNum,jdbcType=INTEGER},
+      </if>
+      <if test="syzxGoodsAmount != null" >
+        syzx_goods_amount = #{syzxGoodsAmount,jdbcType=DECIMAL},
+      </if>
+      <if test="syzxHelpPrice != null" >
+        syzx_help_price = #{syzxHelpPrice,jdbcType=DECIMAL},
+      </if>
+      <if test="syscOrderNum != null" >
+        sysc_order_num = #{syscOrderNum,jdbcType=INTEGER},
+      </if>
+      <if test="syscGoodsNum != null" >
+        sysc_goods_num = #{syscGoodsNum,jdbcType=INTEGER},
+      </if>
+      <if test="syscGoodsAmount != null" >
+        sysc_goods_amount = #{syscGoodsAmount,jdbcType=DECIMAL},
+      </if>
+      <if test="syscHelpPrice != null" >
+        sysc_help_price = #{syscHelpPrice,jdbcType=DECIMAL},
+      </if>
+      <if test="cTime != null" >
+        c_time = #{cTime,jdbcType=INTEGER},
+      </if>
+      <if test="unionId != null" >
+        union_id = #{unionId,jdbcType=INTEGER},
+      </if>
+      <if test="unionName != null" >
+        union_name = #{unionName,jdbcType=VARCHAR},
+      </if>
+      <if test="channel != null" >
+        channel = #{channel,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.shanyuan.platform.ms.dao.statistics.entity.UnionBuyerStatistics" >
+    update statistics_union_buyer
+    set dacs_order_num = #{dacsOrderNum,jdbcType=INTEGER},
+      dacs_goods_num = #{dacsGoodsNum,jdbcType=INTEGER},
+      dacs_goods_amount = #{dacsGoodsAmount,jdbcType=DECIMAL},
+      dacs_help_price = #{dacsHelpPrice,jdbcType=DECIMAL},
+      syzx_order_num = #{syzxOrderNum,jdbcType=INTEGER},
+      syzx_goods_num = #{syzxGoodsNum,jdbcType=INTEGER},
+      syzx_goods_amount = #{syzxGoodsAmount,jdbcType=DECIMAL},
+      syzx_help_price = #{syzxHelpPrice,jdbcType=DECIMAL},
+      sysc_order_num = #{syscOrderNum,jdbcType=INTEGER},
+      sysc_goods_num = #{syscGoodsNum,jdbcType=INTEGER},
+      sysc_goods_amount = #{syscGoodsAmount,jdbcType=DECIMAL},
+      sysc_help_price = #{syscHelpPrice,jdbcType=DECIMAL},
+      c_time = #{cTime,jdbcType=INTEGER},
+      union_id = #{unionId,jdbcType=INTEGER},
+      union_name = #{unionName,jdbcType=VARCHAR},
+      channel = #{channel,jdbcType=VARCHAR}
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+  
+  <insert id="batchInsert" parameterType="map">
+		<selectKey keyProperty="id" order="AFTER" resultType="java.lang.Integer">
+			SELECT LAST_INSERT_ID()
+		</selectKey>
+		insert into statistics_union_buyer (dacs_order_num, dacs_goods_num, dacs_goods_amount, 
+      dacs_help_price, syzx_order_num, syzx_goods_num, 
+      syzx_goods_amount, syzx_help_price, sysc_order_num, 
+      sysc_goods_num, sysc_goods_amount, sysc_help_price, 
+      c_time, union_id, union_name, 
+      channel)
+	    values
+		<foreach collection="records" item="item" index="index" separator=",">
+         (
+		#{item.dacsOrderNum,jdbcType=INTEGER}, 	
+		#{item.dacsGoodsNum,jdbcType=INTEGER}, 		
+		#{item.dacsGoodsAmount,jdbcType=DECIMAL}, 
+		#{item.dacsHelpPrice,jdbcType=DECIMAL}, 	
+		#{item.syzxOrderNum,jdbcType=INTEGER}, 		
+		#{item.syzxGoodsNum,jdbcType=INTEGER}, 
+		#{item.syzxGoodsAmount,jdbcType=DECIMAL}, 
+		#{item.syzxHelpPrice,jdbcType=DECIMAL}, 	
+		#{item.syscOrderNum,jdbcType=INTEGER}, 
+		#{item.syscGoodsNum,jdbcType=INTEGER}, 	
+		#{item.syscGoodsAmount,jdbcType=DECIMAL}, 	
+		#{item.syscHelpPrice,jdbcType=DECIMAL}, 
+		#{item.cTime,jdbcType=INTEGER}, 			
+		#{item.unionId,jdbcType=INTEGER}, 			
+		#{item.unionName,jdbcType=VARCHAR}, 
+		#{item.channel,jdbcType=VARCHAR})
+		</foreach>
+	</insert>
+	
+	<select id="selectSum" resultMap="BaseResultMap" parameterType="com.shanyuan.platform.ms.dao.statistics.entity.UnionBuyerStatisticsExample" >
+	select
+      SUM(dacs_order_num) AS dacsOrderNum,SUM(dacs_goods_num) AS dacsGoodsNum,SUM(dacs_goods_amount) AS dacsGoodsAmount,SUM(dacs_help_price) AS dacsHelpPrice,
+	SUM(syzx_order_num) AS syzxOrderNum,SUM(syzx_goods_num) AS syzxGoodsNum,SUM(syzx_goods_amount) AS syzxGoodsAmount,SUM(syzx_help_price) AS syzxHelpPrice,
+	SUM(sysc_order_num) AS syscOrderNum,SUM(sysc_goods_num) AS syscGoodsNum,SUM(sysc_goods_amount) AS syscGoodsAmount,SUM(sysc_help_price) AS syscHelpPrice
+    from statistics_union_buyer
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null" >
+      order by ${orderByClause}
+    </if>
+  </select>
+</mapper>

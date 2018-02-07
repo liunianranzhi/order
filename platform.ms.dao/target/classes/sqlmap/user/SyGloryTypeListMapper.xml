@@ -1,0 +1,338 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.shanyuan.platform.ms.dao.user.mapper.SyGloryTypeListMapper" >
+  <resultMap id="BaseResultMap" type="com.shanyuan.platform.ms.dao.user.entity.SyGloryTypeList" >
+    <id column="glory_id" property="gloryId" jdbcType="INTEGER" />
+    <result column="glory_name" property="gloryName" jdbcType="VARCHAR" />
+    <result column="glory_code" property="gloryCode" jdbcType="VARCHAR" />
+    <result column="glory_show_index" property="gloryShowIndex" jdbcType="INTEGER" />
+    <result column="glory_show_img_hilighted" property="gloryShowImgHilighted" jdbcType="VARCHAR" />
+    <result column="glory_show_img_gary" property="gloryShowImgGary" jdbcType="VARCHAR" />
+    <result column="glory_description" property="gloryDescription" jdbcType="VARCHAR" />
+    <result column="channel_range" property="channelRange" jdbcType="VARCHAR" />
+    <result column="cust_type_range" property="custTypeRange" jdbcType="VARCHAR" />
+    <result column="extra_condition1" property="extraCondition1" jdbcType="VARCHAR" />
+    <result column="extra_condition2" property="extraCondition2" jdbcType="VARCHAR" />
+    <result column="online_state" property="onlineState" jdbcType="INTEGER" />
+  </resultMap>
+  <sql id="Example_Where_Clause" >
+    <where >
+      <foreach collection="oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Update_By_Example_Where_Clause" >
+    <where >
+      <foreach collection="example.oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Base_Column_List" >
+    glory_id, glory_name, glory_code, glory_show_index, glory_show_img_hilighted, glory_show_img_gary, 
+    glory_description, channel_range, cust_type_range, extra_condition1, extra_condition2, 
+    online_state
+  </sql>
+  <select id="selectByExample" resultMap="BaseResultMap" parameterType="com.shanyuan.platform.ms.dao.user.entity.SyGloryTypeListExample" >
+    select
+    <if test="distinct" >
+      distinct
+    </if>
+    <include refid="Base_Column_List" />
+    from sy_glory_type_list
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null" >
+      order by ${orderByClause}
+    </if>
+  </select>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+    select 
+    <include refid="Base_Column_List" />
+    from sy_glory_type_list
+    where glory_id = #{gloryId,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+    delete from sy_glory_type_list
+    where glory_id = #{gloryId,jdbcType=INTEGER}
+  </delete>
+  <delete id="deleteByExample" parameterType="com.shanyuan.platform.ms.dao.user.entity.SyGloryTypeListExample" >
+    delete from sy_glory_type_list
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </delete>
+  <insert id="insert" parameterType="com.shanyuan.platform.ms.dao.user.entity.SyGloryTypeList" >
+    <selectKey resultType="java.lang.Integer" keyProperty="gloryId" order="AFTER" >
+      SELECT LAST_INSERT_ID()
+    </selectKey>
+    insert into sy_glory_type_list (glory_name, glory_code, glory_show_index, 
+      glory_show_img_hilighted, glory_show_img_gary, 
+      glory_description, channel_range, cust_type_range, 
+      extra_condition1, extra_condition2, online_state
+      )
+    values (#{gloryName,jdbcType=VARCHAR}, #{gloryCode,jdbcType=VARCHAR}, #{gloryShowIndex,jdbcType=INTEGER}, 
+      #{gloryShowImgHilighted,jdbcType=VARCHAR}, #{gloryShowImgGary,jdbcType=VARCHAR}, 
+      #{gloryDescription,jdbcType=VARCHAR}, #{channelRange,jdbcType=VARCHAR}, #{custTypeRange,jdbcType=VARCHAR}, 
+      #{extraCondition1,jdbcType=VARCHAR}, #{extraCondition2,jdbcType=VARCHAR}, #{onlineState,jdbcType=INTEGER}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="com.shanyuan.platform.ms.dao.user.entity.SyGloryTypeList" >
+    <selectKey resultType="java.lang.Integer" keyProperty="gloryId" order="AFTER" >
+      SELECT LAST_INSERT_ID()
+    </selectKey>
+    insert into sy_glory_type_list
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="gloryName != null" >
+        glory_name,
+      </if>
+      <if test="gloryCode != null" >
+        glory_code,
+      </if>
+      <if test="gloryShowIndex != null" >
+        glory_show_index,
+      </if>
+      <if test="gloryShowImgHilighted != null" >
+        glory_show_img_hilighted,
+      </if>
+      <if test="gloryShowImgGary != null" >
+        glory_show_img_gary,
+      </if>
+      <if test="gloryDescription != null" >
+        glory_description,
+      </if>
+      <if test="channelRange != null" >
+        channel_range,
+      </if>
+      <if test="custTypeRange != null" >
+        cust_type_range,
+      </if>
+      <if test="extraCondition1 != null" >
+        extra_condition1,
+      </if>
+      <if test="extraCondition2 != null" >
+        extra_condition2,
+      </if>
+      <if test="onlineState != null" >
+        online_state,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="gloryName != null" >
+        #{gloryName,jdbcType=VARCHAR},
+      </if>
+      <if test="gloryCode != null" >
+        #{gloryCode,jdbcType=VARCHAR},
+      </if>
+      <if test="gloryShowIndex != null" >
+        #{gloryShowIndex,jdbcType=INTEGER},
+      </if>
+      <if test="gloryShowImgHilighted != null" >
+        #{gloryShowImgHilighted,jdbcType=VARCHAR},
+      </if>
+      <if test="gloryShowImgGary != null" >
+        #{gloryShowImgGary,jdbcType=VARCHAR},
+      </if>
+      <if test="gloryDescription != null" >
+        #{gloryDescription,jdbcType=VARCHAR},
+      </if>
+      <if test="channelRange != null" >
+        #{channelRange,jdbcType=VARCHAR},
+      </if>
+      <if test="custTypeRange != null" >
+        #{custTypeRange,jdbcType=VARCHAR},
+      </if>
+      <if test="extraCondition1 != null" >
+        #{extraCondition1,jdbcType=VARCHAR},
+      </if>
+      <if test="extraCondition2 != null" >
+        #{extraCondition2,jdbcType=VARCHAR},
+      </if>
+      <if test="onlineState != null" >
+        #{onlineState,jdbcType=INTEGER},
+      </if>
+    </trim>
+  </insert>
+  <select id="countByExample" parameterType="com.shanyuan.platform.ms.dao.user.entity.SyGloryTypeListExample" resultType="java.lang.Integer" >
+    select count(*) from sy_glory_type_list
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </select>
+  <update id="updateByExampleSelective" parameterType="map" >
+    update sy_glory_type_list
+    <set >
+      <if test="record.gloryId != null" >
+        glory_id = #{record.gloryId,jdbcType=INTEGER},
+      </if>
+      <if test="record.gloryName != null" >
+        glory_name = #{record.gloryName,jdbcType=VARCHAR},
+      </if>
+      <if test="record.gloryCode != null" >
+        glory_code = #{record.gloryCode,jdbcType=VARCHAR},
+      </if>
+      <if test="record.gloryShowIndex != null" >
+        glory_show_index = #{record.gloryShowIndex,jdbcType=INTEGER},
+      </if>
+      <if test="record.gloryShowImgHilighted != null" >
+        glory_show_img_hilighted = #{record.gloryShowImgHilighted,jdbcType=VARCHAR},
+      </if>
+      <if test="record.gloryShowImgGary != null" >
+        glory_show_img_gary = #{record.gloryShowImgGary,jdbcType=VARCHAR},
+      </if>
+      <if test="record.gloryDescription != null" >
+        glory_description = #{record.gloryDescription,jdbcType=VARCHAR},
+      </if>
+      <if test="record.channelRange != null" >
+        channel_range = #{record.channelRange,jdbcType=VARCHAR},
+      </if>
+      <if test="record.custTypeRange != null" >
+        cust_type_range = #{record.custTypeRange,jdbcType=VARCHAR},
+      </if>
+      <if test="record.extraCondition1 != null" >
+        extra_condition1 = #{record.extraCondition1,jdbcType=VARCHAR},
+      </if>
+      <if test="record.extraCondition2 != null" >
+        extra_condition2 = #{record.extraCondition2,jdbcType=VARCHAR},
+      </if>
+      <if test="record.onlineState != null" >
+        online_state = #{record.onlineState,jdbcType=INTEGER},
+      </if>
+    </set>
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByExample" parameterType="map" >
+    update sy_glory_type_list
+    set glory_id = #{record.gloryId,jdbcType=INTEGER},
+      glory_name = #{record.gloryName,jdbcType=VARCHAR},
+      glory_code = #{record.gloryCode,jdbcType=VARCHAR},
+      glory_show_index = #{record.gloryShowIndex,jdbcType=INTEGER},
+      glory_show_img_hilighted = #{record.gloryShowImgHilighted,jdbcType=VARCHAR},
+      glory_show_img_gary = #{record.gloryShowImgGary,jdbcType=VARCHAR},
+      glory_description = #{record.gloryDescription,jdbcType=VARCHAR},
+      channel_range = #{record.channelRange,jdbcType=VARCHAR},
+      cust_type_range = #{record.custTypeRange,jdbcType=VARCHAR},
+      extra_condition1 = #{record.extraCondition1,jdbcType=VARCHAR},
+      extra_condition2 = #{record.extraCondition2,jdbcType=VARCHAR},
+      online_state = #{record.onlineState,jdbcType=INTEGER}
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByPrimaryKeySelective" parameterType="com.shanyuan.platform.ms.dao.user.entity.SyGloryTypeList" >
+    update sy_glory_type_list
+    <set >
+      <if test="gloryName != null" >
+        glory_name = #{gloryName,jdbcType=VARCHAR},
+      </if>
+      <if test="gloryCode != null" >
+        glory_code = #{gloryCode,jdbcType=VARCHAR},
+      </if>
+      <if test="gloryShowIndex != null" >
+        glory_show_index = #{gloryShowIndex,jdbcType=INTEGER},
+      </if>
+      <if test="gloryShowImgHilighted != null" >
+        glory_show_img_hilighted = #{gloryShowImgHilighted,jdbcType=VARCHAR},
+      </if>
+      <if test="gloryShowImgGary != null" >
+        glory_show_img_gary = #{gloryShowImgGary,jdbcType=VARCHAR},
+      </if>
+      <if test="gloryDescription != null" >
+        glory_description = #{gloryDescription,jdbcType=VARCHAR},
+      </if>
+      <if test="channelRange != null" >
+        channel_range = #{channelRange,jdbcType=VARCHAR},
+      </if>
+      <if test="custTypeRange != null" >
+        cust_type_range = #{custTypeRange,jdbcType=VARCHAR},
+      </if>
+      <if test="extraCondition1 != null" >
+        extra_condition1 = #{extraCondition1,jdbcType=VARCHAR},
+      </if>
+      <if test="extraCondition2 != null" >
+        extra_condition2 = #{extraCondition2,jdbcType=VARCHAR},
+      </if>
+      <if test="onlineState != null" >
+        online_state = #{onlineState,jdbcType=INTEGER},
+      </if>
+    </set>
+    where glory_id = #{gloryId,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.shanyuan.platform.ms.dao.user.entity.SyGloryTypeList" >
+    update sy_glory_type_list
+    set glory_name = #{gloryName,jdbcType=VARCHAR},
+      glory_code = #{gloryCode,jdbcType=VARCHAR},
+      glory_show_index = #{gloryShowIndex,jdbcType=INTEGER},
+      glory_show_img_hilighted = #{gloryShowImgHilighted,jdbcType=VARCHAR},
+      glory_show_img_gary = #{gloryShowImgGary,jdbcType=VARCHAR},
+      glory_description = #{gloryDescription,jdbcType=VARCHAR},
+      channel_range = #{channelRange,jdbcType=VARCHAR},
+      cust_type_range = #{custTypeRange,jdbcType=VARCHAR},
+      extra_condition1 = #{extraCondition1,jdbcType=VARCHAR},
+      extra_condition2 = #{extraCondition2,jdbcType=VARCHAR},
+      online_state = #{onlineState,jdbcType=INTEGER}
+    where glory_id = #{gloryId,jdbcType=INTEGER}
+  </update>
+  
+  <select id="selectGloryTypeList" resultMap="BaseResultMap">
+    SELECT 
+	 glory_id, glory_name, glory_code, glory_show_index, glory_show_img_hilighted, glory_show_img_gary, 
+	 glory_description, channel_range, cust_type_range, online_state
+	FROM sy_glory_type_list  
+	<where>
+		<if test="onlineState != null" >
+          AND online_state = #{onlineState,jdbcType=INTEGER}
+      	</if>
+	</where>
+	ORDER BY glory_show_index
+  </select>
+  
+</mapper>

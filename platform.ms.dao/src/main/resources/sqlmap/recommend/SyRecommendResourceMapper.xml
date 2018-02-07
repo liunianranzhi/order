@@ -1,0 +1,258 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.shanyuan.platform.ms.dao.recommend.mapper.SyRecommendResourceMapper" >
+  <resultMap id="BaseResultMap" type="com.shanyuan.platform.ms.dao.recommend.entity.SyRecommendResource" >
+    <id column="res_id" property="resId" jdbcType="INTEGER" />
+    <result column="goods_id" property="goodsId" jdbcType="INTEGER" />
+    <result column="res_title" property="resTitle" jdbcType="VARCHAR" />
+    <result column="res_desc" property="resDesc" jdbcType="VARCHAR" />
+    <result column="res_image" property="resImage" jdbcType="VARCHAR" />
+    <result column="res_addtime" property="resAddtime" jdbcType="INTEGER" />
+    <result column="gc_id" property="gcId" jdbcType="INTEGER" />
+    <result column="res_sort" property="resSort" jdbcType="TINYINT" />
+  </resultMap>
+  <sql id="Example_Where_Clause" >
+    <where >
+      <foreach collection="oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Update_By_Example_Where_Clause" >
+    <where >
+      <foreach collection="example.oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Base_Column_List" >
+    res_id, goods_id, res_title, res_desc, res_image, res_addtime, gc_id, res_sort
+  </sql>
+  <select id="selectByExample" resultMap="BaseResultMap" parameterType="com.shanyuan.platform.ms.dao.recommend.entity.SyRecommendResourceExample" >
+    select
+    <if test="distinct" >
+      distinct
+    </if>
+    <include refid="Base_Column_List" />
+    from sy_recommend_resource
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null" >
+      order by ${orderByClause}
+    </if>
+  </select>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+    select 
+    <include refid="Base_Column_List" />
+    from sy_recommend_resource
+    where res_id = #{resId,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+    delete from sy_recommend_resource
+    where res_id = #{resId,jdbcType=INTEGER}
+  </delete>
+  <delete id="deleteByExample" parameterType="com.shanyuan.platform.ms.dao.recommend.entity.SyRecommendResourceExample" >
+    delete from sy_recommend_resource
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </delete>
+  <insert id="insert" parameterType="com.shanyuan.platform.ms.dao.recommend.entity.SyRecommendResource" >
+    <selectKey resultType="java.lang.Integer" keyProperty="resId" order="AFTER" >
+      SELECT LAST_INSERT_ID()
+    </selectKey>
+    insert into sy_recommend_resource (goods_id, res_title, res_desc, 
+      res_image, res_addtime, gc_id, 
+      res_sort)
+    values (#{goodsId,jdbcType=INTEGER}, #{resTitle,jdbcType=VARCHAR}, #{resDesc,jdbcType=VARCHAR}, 
+      #{resImage,jdbcType=VARCHAR}, #{resAddtime,jdbcType=INTEGER}, #{gcId,jdbcType=INTEGER}, 
+      #{resSort,jdbcType=TINYINT})
+  </insert>
+  <insert id="insertSelective" parameterType="com.shanyuan.platform.ms.dao.recommend.entity.SyRecommendResource" >
+    <selectKey resultType="java.lang.Integer" keyProperty="resId" order="AFTER" >
+      SELECT LAST_INSERT_ID()
+    </selectKey>
+    insert into sy_recommend_resource
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="goodsId != null" >
+        goods_id,
+      </if>
+      <if test="resTitle != null" >
+        res_title,
+      </if>
+      <if test="resDesc != null" >
+        res_desc,
+      </if>
+      <if test="resImage != null" >
+        res_image,
+      </if>
+      <if test="resAddtime != null" >
+        res_addtime,
+      </if>
+      <if test="gcId != null" >
+        gc_id,
+      </if>
+      <if test="resSort != null" >
+        res_sort,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="goodsId != null" >
+        #{goodsId,jdbcType=INTEGER},
+      </if>
+      <if test="resTitle != null" >
+        #{resTitle,jdbcType=VARCHAR},
+      </if>
+      <if test="resDesc != null" >
+        #{resDesc,jdbcType=VARCHAR},
+      </if>
+      <if test="resImage != null" >
+        #{resImage,jdbcType=VARCHAR},
+      </if>
+      <if test="resAddtime != null" >
+        #{resAddtime,jdbcType=INTEGER},
+      </if>
+      <if test="gcId != null" >
+        #{gcId,jdbcType=INTEGER},
+      </if>
+      <if test="resSort != null" >
+        #{resSort,jdbcType=TINYINT},
+      </if>
+    </trim>
+  </insert>
+  <select id="countByExample" parameterType="com.shanyuan.platform.ms.dao.recommend.entity.SyRecommendResourceExample" resultType="java.lang.Integer" >
+    select count(*) from sy_recommend_resource
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </select>
+  <update id="updateByExampleSelective" parameterType="map" >
+    update sy_recommend_resource
+    <set >
+      <if test="record.resId != null" >
+        res_id = #{record.resId,jdbcType=INTEGER},
+      </if>
+      <if test="record.goodsId != null" >
+        goods_id = #{record.goodsId,jdbcType=INTEGER},
+      </if>
+      <if test="record.resTitle != null" >
+        res_title = #{record.resTitle,jdbcType=VARCHAR},
+      </if>
+      <if test="record.resDesc != null" >
+        res_desc = #{record.resDesc,jdbcType=VARCHAR},
+      </if>
+      <if test="record.resImage != null" >
+        res_image = #{record.resImage,jdbcType=VARCHAR},
+      </if>
+      <if test="record.resAddtime != null" >
+        res_addtime = #{record.resAddtime,jdbcType=INTEGER},
+      </if>
+      <if test="record.gcId != null" >
+        gc_id = #{record.gcId,jdbcType=INTEGER},
+      </if>
+      <if test="record.resSort != null" >
+        res_sort = #{record.resSort,jdbcType=TINYINT},
+      </if>
+    </set>
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByExample" parameterType="map" >
+    update sy_recommend_resource
+    set res_id = #{record.resId,jdbcType=INTEGER},
+      goods_id = #{record.goodsId,jdbcType=INTEGER},
+      res_title = #{record.resTitle,jdbcType=VARCHAR},
+      res_desc = #{record.resDesc,jdbcType=VARCHAR},
+      res_image = #{record.resImage,jdbcType=VARCHAR},
+      res_addtime = #{record.resAddtime,jdbcType=INTEGER},
+      gc_id = #{record.gcId,jdbcType=INTEGER},
+      res_sort = #{record.resSort,jdbcType=TINYINT}
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByPrimaryKeySelective" parameterType="com.shanyuan.platform.ms.dao.recommend.entity.SyRecommendResource" >
+    update sy_recommend_resource
+    <set >
+      <if test="goodsId != null" >
+        goods_id = #{goodsId,jdbcType=INTEGER},
+      </if>
+      <if test="resTitle != null" >
+        res_title = #{resTitle,jdbcType=VARCHAR},
+      </if>
+      <if test="resDesc != null" >
+        res_desc = #{resDesc,jdbcType=VARCHAR},
+      </if>
+      <if test="resImage != null" >
+        res_image = #{resImage,jdbcType=VARCHAR},
+      </if>
+      <if test="resAddtime != null" >
+        res_addtime = #{resAddtime,jdbcType=INTEGER},
+      </if>
+      <if test="gcId != null" >
+        gc_id = #{gcId,jdbcType=INTEGER},
+      </if>
+      <if test="resSort != null" >
+        res_sort = #{resSort,jdbcType=TINYINT},
+      </if>
+    </set>
+    where res_id = #{resId,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.shanyuan.platform.ms.dao.recommend.entity.SyRecommendResource" >
+    update sy_recommend_resource
+    set goods_id = #{goodsId,jdbcType=INTEGER},
+      res_title = #{resTitle,jdbcType=VARCHAR},
+      res_desc = #{resDesc,jdbcType=VARCHAR},
+      res_image = #{resImage,jdbcType=VARCHAR},
+      res_addtime = #{resAddtime,jdbcType=INTEGER},
+      gc_id = #{gcId,jdbcType=INTEGER},
+      res_sort = #{resSort,jdbcType=TINYINT}
+    where res_id = #{resId,jdbcType=INTEGER}
+  </update>
+</mapper>

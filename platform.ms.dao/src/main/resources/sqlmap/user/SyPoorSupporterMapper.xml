@@ -1,0 +1,251 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.shanyuan.platform.ms.dao.user.mapper.SyPoorSupporterMapper" >
+  <resultMap id="BaseResultMap" type="com.shanyuan.platform.ms.dao.user.entity.SyPoorSupporter" >
+    <id column="rec_id" property="recId" jdbcType="INTEGER" />
+    <result column="poor_id" property="poorId" jdbcType="INTEGER" />
+    <result column="member_id" property="memberId" jdbcType="INTEGER" />
+    <result column="new_goods_common_ids" property="newGoodsCommonIds" jdbcType="VARCHAR" />
+    <result column="update_time" property="updateTime" jdbcType="VARCHAR" />
+    <result column="channel" property="channel" jdbcType="VARCHAR" />
+  </resultMap>
+  
+  <resultMap id="SupportPoorMap" type="com.shanyuan.platform.ms.dao.user.entity.SupportPoorBo" >
+    <result column="poor_id" property="poorId" jdbcType="INTEGER" />
+    <result column="member_id" property="memberId" jdbcType="INTEGER" />
+    <result column="member_truename" property="trueName" jdbcType="VARCHAR" />
+    <result column="target_money" property="targetMoney" jdbcType="DECIMAL" />
+    <result column="finished_money" property="finishMoney" jdbcType="DECIMAL" />
+    <result column="family_member_num" property="familyNum" jdbcType="INTEGER" />
+  </resultMap>
+  
+  <sql id="Example_Where_Clause" >
+    <where >
+      <foreach collection="oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Update_By_Example_Where_Clause" >
+    <where >
+      <foreach collection="example.oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Base_Column_List" >
+    rec_id, poor_id, member_id, new_goods_common_ids, update_time, channel
+  </sql>
+  <select id="selectByExample" resultMap="BaseResultMap" parameterType="com.shanyuan.platform.ms.dao.user.entity.SyPoorSupporterExample" >
+    select
+    <if test="distinct" >
+      distinct
+    </if>
+    <include refid="Base_Column_List" />
+    from sy_poor_supporter
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null" >
+      order by ${orderByClause}
+    </if>
+  </select>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+    select 
+    <include refid="Base_Column_List" />
+    from sy_poor_supporter
+    where rec_id = #{recId,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+    delete from sy_poor_supporter
+    where rec_id = #{recId,jdbcType=INTEGER}
+  </delete>
+  <delete id="deleteByExample" parameterType="com.shanyuan.platform.ms.dao.user.entity.SyPoorSupporterExample" >
+    delete from sy_poor_supporter
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </delete>
+  <insert id="insert" parameterType="com.shanyuan.platform.ms.dao.user.entity.SyPoorSupporter" >
+    <selectKey resultType="java.lang.Integer" keyProperty="recId" order="AFTER" >
+      SELECT LAST_INSERT_ID()
+    </selectKey>
+    insert into sy_poor_supporter (poor_id, member_id, new_goods_common_ids, 
+      update_time, channel)
+    values (#{poorId,jdbcType=INTEGER}, #{memberId,jdbcType=INTEGER}, #{newGoodsCommonIds,jdbcType=VARCHAR}, 
+      #{updateTime,jdbcType=VARCHAR}, #{channel,jdbcType=VARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="com.shanyuan.platform.ms.dao.user.entity.SyPoorSupporter" >
+    <selectKey resultType="java.lang.Integer" keyProperty="recId" order="AFTER" >
+      SELECT LAST_INSERT_ID()
+    </selectKey>
+    insert into sy_poor_supporter
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="poorId != null" >
+        poor_id,
+      </if>
+      <if test="memberId != null" >
+        member_id,
+      </if>
+      <if test="newGoodsCommonIds != null" >
+        new_goods_common_ids,
+      </if>
+      <if test="updateTime != null" >
+        update_time,
+      </if>
+      <if test="channel != null" >
+        channel,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="poorId != null" >
+        #{poorId,jdbcType=INTEGER},
+      </if>
+      <if test="memberId != null" >
+        #{memberId,jdbcType=INTEGER},
+      </if>
+      <if test="newGoodsCommonIds != null" >
+        #{newGoodsCommonIds,jdbcType=VARCHAR},
+      </if>
+      <if test="updateTime != null" >
+        #{updateTime,jdbcType=VARCHAR},
+      </if>
+      <if test="channel != null" >
+        #{channel,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <select id="countByExample" parameterType="com.shanyuan.platform.ms.dao.user.entity.SyPoorSupporterExample" resultType="java.lang.Integer" >
+    select count(*) from sy_poor_supporter
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </select>
+  <update id="updateByExampleSelective" parameterType="map" >
+    update sy_poor_supporter
+    <set >
+      <if test="record.recId != null" >
+        rec_id = #{record.recId,jdbcType=INTEGER},
+      </if>
+      <if test="record.poorId != null" >
+        poor_id = #{record.poorId,jdbcType=INTEGER},
+      </if>
+      <if test="record.memberId != null" >
+        member_id = #{record.memberId,jdbcType=INTEGER},
+      </if>
+      <if test="record.newGoodsCommonIds != null" >
+        new_goods_common_ids = #{record.newGoodsCommonIds,jdbcType=VARCHAR},
+      </if>
+      <if test="record.updateTime != null" >
+        update_time = #{record.updateTime,jdbcType=VARCHAR},
+      </if>
+      <if test="record.channel != null" >
+        channel = #{record.channel,jdbcType=VARCHAR},
+      </if>
+    </set>
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByExample" parameterType="map" >
+    update sy_poor_supporter
+    set rec_id = #{record.recId,jdbcType=INTEGER},
+      poor_id = #{record.poorId,jdbcType=INTEGER},
+      member_id = #{record.memberId,jdbcType=INTEGER},
+      new_goods_common_ids = #{record.newGoodsCommonIds,jdbcType=VARCHAR},
+      update_time = #{record.updateTime,jdbcType=VARCHAR},
+      channel = #{record.channel,jdbcType=VARCHAR}
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByPrimaryKeySelective" parameterType="com.shanyuan.platform.ms.dao.user.entity.SyPoorSupporter" >
+    update sy_poor_supporter
+    <set >
+      <if test="poorId != null" >
+        poor_id = #{poorId,jdbcType=INTEGER},
+      </if>
+      <if test="memberId != null" >
+        member_id = #{memberId,jdbcType=INTEGER},
+      </if>
+      <if test="newGoodsCommonIds != null" >
+        new_goods_common_ids = #{newGoodsCommonIds,jdbcType=VARCHAR},
+      </if>
+      <if test="updateTime != null" >
+        update_time = #{updateTime,jdbcType=VARCHAR},
+      </if>
+      <if test="channel != null" >
+        channel = #{channel,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where rec_id = #{recId,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.shanyuan.platform.ms.dao.user.entity.SyPoorSupporter" >
+    update sy_poor_supporter
+    set poor_id = #{poorId,jdbcType=INTEGER},
+      member_id = #{memberId,jdbcType=INTEGER},
+      new_goods_common_ids = #{newGoodsCommonIds,jdbcType=VARCHAR},
+      update_time = #{updateTime,jdbcType=VARCHAR},
+      channel = #{channel,jdbcType=VARCHAR}
+    where rec_id = #{recId,jdbcType=INTEGER}
+  </update>
+  
+  <select id="getMySupportPoorList" resultMap="SupportPoorMap" >
+    SELECT DISTINCT c.member_id,c.member_truename,b.poor_id,d.target_money,d.finished_money ,b.family_member_num   
+	FROM sy_poor_supporter a  
+	RIGHT JOIN sy_poor b ON a.poor_id=b.poor_id 
+	LEFT JOIN sy_member c ON b.member_id=c.member_id 
+	LEFT JOIN sy_poor_member_stats d ON b.member_id=d.member_id 
+	WHERE a.member_id=#{memberId,jdbcType=INTEGER} 
+	<if test="channel != null and channel != ''">
+	AND a.channel=#{channel,jdbcType=VARCHAR} 
+	</if>
+  </select>
+    	
+ 
+
+</mapper>

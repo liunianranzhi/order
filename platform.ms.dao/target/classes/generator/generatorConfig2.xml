@@ -1,0 +1,201 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE generatorConfiguration
+  PUBLIC "-//mybatis.org//DTD MyBatis Generator Configuration 1.0//EN"
+  "http://mybatis.org/dtd/mybatis-generator-config_1_0.dtd">
+
+<generatorConfiguration>
+	<context id="context1" targetRuntime="MyBatis3">
+		<!-- 指定生成的java文件的编码,没有直接生成到项目时中文可能会乱码 -->
+		<property name="javaFileEncoding" value="UTF-8" />
+		<!-- mysql配置 -->  
+		<jdbcConnection driverClass="com.mysql.jdbc.Driver"
+			connectionURL="jdbc:mysql://localhost:3306/sy_new" userId="root"
+			password="root">
+			<!-- 针对mysql数据库 -->
+			<property name="useInformationSchema" value="true"></property>
+		</jdbcConnection>
+		<javaTypeResolver>
+			<property name="forceBigDecimals" value="false" />
+		</javaTypeResolver>
+		<!-- dto class -->
+		<javaModelGenerator targetPackage="com.shanyuan.platform.ms.dao.goods.entity"
+			targetProject="D:\program\sy_platform\platform.ms.dao\src\main\java">
+			<property name="enableSubPackages" value="true" />
+			<property name="trimStrings" value="true" />
+		</javaModelGenerator>
+		<!-- mybatis xml file -->
+		<sqlMapGenerator targetPackage="sqlmap.goods"
+			targetProject="D:\program\sy_platform\platform.ms.dao\src\main\resources">
+			<property name="enableSubPackages" value="true" />
+		</sqlMapGenerator>
+		<!-- mapper class -->
+		<javaClientGenerator type="XMLMAPPER"
+			targetPackage="com.shanyuan.platform.ms.dao.goods.mapper" targetProject="D:\program\sy_platform\platform.ms.dao\src\main\java">
+			<property name="enableSubPackages" value="true" />
+		</javaClientGenerator>
+		<!--不生成帮助类（Exmaples） -->
+		<!-- enableCountByExample="false" enableUpdateByExample="false" enableDeleteByExample="false" 
+			enableSelectByExample="false" selectByExampleQueryId="false" -->
+		<!--已生成的表 <table schema="demo" tableName="USER" domainObjectName="User"></table> -->
+	<!--	 
+
+	<table  tableName="sy_member"  domainObjectName ="NewSyMember"  >
+		 <generatedKey column="member_id" sqlStatement="Mysql" identity="true"/>
+    </table>
+
+		<table  tableName="sy_album_class"  domainObjectName ="NewSyAlbumClass"  >
+		 <generatedKey column="aclass_id" sqlStatement="Mysql" identity="true"/>
+    </table>
+
+	<table  tableName="sy_mb_user_token"  domainObjectName ="NewSyMbUserToken"  >
+		 <generatedKey column="token_id" sqlStatement="Mysql" identity="true"/>
+    </table>
+
+	<table  tableName="sy_message"  domainObjectName ="NewSyMessage"  >
+		 <generatedKey column="message_id" sqlStatement="Mysql" identity="true"/>
+    </table>
+
+
+	<table  tableName="sy_poor"  domainObjectName ="NewSyPoor"  >
+		 <generatedKey column="poor_id" sqlStatement="Mysql" identity="true"/>
+    </table>
+
+	<table  tableName="sy_seller"  domainObjectName ="NewSySeller"  >
+		 <generatedKey column="seller_id" sqlStatement="Mysql" identity="true"/>
+    </table>
+
+
+	<table  tableName="sy_seller_group"  domainObjectName ="NewSySellerGroup"  >
+		 <generatedKey column="group_id" sqlStatement="Mysql" identity="true"/>
+    </table>
+
+
+	<table  tableName="sy_store"  domainObjectName ="NewSyStore"  >
+		 <generatedKey column="store_id" sqlStatement="Mysql" identity="true"/>
+    </table>
+
+	<table  tableName="sy_store_bind_class"  domainObjectName ="NewStoreBindClass"  >
+		 <generatedKey column="bid" sqlStatement="Mysql" identity="true"/>
+    </table>
+	<table  tableName="sy_store_extend"  domainObjectName ="NewsyStoreExtend"  >
+		 <generatedKey column="store_id" sqlStatement="Mysql" identity="true"/>
+    </table>
+
+	<table  tableName="sy_store_joinin"  domainObjectName ="NewSyStoreJoinin"  >
+		 <generatedKey column="member_id" sqlStatement="Mysql" identity="false"/>
+    </table>
+
+	<table  tableName="sy_circle"  domainObjectName ="NewSyCircle"  >
+		 <generatedKey column="circle_id" sqlStatement="Mysql" identity="true"/>
+    </table> 
+
+
+	<table  tableName="sy_circle_member"  domainObjectName ="NewSyCircleMember"  >
+		 <generatedKey column="circle_id,member_id" sqlStatement="Mysql" identity="false"/>
+    </table>
+
+	<table  tableName="sy_circle_mapply"  domainObjectName ="NewSyCircleMapply"  >
+		 <generatedKey column="mapply_id" sqlStatement="Mysql" identity="true"/>
+    </table>
+
+	<table  tableName="sy_invite_circle_log"  domainObjectName ="NewSyInviteCircleLog"  >
+		 <generatedKey column="rec_id" sqlStatement="Mysql" identity="true"/>
+    </table>
+
+	
+	<table  tableName="sy_invite_circle_member"  domainObjectName ="NewSyInviteCircleMember"  >
+		 <generatedKey column="rec_id" sqlStatement="Mysql" identity="true"/>
+    </table>
+
+	<table  tableName="sy_glory_detials"  domainObjectName ="NewSyGloryDetails"  >
+		 <generatedKey column="glory_detial_id" sqlStatement="Mysql" identity="true"/>
+    </table>
+
+	
+
+	<table  tableName="sy_glory_type_list"  domainObjectName ="NewSyGloryTypeList"  >
+		 <generatedKey column="glory_id" sqlStatement="Mysql" identity="true"/>
+    </table>
+
+	
+	<table  tableName="sy_glory_user_list"  domainObjectName ="NewGloryUserList"  >
+		 <generatedKey column="glory_member_id" sqlStatement="Mysql" identity="true"/>
+    </table>
+
+	 
+<table  tableName="sy_white_list"  domainObjectName ="NewSyWhiteList"  >
+		 <generatedKey column="rec_id" sqlStatement="Mysql" identity="true"/>
+    </table>
+<table  tableName="sy_role"  domainObjectName ="NewSyRole"  >
+		 <generatedKey column="role_id" sqlStatement="Mysql" identity="true"/>
+    </table>
+	<table  tableName="sy_boc_org"  domainObjectName ="NewSyBocOrg"  >
+		 <generatedKey column="rec_id" sqlStatement="Mysql"
+		 identity="true"/>
+    </table>
+	
+	
+
+	<table  tableName="sy_wx_account"  domainObjectName ="NewSyWxAccount"  >
+		 <generatedKey column="rec_id" sqlStatement="Mysql"
+		 identity="true"/>
+    </table>
+	<table  tableName="sy_corp_active_stats"  domainObjectName ="NewSyCorpActiveStats"  >
+		 <generatedKey column="rec_id" sqlStatement="Mysql"
+		 identity="true"/>
+    </table>
+	<table  tableName="sy_corp_info"  domainObjectName ="NewSyCorpInfo"  >
+		 <generatedKey column="rec_id" sqlStatement="Mysql"
+		 identity="true"/>
+    </table>
+	<table  tableName="sy_corp_stats"  domainObjectName ="NewSyCorpStats"  >
+		 <generatedKey column="rec_id" sqlStatement="Mysql"
+		 identity="true"/>
+    </table>
+	
+
+
+	<table  tableName="sy_manager_boc"  domainObjectName ="NewSyManagerBoc"  >
+		 <generatedKey column="manager_id" sqlStatement="Mysql"
+		 identity="true"/>
+    </table>
+
+
+
+	
+	<table  tableName="sy_member_import_tmp"  domainObjectName ="NewSyMemberImportTmp"  >
+		 <generatedKey column="member_mobile" sqlStatement="Mysql"
+		 identity="false"/>
+    </table>
+
+	
+
+	<table  tableName="sy_points_log"  domainObjectName ="NewSyPointsLog"  >
+		 <generatedKey column="pl_id" sqlStatement="Mysql"
+		 identity="true"/>
+    </table>
+
+ >
+	<table  tableName="sy_admin_boc"  domainObjectName ="NewSyAdminBoc"  >
+		 <generatedKey column="admin_id" sqlStatement="Mysql"
+		 identity="true"/>
+    </table>
+	
+
+
+
+	<table  tableName="sy_group_manager"  domainObjectName ="NewSyGroupManager"  >
+		 <generatedKey column="group_manager_id" sqlStatement="Mysql"
+		 identity="true"/>
+    </table>
+	--> 
+	<table  tableName="sy_goods_delay_message"  domainObjectName ="SyGoodsDelayMessage"  >
+		 <generatedKey column="delay_id" sqlStatement="Mysql"
+		 identity="true"/>
+    </table>
+
+
+
+	</context>
+</generatorConfiguration>
+

@@ -1,0 +1,243 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.shanyuan.platform.ms.dao.order.mapper.SyOrderLogMapper" >
+  <resultMap id="BaseResultMap" type="com.shanyuan.platform.ms.dao.order.entity.SyOrderLog" >
+    <id column="log_id" property="logId" jdbcType="INTEGER" />
+    <result column="order_id" property="orderId" jdbcType="INTEGER" />
+    <result column="log_msg" property="logMsg" jdbcType="VARCHAR" />
+    <result column="log_time" property="logTime" jdbcType="INTEGER" />
+    <result column="log_role" property="logRole" jdbcType="CHAR" />
+    <result column="log_user" property="logUser" jdbcType="VARCHAR" />
+    <result column="log_orderstate" property="logOrderstate" jdbcType="CHAR" />
+  </resultMap>
+  <sql id="Example_Where_Clause" >
+    <where >
+      <foreach collection="oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Update_By_Example_Where_Clause" >
+    <where >
+      <foreach collection="example.oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Base_Column_List" >
+    log_id, order_id, log_msg, log_time, log_role, log_user, log_orderstate
+  </sql>
+  <select id="selectByExample" resultMap="BaseResultMap" parameterType="com.shanyuan.platform.ms.dao.order.entity.SyOrderLogExample" >
+    select
+    <if test="distinct" >
+      distinct
+    </if>
+    <include refid="Base_Column_List" />
+    from sy_order_log
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null" >
+      order by ${orderByClause}
+    </if>
+  </select>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+    select 
+    <include refid="Base_Column_List" />
+    from sy_order_log
+    where log_id = #{logId,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+    delete from sy_order_log
+    where log_id = #{logId,jdbcType=INTEGER}
+  </delete>
+  <delete id="deleteByExample" parameterType="com.shanyuan.platform.ms.dao.order.entity.SyOrderLogExample" >
+    delete from sy_order_log
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </delete>
+  <insert id="insert" parameterType="com.shanyuan.platform.ms.dao.order.entity.SyOrderLog" >
+    <selectKey resultType="java.lang.Integer" keyProperty="logId" order="AFTER" >
+      SELECT LAST_INSERT_ID()
+    </selectKey>
+    insert into sy_order_log (order_id, log_msg, log_time, 
+      log_role, log_user, log_orderstate
+      )
+    values (#{orderId,jdbcType=INTEGER}, #{logMsg,jdbcType=VARCHAR}, #{logTime,jdbcType=INTEGER}, 
+      #{logRole,jdbcType=CHAR}, #{logUser,jdbcType=VARCHAR}, #{logOrderstate,jdbcType=CHAR}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="com.shanyuan.platform.ms.dao.order.entity.SyOrderLog" >
+    <selectKey resultType="java.lang.Integer" keyProperty="logId" order="AFTER" >
+      SELECT LAST_INSERT_ID()
+    </selectKey>
+    insert into sy_order_log
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="orderId != null" >
+        order_id,
+      </if>
+      <if test="logMsg != null" >
+        log_msg,
+      </if>
+      <if test="logTime != null" >
+        log_time,
+      </if>
+      <if test="logRole != null" >
+        log_role,
+      </if>
+      <if test="logUser != null" >
+        log_user,
+      </if>
+      <if test="logOrderstate != null" >
+        log_orderstate,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="orderId != null" >
+        #{orderId,jdbcType=INTEGER},
+      </if>
+      <if test="logMsg != null" >
+        #{logMsg,jdbcType=VARCHAR},
+      </if>
+      <if test="logTime != null" >
+        #{logTime,jdbcType=INTEGER},
+      </if>
+      <if test="logRole != null" >
+        #{logRole,jdbcType=CHAR},
+      </if>
+      <if test="logUser != null" >
+        #{logUser,jdbcType=VARCHAR},
+      </if>
+      <if test="logOrderstate != null" >
+        #{logOrderstate,jdbcType=CHAR},
+      </if>
+    </trim>
+  </insert>
+  <select id="countByExample" parameterType="com.shanyuan.platform.ms.dao.order.entity.SyOrderLogExample" resultType="java.lang.Integer" >
+    select count(*) from sy_order_log
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </select>
+  <update id="updateByExampleSelective" parameterType="map" >
+    update sy_order_log
+    <set >
+      <if test="record.logId != null" >
+        log_id = #{record.logId,jdbcType=INTEGER},
+      </if>
+      <if test="record.orderId != null" >
+        order_id = #{record.orderId,jdbcType=INTEGER},
+      </if>
+      <if test="record.logMsg != null" >
+        log_msg = #{record.logMsg,jdbcType=VARCHAR},
+      </if>
+      <if test="record.logTime != null" >
+        log_time = #{record.logTime,jdbcType=INTEGER},
+      </if>
+      <if test="record.logRole != null" >
+        log_role = #{record.logRole,jdbcType=CHAR},
+      </if>
+      <if test="record.logUser != null" >
+        log_user = #{record.logUser,jdbcType=VARCHAR},
+      </if>
+      <if test="record.logOrderstate != null" >
+        log_orderstate = #{record.logOrderstate,jdbcType=CHAR},
+      </if>
+    </set>
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByExample" parameterType="map" >
+    update sy_order_log
+    set log_id = #{record.logId,jdbcType=INTEGER},
+      order_id = #{record.orderId,jdbcType=INTEGER},
+      log_msg = #{record.logMsg,jdbcType=VARCHAR},
+      log_time = #{record.logTime,jdbcType=INTEGER},
+      log_role = #{record.logRole,jdbcType=CHAR},
+      log_user = #{record.logUser,jdbcType=VARCHAR},
+      log_orderstate = #{record.logOrderstate,jdbcType=CHAR}
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByPrimaryKeySelective" parameterType="com.shanyuan.platform.ms.dao.order.entity.SyOrderLog" >
+    update sy_order_log
+    <set >
+      <if test="orderId != null" >
+        order_id = #{orderId,jdbcType=INTEGER},
+      </if>
+      <if test="logMsg != null" >
+        log_msg = #{logMsg,jdbcType=VARCHAR},
+      </if>
+      <if test="logTime != null" >
+        log_time = #{logTime,jdbcType=INTEGER},
+      </if>
+      <if test="logRole != null" >
+        log_role = #{logRole,jdbcType=CHAR},
+      </if>
+      <if test="logUser != null" >
+        log_user = #{logUser,jdbcType=VARCHAR},
+      </if>
+      <if test="logOrderstate != null" >
+        log_orderstate = #{logOrderstate,jdbcType=CHAR},
+      </if>
+    </set>
+    where log_id = #{logId,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.shanyuan.platform.ms.dao.order.entity.SyOrderLog" >
+    update sy_order_log
+    set order_id = #{orderId,jdbcType=INTEGER},
+      log_msg = #{logMsg,jdbcType=VARCHAR},
+      log_time = #{logTime,jdbcType=INTEGER},
+      log_role = #{logRole,jdbcType=CHAR},
+      log_user = #{logUser,jdbcType=VARCHAR},
+      log_orderstate = #{logOrderstate,jdbcType=CHAR}
+    where log_id = #{logId,jdbcType=INTEGER}
+  </update>
+</mapper>

@@ -1,0 +1,426 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.shanyuan.platform.ms.dao.stats.mapper.SyAgentStatsMapper" >
+  <resultMap id="BaseResultMap" type="com.shanyuan.platform.ms.dao.stats.entity.SyAgentStats" >
+    <id column="rec_id" property="recId" jdbcType="INTEGER" />
+    <result column="member_id" property="memberId" jdbcType="INTEGER" />
+    <result column="target_money" property="targetMoney" jdbcType="INTEGER" />
+    <result column="finished_money" property="finishedMoney" jdbcType="INTEGER" />
+    <result column="online_goods_count" property="onlineGoodsCount" jdbcType="INTEGER" />
+    <result column="add_time" property="addTime" jdbcType="INTEGER" />
+    <result column="refund_rate" property="refundRate" jdbcType="DECIMAL" />
+    <result column="complain_rate" property="complainRate" jdbcType="DECIMAL" />
+    <result column="send_speed" property="sendSpeed" jdbcType="DECIMAL" />
+    <result column="avg_desccredit" property="avgDesccredit" jdbcType="DECIMAL" />
+    <result column="neg_eval_rate" property="negEvalRate" jdbcType="DECIMAL" />
+    <result column="avg_servicecredit" property="avgServicecredit" jdbcType="DECIMAL" />
+    <result column="avg_deliverycredit" property="avgDeliverycredit" jdbcType="DECIMAL" />
+    <result column="channel" property="channel" jdbcType="VARCHAR" />
+    <result column="latest_refund_rate" property="latestRefundRate" jdbcType="DECIMAL" />
+    <result column="latest_complain_rate" property="latestComplainRate" jdbcType="DECIMAL" />
+    <result column="latest_send_speed" property="latestSendSpeed" jdbcType="DECIMAL" />
+  </resultMap>
+  <resultMap type="com.shanyuan.platform.ms.dao.stats.entity.AgentStatsBo" id="AgentStatResult">
+   	<result column="member_id" property="memberId" jdbcType="INTEGER" />
+    <result column="storeScore" property="storeScore" jdbcType="DOUBLE" />
+  </resultMap>
+  <sql id="Example_Where_Clause" >
+    <where >
+      <foreach collection="oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Update_By_Example_Where_Clause" >
+    <where >
+      <foreach collection="example.oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Base_Column_List" >
+    rec_id, member_id, target_money, finished_money, online_goods_count, add_time, refund_rate, 
+    complain_rate, send_speed, avg_desccredit, neg_eval_rate, avg_servicecredit, avg_deliverycredit, 
+    channel, latest_refund_rate, latest_complain_rate, latest_send_speed
+  </sql>
+  <select id="selectByExample" resultMap="BaseResultMap" parameterType="com.shanyuan.platform.ms.dao.stats.entity.SyAgentStatsExample" >
+    select
+    <if test="distinct" >
+      distinct
+    </if>
+    <include refid="Base_Column_List" />
+    from sy_agent_stats
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null" >
+      order by ${orderByClause}
+    </if>
+  </select>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+    select 
+    <include refid="Base_Column_List" />
+    from sy_agent_stats
+    where rec_id = #{recId,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+    delete from sy_agent_stats
+    where rec_id = #{recId,jdbcType=INTEGER}
+  </delete>
+  <delete id="deleteByExample" parameterType="com.shanyuan.platform.ms.dao.stats.entity.SyAgentStatsExample" >
+    delete from sy_agent_stats
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </delete>
+  <insert id="insert" parameterType="com.shanyuan.platform.ms.dao.stats.entity.SyAgentStats" >
+    <selectKey resultType="java.lang.Integer" keyProperty="recId" order="AFTER" >
+      SELECT LAST_INSERT_ID()
+    </selectKey>
+    insert into sy_agent_stats (member_id, target_money, finished_money, 
+      online_goods_count, add_time, refund_rate, 
+      complain_rate, send_speed, avg_desccredit, 
+      neg_eval_rate, avg_servicecredit, avg_deliverycredit, 
+      channel, latest_refund_rate, latest_complain_rate, 
+      latest_send_speed)
+    values (#{memberId,jdbcType=INTEGER}, #{targetMoney,jdbcType=INTEGER}, #{finishedMoney,jdbcType=INTEGER}, 
+      #{onlineGoodsCount,jdbcType=INTEGER}, #{addTime,jdbcType=INTEGER}, #{refundRate,jdbcType=DECIMAL}, 
+      #{complainRate,jdbcType=DECIMAL}, #{sendSpeed,jdbcType=DECIMAL}, #{avgDesccredit,jdbcType=DECIMAL}, 
+      #{negEvalRate,jdbcType=DECIMAL}, #{avgServicecredit,jdbcType=DECIMAL}, #{avgDeliverycredit,jdbcType=DECIMAL}, 
+      #{channel,jdbcType=VARCHAR}, #{latestRefundRate,jdbcType=DECIMAL}, #{latestComplainRate,jdbcType=DECIMAL}, 
+      #{latestSendSpeed,jdbcType=DECIMAL})
+  </insert>
+  <insert id="insertSelective" parameterType="com.shanyuan.platform.ms.dao.stats.entity.SyAgentStats" >
+    <selectKey resultType="java.lang.Integer" keyProperty="recId" order="AFTER" >
+      SELECT LAST_INSERT_ID()
+    </selectKey>
+    insert into sy_agent_stats
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="memberId != null" >
+        member_id,
+      </if>
+      <if test="targetMoney != null" >
+        target_money,
+      </if>
+      <if test="finishedMoney != null" >
+        finished_money,
+      </if>
+      <if test="onlineGoodsCount != null" >
+        online_goods_count,
+      </if>
+      <if test="addTime != null" >
+        add_time,
+      </if>
+      <if test="refundRate != null" >
+        refund_rate,
+      </if>
+      <if test="complainRate != null" >
+        complain_rate,
+      </if>
+      <if test="sendSpeed != null" >
+        send_speed,
+      </if>
+      <if test="avgDesccredit != null" >
+        avg_desccredit,
+      </if>
+      <if test="negEvalRate != null" >
+        neg_eval_rate,
+      </if>
+      <if test="avgServicecredit != null" >
+        avg_servicecredit,
+      </if>
+      <if test="avgDeliverycredit != null" >
+        avg_deliverycredit,
+      </if>
+      <if test="channel != null" >
+        channel,
+      </if>
+      <if test="latestRefundRate != null" >
+        latest_refund_rate,
+      </if>
+      <if test="latestComplainRate != null" >
+        latest_complain_rate,
+      </if>
+      <if test="latestSendSpeed != null" >
+        latest_send_speed,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="memberId != null" >
+        #{memberId,jdbcType=INTEGER},
+      </if>
+      <if test="targetMoney != null" >
+        #{targetMoney,jdbcType=INTEGER},
+      </if>
+      <if test="finishedMoney != null" >
+        #{finishedMoney,jdbcType=INTEGER},
+      </if>
+      <if test="onlineGoodsCount != null" >
+        #{onlineGoodsCount,jdbcType=INTEGER},
+      </if>
+      <if test="addTime != null" >
+        #{addTime,jdbcType=INTEGER},
+      </if>
+      <if test="refundRate != null" >
+        #{refundRate,jdbcType=DECIMAL},
+      </if>
+      <if test="complainRate != null" >
+        #{complainRate,jdbcType=DECIMAL},
+      </if>
+      <if test="sendSpeed != null" >
+        #{sendSpeed,jdbcType=DECIMAL},
+      </if>
+      <if test="avgDesccredit != null" >
+        #{avgDesccredit,jdbcType=DECIMAL},
+      </if>
+      <if test="negEvalRate != null" >
+        #{negEvalRate,jdbcType=DECIMAL},
+      </if>
+      <if test="avgServicecredit != null" >
+        #{avgServicecredit,jdbcType=DECIMAL},
+      </if>
+      <if test="avgDeliverycredit != null" >
+        #{avgDeliverycredit,jdbcType=DECIMAL},
+      </if>
+      <if test="channel != null" >
+        #{channel,jdbcType=VARCHAR},
+      </if>
+      <if test="latestRefundRate != null" >
+        #{latestRefundRate,jdbcType=DECIMAL},
+      </if>
+      <if test="latestComplainRate != null" >
+        #{latestComplainRate,jdbcType=DECIMAL},
+      </if>
+      <if test="latestSendSpeed != null" >
+        #{latestSendSpeed,jdbcType=DECIMAL},
+      </if>
+    </trim>
+  </insert>
+  <select id="countByExample" parameterType="com.shanyuan.platform.ms.dao.stats.entity.SyAgentStatsExample" resultType="java.lang.Integer" >
+    select count(*) from sy_agent_stats
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </select>
+  <update id="updateByExampleSelective" parameterType="map" >
+    update sy_agent_stats
+    <set >
+      <if test="record.recId != null" >
+        rec_id = #{record.recId,jdbcType=INTEGER},
+      </if>
+      <if test="record.memberId != null" >
+        member_id = #{record.memberId,jdbcType=INTEGER},
+      </if>
+      <if test="record.targetMoney != null" >
+        target_money = #{record.targetMoney,jdbcType=INTEGER},
+      </if>
+      <if test="record.finishedMoney != null" >
+        finished_money = #{record.finishedMoney,jdbcType=INTEGER},
+      </if>
+      <if test="record.onlineGoodsCount != null" >
+        online_goods_count = #{record.onlineGoodsCount,jdbcType=INTEGER},
+      </if>
+      <if test="record.addTime != null" >
+        add_time = #{record.addTime,jdbcType=INTEGER},
+      </if>
+      <if test="record.refundRate != null" >
+        refund_rate = #{record.refundRate,jdbcType=DECIMAL},
+      </if>
+      <if test="record.complainRate != null" >
+        complain_rate = #{record.complainRate,jdbcType=DECIMAL},
+      </if>
+      <if test="record.sendSpeed != null" >
+        send_speed = #{record.sendSpeed,jdbcType=DECIMAL},
+      </if>
+      <if test="record.avgDesccredit != null" >
+        avg_desccredit = #{record.avgDesccredit,jdbcType=DECIMAL},
+      </if>
+      <if test="record.negEvalRate != null" >
+        neg_eval_rate = #{record.negEvalRate,jdbcType=DECIMAL},
+      </if>
+      <if test="record.avgServicecredit != null" >
+        avg_servicecredit = #{record.avgServicecredit,jdbcType=DECIMAL},
+      </if>
+      <if test="record.avgDeliverycredit != null" >
+        avg_deliverycredit = #{record.avgDeliverycredit,jdbcType=DECIMAL},
+      </if>
+      <if test="record.channel != null" >
+        channel = #{record.channel,jdbcType=VARCHAR},
+      </if>
+      <if test="record.latestRefundRate != null" >
+        latest_refund_rate = #{record.latestRefundRate,jdbcType=DECIMAL},
+      </if>
+      <if test="record.latestComplainRate != null" >
+        latest_complain_rate = #{record.latestComplainRate,jdbcType=DECIMAL},
+      </if>
+      <if test="record.latestSendSpeed != null" >
+        latest_send_speed = #{record.latestSendSpeed,jdbcType=DECIMAL},
+      </if>
+    </set>
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByExample" parameterType="map" >
+    update sy_agent_stats
+    set rec_id = #{record.recId,jdbcType=INTEGER},
+      member_id = #{record.memberId,jdbcType=INTEGER},
+      target_money = #{record.targetMoney,jdbcType=INTEGER},
+      finished_money = #{record.finishedMoney,jdbcType=INTEGER},
+      online_goods_count = #{record.onlineGoodsCount,jdbcType=INTEGER},
+      add_time = #{record.addTime,jdbcType=INTEGER},
+      refund_rate = #{record.refundRate,jdbcType=DECIMAL},
+      complain_rate = #{record.complainRate,jdbcType=DECIMAL},
+      send_speed = #{record.sendSpeed,jdbcType=DECIMAL},
+      avg_desccredit = #{record.avgDesccredit,jdbcType=DECIMAL},
+      neg_eval_rate = #{record.negEvalRate,jdbcType=DECIMAL},
+      avg_servicecredit = #{record.avgServicecredit,jdbcType=DECIMAL},
+      avg_deliverycredit = #{record.avgDeliverycredit,jdbcType=DECIMAL},
+      channel = #{record.channel,jdbcType=VARCHAR},
+      latest_refund_rate = #{record.latestRefundRate,jdbcType=DECIMAL},
+      latest_complain_rate = #{record.latestComplainRate,jdbcType=DECIMAL},
+      latest_send_speed = #{record.latestSendSpeed,jdbcType=DECIMAL}
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByPrimaryKeySelective" parameterType="com.shanyuan.platform.ms.dao.stats.entity.SyAgentStats" >
+    update sy_agent_stats
+    <set >
+      <if test="memberId != null" >
+        member_id = #{memberId,jdbcType=INTEGER},
+      </if>
+      <if test="targetMoney != null" >
+        target_money = #{targetMoney,jdbcType=INTEGER},
+      </if>
+      <if test="finishedMoney != null" >
+        finished_money = #{finishedMoney,jdbcType=INTEGER},
+      </if>
+      <if test="onlineGoodsCount != null" >
+        online_goods_count = #{onlineGoodsCount,jdbcType=INTEGER},
+      </if>
+      <if test="addTime != null" >
+        add_time = #{addTime,jdbcType=INTEGER},
+      </if>
+      <if test="refundRate != null" >
+        refund_rate = #{refundRate,jdbcType=DECIMAL},
+      </if>
+      <if test="complainRate != null" >
+        complain_rate = #{complainRate,jdbcType=DECIMAL},
+      </if>
+      <if test="sendSpeed != null" >
+        send_speed = #{sendSpeed,jdbcType=DECIMAL},
+      </if>
+      <if test="avgDesccredit != null" >
+        avg_desccredit = #{avgDesccredit,jdbcType=DECIMAL},
+      </if>
+      <if test="negEvalRate != null" >
+        neg_eval_rate = #{negEvalRate,jdbcType=DECIMAL},
+      </if>
+      <if test="avgServicecredit != null" >
+        avg_servicecredit = #{avgServicecredit,jdbcType=DECIMAL},
+      </if>
+      <if test="avgDeliverycredit != null" >
+        avg_deliverycredit = #{avgDeliverycredit,jdbcType=DECIMAL},
+      </if>
+      <if test="channel != null" >
+        channel = #{channel,jdbcType=VARCHAR},
+      </if>
+      <if test="latestRefundRate != null" >
+        latest_refund_rate = #{latestRefundRate,jdbcType=DECIMAL},
+      </if>
+      <if test="latestComplainRate != null" >
+        latest_complain_rate = #{latestComplainRate,jdbcType=DECIMAL},
+      </if>
+      <if test="latestSendSpeed != null" >
+        latest_send_speed = #{latestSendSpeed,jdbcType=DECIMAL},
+      </if>
+    </set>
+    where rec_id = #{recId,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.shanyuan.platform.ms.dao.stats.entity.SyAgentStats" >
+    update sy_agent_stats
+    set member_id = #{memberId,jdbcType=INTEGER},
+      target_money = #{targetMoney,jdbcType=INTEGER},
+      finished_money = #{finishedMoney,jdbcType=INTEGER},
+      online_goods_count = #{onlineGoodsCount,jdbcType=INTEGER},
+      add_time = #{addTime,jdbcType=INTEGER},
+      refund_rate = #{refundRate,jdbcType=DECIMAL},
+      complain_rate = #{complainRate,jdbcType=DECIMAL},
+      send_speed = #{sendSpeed,jdbcType=DECIMAL},
+      avg_desccredit = #{avgDesccredit,jdbcType=DECIMAL},
+      neg_eval_rate = #{negEvalRate,jdbcType=DECIMAL},
+      avg_servicecredit = #{avgServicecredit,jdbcType=DECIMAL},
+      avg_deliverycredit = #{avgDeliverycredit,jdbcType=DECIMAL},
+      channel = #{channel,jdbcType=VARCHAR},
+      latest_refund_rate = #{latestRefundRate,jdbcType=DECIMAL},
+      latest_complain_rate = #{latestComplainRate,jdbcType=DECIMAL},
+      latest_send_speed = #{latestSendSpeed,jdbcType=DECIMAL}
+    where rec_id = #{recId,jdbcType=INTEGER}
+  </update>
+  
+  <select id="selectAgentStats" resultMap="BaseResultMap" >
+    select 
+    rec_id 
+    from sy_agent_stats
+    where member_id = #{memberId,jdbcType=INTEGER} and add_time > #{nowTime} 
+    order by rec_id desc 
+    limit 1
+  </select>
+  
+   <select id="scores" resultMap="AgentStatResult" >
+    SELECT t.* FROM
+    (SELECT ROUND(IFNULL((a.avg_desccredit + a.avg_servicecredit + a.avg_deliverycredit) / 3, 0), 2) AS storeScore,member_id  FROM sy_agent_stats a WHERE 
+	a.online_goods_count > 0  AND 
+	a.member_id IN 
+	<foreach collection="memberIds" item="memberIds" index="index" open="(" close=")" separator=",">
+	           #{memberIds}
+	</foreach>
+	ORDER BY add_time  DESC
+	) t GROUP BY t.member_id LIMIT 20
+  </select>
+</mapper>

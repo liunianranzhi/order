@@ -1,0 +1,321 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.shanyuan.platform.ms.dao.omorder.mapper.OmOrderVoucherMapper" >
+  <resultMap id="BaseResultMap" type="com.shanyuan.platform.ms.dao.omorder.entity.OmOrderVoucher" >
+    <id column="rec_id" property="recId" jdbcType="INTEGER" />
+    <result column="order_id" property="orderId" jdbcType="VARCHAR" />
+    <result column="main_id" property="mainId" jdbcType="VARCHAR" />
+    <result column="voucher_id" property="voucherId" jdbcType="INTEGER" />
+    <result column="voucher_code" property="voucherCode" jdbcType="VARCHAR" />
+    <result column="use_time" property="useTime" jdbcType="TIMESTAMP" />
+    <result column="voucher_price" property="voucherPrice" jdbcType="INTEGER" />
+    <result column="member_id" property="memberId" jdbcType="INTEGER" />
+    <result column="voucher_tpl_id" property="voucherTplId" jdbcType="INTEGER" />
+    <result column="remark" property="remark" jdbcType="VARCHAR" />
+    <result column="is_delete" property="isDelete" jdbcType="TINYINT" />
+    <result column="update_time" property="updateTime" jdbcType="TIMESTAMP" />
+  </resultMap>
+  <sql id="Example_Where_Clause" >
+    <where >
+      <foreach collection="oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Update_By_Example_Where_Clause" >
+    <where >
+      <foreach collection="example.oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Base_Column_List" >
+    rec_id, order_id, main_id, voucher_id, voucher_code, use_time, voucher_price, member_id, 
+    voucher_tpl_id, remark, is_delete, update_time
+  </sql>
+  <select id="selectByExample" resultMap="BaseResultMap" parameterType="com.shanyuan.platform.ms.dao.omorder.entity.OmOrderVoucherExample" >
+    select
+    <if test="distinct" >
+      distinct
+    </if>
+    <include refid="Base_Column_List" />
+    from om_order_voucher
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null" >
+      order by ${orderByClause}
+    </if>
+  </select>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+    select 
+    <include refid="Base_Column_List" />
+    from om_order_voucher
+    where rec_id = #{recId,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+    delete from om_order_voucher
+    where rec_id = #{recId,jdbcType=INTEGER}
+  </delete>
+  <delete id="deleteByExample" parameterType="com.shanyuan.platform.ms.dao.omorder.entity.OmOrderVoucherExample" >
+    delete from om_order_voucher
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </delete>
+  <insert id="insert" parameterType="com.shanyuan.platform.ms.dao.omorder.entity.OmOrderVoucher" >
+    <selectKey resultType="java.lang.Integer" keyProperty="recId" order="AFTER" >
+      SELECT LAST_INSERT_ID()
+    </selectKey>
+    insert into om_order_voucher (order_id, main_id, voucher_id, 
+      voucher_code, use_time, voucher_price, 
+      member_id, voucher_tpl_id, remark, 
+      is_delete, update_time)
+    values (#{orderId,jdbcType=VARCHAR}, #{mainId,jdbcType=VARCHAR}, #{voucherId,jdbcType=INTEGER}, 
+      #{voucherCode,jdbcType=VARCHAR}, #{useTime,jdbcType=TIMESTAMP}, #{voucherPrice,jdbcType=INTEGER}, 
+      #{memberId,jdbcType=INTEGER}, #{voucherTplId,jdbcType=INTEGER}, #{remark,jdbcType=VARCHAR}, 
+      #{isDelete,jdbcType=TINYINT}, #{updateTime,jdbcType=TIMESTAMP})
+  </insert>
+  <insert id="insertSelective" parameterType="com.shanyuan.platform.ms.dao.omorder.entity.OmOrderVoucher" >
+    <selectKey resultType="java.lang.Integer" keyProperty="recId" order="AFTER" >
+      SELECT LAST_INSERT_ID()
+    </selectKey>
+    insert into om_order_voucher
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="orderId != null" >
+        order_id,
+      </if>
+      <if test="mainId != null" >
+        main_id,
+      </if>
+      <if test="voucherId != null" >
+        voucher_id,
+      </if>
+      <if test="voucherCode != null" >
+        voucher_code,
+      </if>
+      <if test="useTime != null" >
+        use_time,
+      </if>
+      <if test="voucherPrice != null" >
+        voucher_price,
+      </if>
+      <if test="memberId != null" >
+        member_id,
+      </if>
+      <if test="voucherTplId != null" >
+        voucher_tpl_id,
+      </if>
+      <if test="remark != null" >
+        remark,
+      </if>
+      <if test="isDelete != null" >
+        is_delete,
+      </if>
+      <if test="updateTime != null" >
+        update_time,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="orderId != null" >
+        #{orderId,jdbcType=VARCHAR},
+      </if>
+      <if test="mainId != null" >
+        #{mainId,jdbcType=VARCHAR},
+      </if>
+      <if test="voucherId != null" >
+        #{voucherId,jdbcType=INTEGER},
+      </if>
+      <if test="voucherCode != null" >
+        #{voucherCode,jdbcType=VARCHAR},
+      </if>
+      <if test="useTime != null" >
+        #{useTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="voucherPrice != null" >
+        #{voucherPrice,jdbcType=INTEGER},
+      </if>
+      <if test="memberId != null" >
+        #{memberId,jdbcType=INTEGER},
+      </if>
+      <if test="voucherTplId != null" >
+        #{voucherTplId,jdbcType=INTEGER},
+      </if>
+      <if test="remark != null" >
+        #{remark,jdbcType=VARCHAR},
+      </if>
+      <if test="isDelete != null" >
+        #{isDelete,jdbcType=TINYINT},
+      </if>
+      <if test="updateTime != null" >
+        #{updateTime,jdbcType=TIMESTAMP},
+      </if>
+    </trim>
+  </insert>
+  <select id="countByExample" parameterType="com.shanyuan.platform.ms.dao.omorder.entity.OmOrderVoucherExample" resultType="java.lang.Integer" >
+    select count(*) from om_order_voucher
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </select>
+  <update id="updateByExampleSelective" parameterType="map" >
+    update om_order_voucher
+    <set >
+      <if test="record.recId != null" >
+        rec_id = #{record.recId,jdbcType=INTEGER},
+      </if>
+      <if test="record.orderId != null" >
+        order_id = #{record.orderId,jdbcType=VARCHAR},
+      </if>
+      <if test="record.mainId != null" >
+        main_id = #{record.mainId,jdbcType=VARCHAR},
+      </if>
+      <if test="record.voucherId != null" >
+        voucher_id = #{record.voucherId,jdbcType=INTEGER},
+      </if>
+      <if test="record.voucherCode != null" >
+        voucher_code = #{record.voucherCode,jdbcType=VARCHAR},
+      </if>
+      <if test="record.useTime != null" >
+        use_time = #{record.useTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="record.voucherPrice != null" >
+        voucher_price = #{record.voucherPrice,jdbcType=INTEGER},
+      </if>
+      <if test="record.memberId != null" >
+        member_id = #{record.memberId,jdbcType=INTEGER},
+      </if>
+      <if test="record.voucherTplId != null" >
+        voucher_tpl_id = #{record.voucherTplId,jdbcType=INTEGER},
+      </if>
+      <if test="record.remark != null" >
+        remark = #{record.remark,jdbcType=VARCHAR},
+      </if>
+      <if test="record.isDelete != null" >
+        is_delete = #{record.isDelete,jdbcType=TINYINT},
+      </if>
+      <if test="record.updateTime != null" >
+        update_time = #{record.updateTime,jdbcType=TIMESTAMP},
+      </if>
+    </set>
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByExample" parameterType="map" >
+    update om_order_voucher
+    set rec_id = #{record.recId,jdbcType=INTEGER},
+      order_id = #{record.orderId,jdbcType=VARCHAR},
+      main_id = #{record.mainId,jdbcType=VARCHAR},
+      voucher_id = #{record.voucherId,jdbcType=INTEGER},
+      voucher_code = #{record.voucherCode,jdbcType=VARCHAR},
+      use_time = #{record.useTime,jdbcType=TIMESTAMP},
+      voucher_price = #{record.voucherPrice,jdbcType=INTEGER},
+      member_id = #{record.memberId,jdbcType=INTEGER},
+      voucher_tpl_id = #{record.voucherTplId,jdbcType=INTEGER},
+      remark = #{record.remark,jdbcType=VARCHAR},
+      is_delete = #{record.isDelete,jdbcType=TINYINT},
+      update_time = #{record.updateTime,jdbcType=TIMESTAMP}
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByPrimaryKeySelective" parameterType="com.shanyuan.platform.ms.dao.omorder.entity.OmOrderVoucher" >
+    update om_order_voucher
+    <set >
+      <if test="orderId != null" >
+        order_id = #{orderId,jdbcType=VARCHAR},
+      </if>
+      <if test="mainId != null" >
+        main_id = #{mainId,jdbcType=VARCHAR},
+      </if>
+      <if test="voucherId != null" >
+        voucher_id = #{voucherId,jdbcType=INTEGER},
+      </if>
+      <if test="voucherCode != null" >
+        voucher_code = #{voucherCode,jdbcType=VARCHAR},
+      </if>
+      <if test="useTime != null" >
+        use_time = #{useTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="voucherPrice != null" >
+        voucher_price = #{voucherPrice,jdbcType=INTEGER},
+      </if>
+      <if test="memberId != null" >
+        member_id = #{memberId,jdbcType=INTEGER},
+      </if>
+      <if test="voucherTplId != null" >
+        voucher_tpl_id = #{voucherTplId,jdbcType=INTEGER},
+      </if>
+      <if test="remark != null" >
+        remark = #{remark,jdbcType=VARCHAR},
+      </if>
+      <if test="isDelete != null" >
+        is_delete = #{isDelete,jdbcType=TINYINT},
+      </if>
+      <if test="updateTime != null" >
+        update_time = #{updateTime,jdbcType=TIMESTAMP},
+      </if>
+    </set>
+    where rec_id = #{recId,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.shanyuan.platform.ms.dao.omorder.entity.OmOrderVoucher" >
+    update om_order_voucher
+    set order_id = #{orderId,jdbcType=VARCHAR},
+      main_id = #{mainId,jdbcType=VARCHAR},
+      voucher_id = #{voucherId,jdbcType=INTEGER},
+      voucher_code = #{voucherCode,jdbcType=VARCHAR},
+      use_time = #{useTime,jdbcType=TIMESTAMP},
+      voucher_price = #{voucherPrice,jdbcType=INTEGER},
+      member_id = #{memberId,jdbcType=INTEGER},
+      voucher_tpl_id = #{voucherTplId,jdbcType=INTEGER},
+      remark = #{remark,jdbcType=VARCHAR},
+      is_delete = #{isDelete,jdbcType=TINYINT},
+      update_time = #{updateTime,jdbcType=TIMESTAMP}
+    where rec_id = #{recId,jdbcType=INTEGER}
+  </update>
+</mapper>

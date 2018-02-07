@@ -1,0 +1,69 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.shanyuan.platform.ms.dao.statistics.mapper.PointDetailsTagsMapper" >
+  <resultMap id="BaseResultMap" type="com.shanyuan.platform.ms.dao.statistics.entity.MemberPointsNum" >
+    <id column="union_id" property="unionId" jdbcType="INTEGER" />
+    <result column="union_name" property="unionName" jdbcType="INTEGER" />
+    <result column="total_point_tag" property="totalPointTag" jdbcType="VARCHAR" />
+    <result column="valid_point_tag" property="validPointTag" jdbcType="VARCHAR" />
+    <result column="totalPointNum" property="totalPointNum" jdbcType="VARCHAR" />
+    <result column="validPointNum" property="validPointNum" jdbcType="BIGINT" />
+  </resultMap>
+	<select id="selectPointsByUnionId" parameterType="map" resultMap="BaseResultMap">
+		SELECT union_id,union_name,total_point_tag,COUNT(total_point_tag) AS totalPointNum,COUNT(valid_point_tag) AS validPointNum
+		FROM statistics_point_details_tag 
+		<if test="unionId != null">
+	       	where union_id = #{unionId,jdbcType=INTEGER}
+	     	</if>
+	     	<if test="unionId == null">
+	       	
+	     	</if>
+			GROUP BY total_point_tag
+			ORDER BY total_point_tag
+	</select>
+	
+	<select id="selectTotalPointsByUnionId" parameterType="map" resultMap="BaseResultMap">
+		SELECT COUNT(1) AS totalPointNum,union_id,union_name, total_point_tag FROM statistics_point_details_tag
+		<if test="unionId != null">
+        	WHERE union_id = #{unionId,jdbcType=INTEGER}
+      	</if>
+      	<if test="unionId == null">
+        	
+      	</if>
+			GROUP BY total_point_tag
+			ORDER BY total_point_tag
+	</select>
+	
+	<select id="selectValidPointsByUnionId" parameterType="map" resultMap="BaseResultMap">
+		SELECT COUNT(1) AS validPointNum,union_id,union_name, valid_point_tag FROM statistics_point_details_tag
+		<if test="unionId != null">
+        	WHERE union_id = #{unionId,jdbcType=INTEGER}
+      	</if>
+			GROUP BY valid_point_tag
+			ORDER BY valid_point_tag
+	</select>
+	
+	<select id="selectTotalNumByTagAndUnion" parameterType="map" resultType="java.lang.Integer">
+		SELECT COUNT(1) FROM statistics_point_details_tag
+		<where>
+			<if test="unionId != null">
+        	 	AND union_id = #{unionId,jdbcType=INTEGER}
+      		</if>
+      		<if test="tag != null">
+      			AND total_point_tag = #{tag, jdbcType=BIGINT}
+      		</if>
+		</where>
+	</select>
+	
+	<select id="selectValidNumByTagAndUnion" parameterType="map" resultType="java.lang.Integer">
+		SELECT COUNT(1) FROM statistics_point_details_tag
+		<where>
+			<if test="unionId != null">
+        	 	AND union_id = #{unionId,jdbcType=INTEGER}
+      		</if>
+      		<if test="tag != null">
+      			AND valid_point_tag = #{tag, jdbcType=BIGINT}
+      		</if>
+		</where>
+	</select>
+</mapper>

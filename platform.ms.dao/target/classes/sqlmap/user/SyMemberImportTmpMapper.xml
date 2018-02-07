@@ -1,0 +1,228 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.shanyuan.platform.ms.dao.user.mapper.SyMemberImportTmpMapper" >
+  <resultMap id="BaseResultMap" type="com.shanyuan.platform.ms.dao.user.entity.SyMemberImportTmp" >
+    <id column="member_mobile" property="memberMobile" jdbcType="VARCHAR" />
+    <result column="member_truename" property="memberTruename" jdbcType="VARCHAR" />
+    <result column="member_sex" property="memberSex" jdbcType="TINYINT" />
+    <result column="circle_id" property="circleId" jdbcType="INTEGER" />
+    <result column="channel" property="channel" jdbcType="VARCHAR" />
+    <result column="create_time" property="createTime" jdbcType="INTEGER" />
+  </resultMap>
+  <sql id="Example_Where_Clause" >
+    <where >
+      <foreach collection="oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Update_By_Example_Where_Clause" >
+    <where >
+      <foreach collection="example.oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Base_Column_List" >
+    member_mobile, member_truename, member_sex, circle_id, channel, create_time
+  </sql>
+  <select id="selectByExample" resultMap="BaseResultMap" parameterType="com.shanyuan.platform.ms.dao.user.entity.SyMemberImportTmpExample" >
+    select
+    <if test="distinct" >
+      distinct
+    </if>
+    <include refid="Base_Column_List" />
+    from sy_member_import_tmp
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null" >
+      order by ${orderByClause}
+    </if>
+  </select>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.String" >
+    select 
+    <include refid="Base_Column_List" />
+    from sy_member_import_tmp
+    where member_mobile = #{memberMobile,jdbcType=VARCHAR}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.String" >
+    delete from sy_member_import_tmp
+    where member_mobile = #{memberMobile,jdbcType=VARCHAR}
+  </delete>
+  <delete id="deleteByExample" parameterType="com.shanyuan.platform.ms.dao.user.entity.SyMemberImportTmpExample" >
+    delete from sy_member_import_tmp
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </delete>
+  <insert id="insert" parameterType="com.shanyuan.platform.ms.dao.user.entity.SyMemberImportTmp" >
+    insert into sy_member_import_tmp (member_mobile, member_truename, member_sex, 
+      circle_id, channel, create_time
+      )
+    values (#{memberMobile,jdbcType=VARCHAR}, #{memberTruename,jdbcType=VARCHAR}, #{memberSex,jdbcType=TINYINT}, 
+      #{circleId,jdbcType=INTEGER}, #{channel,jdbcType=VARCHAR}, #{createTime,jdbcType=INTEGER}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="com.shanyuan.platform.ms.dao.user.entity.SyMemberImportTmp" >
+    insert into sy_member_import_tmp
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="memberMobile != null" >
+        member_mobile,
+      </if>
+      <if test="memberTruename != null" >
+        member_truename,
+      </if>
+      <if test="memberSex != null" >
+        member_sex,
+      </if>
+      <if test="circleId != null" >
+        circle_id,
+      </if>
+      <if test="channel != null" >
+        channel,
+      </if>
+      <if test="createTime != null" >
+        create_time,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="memberMobile != null" >
+        #{memberMobile,jdbcType=VARCHAR},
+      </if>
+      <if test="memberTruename != null" >
+        #{memberTruename,jdbcType=VARCHAR},
+      </if>
+      <if test="memberSex != null" >
+        #{memberSex,jdbcType=TINYINT},
+      </if>
+      <if test="circleId != null" >
+        #{circleId,jdbcType=INTEGER},
+      </if>
+      <if test="channel != null" >
+        #{channel,jdbcType=VARCHAR},
+      </if>
+      <if test="createTime != null" >
+        #{createTime,jdbcType=INTEGER},
+      </if>
+    </trim>
+  </insert>
+  <select id="countByExample" parameterType="com.shanyuan.platform.ms.dao.user.entity.SyMemberImportTmpExample" resultType="java.lang.Integer" >
+    select count(*) from sy_member_import_tmp
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </select>
+  <update id="updateByExampleSelective" parameterType="map" >
+    update sy_member_import_tmp
+    <set >
+      <if test="record.memberMobile != null" >
+        member_mobile = #{record.memberMobile,jdbcType=VARCHAR},
+      </if>
+      <if test="record.memberTruename != null" >
+        member_truename = #{record.memberTruename,jdbcType=VARCHAR},
+      </if>
+      <if test="record.memberSex != null" >
+        member_sex = #{record.memberSex,jdbcType=TINYINT},
+      </if>
+      <if test="record.circleId != null" >
+        circle_id = #{record.circleId,jdbcType=INTEGER},
+      </if>
+      <if test="record.channel != null" >
+        channel = #{record.channel,jdbcType=VARCHAR},
+      </if>
+      <if test="record.createTime != null" >
+        create_time = #{record.createTime,jdbcType=INTEGER},
+      </if>
+    </set>
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByExample" parameterType="map" >
+    update sy_member_import_tmp
+    set member_mobile = #{record.memberMobile,jdbcType=VARCHAR},
+      member_truename = #{record.memberTruename,jdbcType=VARCHAR},
+      member_sex = #{record.memberSex,jdbcType=TINYINT},
+      circle_id = #{record.circleId,jdbcType=INTEGER},
+      channel = #{record.channel,jdbcType=VARCHAR},
+      create_time = #{record.createTime,jdbcType=INTEGER}
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByPrimaryKeySelective" parameterType="com.shanyuan.platform.ms.dao.user.entity.SyMemberImportTmp" >
+    update sy_member_import_tmp
+    <set >
+      <if test="memberTruename != null" >
+        member_truename = #{memberTruename,jdbcType=VARCHAR},
+      </if>
+      <if test="memberSex != null" >
+        member_sex = #{memberSex,jdbcType=TINYINT},
+      </if>
+      <if test="circleId != null" >
+        circle_id = #{circleId,jdbcType=INTEGER},
+      </if>
+      <if test="channel != null" >
+        channel = #{channel,jdbcType=VARCHAR},
+      </if>
+      <if test="createTime != null" >
+        create_time = #{createTime,jdbcType=INTEGER},
+      </if>
+    </set>
+    where member_mobile = #{memberMobile,jdbcType=VARCHAR}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.shanyuan.platform.ms.dao.user.entity.SyMemberImportTmp" >
+    update sy_member_import_tmp
+    set member_truename = #{memberTruename,jdbcType=VARCHAR},
+      member_sex = #{memberSex,jdbcType=TINYINT},
+      circle_id = #{circleId,jdbcType=INTEGER},
+      channel = #{channel,jdbcType=VARCHAR},
+      create_time = #{createTime,jdbcType=INTEGER}
+    where member_mobile = #{memberMobile,jdbcType=VARCHAR}
+  </update>
+</mapper>

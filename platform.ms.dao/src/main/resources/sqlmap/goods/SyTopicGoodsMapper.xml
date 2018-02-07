@@ -1,0 +1,456 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.shanyuan.platform.ms.dao.goods.mapper.SyTopicGoodsMapper" >
+  <resultMap id="BaseResultMap" type="com.shanyuan.platform.ms.dao.goods.entity.SyTopicGoods" >
+    <id column="rec_id" property="recId" jdbcType="INTEGER" />
+    <result column="topic_id" property="topicId" jdbcType="INTEGER" />
+    <result column="goods_name" property="goodsName" jdbcType="VARCHAR" />
+    <result column="goods_commonid" property="goodsCommonid" jdbcType="INTEGER" />
+    <result column="goods_id" property="goodsId" jdbcType="INTEGER" />
+    <result column="goods_spec" property="goodsSpec" jdbcType="VARCHAR" />
+    <result column="act_goods_price" property="actGoodsPrice" jdbcType="DECIMAL" />
+    <result column="act_goods_storage" property="actGoodsStorage" jdbcType="BIGINT" />
+    <result column="act_sale_num" property="actSaleNum" jdbcType="BIGINT" />
+    <result column="boc_points_price" property="bocPointsPrice" jdbcType="DECIMAL" />
+    <result column="purchase_price" property="purchasePrice" jdbcType="DECIMAL" />
+    <result column="boc_point_rate" property="bocPointRate" jdbcType="INTEGER" />
+    <result column="publisher_id" property="publisherId" jdbcType="INTEGER" />
+    <result column="publisher_truename" property="publisherTruename" jdbcType="VARCHAR" />
+    <result column="activity_image" property="activityImage" jdbcType="VARCHAR" />
+    <result column="latest_salenum" property="latestSalenum" jdbcType="INTEGER" />
+    <result column="goods_module_type" property="goodsModuleType" jdbcType="TINYINT" />
+    <result column="status" property="status" jdbcType="TINYINT" />
+    <result column="create_time" property="createTime" jdbcType="TIMESTAMP" />
+    <result column="update_time" property="updateTime" jdbcType="TIMESTAMP" />
+  </resultMap>
+  <sql id="Example_Where_Clause" >
+    <where >
+      <foreach collection="oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Update_By_Example_Where_Clause" >
+    <where >
+      <foreach collection="example.oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Base_Column_List" >
+    rec_id, topic_id, goods_name, goods_commonid, goods_id, goods_spec, act_goods_price, 
+    act_goods_storage, act_sale_num, boc_points_price, purchase_price, boc_point_rate, 
+    publisher_id, publisher_truename, activity_image, latest_salenum, goods_module_type, 
+    status, create_time, update_time
+  </sql>
+  <select id="selectByExample" resultMap="BaseResultMap" parameterType="com.shanyuan.platform.ms.dao.goods.entity.SyTopicGoodsExample" >
+    select
+    <if test="distinct" >
+      distinct
+    </if>
+    <include refid="Base_Column_List" />
+    from sy_topic_goods
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null" >
+      order by ${orderByClause}
+    </if>
+  </select>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+    select 
+    <include refid="Base_Column_List" />
+    from sy_topic_goods
+    where rec_id = #{recId,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+    delete from sy_topic_goods
+    where rec_id = #{recId,jdbcType=INTEGER}
+  </delete>
+  <delete id="deleteByExample" parameterType="com.shanyuan.platform.ms.dao.goods.entity.SyTopicGoodsExample" >
+    delete from sy_topic_goods
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </delete>
+  <insert id="insert" parameterType="com.shanyuan.platform.ms.dao.goods.entity.SyTopicGoods" >
+    <selectKey resultType="java.lang.Integer" keyProperty="recId" order="AFTER" >
+      SELECT LAST_INSERT_ID()
+    </selectKey>
+    insert into sy_topic_goods (topic_id, goods_name, goods_commonid, 
+      goods_id, goods_spec, act_goods_price, 
+      act_goods_storage, act_sale_num, boc_points_price, 
+      purchase_price, boc_point_rate, publisher_id, 
+      publisher_truename, activity_image, latest_salenum, 
+      goods_module_type, status, create_time, 
+      update_time)
+    values (#{topicId,jdbcType=INTEGER}, #{goodsName,jdbcType=VARCHAR}, #{goodsCommonid,jdbcType=INTEGER}, 
+      #{goodsId,jdbcType=INTEGER}, #{goodsSpec,jdbcType=VARCHAR}, #{actGoodsPrice,jdbcType=DECIMAL}, 
+      #{actGoodsStorage,jdbcType=BIGINT}, #{actSaleNum,jdbcType=BIGINT}, #{bocPointsPrice,jdbcType=DECIMAL}, 
+      #{purchasePrice,jdbcType=DECIMAL}, #{bocPointRate,jdbcType=INTEGER}, #{publisherId,jdbcType=INTEGER}, 
+      #{publisherTruename,jdbcType=VARCHAR}, #{activityImage,jdbcType=VARCHAR}, #{latestSalenum,jdbcType=INTEGER}, 
+      #{goodsModuleType,jdbcType=TINYINT}, #{status,jdbcType=TINYINT}, #{createTime,jdbcType=TIMESTAMP}, 
+      #{updateTime,jdbcType=TIMESTAMP})
+  </insert>
+  <insert id="insertSelective" parameterType="com.shanyuan.platform.ms.dao.goods.entity.SyTopicGoods" >
+    <selectKey resultType="java.lang.Integer" keyProperty="recId" order="AFTER" >
+      SELECT LAST_INSERT_ID()
+    </selectKey>
+    insert into sy_topic_goods
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="topicId != null" >
+        topic_id,
+      </if>
+      <if test="goodsName != null" >
+        goods_name,
+      </if>
+      <if test="goodsCommonid != null" >
+        goods_commonid,
+      </if>
+      <if test="goodsId != null" >
+        goods_id,
+      </if>
+      <if test="goodsSpec != null" >
+        goods_spec,
+      </if>
+      <if test="actGoodsPrice != null" >
+        act_goods_price,
+      </if>
+      <if test="actGoodsStorage != null" >
+        act_goods_storage,
+      </if>
+      <if test="actSaleNum != null" >
+        act_sale_num,
+      </if>
+      <if test="bocPointsPrice != null" >
+        boc_points_price,
+      </if>
+      <if test="purchasePrice != null" >
+        purchase_price,
+      </if>
+      <if test="bocPointRate != null" >
+        boc_point_rate,
+      </if>
+      <if test="publisherId != null" >
+        publisher_id,
+      </if>
+      <if test="publisherTruename != null" >
+        publisher_truename,
+      </if>
+      <if test="activityImage != null" >
+        activity_image,
+      </if>
+      <if test="latestSalenum != null" >
+        latest_salenum,
+      </if>
+      <if test="goodsModuleType != null" >
+        goods_module_type,
+      </if>
+      <if test="status != null" >
+        status,
+      </if>
+      <if test="createTime != null" >
+        create_time,
+      </if>
+      <if test="updateTime != null" >
+        update_time,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="topicId != null" >
+        #{topicId,jdbcType=INTEGER},
+      </if>
+      <if test="goodsName != null" >
+        #{goodsName,jdbcType=VARCHAR},
+      </if>
+      <if test="goodsCommonid != null" >
+        #{goodsCommonid,jdbcType=INTEGER},
+      </if>
+      <if test="goodsId != null" >
+        #{goodsId,jdbcType=INTEGER},
+      </if>
+      <if test="goodsSpec != null" >
+        #{goodsSpec,jdbcType=VARCHAR},
+      </if>
+      <if test="actGoodsPrice != null" >
+        #{actGoodsPrice,jdbcType=DECIMAL},
+      </if>
+      <if test="actGoodsStorage != null" >
+        #{actGoodsStorage,jdbcType=BIGINT},
+      </if>
+      <if test="actSaleNum != null" >
+        #{actSaleNum,jdbcType=BIGINT},
+      </if>
+      <if test="bocPointsPrice != null" >
+        #{bocPointsPrice,jdbcType=DECIMAL},
+      </if>
+      <if test="purchasePrice != null" >
+        #{purchasePrice,jdbcType=DECIMAL},
+      </if>
+      <if test="bocPointRate != null" >
+        #{bocPointRate,jdbcType=INTEGER},
+      </if>
+      <if test="publisherId != null" >
+        #{publisherId,jdbcType=INTEGER},
+      </if>
+      <if test="publisherTruename != null" >
+        #{publisherTruename,jdbcType=VARCHAR},
+      </if>
+      <if test="activityImage != null" >
+        #{activityImage,jdbcType=VARCHAR},
+      </if>
+      <if test="latestSalenum != null" >
+        #{latestSalenum,jdbcType=INTEGER},
+      </if>
+      <if test="goodsModuleType != null" >
+        #{goodsModuleType,jdbcType=TINYINT},
+      </if>
+      <if test="status != null" >
+        #{status,jdbcType=TINYINT},
+      </if>
+      <if test="createTime != null" >
+        #{createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updateTime != null" >
+        #{updateTime,jdbcType=TIMESTAMP},
+      </if>
+    </trim>
+  </insert>
+  <select id="countByExample" parameterType="com.shanyuan.platform.ms.dao.goods.entity.SyTopicGoodsExample" resultType="java.lang.Integer" >
+    select count(*) from sy_topic_goods
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </select>
+  <update id="updateByExampleSelective" parameterType="map" >
+    update sy_topic_goods
+    <set >
+      <if test="record.recId != null" >
+        rec_id = #{record.recId,jdbcType=INTEGER},
+      </if>
+      <if test="record.topicId != null" >
+        topic_id = #{record.topicId,jdbcType=INTEGER},
+      </if>
+      <if test="record.goodsName != null" >
+        goods_name = #{record.goodsName,jdbcType=VARCHAR},
+      </if>
+      <if test="record.goodsCommonid != null" >
+        goods_commonid = #{record.goodsCommonid,jdbcType=INTEGER},
+      </if>
+      <if test="record.goodsId != null" >
+        goods_id = #{record.goodsId,jdbcType=INTEGER},
+      </if>
+      <if test="record.goodsSpec != null" >
+        goods_spec = #{record.goodsSpec,jdbcType=VARCHAR},
+      </if>
+      <if test="record.actGoodsPrice != null" >
+        act_goods_price = #{record.actGoodsPrice,jdbcType=DECIMAL},
+      </if>
+      <if test="record.actGoodsStorage != null" >
+        act_goods_storage = #{record.actGoodsStorage,jdbcType=BIGINT},
+      </if>
+      <if test="record.actSaleNum != null" >
+        act_sale_num = #{record.actSaleNum,jdbcType=BIGINT},
+      </if>
+      <if test="record.bocPointsPrice != null" >
+        boc_points_price = #{record.bocPointsPrice,jdbcType=DECIMAL},
+      </if>
+      <if test="record.purchasePrice != null" >
+        purchase_price = #{record.purchasePrice,jdbcType=DECIMAL},
+      </if>
+      <if test="record.bocPointRate != null" >
+        boc_point_rate = #{record.bocPointRate,jdbcType=INTEGER},
+      </if>
+      <if test="record.publisherId != null" >
+        publisher_id = #{record.publisherId,jdbcType=INTEGER},
+      </if>
+      <if test="record.publisherTruename != null" >
+        publisher_truename = #{record.publisherTruename,jdbcType=VARCHAR},
+      </if>
+      <if test="record.activityImage != null" >
+        activity_image = #{record.activityImage,jdbcType=VARCHAR},
+      </if>
+      <if test="record.latestSalenum != null" >
+        latest_salenum = #{record.latestSalenum,jdbcType=INTEGER},
+      </if>
+      <if test="record.goodsModuleType != null" >
+        goods_module_type = #{record.goodsModuleType,jdbcType=TINYINT},
+      </if>
+      <if test="record.status != null" >
+        status = #{record.status,jdbcType=TINYINT},
+      </if>
+      <if test="record.createTime != null" >
+        create_time = #{record.createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="record.updateTime != null" >
+        update_time = #{record.updateTime,jdbcType=TIMESTAMP},
+      </if>
+    </set>
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByExample" parameterType="map" >
+    update sy_topic_goods
+    set rec_id = #{record.recId,jdbcType=INTEGER},
+      topic_id = #{record.topicId,jdbcType=INTEGER},
+      goods_name = #{record.goodsName,jdbcType=VARCHAR},
+      goods_commonid = #{record.goodsCommonid,jdbcType=INTEGER},
+      goods_id = #{record.goodsId,jdbcType=INTEGER},
+      goods_spec = #{record.goodsSpec,jdbcType=VARCHAR},
+      act_goods_price = #{record.actGoodsPrice,jdbcType=DECIMAL},
+      act_goods_storage = #{record.actGoodsStorage,jdbcType=BIGINT},
+      act_sale_num = #{record.actSaleNum,jdbcType=BIGINT},
+      boc_points_price = #{record.bocPointsPrice,jdbcType=DECIMAL},
+      purchase_price = #{record.purchasePrice,jdbcType=DECIMAL},
+      boc_point_rate = #{record.bocPointRate,jdbcType=INTEGER},
+      publisher_id = #{record.publisherId,jdbcType=INTEGER},
+      publisher_truename = #{record.publisherTruename,jdbcType=VARCHAR},
+      activity_image = #{record.activityImage,jdbcType=VARCHAR},
+      latest_salenum = #{record.latestSalenum,jdbcType=INTEGER},
+      goods_module_type = #{record.goodsModuleType,jdbcType=TINYINT},
+      status = #{record.status,jdbcType=TINYINT},
+      create_time = #{record.createTime,jdbcType=TIMESTAMP},
+      update_time = #{record.updateTime,jdbcType=TIMESTAMP}
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByPrimaryKeySelective" parameterType="com.shanyuan.platform.ms.dao.goods.entity.SyTopicGoods" >
+    update sy_topic_goods
+    <set >
+      <if test="topicId != null" >
+        topic_id = #{topicId,jdbcType=INTEGER},
+      </if>
+      <if test="goodsName != null" >
+        goods_name = #{goodsName,jdbcType=VARCHAR},
+      </if>
+      <if test="goodsCommonid != null" >
+        goods_commonid = #{goodsCommonid,jdbcType=INTEGER},
+      </if>
+      <if test="goodsId != null" >
+        goods_id = #{goodsId,jdbcType=INTEGER},
+      </if>
+      <if test="goodsSpec != null" >
+        goods_spec = #{goodsSpec,jdbcType=VARCHAR},
+      </if>
+      <if test="actGoodsPrice != null" >
+        act_goods_price = #{actGoodsPrice,jdbcType=DECIMAL},
+      </if>
+      <if test="actGoodsStorage != null" >
+        act_goods_storage = #{actGoodsStorage,jdbcType=BIGINT},
+      </if>
+      <if test="actSaleNum != null" >
+        act_sale_num = #{actSaleNum,jdbcType=BIGINT},
+      </if>
+      <if test="bocPointsPrice != null" >
+        boc_points_price = #{bocPointsPrice,jdbcType=DECIMAL},
+      </if>
+      <if test="purchasePrice != null" >
+        purchase_price = #{purchasePrice,jdbcType=DECIMAL},
+      </if>
+      <if test="bocPointRate != null" >
+        boc_point_rate = #{bocPointRate,jdbcType=INTEGER},
+      </if>
+      <if test="publisherId != null" >
+        publisher_id = #{publisherId,jdbcType=INTEGER},
+      </if>
+      <if test="publisherTruename != null" >
+        publisher_truename = #{publisherTruename,jdbcType=VARCHAR},
+      </if>
+      <if test="activityImage != null" >
+        activity_image = #{activityImage,jdbcType=VARCHAR},
+      </if>
+      <if test="latestSalenum != null" >
+        latest_salenum = #{latestSalenum,jdbcType=INTEGER},
+      </if>
+      <if test="goodsModuleType != null" >
+        goods_module_type = #{goodsModuleType,jdbcType=TINYINT},
+      </if>
+      <if test="status != null" >
+        status = #{status,jdbcType=TINYINT},
+      </if>
+      <if test="createTime != null" >
+        create_time = #{createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updateTime != null" >
+        update_time = #{updateTime,jdbcType=TIMESTAMP},
+      </if>
+    </set>
+    where rec_id = #{recId,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.shanyuan.platform.ms.dao.goods.entity.SyTopicGoods" >
+    update sy_topic_goods
+    set topic_id = #{topicId,jdbcType=INTEGER},
+      goods_name = #{goodsName,jdbcType=VARCHAR},
+      goods_commonid = #{goodsCommonid,jdbcType=INTEGER},
+      goods_id = #{goodsId,jdbcType=INTEGER},
+      goods_spec = #{goodsSpec,jdbcType=VARCHAR},
+      act_goods_price = #{actGoodsPrice,jdbcType=DECIMAL},
+      act_goods_storage = #{actGoodsStorage,jdbcType=BIGINT},
+      act_sale_num = #{actSaleNum,jdbcType=BIGINT},
+      boc_points_price = #{bocPointsPrice,jdbcType=DECIMAL},
+      purchase_price = #{purchasePrice,jdbcType=DECIMAL},
+      boc_point_rate = #{bocPointRate,jdbcType=INTEGER},
+      publisher_id = #{publisherId,jdbcType=INTEGER},
+      publisher_truename = #{publisherTruename,jdbcType=VARCHAR},
+      activity_image = #{activityImage,jdbcType=VARCHAR},
+      latest_salenum = #{latestSalenum,jdbcType=INTEGER},
+      goods_module_type = #{goodsModuleType,jdbcType=TINYINT},
+      status = #{status,jdbcType=TINYINT},
+      create_time = #{createTime,jdbcType=TIMESTAMP},
+      update_time = #{updateTime,jdbcType=TIMESTAMP}
+    where rec_id = #{recId,jdbcType=INTEGER}
+  </update>
+
+  <update id="updateMoreNum" parameterType="com.shanyuan.platform.ms.dao.goods.entity.SyTopicGoods" >
+    UPDATE sy_topic_goods SET act_sale_num = ifnull(act_sale_num,0)+#{actSaleNum,jdbcType=INTEGER} WHERE topic_id=#{topicId,jdbcType=INTEGER} AND goods_id=#{goodsId,jdbcType=INTEGER}
+  </update>
+  <update id="updateLessNum" parameterType="com.shanyuan.platform.ms.dao.goods.entity.SyTopicGoods" >
+    UPDATE sy_topic_goods SET act_sale_num =ifnull(act_sale_num,0)-#{actSaleNum,jdbcType=INTEGER} WHERE topic_id=#{topicId,jdbcType=INTEGER} AND goods_id=#{goodsId,jdbcType=INTEGER}
+  </update>
+</mapper>

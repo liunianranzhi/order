@@ -1,0 +1,196 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.shanyuan.platform.ms.dao.order.mapper.SyOrderPayMapper" >
+  <resultMap id="BaseResultMap" type="com.shanyuan.platform.ms.dao.order.entity.SyOrderPay" >
+    <id column="pay_id" property="payId" jdbcType="INTEGER" />
+    <result column="pay_sn" property="paySn" jdbcType="BIGINT" />
+    <result column="buyer_id" property="buyerId" jdbcType="INTEGER" />
+    <result column="api_pay_state" property="apiPayState" jdbcType="CHAR" />
+  </resultMap>
+  <sql id="Example_Where_Clause" >
+    <where >
+      <foreach collection="oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Update_By_Example_Where_Clause" >
+    <where >
+      <foreach collection="example.oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Base_Column_List" >
+    pay_id, pay_sn, buyer_id, api_pay_state
+  </sql>
+  <select id="selectByExample" resultMap="BaseResultMap" parameterType="com.shanyuan.platform.ms.dao.order.entity.SyOrderPayExample" >
+    select
+    <if test="distinct" >
+      distinct
+    </if>
+    <include refid="Base_Column_List" />
+    from sy_order_pay
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null" >
+      order by ${orderByClause}
+    </if>
+  </select>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+    select 
+    <include refid="Base_Column_List" />
+    from sy_order_pay
+    where pay_id = #{payId,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+    delete from sy_order_pay
+    where pay_id = #{payId,jdbcType=INTEGER}
+  </delete>
+  <delete id="deleteByExample" parameterType="com.shanyuan.platform.ms.dao.order.entity.SyOrderPayExample" >
+    delete from sy_order_pay
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </delete>
+  <insert id="insert" parameterType="com.shanyuan.platform.ms.dao.order.entity.SyOrderPay" >
+    <selectKey resultType="java.lang.Integer" keyProperty="payId" order="AFTER" >
+      SELECT LAST_INSERT_ID()
+    </selectKey>
+    insert into sy_order_pay (pay_sn, buyer_id, api_pay_state
+      )
+    values (#{paySn,jdbcType=BIGINT}, #{buyerId,jdbcType=INTEGER}, #{apiPayState,jdbcType=CHAR}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="com.shanyuan.platform.ms.dao.order.entity.SyOrderPay" >
+    <selectKey resultType="java.lang.Integer" keyProperty="payId" order="AFTER" >
+      SELECT LAST_INSERT_ID()
+    </selectKey>
+    insert into sy_order_pay
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="paySn != null" >
+        pay_sn,
+      </if>
+      <if test="buyerId != null" >
+        buyer_id,
+      </if>
+      <if test="apiPayState != null" >
+        api_pay_state,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="paySn != null" >
+        #{paySn,jdbcType=BIGINT},
+      </if>
+      <if test="buyerId != null" >
+        #{buyerId,jdbcType=INTEGER},
+      </if>
+      <if test="apiPayState != null" >
+        #{apiPayState,jdbcType=CHAR},
+      </if>
+    </trim>
+  </insert>
+  <select id="countByExample" parameterType="com.shanyuan.platform.ms.dao.order.entity.SyOrderPayExample" resultType="java.lang.Integer" >
+    select count(*) from sy_order_pay
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </select>
+  <update id="updateByExampleSelective" parameterType="map" >
+    update sy_order_pay
+    <set >
+      <if test="record.payId != null" >
+        pay_id = #{record.payId,jdbcType=INTEGER},
+      </if>
+      <if test="record.paySn != null" >
+        pay_sn = #{record.paySn,jdbcType=BIGINT},
+      </if>
+      <if test="record.buyerId != null" >
+        buyer_id = #{record.buyerId,jdbcType=INTEGER},
+      </if>
+      <if test="record.apiPayState != null" >
+        api_pay_state = #{record.apiPayState,jdbcType=CHAR},
+      </if>
+    </set>
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByExample" parameterType="map" >
+    update sy_order_pay
+    set pay_id = #{record.payId,jdbcType=INTEGER},
+      pay_sn = #{record.paySn,jdbcType=BIGINT},
+      buyer_id = #{record.buyerId,jdbcType=INTEGER},
+      api_pay_state = #{record.apiPayState,jdbcType=CHAR}
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByPrimaryKeySelective" parameterType="com.shanyuan.platform.ms.dao.order.entity.SyOrderPay" >
+    update sy_order_pay
+    <set >
+      <if test="paySn != null" >
+        pay_sn = #{paySn,jdbcType=BIGINT},
+      </if>
+      <if test="buyerId != null" >
+        buyer_id = #{buyerId,jdbcType=INTEGER},
+      </if>
+      <if test="apiPayState != null" >
+        api_pay_state = #{apiPayState,jdbcType=CHAR},
+      </if>
+    </set>
+    where pay_id = #{payId,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.shanyuan.platform.ms.dao.order.entity.SyOrderPay" >
+    update sy_order_pay
+    set pay_sn = #{paySn,jdbcType=BIGINT},
+      buyer_id = #{buyerId,jdbcType=INTEGER},
+      api_pay_state = #{apiPayState,jdbcType=CHAR}
+    where pay_id = #{payId,jdbcType=INTEGER}
+  </update>
+</mapper>

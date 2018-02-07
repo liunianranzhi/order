@@ -1,0 +1,580 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.shanyuan.platform.ms.dao.statistics.mapper.OrderStatisticsOfflineBizOrderGoodsMapper" >
+  <resultMap id="BaseResultMap" type="com.shanyuan.platform.ms.dao.statistics.entity.OrderStatisticsOfflineBizOrderGoods" >
+    <id column="id" property="id" jdbcType="INTEGER" />
+    <result column="main_order_id" property="mainOrderId" jdbcType="INTEGER" />
+    <result column="goods_id" property="goodsId" jdbcType="INTEGER" />
+    <result column="goods_num" property="goodsNum" jdbcType="INTEGER" />
+    <result column="goods_price" property="goodsPrice" jdbcType="DECIMAL" />
+    <result column="assist_id" property="assistId" jdbcType="INTEGER" />
+    <result column="pubisher_id" property="pubisherId" jdbcType="INTEGER" />
+    <result column="s_circle_id_deep_1" property="sCircleIdDeep1" jdbcType="INTEGER" />
+    <result column="s_circle_id_deep_2" property="sCircleIdDeep2" jdbcType="INTEGER" />
+    <result column="s_circle_id_deep_3" property="sCircleIdDeep3" jdbcType="INTEGER" />
+    <result column="s_circle_id_deep_4" property="sCircleIdDeep4" jdbcType="INTEGER" />
+    <result column="s_circle_id_deep_5" property="sCircleIdDeep5" jdbcType="INTEGER" />
+    <result column="s_circle_id_deep_6" property="sCircleIdDeep6" jdbcType="INTEGER" />
+    <result column="s_circle_id_deep_7" property="sCircleIdDeep7" jdbcType="INTEGER" />
+    <result column="s_circle_name" property="sCircleName" jdbcType="VARCHAR" />
+    <result column="province_id" property="provinceId" jdbcType="BIGINT" />
+    <result column="privince_name" property="privinceName" jdbcType="VARCHAR" />
+    <result column="city_id" property="cityId" jdbcType="BIGINT" />
+    <result column="city_name" property="cityName" jdbcType="VARCHAR" />
+    <result column="country_id" property="countryId" jdbcType="BIGINT" />
+    <result column="country_name" property="countryName" jdbcType="VARCHAR" />
+    <result column="township_id" property="townshipId" jdbcType="BIGINT" />
+    <result column="township_name" property="townshipName" jdbcType="VARCHAR" />
+    <result column="village_id" property="villageId" jdbcType="BIGINT" />
+    <result column="village_name" property="villageName" jdbcType="VARCHAR" />
+  </resultMap>
+  <sql id="Example_Where_Clause" >
+    <where >
+      <foreach collection="oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Update_By_Example_Where_Clause" >
+    <where >
+      <foreach collection="example.oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Base_Column_List" >
+    id, main_order_id, goods_id, goods_num, goods_price, assist_id, pubisher_id, s_circle_id_deep_1, 
+    s_circle_id_deep_2, s_circle_id_deep_3, s_circle_id_deep_4, s_circle_id_deep_5, s_circle_id_deep_6, 
+    s_circle_id_deep_7, s_circle_name, province_id, privince_name, city_id, city_name, 
+    country_id, country_name, township_id, township_name, village_id, village_name
+  </sql>
+  <select id="selectByExample" resultMap="BaseResultMap" parameterType="com.shanyuan.platform.ms.dao.statistics.entity.OrderStatisticsOfflineBizOrderGoodsExample" >
+    select
+    <if test="distinct" >
+      distinct
+    </if>
+    <include refid="Base_Column_List" />
+    from statistics_order_offline_biz_order_goods
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null" >
+      order by ${orderByClause}
+    </if>
+  </select>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+    select 
+    <include refid="Base_Column_List" />
+    from statistics_order_offline_biz_order_goods
+    where id = #{id,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+    delete from statistics_order_offline_biz_order_goods
+    where id = #{id,jdbcType=INTEGER}
+  </delete>
+  <delete id="deleteByExample" parameterType="com.shanyuan.platform.ms.dao.statistics.entity.OrderStatisticsOfflineBizOrderGoodsExample" >
+    delete from statistics_order_offline_biz_order_goods
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </delete>
+  <insert id="insert" parameterType="com.shanyuan.platform.ms.dao.statistics.entity.OrderStatisticsOfflineBizOrderGoods" >
+    <selectKey resultType="java.lang.Integer" keyProperty="id" order="AFTER" >
+      SELECT LAST_INSERT_ID()
+    </selectKey>
+    insert into statistics_order_offline_biz_order_goods (main_order_id, goods_id, goods_num, 
+      goods_price, assist_id, pubisher_id, 
+      s_circle_id_deep_1, s_circle_id_deep_2, s_circle_id_deep_3, 
+      s_circle_id_deep_4, s_circle_id_deep_5, s_circle_id_deep_6, 
+      s_circle_id_deep_7, s_circle_name, province_id, 
+      privince_name, city_id, city_name, 
+      country_id, country_name, township_id, 
+      township_name, village_id, village_name
+      )
+    values (#{mainOrderId,jdbcType=INTEGER}, #{goodsId,jdbcType=INTEGER}, #{goodsNum,jdbcType=INTEGER}, 
+      #{goodsPrice,jdbcType=DECIMAL}, #{assistId,jdbcType=INTEGER}, #{pubisherId,jdbcType=INTEGER}, 
+      #{sCircleIdDeep1,jdbcType=INTEGER}, #{sCircleIdDeep2,jdbcType=INTEGER}, #{sCircleIdDeep3,jdbcType=INTEGER}, 
+      #{sCircleIdDeep4,jdbcType=INTEGER}, #{sCircleIdDeep5,jdbcType=INTEGER}, #{sCircleIdDeep6,jdbcType=INTEGER}, 
+      #{sCircleIdDeep7,jdbcType=INTEGER}, #{sCircleName,jdbcType=VARCHAR}, #{provinceId,jdbcType=BIGINT}, 
+      #{privinceName,jdbcType=VARCHAR}, #{cityId,jdbcType=BIGINT}, #{cityName,jdbcType=VARCHAR}, 
+      #{countryId,jdbcType=BIGINT}, #{countryName,jdbcType=VARCHAR}, #{townshipId,jdbcType=BIGINT}, 
+      #{townshipName,jdbcType=VARCHAR}, #{villageId,jdbcType=BIGINT}, #{villageName,jdbcType=VARCHAR}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="com.shanyuan.platform.ms.dao.statistics.entity.OrderStatisticsOfflineBizOrderGoods" >
+    <selectKey resultType="java.lang.Integer" keyProperty="id" order="AFTER" >
+      SELECT LAST_INSERT_ID()
+    </selectKey>
+    insert into statistics_order_offline_biz_order_goods
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="mainOrderId != null" >
+        main_order_id,
+      </if>
+      <if test="goodsId != null" >
+        goods_id,
+      </if>
+      <if test="goodsNum != null" >
+        goods_num,
+      </if>
+      <if test="goodsPrice != null" >
+        goods_price,
+      </if>
+      <if test="assistId != null" >
+        assist_id,
+      </if>
+      <if test="pubisherId != null" >
+        pubisher_id,
+      </if>
+      <if test="sCircleIdDeep1 != null" >
+        s_circle_id_deep_1,
+      </if>
+      <if test="sCircleIdDeep2 != null" >
+        s_circle_id_deep_2,
+      </if>
+      <if test="sCircleIdDeep3 != null" >
+        s_circle_id_deep_3,
+      </if>
+      <if test="sCircleIdDeep4 != null" >
+        s_circle_id_deep_4,
+      </if>
+      <if test="sCircleIdDeep5 != null" >
+        s_circle_id_deep_5,
+      </if>
+      <if test="sCircleIdDeep6 != null" >
+        s_circle_id_deep_6,
+      </if>
+      <if test="sCircleIdDeep7 != null" >
+        s_circle_id_deep_7,
+      </if>
+      <if test="sCircleName != null" >
+        s_circle_name,
+      </if>
+      <if test="provinceId != null" >
+        province_id,
+      </if>
+      <if test="privinceName != null" >
+        privince_name,
+      </if>
+      <if test="cityId != null" >
+        city_id,
+      </if>
+      <if test="cityName != null" >
+        city_name,
+      </if>
+      <if test="countryId != null" >
+        country_id,
+      </if>
+      <if test="countryName != null" >
+        country_name,
+      </if>
+      <if test="townshipId != null" >
+        township_id,
+      </if>
+      <if test="townshipName != null" >
+        township_name,
+      </if>
+      <if test="villageId != null" >
+        village_id,
+      </if>
+      <if test="villageName != null" >
+        village_name,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="mainOrderId != null" >
+        #{mainOrderId,jdbcType=INTEGER},
+      </if>
+      <if test="goodsId != null" >
+        #{goodsId,jdbcType=INTEGER},
+      </if>
+      <if test="goodsNum != null" >
+        #{goodsNum,jdbcType=INTEGER},
+      </if>
+      <if test="goodsPrice != null" >
+        #{goodsPrice,jdbcType=DECIMAL},
+      </if>
+      <if test="assistId != null" >
+        #{assistId,jdbcType=INTEGER},
+      </if>
+      <if test="pubisherId != null" >
+        #{pubisherId,jdbcType=INTEGER},
+      </if>
+      <if test="sCircleIdDeep1 != null" >
+        #{sCircleIdDeep1,jdbcType=INTEGER},
+      </if>
+      <if test="sCircleIdDeep2 != null" >
+        #{sCircleIdDeep2,jdbcType=INTEGER},
+      </if>
+      <if test="sCircleIdDeep3 != null" >
+        #{sCircleIdDeep3,jdbcType=INTEGER},
+      </if>
+      <if test="sCircleIdDeep4 != null" >
+        #{sCircleIdDeep4,jdbcType=INTEGER},
+      </if>
+      <if test="sCircleIdDeep5 != null" >
+        #{sCircleIdDeep5,jdbcType=INTEGER},
+      </if>
+      <if test="sCircleIdDeep6 != null" >
+        #{sCircleIdDeep6,jdbcType=INTEGER},
+      </if>
+      <if test="sCircleIdDeep7 != null" >
+        #{sCircleIdDeep7,jdbcType=INTEGER},
+      </if>
+      <if test="sCircleName != null" >
+        #{sCircleName,jdbcType=VARCHAR},
+      </if>
+      <if test="provinceId != null" >
+        #{provinceId,jdbcType=BIGINT},
+      </if>
+      <if test="privinceName != null" >
+        #{privinceName,jdbcType=VARCHAR},
+      </if>
+      <if test="cityId != null" >
+        #{cityId,jdbcType=BIGINT},
+      </if>
+      <if test="cityName != null" >
+        #{cityName,jdbcType=VARCHAR},
+      </if>
+      <if test="countryId != null" >
+        #{countryId,jdbcType=BIGINT},
+      </if>
+      <if test="countryName != null" >
+        #{countryName,jdbcType=VARCHAR},
+      </if>
+      <if test="townshipId != null" >
+        #{townshipId,jdbcType=BIGINT},
+      </if>
+      <if test="townshipName != null" >
+        #{townshipName,jdbcType=VARCHAR},
+      </if>
+      <if test="villageId != null" >
+        #{villageId,jdbcType=BIGINT},
+      </if>
+      <if test="villageName != null" >
+        #{villageName,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <select id="countByExample" parameterType="com.shanyuan.platform.ms.dao.statistics.entity.OrderStatisticsOfflineBizOrderGoodsExample" resultType="java.lang.Integer" >
+    select count(*) from statistics_order_offline_biz_order_goods
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </select>
+  <update id="updateByExampleSelective" parameterType="map" >
+    update statistics_order_offline_biz_order_goods
+    <set >
+      <if test="record.id != null" >
+        id = #{record.id,jdbcType=INTEGER},
+      </if>
+      <if test="record.mainOrderId != null" >
+        main_order_id = #{record.mainOrderId,jdbcType=INTEGER},
+      </if>
+      <if test="record.goodsId != null" >
+        goods_id = #{record.goodsId,jdbcType=INTEGER},
+      </if>
+      <if test="record.goodsNum != null" >
+        goods_num = #{record.goodsNum,jdbcType=INTEGER},
+      </if>
+      <if test="record.goodsPrice != null" >
+        goods_price = #{record.goodsPrice,jdbcType=DECIMAL},
+      </if>
+      <if test="record.assistId != null" >
+        assist_id = #{record.assistId,jdbcType=INTEGER},
+      </if>
+      <if test="record.pubisherId != null" >
+        pubisher_id = #{record.pubisherId,jdbcType=INTEGER},
+      </if>
+      <if test="record.sCircleIdDeep1 != null" >
+        s_circle_id_deep_1 = #{record.sCircleIdDeep1,jdbcType=INTEGER},
+      </if>
+      <if test="record.sCircleIdDeep2 != null" >
+        s_circle_id_deep_2 = #{record.sCircleIdDeep2,jdbcType=INTEGER},
+      </if>
+      <if test="record.sCircleIdDeep3 != null" >
+        s_circle_id_deep_3 = #{record.sCircleIdDeep3,jdbcType=INTEGER},
+      </if>
+      <if test="record.sCircleIdDeep4 != null" >
+        s_circle_id_deep_4 = #{record.sCircleIdDeep4,jdbcType=INTEGER},
+      </if>
+      <if test="record.sCircleIdDeep5 != null" >
+        s_circle_id_deep_5 = #{record.sCircleIdDeep5,jdbcType=INTEGER},
+      </if>
+      <if test="record.sCircleIdDeep6 != null" >
+        s_circle_id_deep_6 = #{record.sCircleIdDeep6,jdbcType=INTEGER},
+      </if>
+      <if test="record.sCircleIdDeep7 != null" >
+        s_circle_id_deep_7 = #{record.sCircleIdDeep7,jdbcType=INTEGER},
+      </if>
+      <if test="record.sCircleName != null" >
+        s_circle_name = #{record.sCircleName,jdbcType=VARCHAR},
+      </if>
+      <if test="record.provinceId != null" >
+        province_id = #{record.provinceId,jdbcType=BIGINT},
+      </if>
+      <if test="record.privinceName != null" >
+        privince_name = #{record.privinceName,jdbcType=VARCHAR},
+      </if>
+      <if test="record.cityId != null" >
+        city_id = #{record.cityId,jdbcType=BIGINT},
+      </if>
+      <if test="record.cityName != null" >
+        city_name = #{record.cityName,jdbcType=VARCHAR},
+      </if>
+      <if test="record.countryId != null" >
+        country_id = #{record.countryId,jdbcType=BIGINT},
+      </if>
+      <if test="record.countryName != null" >
+        country_name = #{record.countryName,jdbcType=VARCHAR},
+      </if>
+      <if test="record.townshipId != null" >
+        township_id = #{record.townshipId,jdbcType=BIGINT},
+      </if>
+      <if test="record.townshipName != null" >
+        township_name = #{record.townshipName,jdbcType=VARCHAR},
+      </if>
+      <if test="record.villageId != null" >
+        village_id = #{record.villageId,jdbcType=BIGINT},
+      </if>
+      <if test="record.villageName != null" >
+        village_name = #{record.villageName,jdbcType=VARCHAR},
+      </if>
+    </set>
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByExample" parameterType="map" >
+    update statistics_order_offline_biz_order_goods
+    set id = #{record.id,jdbcType=INTEGER},
+      main_order_id = #{record.mainOrderId,jdbcType=INTEGER},
+      goods_id = #{record.goodsId,jdbcType=INTEGER},
+      goods_num = #{record.goodsNum,jdbcType=INTEGER},
+      goods_price = #{record.goodsPrice,jdbcType=DECIMAL},
+      assist_id = #{record.assistId,jdbcType=INTEGER},
+      pubisher_id = #{record.pubisherId,jdbcType=INTEGER},
+      s_circle_id_deep_1 = #{record.sCircleIdDeep1,jdbcType=INTEGER},
+      s_circle_id_deep_2 = #{record.sCircleIdDeep2,jdbcType=INTEGER},
+      s_circle_id_deep_3 = #{record.sCircleIdDeep3,jdbcType=INTEGER},
+      s_circle_id_deep_4 = #{record.sCircleIdDeep4,jdbcType=INTEGER},
+      s_circle_id_deep_5 = #{record.sCircleIdDeep5,jdbcType=INTEGER},
+      s_circle_id_deep_6 = #{record.sCircleIdDeep6,jdbcType=INTEGER},
+      s_circle_id_deep_7 = #{record.sCircleIdDeep7,jdbcType=INTEGER},
+      s_circle_name = #{record.sCircleName,jdbcType=VARCHAR},
+      province_id = #{record.provinceId,jdbcType=BIGINT},
+      privince_name = #{record.privinceName,jdbcType=VARCHAR},
+      city_id = #{record.cityId,jdbcType=BIGINT},
+      city_name = #{record.cityName,jdbcType=VARCHAR},
+      country_id = #{record.countryId,jdbcType=BIGINT},
+      country_name = #{record.countryName,jdbcType=VARCHAR},
+      township_id = #{record.townshipId,jdbcType=BIGINT},
+      township_name = #{record.townshipName,jdbcType=VARCHAR},
+      village_id = #{record.villageId,jdbcType=BIGINT},
+      village_name = #{record.villageName,jdbcType=VARCHAR}
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByPrimaryKeySelective" parameterType="com.shanyuan.platform.ms.dao.statistics.entity.OrderStatisticsOfflineBizOrderGoods" >
+    update statistics_order_offline_biz_order_goods
+    <set >
+      <if test="mainOrderId != null" >
+        main_order_id = #{mainOrderId,jdbcType=INTEGER},
+      </if>
+      <if test="goodsId != null" >
+        goods_id = #{goodsId,jdbcType=INTEGER},
+      </if>
+      <if test="goodsNum != null" >
+        goods_num = #{goodsNum,jdbcType=INTEGER},
+      </if>
+      <if test="goodsPrice != null" >
+        goods_price = #{goodsPrice,jdbcType=DECIMAL},
+      </if>
+      <if test="assistId != null" >
+        assist_id = #{assistId,jdbcType=INTEGER},
+      </if>
+      <if test="pubisherId != null" >
+        pubisher_id = #{pubisherId,jdbcType=INTEGER},
+      </if>
+      <if test="sCircleIdDeep1 != null" >
+        s_circle_id_deep_1 = #{sCircleIdDeep1,jdbcType=INTEGER},
+      </if>
+      <if test="sCircleIdDeep2 != null" >
+        s_circle_id_deep_2 = #{sCircleIdDeep2,jdbcType=INTEGER},
+      </if>
+      <if test="sCircleIdDeep3 != null" >
+        s_circle_id_deep_3 = #{sCircleIdDeep3,jdbcType=INTEGER},
+      </if>
+      <if test="sCircleIdDeep4 != null" >
+        s_circle_id_deep_4 = #{sCircleIdDeep4,jdbcType=INTEGER},
+      </if>
+      <if test="sCircleIdDeep5 != null" >
+        s_circle_id_deep_5 = #{sCircleIdDeep5,jdbcType=INTEGER},
+      </if>
+      <if test="sCircleIdDeep6 != null" >
+        s_circle_id_deep_6 = #{sCircleIdDeep6,jdbcType=INTEGER},
+      </if>
+      <if test="sCircleIdDeep7 != null" >
+        s_circle_id_deep_7 = #{sCircleIdDeep7,jdbcType=INTEGER},
+      </if>
+      <if test="sCircleName != null" >
+        s_circle_name = #{sCircleName,jdbcType=VARCHAR},
+      </if>
+      <if test="provinceId != null" >
+        province_id = #{provinceId,jdbcType=BIGINT},
+      </if>
+      <if test="privinceName != null" >
+        privince_name = #{privinceName,jdbcType=VARCHAR},
+      </if>
+      <if test="cityId != null" >
+        city_id = #{cityId,jdbcType=BIGINT},
+      </if>
+      <if test="cityName != null" >
+        city_name = #{cityName,jdbcType=VARCHAR},
+      </if>
+      <if test="countryId != null" >
+        country_id = #{countryId,jdbcType=BIGINT},
+      </if>
+      <if test="countryName != null" >
+        country_name = #{countryName,jdbcType=VARCHAR},
+      </if>
+      <if test="townshipId != null" >
+        township_id = #{townshipId,jdbcType=BIGINT},
+      </if>
+      <if test="townshipName != null" >
+        township_name = #{townshipName,jdbcType=VARCHAR},
+      </if>
+      <if test="villageId != null" >
+        village_id = #{villageId,jdbcType=BIGINT},
+      </if>
+      <if test="villageName != null" >
+        village_name = #{villageName,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.shanyuan.platform.ms.dao.statistics.entity.OrderStatisticsOfflineBizOrderGoods" >
+    update statistics_order_offline_biz_order_goods
+    set main_order_id = #{mainOrderId,jdbcType=INTEGER},
+      goods_id = #{goodsId,jdbcType=INTEGER},
+      goods_num = #{goodsNum,jdbcType=INTEGER},
+      goods_price = #{goodsPrice,jdbcType=DECIMAL},
+      assist_id = #{assistId,jdbcType=INTEGER},
+      pubisher_id = #{pubisherId,jdbcType=INTEGER},
+      s_circle_id_deep_1 = #{sCircleIdDeep1,jdbcType=INTEGER},
+      s_circle_id_deep_2 = #{sCircleIdDeep2,jdbcType=INTEGER},
+      s_circle_id_deep_3 = #{sCircleIdDeep3,jdbcType=INTEGER},
+      s_circle_id_deep_4 = #{sCircleIdDeep4,jdbcType=INTEGER},
+      s_circle_id_deep_5 = #{sCircleIdDeep5,jdbcType=INTEGER},
+      s_circle_id_deep_6 = #{sCircleIdDeep6,jdbcType=INTEGER},
+      s_circle_id_deep_7 = #{sCircleIdDeep7,jdbcType=INTEGER},
+      s_circle_name = #{sCircleName,jdbcType=VARCHAR},
+      province_id = #{provinceId,jdbcType=BIGINT},
+      privince_name = #{privinceName,jdbcType=VARCHAR},
+      city_id = #{cityId,jdbcType=BIGINT},
+      city_name = #{cityName,jdbcType=VARCHAR},
+      country_id = #{countryId,jdbcType=BIGINT},
+      country_name = #{countryName,jdbcType=VARCHAR},
+      township_id = #{townshipId,jdbcType=BIGINT},
+      township_name = #{townshipName,jdbcType=VARCHAR},
+      village_id = #{villageId,jdbcType=BIGINT},
+      village_name = #{villageName,jdbcType=VARCHAR}
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+  <insert id="batchBizOrderGoodsInsert" parameterType="map">
+		<selectKey keyProperty="id" order="AFTER" resultType="java.lang.Integer">
+			SELECT LAST_INSERT_ID()
+		</selectKey>
+		insert into statistics_order_offline_biz_order_goods
+		(main_order_id, goods_id,
+		goods_num,
+		goods_price,assist_id,pubisher_id,
+		s_circle_id_deep_1, s_circle_id_deep_2, s_circle_id_deep_3,
+		s_circle_id_deep_4, s_circle_id_deep_5, s_circle_id_deep_6,
+		s_circle_id_deep_7, s_circle_name, province_id,
+		privince_name, city_id, city_name,
+		country_id, country_name, township_id,
+		township_name, village_id, village_name)
+		values 
+		<foreach collection="records" item="item" index="index" separator=",">
+        	(#{item.mainOrderId,jdbcType=INTEGER}, 
+        	#{item.goodsId,jdbcType=INTEGER},
+			#{item.goodsNum,jdbcType=INTEGER},
+			#{item.goodsPrice,jdbcType=DECIMAL}, 
+			#{item.assistId,jdbcType=INTEGER}, 
+			#{item.pubisherId,jdbcType=INTEGER},
+			#{item.sCircleIdDeep1,jdbcType=INTEGER}, 
+			#{item.sCircleIdDeep2,jdbcType=INTEGER},
+			#{item.sCircleIdDeep3,jdbcType=INTEGER},
+			#{item.sCircleIdDeep4,jdbcType=INTEGER}, 
+			#{item.sCircleIdDeep5,jdbcType=INTEGER},
+			#{item.sCircleIdDeep6,jdbcType=INTEGER},
+			#{item.sCircleIdDeep7,jdbcType=INTEGER},
+			#{item.sCircleName,jdbcType=VARCHAR},
+			#{item.provinceId,jdbcType=BIGINT},
+			#{item.privinceName,jdbcType=VARCHAR}, 
+			#{item.cityId,jdbcType=BIGINT}, 
+			#{item.cityName,jdbcType=VARCHAR},
+			#{item.countryId,jdbcType=BIGINT}, 
+			#{item.countryName,jdbcType=VARCHAR},
+			#{item.townshipId,jdbcType=BIGINT},
+			#{item.townshipName,jdbcType=VARCHAR}, 
+			#{item.villageId,jdbcType=BIGINT},
+			 #{item.villageName,jdbcType=VARCHAR})
+			
+		</foreach>
+	</insert>
+	<select id="getPlatFromOfflineOrderGoods" parameterType="map" resultType="com.shanyuan.platform.ms.dao.statistics.entity.OfflineStatisticsDomain">
+		SELECT a.c_time as cTime,count(1) as orderNum,sum(goods_num) as goodsNum
+		FROM statistics_order_offline_biz_order a,statistics_order_offline_biz_order_goods b
+		where a.main_order_id = b.main_order_id 
+		<if test="cTime != null" >
+       	 	and a.c_time = #{cTime,jdbcType=INTEGER}
+      	</if>
+		GROUP BY a.c_time
+	</select>
+</mapper>

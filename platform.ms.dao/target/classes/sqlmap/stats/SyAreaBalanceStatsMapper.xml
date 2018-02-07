@@ -1,0 +1,252 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.shanyuan.platform.ms.dao.stats.mapper.SyAreaBalanceStatsMapper" >
+  <resultMap id="BaseResultMap" type="com.shanyuan.platform.ms.dao.stats.entity.SyAreaBalanceStats" >
+    <id column="rec_id" property="recId" jdbcType="INTEGER" />
+    <result column="areaid_1" property="areaid1" jdbcType="BIGINT" />
+    <result column="areaid_2" property="areaid2" jdbcType="BIGINT" />
+    <result column="areaid_3" property="areaid3" jdbcType="BIGINT" />
+    <result column="target_money" property="targetMoney" jdbcType="DECIMAL" />
+    <result column="finished_money" property="finishedMoney" jdbcType="DECIMAL" />
+    <result column="add_time" property="addTime" jdbcType="INTEGER" />
+  </resultMap>
+  <sql id="Example_Where_Clause" >
+    <where >
+      <foreach collection="oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Update_By_Example_Where_Clause" >
+    <where >
+      <foreach collection="example.oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Base_Column_List" >
+    rec_id, areaid_1, areaid_2, areaid_3, target_money, finished_money, add_time
+  </sql>
+  <select id="selectByExample" resultMap="BaseResultMap" parameterType="com.shanyuan.platform.ms.dao.stats.entity.SyAreaBalanceStatsExample" >
+    select
+    <if test="distinct" >
+      distinct
+    </if>
+    <include refid="Base_Column_List" />
+    from sy_area_balance_stats
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null" >
+      order by ${orderByClause}
+    </if>
+  </select>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+    select 
+    <include refid="Base_Column_List" />
+    from sy_area_balance_stats
+    where rec_id = #{recId,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+    delete from sy_area_balance_stats
+    where rec_id = #{recId,jdbcType=INTEGER}
+  </delete>
+  <delete id="deleteByExample" parameterType="com.shanyuan.platform.ms.dao.stats.entity.SyAreaBalanceStatsExample" >
+    delete from sy_area_balance_stats
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </delete>
+  <insert id="insert" parameterType="com.shanyuan.platform.ms.dao.stats.entity.SyAreaBalanceStats" >
+    <selectKey resultType="java.lang.Integer" keyProperty="recId" order="AFTER" >
+      SELECT LAST_INSERT_ID()
+    </selectKey>
+    insert into sy_area_balance_stats (areaid_1, areaid_2, areaid_3, 
+      target_money, finished_money, add_time
+      )
+    values (#{areaid1,jdbcType=BIGINT}, #{areaid2,jdbcType=BIGINT}, #{areaid3,jdbcType=BIGINT}, 
+      #{targetMoney,jdbcType=DECIMAL}, #{finishedMoney,jdbcType=DECIMAL}, #{addTime,jdbcType=INTEGER}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="com.shanyuan.platform.ms.dao.stats.entity.SyAreaBalanceStats" >
+    <selectKey resultType="java.lang.Integer" keyProperty="recId" order="AFTER" >
+      SELECT LAST_INSERT_ID()
+    </selectKey>
+    insert into sy_area_balance_stats
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="areaid1 != null" >
+        areaid_1,
+      </if>
+      <if test="areaid2 != null" >
+        areaid_2,
+      </if>
+      <if test="areaid3 != null" >
+        areaid_3,
+      </if>
+      <if test="targetMoney != null" >
+        target_money,
+      </if>
+      <if test="finishedMoney != null" >
+        finished_money,
+      </if>
+      <if test="addTime != null" >
+        add_time,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="areaid1 != null" >
+        #{areaid1,jdbcType=BIGINT},
+      </if>
+      <if test="areaid2 != null" >
+        #{areaid2,jdbcType=BIGINT},
+      </if>
+      <if test="areaid3 != null" >
+        #{areaid3,jdbcType=BIGINT},
+      </if>
+      <if test="targetMoney != null" >
+        #{targetMoney,jdbcType=DECIMAL},
+      </if>
+      <if test="finishedMoney != null" >
+        #{finishedMoney,jdbcType=DECIMAL},
+      </if>
+      <if test="addTime != null" >
+        #{addTime,jdbcType=INTEGER},
+      </if>
+    </trim>
+  </insert>
+  <select id="countByExample" parameterType="com.shanyuan.platform.ms.dao.stats.entity.SyAreaBalanceStatsExample" resultType="java.lang.Integer" >
+    select count(*) from sy_area_balance_stats
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </select>
+  <update id="updateByExampleSelective" parameterType="map" >
+    update sy_area_balance_stats
+    <set >
+      <if test="record.recId != null" >
+        rec_id = #{record.recId,jdbcType=INTEGER},
+      </if>
+      <if test="record.areaid1 != null" >
+        areaid_1 = #{record.areaid1,jdbcType=BIGINT},
+      </if>
+      <if test="record.areaid2 != null" >
+        areaid_2 = #{record.areaid2,jdbcType=BIGINT},
+      </if>
+      <if test="record.areaid3 != null" >
+        areaid_3 = #{record.areaid3,jdbcType=BIGINT},
+      </if>
+      <if test="record.targetMoney != null" >
+        target_money = #{record.targetMoney,jdbcType=DECIMAL},
+      </if>
+      <if test="record.finishedMoney != null" >
+        finished_money = #{record.finishedMoney,jdbcType=DECIMAL},
+      </if>
+      <if test="record.addTime != null" >
+        add_time = #{record.addTime,jdbcType=INTEGER},
+      </if>
+    </set>
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByExample" parameterType="map" >
+    update sy_area_balance_stats
+    set rec_id = #{record.recId,jdbcType=INTEGER},
+      areaid_1 = #{record.areaid1,jdbcType=BIGINT},
+      areaid_2 = #{record.areaid2,jdbcType=BIGINT},
+      areaid_3 = #{record.areaid3,jdbcType=BIGINT},
+      target_money = #{record.targetMoney,jdbcType=DECIMAL},
+      finished_money = #{record.finishedMoney,jdbcType=DECIMAL},
+      add_time = #{record.addTime,jdbcType=INTEGER}
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByPrimaryKeySelective" parameterType="com.shanyuan.platform.ms.dao.stats.entity.SyAreaBalanceStats" >
+    update sy_area_balance_stats
+    <set >
+      <if test="areaid1 != null" >
+        areaid_1 = #{areaid1,jdbcType=BIGINT},
+      </if>
+      <if test="areaid2 != null" >
+        areaid_2 = #{areaid2,jdbcType=BIGINT},
+      </if>
+      <if test="areaid3 != null" >
+        areaid_3 = #{areaid3,jdbcType=BIGINT},
+      </if>
+      <if test="targetMoney != null" >
+        target_money = #{targetMoney,jdbcType=DECIMAL},
+      </if>
+      <if test="finishedMoney != null" >
+        finished_money = #{finishedMoney,jdbcType=DECIMAL},
+      </if>
+      <if test="addTime != null" >
+        add_time = #{addTime,jdbcType=INTEGER},
+      </if>
+    </set>
+    where rec_id = #{recId,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.shanyuan.platform.ms.dao.stats.entity.SyAreaBalanceStats" >
+    update sy_area_balance_stats
+    set areaid_1 = #{areaid1,jdbcType=BIGINT},
+      areaid_2 = #{areaid2,jdbcType=BIGINT},
+      areaid_3 = #{areaid3,jdbcType=BIGINT},
+      target_money = #{targetMoney,jdbcType=DECIMAL},
+      finished_money = #{finishedMoney,jdbcType=DECIMAL},
+      add_time = #{addTime,jdbcType=INTEGER}
+    where rec_id = #{recId,jdbcType=INTEGER}
+  </update>
+  
+  <select id="selectAreaBalanceStats" resultMap="BaseResultMap" parameterType="java.lang.Long" >
+    select 
+    target_money 
+    from sy_area_balance_stats
+    where areaid_3 = #{areaid3,jdbcType=INTEGER} 
+    ORDER BY rec_id DESC 
+    LIMIT 1
+  </select>
+</mapper>

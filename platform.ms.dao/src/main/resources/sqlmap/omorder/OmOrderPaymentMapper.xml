@@ -1,0 +1,466 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.shanyuan.platform.ms.dao.omorder.mapper.OmOrderPaymentMapper" >
+  <resultMap id="BaseResultMap" type="com.shanyuan.platform.ms.dao.omorder.entity.OmOrderPayment" >
+    <id column="pay_id" property="payId" jdbcType="VARCHAR" />
+    <result column="order_id" property="orderId" jdbcType="VARCHAR" />
+    <result column="main_id" property="mainId" jdbcType="VARCHAR" />
+    <result column="pay_center" property="payCenter" jdbcType="VARCHAR" />
+    <result column="pay_status" property="payStatus" jdbcType="TINYINT" />
+    <result column="pay_fee" property="payFee" jdbcType="INTEGER" />
+    <result column="outtrade_id" property="outtradeId" jdbcType="VARCHAR" />
+    <result column="pay_serial" property="paySerial" jdbcType="VARCHAR" />
+    <result column="pay_req_time" property="payReqTime" jdbcType="TIMESTAMP" />
+    <result column="pay_req_msg" property="payReqMsg" jdbcType="VARCHAR" />
+    <result column="pay_notify_time" property="payNotifyTime" jdbcType="TIMESTAMP" />
+    <result column="pay_notify_msg" property="payNotifyMsg" jdbcType="VARCHAR" />
+    <result column="pay_check" property="payCheck" jdbcType="TINYINT" />
+    <result column="refund_serial" property="refundSerial" jdbcType="VARCHAR" />
+    <result column="refund_req_time" property="refundReqTime" jdbcType="TIMESTAMP" />
+    <result column="refund_req_msg" property="refundReqMsg" jdbcType="VARCHAR" />
+    <result column="refund_resp_time" property="refundRespTime" jdbcType="TIMESTAMP" />
+    <result column="refund_resp_msg" property="refundRespMsg" jdbcType="VARCHAR" />
+    <result column="refund_check" property="refundCheck" jdbcType="TINYINT" />
+    <result column="create_time" property="createTime" jdbcType="TIMESTAMP" />
+    <result column="update_time" property="updateTime" jdbcType="TIMESTAMP" />
+  </resultMap>
+  <sql id="Example_Where_Clause" >
+    <where >
+      <foreach collection="oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Update_By_Example_Where_Clause" >
+    <where >
+      <foreach collection="example.oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Base_Column_List" >
+    pay_id, order_id, main_id, pay_center, pay_status, pay_fee, outtrade_id, pay_serial, 
+    pay_req_time, pay_req_msg, pay_notify_time, pay_notify_msg, pay_check, refund_serial, 
+    refund_req_time, refund_req_msg, refund_resp_time, refund_resp_msg, refund_check, 
+    create_time, update_time
+  </sql>
+  <select id="selectByExample" resultMap="BaseResultMap" parameterType="com.shanyuan.platform.ms.dao.omorder.entity.OmOrderPaymentExample" >
+    select
+    <if test="distinct" >
+      distinct
+    </if>
+    <include refid="Base_Column_List" />
+    from om_order_payment
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null" >
+      order by ${orderByClause}
+    </if>
+  </select>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.String" >
+    select 
+    <include refid="Base_Column_List" />
+    from om_order_payment
+    where pay_id = #{payId,jdbcType=VARCHAR}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.String" >
+    delete from om_order_payment
+    where pay_id = #{payId,jdbcType=VARCHAR}
+  </delete>
+  <delete id="deleteByExample" parameterType="com.shanyuan.platform.ms.dao.omorder.entity.OmOrderPaymentExample" >
+    delete from om_order_payment
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </delete>
+  <insert id="insert" parameterType="com.shanyuan.platform.ms.dao.omorder.entity.OmOrderPayment" >
+    insert into om_order_payment (pay_id, order_id, main_id, 
+      pay_center, pay_status, pay_fee, 
+      outtrade_id, pay_serial, pay_req_time, 
+      pay_req_msg, pay_notify_time, pay_notify_msg, 
+      pay_check, refund_serial, refund_req_time, 
+      refund_req_msg, refund_resp_time, refund_resp_msg, 
+      refund_check, create_time, update_time
+      )
+    values (#{payId,jdbcType=VARCHAR}, #{orderId,jdbcType=VARCHAR}, #{mainId,jdbcType=VARCHAR}, 
+      #{payCenter,jdbcType=VARCHAR}, #{payStatus,jdbcType=TINYINT}, #{payFee,jdbcType=INTEGER}, 
+      #{outtradeId,jdbcType=VARCHAR}, #{paySerial,jdbcType=VARCHAR}, #{payReqTime,jdbcType=TIMESTAMP}, 
+      #{payReqMsg,jdbcType=VARCHAR}, #{payNotifyTime,jdbcType=TIMESTAMP}, #{payNotifyMsg,jdbcType=VARCHAR}, 
+      #{payCheck,jdbcType=TINYINT}, #{refundSerial,jdbcType=VARCHAR}, #{refundReqTime,jdbcType=TIMESTAMP}, 
+      #{refundReqMsg,jdbcType=VARCHAR}, #{refundRespTime,jdbcType=TIMESTAMP}, #{refundRespMsg,jdbcType=VARCHAR}, 
+      #{refundCheck,jdbcType=TINYINT}, #{createTime,jdbcType=TIMESTAMP}, #{updateTime,jdbcType=TIMESTAMP}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="com.shanyuan.platform.ms.dao.omorder.entity.OmOrderPayment" >
+    insert into om_order_payment
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="payId != null" >
+        pay_id,
+      </if>
+      <if test="orderId != null" >
+        order_id,
+      </if>
+      <if test="mainId != null" >
+        main_id,
+      </if>
+      <if test="payCenter != null" >
+        pay_center,
+      </if>
+      <if test="payStatus != null" >
+        pay_status,
+      </if>
+      <if test="payFee != null" >
+        pay_fee,
+      </if>
+      <if test="outtradeId != null" >
+        outtrade_id,
+      </if>
+      <if test="paySerial != null" >
+        pay_serial,
+      </if>
+      <if test="payReqTime != null" >
+        pay_req_time,
+      </if>
+      <if test="payReqMsg != null" >
+        pay_req_msg,
+      </if>
+      <if test="payNotifyTime != null" >
+        pay_notify_time,
+      </if>
+      <if test="payNotifyMsg != null" >
+        pay_notify_msg,
+      </if>
+      <if test="payCheck != null" >
+        pay_check,
+      </if>
+      <if test="refundSerial != null" >
+        refund_serial,
+      </if>
+      <if test="refundReqTime != null" >
+        refund_req_time,
+      </if>
+      <if test="refundReqMsg != null" >
+        refund_req_msg,
+      </if>
+      <if test="refundRespTime != null" >
+        refund_resp_time,
+      </if>
+      <if test="refundRespMsg != null" >
+        refund_resp_msg,
+      </if>
+      <if test="refundCheck != null" >
+        refund_check,
+      </if>
+      <if test="createTime != null" >
+        create_time,
+      </if>
+      <if test="updateTime != null" >
+        update_time,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="payId != null" >
+        #{payId,jdbcType=VARCHAR},
+      </if>
+      <if test="orderId != null" >
+        #{orderId,jdbcType=VARCHAR},
+      </if>
+      <if test="mainId != null" >
+        #{mainId,jdbcType=VARCHAR},
+      </if>
+      <if test="payCenter != null" >
+        #{payCenter,jdbcType=VARCHAR},
+      </if>
+      <if test="payStatus != null" >
+        #{payStatus,jdbcType=TINYINT},
+      </if>
+      <if test="payFee != null" >
+        #{payFee,jdbcType=INTEGER},
+      </if>
+      <if test="outtradeId != null" >
+        #{outtradeId,jdbcType=VARCHAR},
+      </if>
+      <if test="paySerial != null" >
+        #{paySerial,jdbcType=VARCHAR},
+      </if>
+      <if test="payReqTime != null" >
+        #{payReqTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="payReqMsg != null" >
+        #{payReqMsg,jdbcType=VARCHAR},
+      </if>
+      <if test="payNotifyTime != null" >
+        #{payNotifyTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="payNotifyMsg != null" >
+        #{payNotifyMsg,jdbcType=VARCHAR},
+      </if>
+      <if test="payCheck != null" >
+        #{payCheck,jdbcType=TINYINT},
+      </if>
+      <if test="refundSerial != null" >
+        #{refundSerial,jdbcType=VARCHAR},
+      </if>
+      <if test="refundReqTime != null" >
+        #{refundReqTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="refundReqMsg != null" >
+        #{refundReqMsg,jdbcType=VARCHAR},
+      </if>
+      <if test="refundRespTime != null" >
+        #{refundRespTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="refundRespMsg != null" >
+        #{refundRespMsg,jdbcType=VARCHAR},
+      </if>
+      <if test="refundCheck != null" >
+        #{refundCheck,jdbcType=TINYINT},
+      </if>
+      <if test="createTime != null" >
+        #{createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updateTime != null" >
+        #{updateTime,jdbcType=TIMESTAMP},
+      </if>
+    </trim>
+  </insert>
+  <select id="countByExample" parameterType="com.shanyuan.platform.ms.dao.omorder.entity.OmOrderPaymentExample" resultType="java.lang.Integer" >
+    select count(*) from om_order_payment
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </select>
+  <update id="updateByExampleSelective" parameterType="map" >
+    update om_order_payment
+    <set >
+      <if test="record.payId != null" >
+        pay_id = #{record.payId,jdbcType=VARCHAR},
+      </if>
+      <if test="record.orderId != null" >
+        order_id = #{record.orderId,jdbcType=VARCHAR},
+      </if>
+      <if test="record.mainId != null" >
+        main_id = #{record.mainId,jdbcType=VARCHAR},
+      </if>
+      <if test="record.payCenter != null" >
+        pay_center = #{record.payCenter,jdbcType=VARCHAR},
+      </if>
+      <if test="record.payStatus != null" >
+        pay_status = #{record.payStatus,jdbcType=TINYINT},
+      </if>
+      <if test="record.payFee != null" >
+        pay_fee = #{record.payFee,jdbcType=INTEGER},
+      </if>
+      <if test="record.outtradeId != null" >
+        outtrade_id = #{record.outtradeId,jdbcType=VARCHAR},
+      </if>
+      <if test="record.paySerial != null" >
+        pay_serial = #{record.paySerial,jdbcType=VARCHAR},
+      </if>
+      <if test="record.payReqTime != null" >
+        pay_req_time = #{record.payReqTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="record.payReqMsg != null" >
+        pay_req_msg = #{record.payReqMsg,jdbcType=VARCHAR},
+      </if>
+      <if test="record.payNotifyTime != null" >
+        pay_notify_time = #{record.payNotifyTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="record.payNotifyMsg != null" >
+        pay_notify_msg = #{record.payNotifyMsg,jdbcType=VARCHAR},
+      </if>
+      <if test="record.payCheck != null" >
+        pay_check = #{record.payCheck,jdbcType=TINYINT},
+      </if>
+      <if test="record.refundSerial != null" >
+        refund_serial = #{record.refundSerial,jdbcType=VARCHAR},
+      </if>
+      <if test="record.refundReqTime != null" >
+        refund_req_time = #{record.refundReqTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="record.refundReqMsg != null" >
+        refund_req_msg = #{record.refundReqMsg,jdbcType=VARCHAR},
+      </if>
+      <if test="record.refundRespTime != null" >
+        refund_resp_time = #{record.refundRespTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="record.refundRespMsg != null" >
+        refund_resp_msg = #{record.refundRespMsg,jdbcType=VARCHAR},
+      </if>
+      <if test="record.refundCheck != null" >
+        refund_check = #{record.refundCheck,jdbcType=TINYINT},
+      </if>
+      <if test="record.createTime != null" >
+        create_time = #{record.createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="record.updateTime != null" >
+        update_time = #{record.updateTime,jdbcType=TIMESTAMP},
+      </if>
+    </set>
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByExample" parameterType="map" >
+    update om_order_payment
+    set pay_id = #{record.payId,jdbcType=VARCHAR},
+      order_id = #{record.orderId,jdbcType=VARCHAR},
+      main_id = #{record.mainId,jdbcType=VARCHAR},
+      pay_center = #{record.payCenter,jdbcType=VARCHAR},
+      pay_status = #{record.payStatus,jdbcType=TINYINT},
+      pay_fee = #{record.payFee,jdbcType=INTEGER},
+      outtrade_id = #{record.outtradeId,jdbcType=VARCHAR},
+      pay_serial = #{record.paySerial,jdbcType=VARCHAR},
+      pay_req_time = #{record.payReqTime,jdbcType=TIMESTAMP},
+      pay_req_msg = #{record.payReqMsg,jdbcType=VARCHAR},
+      pay_notify_time = #{record.payNotifyTime,jdbcType=TIMESTAMP},
+      pay_notify_msg = #{record.payNotifyMsg,jdbcType=VARCHAR},
+      pay_check = #{record.payCheck,jdbcType=TINYINT},
+      refund_serial = #{record.refundSerial,jdbcType=VARCHAR},
+      refund_req_time = #{record.refundReqTime,jdbcType=TIMESTAMP},
+      refund_req_msg = #{record.refundReqMsg,jdbcType=VARCHAR},
+      refund_resp_time = #{record.refundRespTime,jdbcType=TIMESTAMP},
+      refund_resp_msg = #{record.refundRespMsg,jdbcType=VARCHAR},
+      refund_check = #{record.refundCheck,jdbcType=TINYINT},
+      create_time = #{record.createTime,jdbcType=TIMESTAMP},
+      update_time = #{record.updateTime,jdbcType=TIMESTAMP}
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByPrimaryKeySelective" parameterType="com.shanyuan.platform.ms.dao.omorder.entity.OmOrderPayment" >
+    update om_order_payment
+    <set >
+      <if test="orderId != null" >
+        order_id = #{orderId,jdbcType=VARCHAR},
+      </if>
+      <if test="mainId != null" >
+        main_id = #{mainId,jdbcType=VARCHAR},
+      </if>
+      <if test="payCenter != null" >
+        pay_center = #{payCenter,jdbcType=VARCHAR},
+      </if>
+      <if test="payStatus != null" >
+        pay_status = #{payStatus,jdbcType=TINYINT},
+      </if>
+      <if test="payFee != null" >
+        pay_fee = #{payFee,jdbcType=INTEGER},
+      </if>
+      <if test="outtradeId != null" >
+        outtrade_id = #{outtradeId,jdbcType=VARCHAR},
+      </if>
+      <if test="paySerial != null" >
+        pay_serial = #{paySerial,jdbcType=VARCHAR},
+      </if>
+      <if test="payReqTime != null" >
+        pay_req_time = #{payReqTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="payReqMsg != null" >
+        pay_req_msg = #{payReqMsg,jdbcType=VARCHAR},
+      </if>
+      <if test="payNotifyTime != null" >
+        pay_notify_time = #{payNotifyTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="payNotifyMsg != null" >
+        pay_notify_msg = #{payNotifyMsg,jdbcType=VARCHAR},
+      </if>
+      <if test="payCheck != null" >
+        pay_check = #{payCheck,jdbcType=TINYINT},
+      </if>
+      <if test="refundSerial != null" >
+        refund_serial = #{refundSerial,jdbcType=VARCHAR},
+      </if>
+      <if test="refundReqTime != null" >
+        refund_req_time = #{refundReqTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="refundReqMsg != null" >
+        refund_req_msg = #{refundReqMsg,jdbcType=VARCHAR},
+      </if>
+      <if test="refundRespTime != null" >
+        refund_resp_time = #{refundRespTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="refundRespMsg != null" >
+        refund_resp_msg = #{refundRespMsg,jdbcType=VARCHAR},
+      </if>
+      <if test="refundCheck != null" >
+        refund_check = #{refundCheck,jdbcType=TINYINT},
+      </if>
+      <if test="createTime != null" >
+        create_time = #{createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updateTime != null" >
+        update_time = #{updateTime,jdbcType=TIMESTAMP},
+      </if>
+    </set>
+    where pay_id = #{payId,jdbcType=VARCHAR}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.shanyuan.platform.ms.dao.omorder.entity.OmOrderPayment" >
+    update om_order_payment
+    set order_id = #{orderId,jdbcType=VARCHAR},
+      main_id = #{mainId,jdbcType=VARCHAR},
+      pay_center = #{payCenter,jdbcType=VARCHAR},
+      pay_status = #{payStatus,jdbcType=TINYINT},
+      pay_fee = #{payFee,jdbcType=INTEGER},
+      outtrade_id = #{outtradeId,jdbcType=VARCHAR},
+      pay_serial = #{paySerial,jdbcType=VARCHAR},
+      pay_req_time = #{payReqTime,jdbcType=TIMESTAMP},
+      pay_req_msg = #{payReqMsg,jdbcType=VARCHAR},
+      pay_notify_time = #{payNotifyTime,jdbcType=TIMESTAMP},
+      pay_notify_msg = #{payNotifyMsg,jdbcType=VARCHAR},
+      pay_check = #{payCheck,jdbcType=TINYINT},
+      refund_serial = #{refundSerial,jdbcType=VARCHAR},
+      refund_req_time = #{refundReqTime,jdbcType=TIMESTAMP},
+      refund_req_msg = #{refundReqMsg,jdbcType=VARCHAR},
+      refund_resp_time = #{refundRespTime,jdbcType=TIMESTAMP},
+      refund_resp_msg = #{refundRespMsg,jdbcType=VARCHAR},
+      refund_check = #{refundCheck,jdbcType=TINYINT},
+      create_time = #{createTime,jdbcType=TIMESTAMP},
+      update_time = #{updateTime,jdbcType=TIMESTAMP}
+    where pay_id = #{payId,jdbcType=VARCHAR}
+  </update>
+</mapper>

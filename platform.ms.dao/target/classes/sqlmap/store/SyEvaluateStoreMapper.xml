@@ -1,0 +1,350 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.shanyuan.platform.ms.dao.store.mapper.SyEvaluateStoreMapper" >
+  <resultMap id="BaseResultMap" type="com.shanyuan.platform.ms.dao.store.entity.SyEvaluateStore" >
+    <id column="seval_id" property="sevalId" jdbcType="INTEGER" />
+    <result column="seval_orderid" property="sevalOrderid" jdbcType="INTEGER" />
+    <result column="seval_orderno" property="sevalOrderno" jdbcType="VARCHAR" />
+    <result column="seval_addtime" property="sevalAddtime" jdbcType="INTEGER" />
+    <result column="seval_storeid" property="sevalStoreid" jdbcType="INTEGER" />
+    <result column="seval_storename" property="sevalStorename" jdbcType="VARCHAR" />
+    <result column="seval_memberid" property="sevalMemberid" jdbcType="INTEGER" />
+    <result column="seval_membername" property="sevalMembername" jdbcType="VARCHAR" />
+    <result column="seval_desccredit" property="sevalDesccredit" jdbcType="TINYINT" />
+    <result column="seval_servicecredit" property="sevalServicecredit" jdbcType="TINYINT" />
+    <result column="seval_deliverycredit" property="sevalDeliverycredit" jdbcType="TINYINT" />
+    <result column="publisher_id" property="publisherId" jdbcType="INTEGER" />
+    <result column="seval_type" property="sevalType" jdbcType="TINYINT" />
+     <result column="storeEvaluateCount" property="storeEvaluateCount" jdbcType="INTEGER" />
+      <result column="servicecreditAvg" property="servicecreditAvg" jdbcType="DECIMAL" />
+       <result column="sevaldeliverycreditAvg" property="sevaldeliverycreditAvg" jdbcType="DECIMAL" />
+  </resultMap>
+  <sql id="Example_Where_Clause" >
+    <where >
+      <foreach collection="oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Update_By_Example_Where_Clause" >
+    <where >
+      <foreach collection="example.oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Base_Column_List" >
+    seval_id, seval_orderid, seval_orderno, seval_addtime, seval_storeid, seval_storename, 
+    seval_memberid, seval_membername, seval_desccredit, seval_servicecredit, seval_deliverycredit, 
+    publisher_id, seval_type
+  </sql>
+  <select id="selectByExample" resultMap="BaseResultMap" parameterType="com.shanyuan.platform.ms.dao.store.entity.SyEvaluateStoreExample" >
+    select
+    <if test="distinct" >
+      distinct
+    </if>
+    <include refid="Base_Column_List" />
+    from sy_evaluate_store
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null" >
+      order by ${orderByClause}
+    </if>
+  </select>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+    select 
+    <include refid="Base_Column_List" />
+    from sy_evaluate_store
+    where seval_id = #{sevalId,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+    delete from sy_evaluate_store
+    where seval_id = #{sevalId,jdbcType=INTEGER}
+  </delete>
+  <delete id="deleteByExample" parameterType="com.shanyuan.platform.ms.dao.store.entity.SyEvaluateStoreExample" >
+    delete from sy_evaluate_store
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </delete>
+  <insert id="insert" parameterType="com.shanyuan.platform.ms.dao.store.entity.SyEvaluateStore" >
+    <selectKey resultType="java.lang.Integer" keyProperty="sevalId" order="AFTER" >
+      SELECT LAST_INSERT_ID()
+    </selectKey>
+    insert into sy_evaluate_store (seval_orderid, seval_orderno, seval_addtime, 
+      seval_storeid, seval_storename, seval_memberid, 
+      seval_membername, seval_desccredit, seval_servicecredit, 
+      seval_deliverycredit, publisher_id, seval_type
+      )
+    values (#{sevalOrderid,jdbcType=INTEGER}, #{sevalOrderno,jdbcType=VARCHAR}, #{sevalAddtime,jdbcType=INTEGER}, 
+      #{sevalStoreid,jdbcType=INTEGER}, #{sevalStorename,jdbcType=VARCHAR}, #{sevalMemberid,jdbcType=INTEGER}, 
+      #{sevalMembername,jdbcType=VARCHAR}, #{sevalDesccredit,jdbcType=TINYINT}, #{sevalServicecredit,jdbcType=TINYINT}, 
+      #{sevalDeliverycredit,jdbcType=TINYINT}, #{publisherId,jdbcType=INTEGER}, #{sevalType,jdbcType=TINYINT}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="com.shanyuan.platform.ms.dao.store.entity.SyEvaluateStore" >
+    <selectKey resultType="java.lang.Integer" keyProperty="sevalId" order="AFTER" >
+      SELECT LAST_INSERT_ID()
+    </selectKey>
+    insert into sy_evaluate_store
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="sevalOrderid != null" >
+        seval_orderid,
+      </if>
+      <if test="sevalOrderno != null" >
+        seval_orderno,
+      </if>
+      <if test="sevalAddtime != null" >
+        seval_addtime,
+      </if>
+      <if test="sevalStoreid != null" >
+        seval_storeid,
+      </if>
+      <if test="sevalStorename != null" >
+        seval_storename,
+      </if>
+      <if test="sevalMemberid != null" >
+        seval_memberid,
+      </if>
+      <if test="sevalMembername != null" >
+        seval_membername,
+      </if>
+      <if test="sevalDesccredit != null" >
+        seval_desccredit,
+      </if>
+      <if test="sevalServicecredit != null" >
+        seval_servicecredit,
+      </if>
+      <if test="sevalDeliverycredit != null" >
+        seval_deliverycredit,
+      </if>
+      <if test="publisherId != null" >
+        publisher_id,
+      </if>
+      <if test="sevalType != null" >
+        seval_type,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="sevalOrderid != null" >
+        #{sevalOrderid,jdbcType=INTEGER},
+      </if>
+      <if test="sevalOrderno != null" >
+        #{sevalOrderno,jdbcType=VARCHAR},
+      </if>
+      <if test="sevalAddtime != null" >
+        #{sevalAddtime,jdbcType=INTEGER},
+      </if>
+      <if test="sevalStoreid != null" >
+        #{sevalStoreid,jdbcType=INTEGER},
+      </if>
+      <if test="sevalStorename != null" >
+        #{sevalStorename,jdbcType=VARCHAR},
+      </if>
+      <if test="sevalMemberid != null" >
+        #{sevalMemberid,jdbcType=INTEGER},
+      </if>
+      <if test="sevalMembername != null" >
+        #{sevalMembername,jdbcType=VARCHAR},
+      </if>
+      <if test="sevalDesccredit != null" >
+        #{sevalDesccredit,jdbcType=TINYINT},
+      </if>
+      <if test="sevalServicecredit != null" >
+        #{sevalServicecredit,jdbcType=TINYINT},
+      </if>
+      <if test="sevalDeliverycredit != null" >
+        #{sevalDeliverycredit,jdbcType=TINYINT},
+      </if>
+      <if test="publisherId != null" >
+        #{publisherId,jdbcType=INTEGER},
+      </if>
+      <if test="sevalType != null" >
+        #{sevalType,jdbcType=TINYINT},
+      </if>
+    </trim>
+  </insert>
+  <select id="countByExample" parameterType="com.shanyuan.platform.ms.dao.store.entity.SyEvaluateStoreExample" resultType="java.lang.Integer" >
+    select count(*) from sy_evaluate_store
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </select>
+  <update id="updateByExampleSelective" parameterType="map" >
+    update sy_evaluate_store
+    <set >
+      <if test="record.sevalId != null" >
+        seval_id = #{record.sevalId,jdbcType=INTEGER},
+      </if>
+      <if test="record.sevalOrderid != null" >
+        seval_orderid = #{record.sevalOrderid,jdbcType=INTEGER},
+      </if>
+      <if test="record.sevalOrderno != null" >
+        seval_orderno = #{record.sevalOrderno,jdbcType=VARCHAR},
+      </if>
+      <if test="record.sevalAddtime != null" >
+        seval_addtime = #{record.sevalAddtime,jdbcType=INTEGER},
+      </if>
+      <if test="record.sevalStoreid != null" >
+        seval_storeid = #{record.sevalStoreid,jdbcType=INTEGER},
+      </if>
+      <if test="record.sevalStorename != null" >
+        seval_storename = #{record.sevalStorename,jdbcType=VARCHAR},
+      </if>
+      <if test="record.sevalMemberid != null" >
+        seval_memberid = #{record.sevalMemberid,jdbcType=INTEGER},
+      </if>
+      <if test="record.sevalMembername != null" >
+        seval_membername = #{record.sevalMembername,jdbcType=VARCHAR},
+      </if>
+      <if test="record.sevalDesccredit != null" >
+        seval_desccredit = #{record.sevalDesccredit,jdbcType=TINYINT},
+      </if>
+      <if test="record.sevalServicecredit != null" >
+        seval_servicecredit = #{record.sevalServicecredit,jdbcType=TINYINT},
+      </if>
+      <if test="record.sevalDeliverycredit != null" >
+        seval_deliverycredit = #{record.sevalDeliverycredit,jdbcType=TINYINT},
+      </if>
+      <if test="record.publisherId != null" >
+        publisher_id = #{record.publisherId,jdbcType=INTEGER},
+      </if>
+      <if test="record.sevalType != null" >
+        seval_type = #{record.sevalType,jdbcType=TINYINT},
+      </if>
+    </set>
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByExample" parameterType="map" >
+    update sy_evaluate_store
+    set seval_id = #{record.sevalId,jdbcType=INTEGER},
+      seval_orderid = #{record.sevalOrderid,jdbcType=INTEGER},
+      seval_orderno = #{record.sevalOrderno,jdbcType=VARCHAR},
+      seval_addtime = #{record.sevalAddtime,jdbcType=INTEGER},
+      seval_storeid = #{record.sevalStoreid,jdbcType=INTEGER},
+      seval_storename = #{record.sevalStorename,jdbcType=VARCHAR},
+      seval_memberid = #{record.sevalMemberid,jdbcType=INTEGER},
+      seval_membername = #{record.sevalMembername,jdbcType=VARCHAR},
+      seval_desccredit = #{record.sevalDesccredit,jdbcType=TINYINT},
+      seval_servicecredit = #{record.sevalServicecredit,jdbcType=TINYINT},
+      seval_deliverycredit = #{record.sevalDeliverycredit,jdbcType=TINYINT},
+      publisher_id = #{record.publisherId,jdbcType=INTEGER},
+      seval_type = #{record.sevalType,jdbcType=TINYINT}
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByPrimaryKeySelective" parameterType="com.shanyuan.platform.ms.dao.store.entity.SyEvaluateStore" >
+    update sy_evaluate_store
+    <set >
+      <if test="sevalOrderid != null" >
+        seval_orderid = #{sevalOrderid,jdbcType=INTEGER},
+      </if>
+      <if test="sevalOrderno != null" >
+        seval_orderno = #{sevalOrderno,jdbcType=VARCHAR},
+      </if>
+      <if test="sevalAddtime != null" >
+        seval_addtime = #{sevalAddtime,jdbcType=INTEGER},
+      </if>
+      <if test="sevalStoreid != null" >
+        seval_storeid = #{sevalStoreid,jdbcType=INTEGER},
+      </if>
+      <if test="sevalStorename != null" >
+        seval_storename = #{sevalStorename,jdbcType=VARCHAR},
+      </if>
+      <if test="sevalMemberid != null" >
+        seval_memberid = #{sevalMemberid,jdbcType=INTEGER},
+      </if>
+      <if test="sevalMembername != null" >
+        seval_membername = #{sevalMembername,jdbcType=VARCHAR},
+      </if>
+      <if test="sevalDesccredit != null" >
+        seval_desccredit = #{sevalDesccredit,jdbcType=TINYINT},
+      </if>
+      <if test="sevalServicecredit != null" >
+        seval_servicecredit = #{sevalServicecredit,jdbcType=TINYINT},
+      </if>
+      <if test="sevalDeliverycredit != null" >
+        seval_deliverycredit = #{sevalDeliverycredit,jdbcType=TINYINT},
+      </if>
+      <if test="publisherId != null" >
+        publisher_id = #{publisherId,jdbcType=INTEGER},
+      </if>
+      <if test="sevalType != null" >
+        seval_type = #{sevalType,jdbcType=TINYINT},
+      </if>
+    </set>
+    where seval_id = #{sevalId,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.shanyuan.platform.ms.dao.store.entity.SyEvaluateStore" >
+    update sy_evaluate_store
+    set seval_orderid = #{sevalOrderid,jdbcType=INTEGER},
+      seval_orderno = #{sevalOrderno,jdbcType=VARCHAR},
+      seval_addtime = #{sevalAddtime,jdbcType=INTEGER},
+      seval_storeid = #{sevalStoreid,jdbcType=INTEGER},
+      seval_storename = #{sevalStorename,jdbcType=VARCHAR},
+      seval_memberid = #{sevalMemberid,jdbcType=INTEGER},
+      seval_membername = #{sevalMembername,jdbcType=VARCHAR},
+      seval_desccredit = #{sevalDesccredit,jdbcType=TINYINT},
+      seval_servicecredit = #{sevalServicecredit,jdbcType=TINYINT},
+      seval_deliverycredit = #{sevalDeliverycredit,jdbcType=TINYINT},
+      publisher_id = #{publisherId,jdbcType=INTEGER},
+      seval_type = #{sevalType,jdbcType=TINYINT}
+    where seval_id = #{sevalId,jdbcType=INTEGER}
+  </update>
+  
+   <!-- 物流平均分以及服务平均评分 -->
+  <select id="selectGetEvaluateStoreScore" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+  SELECT  ROUND(IFNULL(AVG(seval_servicecredit),0),2)servicecreditAvg,ROUND(IFNULL(AVG(seval_deliverycredit),0),2)sevaldeliverycreditAvg,COUNT(*)storeEvaluateCount FROM sy_evaluate_store  
+  WHERE publisher_id = #{publisherId,jdbcType=INTEGER}   
+
+  </select>
+
+</mapper>

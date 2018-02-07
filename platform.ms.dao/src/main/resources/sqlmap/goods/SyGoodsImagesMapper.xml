@@ -1,0 +1,244 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.shanyuan.platform.ms.dao.goods.mapper.SyGoodsImagesMapper" >
+  <resultMap id="BaseResultMap" type="com.shanyuan.platform.ms.dao.goods.entity.SyGoodsImages" >
+    <id column="goods_image_id" property="goodsImageId" jdbcType="INTEGER" />
+    <result column="goods_commonid" property="goodsCommonid" jdbcType="INTEGER" />
+    <result column="store_id" property="storeId" jdbcType="INTEGER" />
+    <result column="color_id" property="colorId" jdbcType="INTEGER" />
+    <result column="goods_image" property="goodsImage" jdbcType="VARCHAR" />
+    <result column="goods_image_sort" property="goodsImageSort" jdbcType="TINYINT" />
+    <result column="is_default" property="isDefault" jdbcType="TINYINT" />
+  </resultMap>
+  <sql id="Example_Where_Clause" >
+    <where >
+      <foreach collection="oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Update_By_Example_Where_Clause" >
+    <where >
+      <foreach collection="example.oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Base_Column_List" >
+    goods_image_id, goods_commonid, store_id, color_id, goods_image, goods_image_sort, 
+    is_default
+  </sql>
+  <select id="selectByExample" resultMap="BaseResultMap" parameterType="com.shanyuan.platform.ms.dao.goods.entity.SyGoodsImagesExample" >
+    select
+    <if test="distinct" >
+      distinct
+    </if>
+    <include refid="Base_Column_List" />
+    from sy_goods_images
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null" >
+      order by ${orderByClause}
+    </if>
+  </select>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+    select 
+    <include refid="Base_Column_List" />
+    from sy_goods_images
+    where goods_image_id = #{goodsImageId,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+    delete from sy_goods_images
+    where goods_image_id = #{goodsImageId,jdbcType=INTEGER}
+  </delete>
+  <delete id="deleteByExample" parameterType="com.shanyuan.platform.ms.dao.goods.entity.SyGoodsImagesExample" >
+    delete from sy_goods_images
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </delete>
+  <insert id="insert" parameterType="com.shanyuan.platform.ms.dao.goods.entity.SyGoodsImages" >
+    <selectKey resultType="java.lang.Integer" keyProperty="goodsImageId" order="AFTER" >
+      SELECT LAST_INSERT_ID()
+    </selectKey>
+    insert into sy_goods_images (goods_commonid, store_id, color_id, 
+      goods_image, goods_image_sort, is_default
+      )
+    values (#{goodsCommonid,jdbcType=INTEGER}, #{storeId,jdbcType=INTEGER}, #{colorId,jdbcType=INTEGER}, 
+      #{goodsImage,jdbcType=VARCHAR}, #{goodsImageSort,jdbcType=TINYINT}, #{isDefault,jdbcType=TINYINT}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="com.shanyuan.platform.ms.dao.goods.entity.SyGoodsImages" >
+    <selectKey resultType="java.lang.Integer" keyProperty="goodsImageId" order="AFTER" >
+      SELECT LAST_INSERT_ID()
+    </selectKey>
+    insert into sy_goods_images
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="goodsCommonid != null" >
+        goods_commonid,
+      </if>
+      <if test="storeId != null" >
+        store_id,
+      </if>
+      <if test="colorId != null" >
+        color_id,
+      </if>
+      <if test="goodsImage != null" >
+        goods_image,
+      </if>
+      <if test="goodsImageSort != null" >
+        goods_image_sort,
+      </if>
+      <if test="isDefault != null" >
+        is_default,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="goodsCommonid != null" >
+        #{goodsCommonid,jdbcType=INTEGER},
+      </if>
+      <if test="storeId != null" >
+        #{storeId,jdbcType=INTEGER},
+      </if>
+      <if test="colorId != null" >
+        #{colorId,jdbcType=INTEGER},
+      </if>
+      <if test="goodsImage != null" >
+        #{goodsImage,jdbcType=VARCHAR},
+      </if>
+      <if test="goodsImageSort != null" >
+        #{goodsImageSort,jdbcType=TINYINT},
+      </if>
+      <if test="isDefault != null" >
+        #{isDefault,jdbcType=TINYINT},
+      </if>
+    </trim>
+  </insert>
+  <select id="countByExample" parameterType="com.shanyuan.platform.ms.dao.goods.entity.SyGoodsImagesExample" resultType="java.lang.Integer" >
+    select count(*) from sy_goods_images
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </select>
+  <update id="updateByExampleSelective" parameterType="map" >
+    update sy_goods_images
+    <set >
+      <if test="record.goodsImageId != null" >
+        goods_image_id = #{record.goodsImageId,jdbcType=INTEGER},
+      </if>
+      <if test="record.goodsCommonid != null" >
+        goods_commonid = #{record.goodsCommonid,jdbcType=INTEGER},
+      </if>
+      <if test="record.storeId != null" >
+        store_id = #{record.storeId,jdbcType=INTEGER},
+      </if>
+      <if test="record.colorId != null" >
+        color_id = #{record.colorId,jdbcType=INTEGER},
+      </if>
+      <if test="record.goodsImage != null" >
+        goods_image = #{record.goodsImage,jdbcType=VARCHAR},
+      </if>
+      <if test="record.goodsImageSort != null" >
+        goods_image_sort = #{record.goodsImageSort,jdbcType=TINYINT},
+      </if>
+      <if test="record.isDefault != null" >
+        is_default = #{record.isDefault,jdbcType=TINYINT},
+      </if>
+    </set>
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByExample" parameterType="map" >
+    update sy_goods_images
+    set goods_image_id = #{record.goodsImageId,jdbcType=INTEGER},
+      goods_commonid = #{record.goodsCommonid,jdbcType=INTEGER},
+      store_id = #{record.storeId,jdbcType=INTEGER},
+      color_id = #{record.colorId,jdbcType=INTEGER},
+      goods_image = #{record.goodsImage,jdbcType=VARCHAR},
+      goods_image_sort = #{record.goodsImageSort,jdbcType=TINYINT},
+      is_default = #{record.isDefault,jdbcType=TINYINT}
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByPrimaryKeySelective" parameterType="com.shanyuan.platform.ms.dao.goods.entity.SyGoodsImages" >
+    update sy_goods_images
+    <set >
+      <if test="goodsCommonid != null" >
+        goods_commonid = #{goodsCommonid,jdbcType=INTEGER},
+      </if>
+      <if test="storeId != null" >
+        store_id = #{storeId,jdbcType=INTEGER},
+      </if>
+      <if test="colorId != null" >
+        color_id = #{colorId,jdbcType=INTEGER},
+      </if>
+      <if test="goodsImage != null" >
+        goods_image = #{goodsImage,jdbcType=VARCHAR},
+      </if>
+      <if test="goodsImageSort != null" >
+        goods_image_sort = #{goodsImageSort,jdbcType=TINYINT},
+      </if>
+      <if test="isDefault != null" >
+        is_default = #{isDefault,jdbcType=TINYINT},
+      </if>
+    </set>
+    where goods_image_id = #{goodsImageId,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.shanyuan.platform.ms.dao.goods.entity.SyGoodsImages" >
+    update sy_goods_images
+    set goods_commonid = #{goodsCommonid,jdbcType=INTEGER},
+      store_id = #{storeId,jdbcType=INTEGER},
+      color_id = #{colorId,jdbcType=INTEGER},
+      goods_image = #{goodsImage,jdbcType=VARCHAR},
+      goods_image_sort = #{goodsImageSort,jdbcType=TINYINT},
+      is_default = #{isDefault,jdbcType=TINYINT}
+    where goods_image_id = #{goodsImageId,jdbcType=INTEGER}
+  </update>
+</mapper>

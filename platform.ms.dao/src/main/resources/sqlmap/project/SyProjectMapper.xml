@@ -1,0 +1,598 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.shanyuan.platform.ms.dao.project.mapper.SyProjectMapper" >
+  <resultMap id="BaseResultMap" type="com.shanyuan.platform.ms.dao.project.entity.SyProject" >
+    <id column="proj_id" property="projId" jdbcType="INTEGER" />
+    <result column="proj_title" property="projTitle" jdbcType="VARCHAR" />
+    <result column="proj_intro" property="projIntro" jdbcType="VARCHAR" />
+    <result column="proj_url" property="projUrl" jdbcType="VARCHAR" />
+    <result column="proj_image" property="projImage" jdbcType="VARCHAR" />
+    <result column="proj_sponsor" property="projSponsor" jdbcType="VARCHAR" />
+    <result column="proj_sponsor_intro" property="projSponsorIntro" jdbcType="VARCHAR" />
+    <result column="activity_id" property="activityId" jdbcType="INTEGER" />
+    <result column="target_syb" property="targetSyb" jdbcType="INTEGER" />
+    <result column="proj_type" property="projType" jdbcType="VARCHAR" />
+    <result column="proj_owner_id" property="projOwnerId" jdbcType="INTEGER" />
+    <result column="bf_id" property="bfId" jdbcType="INTEGER" />
+    <result column="proj_state" property="projState" jdbcType="TINYINT" />
+    <result column="add_time" property="addTime" jdbcType="INTEGER" />
+    <result column="donation_type" property="donationType" jdbcType="VARCHAR" />
+    <result column="proj_sort" property="projSort" jdbcType="INTEGER" />
+    <result column="audit_comment" property="auditComment" jdbcType="VARCHAR" />
+    <result column="proj_auditor_id" property="projAuditorId" jdbcType="INTEGER" />
+    <result column="proj_sponsor_image" property="projSponsorImage" jdbcType="VARCHAR" />
+    <result column="proj_bf_name" property="projBfName" jdbcType="VARCHAR" />
+    <result column="proj_bf_image" property="projBfImage" jdbcType="VARCHAR" />
+    <result column="goods_price" property="goodsPrice" jdbcType="DECIMAL" />
+    <result column="unit" property="unit" jdbcType="VARCHAR" />
+    <result column="store_id" property="storeId" jdbcType="INTEGER" />
+    <result column="store_name" property="storeName" jdbcType="VARCHAR" />
+  </resultMap>
+  <resultMap id="ResultMapWithBLOBs" type="com.shanyuan.platform.ms.dao.project.entity.SyProject" extends="BaseResultMap" >
+    <result column="proj_desc" property="projDesc" jdbcType="LONGVARCHAR" />
+  </resultMap>
+  <sql id="Example_Where_Clause" >
+    <where >
+      <foreach collection="oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Update_By_Example_Where_Clause" >
+    <where >
+      <foreach collection="example.oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Base_Column_List" >
+    proj_id, proj_title, proj_intro, proj_url, proj_image, proj_sponsor, proj_sponsor_intro, 
+    activity_id, target_syb, proj_type, proj_owner_id, bf_id, proj_state, add_time, donation_type, 
+    proj_sort, audit_comment, proj_auditor_id, proj_sponsor_image, proj_bf_name, proj_bf_image, 
+    goods_price, unit
+  </sql>
+  <sql id="Blob_Column_List" >
+    proj_desc
+  </sql>
+  <select id="selectByExampleWithBLOBs" resultMap="ResultMapWithBLOBs" parameterType="com.shanyuan.platform.ms.dao.project.entity.SyProjectExample" >
+    select
+    <if test="distinct" >
+      distinct
+    </if>
+    <include refid="Base_Column_List" />
+    ,
+    <include refid="Blob_Column_List" />
+    from sy_project
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null" >
+      order by ${orderByClause}
+    </if>
+  </select>
+  <select id="selectByExample" resultMap="BaseResultMap" parameterType="com.shanyuan.platform.ms.dao.project.entity.SyProjectExample" >
+    select
+    <if test="distinct" >
+      distinct
+    </if>
+    <include refid="Base_Column_List" />
+    from sy_project
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null" >
+      order by ${orderByClause}
+    </if>
+  </select>
+  <select id="selectByPrimaryKey" resultMap="ResultMapWithBLOBs" parameterType="java.lang.Integer" >
+    select 
+    <include refid="Base_Column_List" />
+    ,
+    <include refid="Blob_Column_List" />
+    from sy_project
+    where proj_id = #{projId,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+    delete from sy_project
+    where proj_id = #{projId,jdbcType=INTEGER}
+  </delete>
+  <delete id="deleteByExample" parameterType="com.shanyuan.platform.ms.dao.project.entity.SyProjectExample" >
+    delete from sy_project
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </delete>
+  <insert id="insert" parameterType="com.shanyuan.platform.ms.dao.project.entity.SyProject" >
+    <selectKey resultType="java.lang.Integer" keyProperty="projId" order="AFTER" >
+      SELECT LAST_INSERT_ID()
+    </selectKey>
+    insert into sy_project (proj_title, proj_intro, proj_url, 
+      proj_image, proj_sponsor, proj_sponsor_intro, 
+      activity_id, target_syb, proj_type, 
+      proj_owner_id, bf_id, proj_state, 
+      add_time, donation_type, proj_sort, 
+      audit_comment, proj_auditor_id, proj_sponsor_image, 
+      proj_bf_name, proj_bf_image, goods_price, 
+      unit, proj_desc)
+    values (#{projTitle,jdbcType=VARCHAR}, #{projIntro,jdbcType=VARCHAR}, #{projUrl,jdbcType=VARCHAR}, 
+      #{projImage,jdbcType=VARCHAR}, #{projSponsor,jdbcType=VARCHAR}, #{projSponsorIntro,jdbcType=VARCHAR}, 
+      #{activityId,jdbcType=INTEGER}, #{targetSyb,jdbcType=INTEGER}, #{projType,jdbcType=VARCHAR}, 
+      #{projOwnerId,jdbcType=INTEGER}, #{bfId,jdbcType=INTEGER}, #{projState,jdbcType=TINYINT}, 
+      #{addTime,jdbcType=INTEGER}, #{donationType,jdbcType=VARCHAR}, #{projSort,jdbcType=INTEGER}, 
+      #{auditComment,jdbcType=VARCHAR}, #{projAuditorId,jdbcType=INTEGER}, #{projSponsorImage,jdbcType=VARCHAR}, 
+      #{projBfName,jdbcType=VARCHAR}, #{projBfImage,jdbcType=VARCHAR}, #{goodsPrice,jdbcType=DECIMAL}, 
+      #{unit,jdbcType=VARCHAR}, #{projDesc,jdbcType=LONGVARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="com.shanyuan.platform.ms.dao.project.entity.SyProject" >
+    <selectKey resultType="java.lang.Integer" keyProperty="projId" order="AFTER" >
+      SELECT LAST_INSERT_ID()
+    </selectKey>
+    insert into sy_project
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="projTitle != null" >
+        proj_title,
+      </if>
+      <if test="projIntro != null" >
+        proj_intro,
+      </if>
+      <if test="projUrl != null" >
+        proj_url,
+      </if>
+      <if test="projImage != null" >
+        proj_image,
+      </if>
+      <if test="projSponsor != null" >
+        proj_sponsor,
+      </if>
+      <if test="projSponsorIntro != null" >
+        proj_sponsor_intro,
+      </if>
+      <if test="activityId != null" >
+        activity_id,
+      </if>
+      <if test="targetSyb != null" >
+        target_syb,
+      </if>
+      <if test="projType != null" >
+        proj_type,
+      </if>
+      <if test="projOwnerId != null" >
+        proj_owner_id,
+      </if>
+      <if test="bfId != null" >
+        bf_id,
+      </if>
+      <if test="projState != null" >
+        proj_state,
+      </if>
+      <if test="addTime != null" >
+        add_time,
+      </if>
+      <if test="donationType != null" >
+        donation_type,
+      </if>
+      <if test="projSort != null" >
+        proj_sort,
+      </if>
+      <if test="auditComment != null" >
+        audit_comment,
+      </if>
+      <if test="projAuditorId != null" >
+        proj_auditor_id,
+      </if>
+      <if test="projSponsorImage != null" >
+        proj_sponsor_image,
+      </if>
+      <if test="projBfName != null" >
+        proj_bf_name,
+      </if>
+      <if test="projBfImage != null" >
+        proj_bf_image,
+      </if>
+      <if test="goodsPrice != null" >
+        goods_price,
+      </if>
+      <if test="unit != null" >
+        unit,
+      </if>
+      <if test="projDesc != null" >
+        proj_desc,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="projTitle != null" >
+        #{projTitle,jdbcType=VARCHAR},
+      </if>
+      <if test="projIntro != null" >
+        #{projIntro,jdbcType=VARCHAR},
+      </if>
+      <if test="projUrl != null" >
+        #{projUrl,jdbcType=VARCHAR},
+      </if>
+      <if test="projImage != null" >
+        #{projImage,jdbcType=VARCHAR},
+      </if>
+      <if test="projSponsor != null" >
+        #{projSponsor,jdbcType=VARCHAR},
+      </if>
+      <if test="projSponsorIntro != null" >
+        #{projSponsorIntro,jdbcType=VARCHAR},
+      </if>
+      <if test="activityId != null" >
+        #{activityId,jdbcType=INTEGER},
+      </if>
+      <if test="targetSyb != null" >
+        #{targetSyb,jdbcType=INTEGER},
+      </if>
+      <if test="projType != null" >
+        #{projType,jdbcType=VARCHAR},
+      </if>
+      <if test="projOwnerId != null" >
+        #{projOwnerId,jdbcType=INTEGER},
+      </if>
+      <if test="bfId != null" >
+        #{bfId,jdbcType=INTEGER},
+      </if>
+      <if test="projState != null" >
+        #{projState,jdbcType=TINYINT},
+      </if>
+      <if test="addTime != null" >
+        #{addTime,jdbcType=INTEGER},
+      </if>
+      <if test="donationType != null" >
+        #{donationType,jdbcType=VARCHAR},
+      </if>
+      <if test="projSort != null" >
+        #{projSort,jdbcType=INTEGER},
+      </if>
+      <if test="auditComment != null" >
+        #{auditComment,jdbcType=VARCHAR},
+      </if>
+      <if test="projAuditorId != null" >
+        #{projAuditorId,jdbcType=INTEGER},
+      </if>
+      <if test="projSponsorImage != null" >
+        #{projSponsorImage,jdbcType=VARCHAR},
+      </if>
+      <if test="projBfName != null" >
+        #{projBfName,jdbcType=VARCHAR},
+      </if>
+      <if test="projBfImage != null" >
+        #{projBfImage,jdbcType=VARCHAR},
+      </if>
+      <if test="goodsPrice != null" >
+        #{goodsPrice,jdbcType=DECIMAL},
+      </if>
+      <if test="unit != null" >
+        #{unit,jdbcType=VARCHAR},
+      </if>
+      <if test="projDesc != null" >
+        #{projDesc,jdbcType=LONGVARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <select id="countByExample" parameterType="com.shanyuan.platform.ms.dao.project.entity.SyProjectExample" resultType="java.lang.Integer" >
+    select count(*) from sy_project
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </select>
+  <update id="updateByExampleSelective" parameterType="map" >
+    update sy_project
+    <set >
+      <if test="record.projId != null" >
+        proj_id = #{record.projId,jdbcType=INTEGER},
+      </if>
+      <if test="record.projTitle != null" >
+        proj_title = #{record.projTitle,jdbcType=VARCHAR},
+      </if>
+      <if test="record.projIntro != null" >
+        proj_intro = #{record.projIntro,jdbcType=VARCHAR},
+      </if>
+      <if test="record.projUrl != null" >
+        proj_url = #{record.projUrl,jdbcType=VARCHAR},
+      </if>
+      <if test="record.projImage != null" >
+        proj_image = #{record.projImage,jdbcType=VARCHAR},
+      </if>
+      <if test="record.projSponsor != null" >
+        proj_sponsor = #{record.projSponsor,jdbcType=VARCHAR},
+      </if>
+      <if test="record.projSponsorIntro != null" >
+        proj_sponsor_intro = #{record.projSponsorIntro,jdbcType=VARCHAR},
+      </if>
+      <if test="record.activityId != null" >
+        activity_id = #{record.activityId,jdbcType=INTEGER},
+      </if>
+      <if test="record.targetSyb != null" >
+        target_syb = #{record.targetSyb,jdbcType=INTEGER},
+      </if>
+      <if test="record.projType != null" >
+        proj_type = #{record.projType,jdbcType=VARCHAR},
+      </if>
+      <if test="record.projOwnerId != null" >
+        proj_owner_id = #{record.projOwnerId,jdbcType=INTEGER},
+      </if>
+      <if test="record.bfId != null" >
+        bf_id = #{record.bfId,jdbcType=INTEGER},
+      </if>
+      <if test="record.projState != null" >
+        proj_state = #{record.projState,jdbcType=TINYINT},
+      </if>
+      <if test="record.addTime != null" >
+        add_time = #{record.addTime,jdbcType=INTEGER},
+      </if>
+      <if test="record.donationType != null" >
+        donation_type = #{record.donationType,jdbcType=VARCHAR},
+      </if>
+      <if test="record.projSort != null" >
+        proj_sort = #{record.projSort,jdbcType=INTEGER},
+      </if>
+      <if test="record.auditComment != null" >
+        audit_comment = #{record.auditComment,jdbcType=VARCHAR},
+      </if>
+      <if test="record.projAuditorId != null" >
+        proj_auditor_id = #{record.projAuditorId,jdbcType=INTEGER},
+      </if>
+      <if test="record.projSponsorImage != null" >
+        proj_sponsor_image = #{record.projSponsorImage,jdbcType=VARCHAR},
+      </if>
+      <if test="record.projBfName != null" >
+        proj_bf_name = #{record.projBfName,jdbcType=VARCHAR},
+      </if>
+      <if test="record.projBfImage != null" >
+        proj_bf_image = #{record.projBfImage,jdbcType=VARCHAR},
+      </if>
+      <if test="record.goodsPrice != null" >
+        goods_price = #{record.goodsPrice,jdbcType=DECIMAL},
+      </if>
+      <if test="record.unit != null" >
+        unit = #{record.unit,jdbcType=VARCHAR},
+      </if>
+      <if test="record.projDesc != null" >
+        proj_desc = #{record.projDesc,jdbcType=LONGVARCHAR},
+      </if>
+    </set>
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByExampleWithBLOBs" parameterType="map" >
+    update sy_project
+    set proj_id = #{record.projId,jdbcType=INTEGER},
+      proj_title = #{record.projTitle,jdbcType=VARCHAR},
+      proj_intro = #{record.projIntro,jdbcType=VARCHAR},
+      proj_url = #{record.projUrl,jdbcType=VARCHAR},
+      proj_image = #{record.projImage,jdbcType=VARCHAR},
+      proj_sponsor = #{record.projSponsor,jdbcType=VARCHAR},
+      proj_sponsor_intro = #{record.projSponsorIntro,jdbcType=VARCHAR},
+      activity_id = #{record.activityId,jdbcType=INTEGER},
+      target_syb = #{record.targetSyb,jdbcType=INTEGER},
+      proj_type = #{record.projType,jdbcType=VARCHAR},
+      proj_owner_id = #{record.projOwnerId,jdbcType=INTEGER},
+      bf_id = #{record.bfId,jdbcType=INTEGER},
+      proj_state = #{record.projState,jdbcType=TINYINT},
+      add_time = #{record.addTime,jdbcType=INTEGER},
+      donation_type = #{record.donationType,jdbcType=VARCHAR},
+      proj_sort = #{record.projSort,jdbcType=INTEGER},
+      audit_comment = #{record.auditComment,jdbcType=VARCHAR},
+      proj_auditor_id = #{record.projAuditorId,jdbcType=INTEGER},
+      proj_sponsor_image = #{record.projSponsorImage,jdbcType=VARCHAR},
+      proj_bf_name = #{record.projBfName,jdbcType=VARCHAR},
+      proj_bf_image = #{record.projBfImage,jdbcType=VARCHAR},
+      goods_price = #{record.goodsPrice,jdbcType=DECIMAL},
+      unit = #{record.unit,jdbcType=VARCHAR},
+      proj_desc = #{record.projDesc,jdbcType=LONGVARCHAR}
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByExample" parameterType="map" >
+    update sy_project
+    set proj_id = #{record.projId,jdbcType=INTEGER},
+      proj_title = #{record.projTitle,jdbcType=VARCHAR},
+      proj_intro = #{record.projIntro,jdbcType=VARCHAR},
+      proj_url = #{record.projUrl,jdbcType=VARCHAR},
+      proj_image = #{record.projImage,jdbcType=VARCHAR},
+      proj_sponsor = #{record.projSponsor,jdbcType=VARCHAR},
+      proj_sponsor_intro = #{record.projSponsorIntro,jdbcType=VARCHAR},
+      activity_id = #{record.activityId,jdbcType=INTEGER},
+      target_syb = #{record.targetSyb,jdbcType=INTEGER},
+      proj_type = #{record.projType,jdbcType=VARCHAR},
+      proj_owner_id = #{record.projOwnerId,jdbcType=INTEGER},
+      bf_id = #{record.bfId,jdbcType=INTEGER},
+      proj_state = #{record.projState,jdbcType=TINYINT},
+      add_time = #{record.addTime,jdbcType=INTEGER},
+      donation_type = #{record.donationType,jdbcType=VARCHAR},
+      proj_sort = #{record.projSort,jdbcType=INTEGER},
+      audit_comment = #{record.auditComment,jdbcType=VARCHAR},
+      proj_auditor_id = #{record.projAuditorId,jdbcType=INTEGER},
+      proj_sponsor_image = #{record.projSponsorImage,jdbcType=VARCHAR},
+      proj_bf_name = #{record.projBfName,jdbcType=VARCHAR},
+      proj_bf_image = #{record.projBfImage,jdbcType=VARCHAR},
+      goods_price = #{record.goodsPrice,jdbcType=DECIMAL},
+      unit = #{record.unit,jdbcType=VARCHAR}
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByPrimaryKeySelective" parameterType="com.shanyuan.platform.ms.dao.project.entity.SyProject" >
+    update sy_project
+    <set >
+      <if test="projTitle != null" >
+        proj_title = #{projTitle,jdbcType=VARCHAR},
+      </if>
+      <if test="projIntro != null" >
+        proj_intro = #{projIntro,jdbcType=VARCHAR},
+      </if>
+      <if test="projUrl != null" >
+        proj_url = #{projUrl,jdbcType=VARCHAR},
+      </if>
+      <if test="projImage != null" >
+        proj_image = #{projImage,jdbcType=VARCHAR},
+      </if>
+      <if test="projSponsor != null" >
+        proj_sponsor = #{projSponsor,jdbcType=VARCHAR},
+      </if>
+      <if test="projSponsorIntro != null" >
+        proj_sponsor_intro = #{projSponsorIntro,jdbcType=VARCHAR},
+      </if>
+      <if test="activityId != null" >
+        activity_id = #{activityId,jdbcType=INTEGER},
+      </if>
+      <if test="targetSyb != null" >
+        target_syb = #{targetSyb,jdbcType=INTEGER},
+      </if>
+      <if test="projType != null" >
+        proj_type = #{projType,jdbcType=VARCHAR},
+      </if>
+      <if test="projOwnerId != null" >
+        proj_owner_id = #{projOwnerId,jdbcType=INTEGER},
+      </if>
+      <if test="bfId != null" >
+        bf_id = #{bfId,jdbcType=INTEGER},
+      </if>
+      <if test="projState != null" >
+        proj_state = #{projState,jdbcType=TINYINT},
+      </if>
+      <if test="addTime != null" >
+        add_time = #{addTime,jdbcType=INTEGER},
+      </if>
+      <if test="donationType != null" >
+        donation_type = #{donationType,jdbcType=VARCHAR},
+      </if>
+      <if test="projSort != null" >
+        proj_sort = #{projSort,jdbcType=INTEGER},
+      </if>
+      <if test="auditComment != null" >
+        audit_comment = #{auditComment,jdbcType=VARCHAR},
+      </if>
+      <if test="projAuditorId != null" >
+        proj_auditor_id = #{projAuditorId,jdbcType=INTEGER},
+      </if>
+      <if test="projSponsorImage != null" >
+        proj_sponsor_image = #{projSponsorImage,jdbcType=VARCHAR},
+      </if>
+      <if test="projBfName != null" >
+        proj_bf_name = #{projBfName,jdbcType=VARCHAR},
+      </if>
+      <if test="projBfImage != null" >
+        proj_bf_image = #{projBfImage,jdbcType=VARCHAR},
+      </if>
+      <if test="goodsPrice != null" >
+        goods_price = #{goodsPrice,jdbcType=DECIMAL},
+      </if>
+      <if test="unit != null" >
+        unit = #{unit,jdbcType=VARCHAR},
+      </if>
+      <if test="projDesc != null" >
+        proj_desc = #{projDesc,jdbcType=LONGVARCHAR},
+      </if>
+    </set>
+    where proj_id = #{projId,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKeyWithBLOBs" parameterType="com.shanyuan.platform.ms.dao.project.entity.SyProject" >
+    update sy_project
+    set proj_title = #{projTitle,jdbcType=VARCHAR},
+      proj_intro = #{projIntro,jdbcType=VARCHAR},
+      proj_url = #{projUrl,jdbcType=VARCHAR},
+      proj_image = #{projImage,jdbcType=VARCHAR},
+      proj_sponsor = #{projSponsor,jdbcType=VARCHAR},
+      proj_sponsor_intro = #{projSponsorIntro,jdbcType=VARCHAR},
+      activity_id = #{activityId,jdbcType=INTEGER},
+      target_syb = #{targetSyb,jdbcType=INTEGER},
+      proj_type = #{projType,jdbcType=VARCHAR},
+      proj_owner_id = #{projOwnerId,jdbcType=INTEGER},
+      bf_id = #{bfId,jdbcType=INTEGER},
+      proj_state = #{projState,jdbcType=TINYINT},
+      add_time = #{addTime,jdbcType=INTEGER},
+      donation_type = #{donationType,jdbcType=VARCHAR},
+      proj_sort = #{projSort,jdbcType=INTEGER},
+      audit_comment = #{auditComment,jdbcType=VARCHAR},
+      proj_auditor_id = #{projAuditorId,jdbcType=INTEGER},
+      proj_sponsor_image = #{projSponsorImage,jdbcType=VARCHAR},
+      proj_bf_name = #{projBfName,jdbcType=VARCHAR},
+      proj_bf_image = #{projBfImage,jdbcType=VARCHAR},
+      goods_price = #{goodsPrice,jdbcType=DECIMAL},
+      unit = #{unit,jdbcType=VARCHAR},
+      proj_desc = #{projDesc,jdbcType=LONGVARCHAR}
+    where proj_id = #{projId,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.shanyuan.platform.ms.dao.project.entity.SyProject" >
+    update sy_project
+    set proj_title = #{projTitle,jdbcType=VARCHAR},
+      proj_intro = #{projIntro,jdbcType=VARCHAR},
+      proj_url = #{projUrl,jdbcType=VARCHAR},
+      proj_image = #{projImage,jdbcType=VARCHAR},
+      proj_sponsor = #{projSponsor,jdbcType=VARCHAR},
+      proj_sponsor_intro = #{projSponsorIntro,jdbcType=VARCHAR},
+      activity_id = #{activityId,jdbcType=INTEGER},
+      target_syb = #{targetSyb,jdbcType=INTEGER},
+      proj_type = #{projType,jdbcType=VARCHAR},
+      proj_owner_id = #{projOwnerId,jdbcType=INTEGER},
+      bf_id = #{bfId,jdbcType=INTEGER},
+      proj_state = #{projState,jdbcType=TINYINT},
+      add_time = #{addTime,jdbcType=INTEGER},
+      donation_type = #{donationType,jdbcType=VARCHAR},
+      proj_sort = #{projSort,jdbcType=INTEGER},
+      audit_comment = #{auditComment,jdbcType=VARCHAR},
+      proj_auditor_id = #{projAuditorId,jdbcType=INTEGER},
+      proj_sponsor_image = #{projSponsorImage,jdbcType=VARCHAR},
+      proj_bf_name = #{projBfName,jdbcType=VARCHAR},
+      proj_bf_image = #{projBfImage,jdbcType=VARCHAR},
+      goods_price = #{goodsPrice,jdbcType=DECIMAL},
+      unit = #{unit,jdbcType=VARCHAR}
+    where proj_id = #{projId,jdbcType=INTEGER}
+  </update>
+  
+  <select id="selectProjectAndStoreByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+  	SELECT a.*,b.store_id,b.store_name
+	FROM sy_project a,sy_store b
+	WHERE a.bf_id=b.member_id
+	AND a.proj_id = #{projId,jdbcType=INTEGER}
+  </select>
+</mapper>

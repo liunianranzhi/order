@@ -1,0 +1,234 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.shanyuan.platform.ms.dao.stats.mapper.SyBizPoorStatsMapper" >
+  <resultMap id="BaseResultMap" type="com.shanyuan.platform.ms.dao.stats.entity.SyBizPoorStats" >
+    <id column="stats_id" property="statsId" jdbcType="INTEGER" />
+    <result column="agent_mid" property="agentMid" jdbcType="INTEGER" />
+    <result column="poor_id" property="poorId" jdbcType="INTEGER" />
+    <result column="poor_mid" property="poorMid" jdbcType="INTEGER" />
+    <result column="finished_money" property="finishedMoney" jdbcType="INTEGER" />
+    <result column="add_time" property="addTime" jdbcType="INTEGER" />
+  </resultMap>
+  <sql id="Example_Where_Clause" >
+    <where >
+      <foreach collection="oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Update_By_Example_Where_Clause" >
+    <where >
+      <foreach collection="example.oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Base_Column_List" >
+    stats_id, agent_mid, poor_id, poor_mid, finished_money, add_time
+  </sql>
+  <select id="selectByExample" resultMap="BaseResultMap" parameterType="com.shanyuan.platform.ms.dao.stats.entity.SyBizPoorStatsExample" >
+    select
+    <if test="distinct" >
+      distinct
+    </if>
+    <include refid="Base_Column_List" />
+    from sy_biz_poor_stats
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null" >
+      order by ${orderByClause}
+    </if>
+  </select>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+    select 
+    <include refid="Base_Column_List" />
+    from sy_biz_poor_stats
+    where stats_id = #{statsId,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+    delete from sy_biz_poor_stats
+    where stats_id = #{statsId,jdbcType=INTEGER}
+  </delete>
+  <delete id="deleteByExample" parameterType="com.shanyuan.platform.ms.dao.stats.entity.SyBizPoorStatsExample" >
+    delete from sy_biz_poor_stats
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </delete>
+  <insert id="insert" parameterType="com.shanyuan.platform.ms.dao.stats.entity.SyBizPoorStats" >
+    <selectKey resultType="java.lang.Integer" keyProperty="statsId" order="AFTER" >
+      SELECT LAST_INSERT_ID()
+    </selectKey>
+    insert into sy_biz_poor_stats (agent_mid, poor_id, poor_mid, 
+      finished_money, add_time)
+    values (#{agentMid,jdbcType=INTEGER}, #{poorId,jdbcType=INTEGER}, #{poorMid,jdbcType=INTEGER}, 
+      #{finishedMoney,jdbcType=INTEGER}, #{addTime,jdbcType=INTEGER})
+  </insert>
+  <insert id="insertSelective" parameterType="com.shanyuan.platform.ms.dao.stats.entity.SyBizPoorStats" >
+    <selectKey resultType="java.lang.Integer" keyProperty="statsId" order="AFTER" >
+      SELECT LAST_INSERT_ID()
+    </selectKey>
+    insert into sy_biz_poor_stats
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="agentMid != null" >
+        agent_mid,
+      </if>
+      <if test="poorId != null" >
+        poor_id,
+      </if>
+      <if test="poorMid != null" >
+        poor_mid,
+      </if>
+      <if test="finishedMoney != null" >
+        finished_money,
+      </if>
+      <if test="addTime != null" >
+        add_time,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="agentMid != null" >
+        #{agentMid,jdbcType=INTEGER},
+      </if>
+      <if test="poorId != null" >
+        #{poorId,jdbcType=INTEGER},
+      </if>
+      <if test="poorMid != null" >
+        #{poorMid,jdbcType=INTEGER},
+      </if>
+      <if test="finishedMoney != null" >
+        #{finishedMoney,jdbcType=INTEGER},
+      </if>
+      <if test="addTime != null" >
+        #{addTime,jdbcType=INTEGER},
+      </if>
+    </trim>
+  </insert>
+  <select id="countByExample" parameterType="com.shanyuan.platform.ms.dao.stats.entity.SyBizPoorStatsExample" resultType="java.lang.Integer" >
+    select count(*) from sy_biz_poor_stats
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </select>
+  <update id="updateByExampleSelective" parameterType="map" >
+    update sy_biz_poor_stats
+    <set >
+      <if test="record.statsId != null" >
+        stats_id = #{record.statsId,jdbcType=INTEGER},
+      </if>
+      <if test="record.agentMid != null" >
+        agent_mid = #{record.agentMid,jdbcType=INTEGER},
+      </if>
+      <if test="record.poorId != null" >
+        poor_id = #{record.poorId,jdbcType=INTEGER},
+      </if>
+      <if test="record.poorMid != null" >
+        poor_mid = #{record.poorMid,jdbcType=INTEGER},
+      </if>
+      <if test="record.finishedMoney != null" >
+        finished_money = #{record.finishedMoney,jdbcType=INTEGER},
+      </if>
+      <if test="record.addTime != null" >
+        add_time = #{record.addTime,jdbcType=INTEGER},
+      </if>
+    </set>
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByExample" parameterType="map" >
+    update sy_biz_poor_stats
+    set stats_id = #{record.statsId,jdbcType=INTEGER},
+      agent_mid = #{record.agentMid,jdbcType=INTEGER},
+      poor_id = #{record.poorId,jdbcType=INTEGER},
+      poor_mid = #{record.poorMid,jdbcType=INTEGER},
+      finished_money = #{record.finishedMoney,jdbcType=INTEGER},
+      add_time = #{record.addTime,jdbcType=INTEGER}
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByPrimaryKeySelective" parameterType="com.shanyuan.platform.ms.dao.stats.entity.SyBizPoorStats" >
+    update sy_biz_poor_stats
+    <set >
+      <if test="agentMid != null" >
+        agent_mid = #{agentMid,jdbcType=INTEGER},
+      </if>
+      <if test="poorId != null" >
+        poor_id = #{poorId,jdbcType=INTEGER},
+      </if>
+      <if test="poorMid != null" >
+        poor_mid = #{poorMid,jdbcType=INTEGER},
+      </if>
+      <if test="finishedMoney != null" >
+        finished_money = #{finishedMoney,jdbcType=INTEGER},
+      </if>
+      <if test="addTime != null" >
+        add_time = #{addTime,jdbcType=INTEGER},
+      </if>
+    </set>
+    where stats_id = #{statsId,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.shanyuan.platform.ms.dao.stats.entity.SyBizPoorStats" >
+    update sy_biz_poor_stats
+    set agent_mid = #{agentMid,jdbcType=INTEGER},
+      poor_id = #{poorId,jdbcType=INTEGER},
+      poor_mid = #{poorMid,jdbcType=INTEGER},
+      finished_money = #{finishedMoney,jdbcType=INTEGER},
+      add_time = #{addTime,jdbcType=INTEGER}
+    where stats_id = #{statsId,jdbcType=INTEGER}
+  </update>
+  
+  
+  <select id="selectJicaiMoneyByMenberId" resultType="java.lang.Double" parameterType="java.lang.Integer" >
+    select 
+    IFNULL(SUM(finished_money)/100,0) 
+    from sy_biz_poor_stats
+    where agent_mid = #{memberId,jdbcType=INTEGER}
+  </select>
+</mapper>

@@ -1,0 +1,339 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.shanyuan.platform.ms.dao.user.mapper.SyShopAccountMapper" >
+  <resultMap id="BaseResultMap" type="com.shanyuan.platform.ms.dao.user.entity.SyShopAccount" >
+    <id column="rec_id" property="recId" jdbcType="INTEGER" />
+    <result column="member_id" property="memberId" jdbcType="INTEGER" />
+    <result column="points" property="points" jdbcType="DECIMAL" />
+    <result column="fund_fee_rate" property="fundFeeRate" jdbcType="SMALLINT" />
+    <result column="company_name" property="companyName" jdbcType="VARCHAR" />
+    <result column="company_logo" property="companyLogo" jdbcType="VARCHAR" />
+    <result column="licence" property="licence" jdbcType="VARCHAR" />
+    <result column="platform_prot" property="platformProt" jdbcType="VARCHAR" />
+    <result column="sy_prot" property="syProt" jdbcType="VARCHAR" />
+    <result column="status" property="status" jdbcType="TINYINT" />
+    <result column="failure_reason" property="failureReason" jdbcType="VARCHAR" />
+    <result column="area_id" property="areaId" jdbcType="INTEGER" />
+    <!-- 自己新增呐 字段 -->
+    <result column="company_abbreviation" property="companyAbbreviation" jdbcType="VARCHAR" />
+  </resultMap>
+  <sql id="Example_Where_Clause" >
+    <where >
+      <foreach collection="oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Update_By_Example_Where_Clause" >
+    <where >
+      <foreach collection="example.oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Base_Column_List" >
+    rec_id, member_id, points, fund_fee_rate, company_name, company_logo, licence, platform_prot, 
+    sy_prot, status, failure_reason, area_id,company_abbreviation
+  </sql>
+  <select id="selectByExample" resultMap="BaseResultMap" parameterType="com.shanyuan.platform.ms.dao.user.entity.SyShopAccountExample" >
+    select
+    <if test="distinct" >
+      distinct
+    </if>
+    <include refid="Base_Column_List" />
+    from sy_syshop_account
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null" >
+      order by ${orderByClause}
+    </if>
+  </select>
+  <select id="selectByMemberId" resultMap="BaseResultMap" parameterType="java.lang.Integer">
+  select member_id,fund_fee_rate from sy_syshop_account where member_id=#{memberId}
+  </select>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+    select 
+    <include refid="Base_Column_List" />
+    from sy_syshop_account
+    where rec_id = #{recId,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+    delete from sy_syshop_account
+    where rec_id = #{recId,jdbcType=INTEGER}
+  </delete>
+  <delete id="deleteByExample" parameterType="com.shanyuan.platform.ms.dao.user.entity.SyShopAccountExample" >
+    delete from sy_syshop_account
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </delete>
+  <insert id="insert" parameterType="com.shanyuan.platform.ms.dao.user.entity.SyShopAccount" >
+    <selectKey resultType="java.lang.Integer" keyProperty="recId" order="AFTER" >
+      SELECT LAST_INSERT_ID()
+    </selectKey>
+    insert into sy_syshop_account (member_id, points, fund_fee_rate, 
+      company_name, company_logo, licence, 
+      platform_prot, sy_prot, status, 
+      failure_reason, area_id)
+    values (#{memberId,jdbcType=INTEGER}, #{points,jdbcType=DECIMAL}, #{fundFeeRate,jdbcType=SMALLINT}, 
+      #{companyName,jdbcType=VARCHAR}, #{companyLogo,jdbcType=VARCHAR}, #{licence,jdbcType=VARCHAR}, 
+      #{platformProt,jdbcType=VARCHAR}, #{syProt,jdbcType=VARCHAR}, #{status,jdbcType=TINYINT}, 
+      #{failureReason,jdbcType=VARCHAR}, #{areaId,jdbcType=INTEGER})
+  </insert>
+  <insert id="insertSelective" parameterType="com.shanyuan.platform.ms.dao.user.entity.SyShopAccount" >
+    <selectKey resultType="java.lang.Integer" keyProperty="recId" order="AFTER" >
+      SELECT LAST_INSERT_ID()
+    </selectKey>
+    insert into sy_syshop_account
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="memberId != null" >
+        member_id,
+      </if>
+      <if test="companyAbbreviation != null" >
+        company_abbreviation,
+      </if>
+      <if test="points != null" >
+        points,
+      </if>
+      <if test="fundFeeRate != null" >
+        fund_fee_rate,
+      </if>
+      <if test="companyName != null" >
+        company_name,
+      </if>
+      <if test="companyLogo != null" >
+        company_logo,
+      </if>
+      <if test="licence != null" >
+        licence,
+      </if>
+      <if test="platformProt != null" >
+        platform_prot,
+      </if>
+      <if test="syProt != null" >
+        sy_prot,
+      </if>
+      <if test="status != null" >
+        status,
+      </if>
+      <if test="failureReason != null" >
+        failure_reason,
+      </if>
+      <if test="areaId != null" >
+        area_id,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="memberId != null" >
+        #{memberId,jdbcType=INTEGER},
+      </if>
+       <if test="companyAbbreviation != null" >
+       #{companyAbbreviation,jdbcType=VARCHAR},
+      </if>
+      <if test="points != null" >
+        #{points,jdbcType=DECIMAL},
+      </if>
+      <if test="fundFeeRate != null" >
+        #{fundFeeRate,jdbcType=SMALLINT},
+      </if>
+      <if test="companyName != null" >
+        #{companyName,jdbcType=VARCHAR},
+      </if>
+      <if test="companyLogo != null" >
+        #{companyLogo,jdbcType=VARCHAR},
+      </if>
+      <if test="licence != null" >
+        #{licence,jdbcType=VARCHAR},
+      </if>
+      <if test="platformProt != null" >
+        #{platformProt,jdbcType=VARCHAR},
+      </if>
+      <if test="syProt != null" >
+        #{syProt,jdbcType=VARCHAR},
+      </if>
+      <if test="status != null" >
+        #{status,jdbcType=TINYINT},
+      </if>
+      <if test="failureReason != null" >
+        #{failureReason,jdbcType=VARCHAR},
+      </if>
+      <if test="areaId != null" >
+        #{areaId,jdbcType=INTEGER},
+      </if>
+    </trim>
+  </insert>
+  <select id="countByExample" parameterType="com.shanyuan.platform.ms.dao.user.entity.SyShopAccountExample" resultType="java.lang.Integer" >
+    select count(*) from sy_syshop_account
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </select>
+  <update id="updateByExampleSelective" parameterType="map" >
+    update sy_syshop_account
+    <set >
+      <if test="record.recId != null" >
+        rec_id = #{record.recId,jdbcType=INTEGER},
+      </if>
+      <if test="record.memberId != null" >
+        member_id = #{record.memberId,jdbcType=INTEGER},
+      </if>
+      <if test="record.points != null" >
+        points = #{record.points,jdbcType=DECIMAL},
+      </if>
+      <if test="record.fundFeeRate != null" >
+        fund_fee_rate = #{record.fundFeeRate,jdbcType=SMALLINT},
+      </if>
+      <if test="record.companyName != null" >
+        company_name = #{record.companyName,jdbcType=VARCHAR},
+      </if>
+      <if test="record.companyLogo != null" >
+        company_logo = #{record.companyLogo,jdbcType=VARCHAR},
+      </if>
+      <if test="record.licence != null" >
+        licence = #{record.licence,jdbcType=VARCHAR},
+      </if>
+      <if test="record.platformProt != null" >
+        platform_prot = #{record.platformProt,jdbcType=VARCHAR},
+      </if>
+      <if test="record.syProt != null" >
+        sy_prot = #{record.syProt,jdbcType=VARCHAR},
+      </if>
+      <if test="record.status != null" >
+        status = #{record.status,jdbcType=TINYINT},
+      </if>
+      <if test="record.failureReason != null" >
+        failure_reason = #{record.failureReason,jdbcType=VARCHAR},
+      </if>
+      <if test="record.areaId != null" >
+        area_id = #{record.areaId,jdbcType=INTEGER},
+      </if>
+    </set>
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByExample" parameterType="map" >
+    update sy_syshop_account
+    set rec_id = #{record.recId,jdbcType=INTEGER},
+      member_id = #{record.memberId,jdbcType=INTEGER},
+      points = #{record.points,jdbcType=DECIMAL},
+      fund_fee_rate = #{record.fundFeeRate,jdbcType=SMALLINT},
+      company_name = #{record.companyName,jdbcType=VARCHAR},
+      company_logo = #{record.companyLogo,jdbcType=VARCHAR},
+      licence = #{record.licence,jdbcType=VARCHAR},
+      platform_prot = #{record.platformProt,jdbcType=VARCHAR},
+      sy_prot = #{record.syProt,jdbcType=VARCHAR},
+      status = #{record.status,jdbcType=TINYINT},
+      failure_reason = #{record.failureReason,jdbcType=VARCHAR},
+      area_id = #{record.areaId,jdbcType=INTEGER}
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByPrimaryKeySelective" parameterType="com.shanyuan.platform.ms.dao.user.entity.SyShopAccount" >
+    update sy_syshop_account
+    <set >
+      <if test="memberId != null" >
+        member_id = #{memberId,jdbcType=INTEGER},
+      </if>
+      <if test="points != null" >
+        points = #{points,jdbcType=DECIMAL},
+      </if>
+      <if test="fundFeeRate != null" >
+        fund_fee_rate = #{fundFeeRate,jdbcType=SMALLINT},
+      </if>
+      <if test="companyName != null" >
+        company_name = #{companyName,jdbcType=VARCHAR},
+      </if>
+      <if test="companyLogo != null" >
+        company_logo = #{companyLogo,jdbcType=VARCHAR},
+      </if>
+      <if test="licence != null" >
+        licence = #{licence,jdbcType=VARCHAR},
+      </if>
+      <if test="platformProt != null" >
+        platform_prot = #{platformProt,jdbcType=VARCHAR},
+      </if>
+      <if test="syProt != null" >
+        sy_prot = #{syProt,jdbcType=VARCHAR},
+      </if>
+      <if test="status != null" >
+        status = #{status,jdbcType=TINYINT},
+      </if>
+      <if test="failureReason != null" >
+        failure_reason = #{failureReason,jdbcType=VARCHAR},
+      </if>
+      <if test="areaId != null" >
+        area_id = #{areaId,jdbcType=INTEGER},
+      </if>
+    </set>
+    where rec_id = #{recId,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.shanyuan.platform.ms.dao.user.entity.SyShopAccount" >
+    update sy_syshop_account
+    set member_id = #{memberId,jdbcType=INTEGER},
+      points = #{points,jdbcType=DECIMAL},
+      fund_fee_rate = #{fundFeeRate,jdbcType=SMALLINT},
+      company_name = #{companyName,jdbcType=VARCHAR},
+      company_logo = #{companyLogo,jdbcType=VARCHAR},
+      licence = #{licence,jdbcType=VARCHAR},
+      platform_prot = #{platformProt,jdbcType=VARCHAR},
+      sy_prot = #{syProt,jdbcType=VARCHAR},
+      status = #{status,jdbcType=TINYINT},
+      failure_reason = #{failureReason,jdbcType=VARCHAR},
+      area_id = #{areaId,jdbcType=INTEGER}
+    where rec_id = #{recId,jdbcType=INTEGER}
+  </update>
+  
+  <select id="selectSyShopAccountByMemberId" parameterType="int" resultMap="BaseResultMap" >
+    SELECT a.rec_id, 	a.member_id, 	a.points, 	a.fund_fee_rate, 	a.company_name, 	a.brand_name, 	a.company_introduction, 	a.company_logo,a.company_banner,a.licence, 	a.platform_prot, 	a.sy_prot,a.status,a.failure_reason,a.area_id
+	FROM sy_syshop_account a,sy_store b
+	WHERE a.member_id=b.member_id
+	AND a.member_id=#{memberId}
+  </select>
+</mapper>

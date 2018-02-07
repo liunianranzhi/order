@@ -1,0 +1,278 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.shanyuan.platform.ms.dao.store.mapper.SyBocOrgMapper" >
+  <resultMap id="BaseResultMap" type="com.shanyuan.platform.ms.dao.store.entity.SyBocOrg" >
+    <id column="rec_id" property="recId" jdbcType="INTEGER" />
+    <result column="circle_id" property="circleId" jdbcType="INTEGER" />
+    <result column="circle_dept_name" property="circleDeptName" jdbcType="VARCHAR" />
+    <result column="parent_circle_dept_name" property="parentCircleDeptName" jdbcType="VARCHAR" />
+    <result column="org_name" property="orgName" jdbcType="VARCHAR" />
+    <result column="org_type" property="orgType" jdbcType="CHAR" />
+    <result column="org_code" property="orgCode" jdbcType="VARCHAR" />
+    <result column="dept_circle_id" property="deptCircleId" jdbcType="INTEGER" />
+    <result column="channel" property="channel" jdbcType="VARCHAR" />
+  </resultMap>
+  <sql id="Example_Where_Clause" >
+    <where >
+      <foreach collection="oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Update_By_Example_Where_Clause" >
+    <where >
+      <foreach collection="example.oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Base_Column_List" >
+    rec_id, circle_id, circle_dept_name, parent_circle_dept_name, org_name, org_type, 
+    org_code, dept_circle_id, channel
+  </sql>
+  <select id ="selectDistinctOrgCode" resultType="java.lang.String" >
+  	SELECT DISTINCT org_code FROM sy_boc_org 
+  </select>
+  
+  <select id="selectByExample" resultMap="BaseResultMap" parameterType="com.shanyuan.platform.ms.dao.store.entity.SyBocOrgExample" >
+    select
+    <if test="distinct" >
+      distinct
+    </if>
+    <include refid="Base_Column_List" />
+    from sy_boc_org
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null" >
+      order by ${orderByClause}
+    </if>
+  </select>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+    select 
+    <include refid="Base_Column_List" />
+    from sy_boc_org
+    where rec_id = #{recId,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+    delete from sy_boc_org
+    where rec_id = #{recId,jdbcType=INTEGER}
+  </delete>
+  <delete id="deleteByExample" parameterType="com.shanyuan.platform.ms.dao.store.entity.SyBocOrgExample" >
+    delete from sy_boc_org
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </delete>
+  <insert id="insert" parameterType="com.shanyuan.platform.ms.dao.store.entity.SyBocOrg" >
+    <selectKey resultType="java.lang.Integer" keyProperty="recId" order="AFTER" >
+      SELECT LAST_INSERT_ID()
+    </selectKey>
+    insert into sy_boc_org (circle_id, circle_dept_name, parent_circle_dept_name, 
+      org_name, org_type, org_code, 
+      dept_circle_id, channel)
+    values (#{circleId,jdbcType=INTEGER}, #{circleDeptName,jdbcType=VARCHAR}, #{parentCircleDeptName,jdbcType=VARCHAR}, 
+      #{orgName,jdbcType=VARCHAR}, #{orgType,jdbcType=CHAR}, #{orgCode,jdbcType=VARCHAR}, 
+      #{deptCircleId,jdbcType=INTEGER}, #{channel,jdbcType=VARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="com.shanyuan.platform.ms.dao.store.entity.SyBocOrg" >
+    <selectKey resultType="java.lang.Integer" keyProperty="recId" order="AFTER" >
+      SELECT LAST_INSERT_ID()
+    </selectKey>
+    insert into sy_boc_org
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="circleId != null" >
+        circle_id,
+      </if>
+      <if test="circleDeptName != null" >
+        circle_dept_name,
+      </if>
+      <if test="parentCircleDeptName != null" >
+        parent_circle_dept_name,
+      </if>
+      <if test="orgName != null" >
+        org_name,
+      </if>
+      <if test="orgType != null" >
+        org_type,
+      </if>
+      <if test="orgCode != null" >
+        org_code,
+      </if>
+      <if test="deptCircleId != null" >
+        dept_circle_id,
+      </if>
+      <if test="channel != null" >
+        channel,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="circleId != null" >
+        #{circleId,jdbcType=INTEGER},
+      </if>
+      <if test="circleDeptName != null" >
+        #{circleDeptName,jdbcType=VARCHAR},
+      </if>
+      <if test="parentCircleDeptName != null" >
+        #{parentCircleDeptName,jdbcType=VARCHAR},
+      </if>
+      <if test="orgName != null" >
+        #{orgName,jdbcType=VARCHAR},
+      </if>
+      <if test="orgType != null" >
+        #{orgType,jdbcType=CHAR},
+      </if>
+      <if test="orgCode != null" >
+        #{orgCode,jdbcType=VARCHAR},
+      </if>
+      <if test="deptCircleId != null" >
+        #{deptCircleId,jdbcType=INTEGER},
+      </if>
+      <if test="channel != null" >
+        #{channel,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <select id="countByExample" parameterType="com.shanyuan.platform.ms.dao.store.entity.SyBocOrgExample" resultType="java.lang.Integer" >
+    select count(*) from sy_boc_org
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </select>
+  <update id="updateByExampleSelective" parameterType="map" >
+    update sy_boc_org
+    <set >
+      <if test="record.recId != null" >
+        rec_id = #{record.recId,jdbcType=INTEGER},
+      </if>
+      <if test="record.circleId != null" >
+        circle_id = #{record.circleId,jdbcType=INTEGER},
+      </if>
+      <if test="record.circleDeptName != null" >
+        circle_dept_name = #{record.circleDeptName,jdbcType=VARCHAR},
+      </if>
+      <if test="record.parentCircleDeptName != null" >
+        parent_circle_dept_name = #{record.parentCircleDeptName,jdbcType=VARCHAR},
+      </if>
+      <if test="record.orgName != null" >
+        org_name = #{record.orgName,jdbcType=VARCHAR},
+      </if>
+      <if test="record.orgType != null" >
+        org_type = #{record.orgType,jdbcType=CHAR},
+      </if>
+      <if test="record.orgCode != null" >
+        org_code = #{record.orgCode,jdbcType=VARCHAR},
+      </if>
+      <if test="record.deptCircleId != null" >
+        dept_circle_id = #{record.deptCircleId,jdbcType=INTEGER},
+      </if>
+      <if test="record.channel != null" >
+        channel = #{record.channel,jdbcType=VARCHAR},
+      </if>
+    </set>
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByExample" parameterType="map" >
+    update sy_boc_org
+    set rec_id = #{record.recId,jdbcType=INTEGER},
+      circle_id = #{record.circleId,jdbcType=INTEGER},
+      circle_dept_name = #{record.circleDeptName,jdbcType=VARCHAR},
+      parent_circle_dept_name = #{record.parentCircleDeptName,jdbcType=VARCHAR},
+      org_name = #{record.orgName,jdbcType=VARCHAR},
+      org_type = #{record.orgType,jdbcType=CHAR},
+      org_code = #{record.orgCode,jdbcType=VARCHAR},
+      dept_circle_id = #{record.deptCircleId,jdbcType=INTEGER},
+      channel = #{record.channel,jdbcType=VARCHAR}
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByPrimaryKeySelective" parameterType="com.shanyuan.platform.ms.dao.store.entity.SyBocOrg" >
+    update sy_boc_org
+    <set >
+      <if test="circleId != null" >
+        circle_id = #{circleId,jdbcType=INTEGER},
+      </if>
+      <if test="circleDeptName != null" >
+        circle_dept_name = #{circleDeptName,jdbcType=VARCHAR},
+      </if>
+      <if test="parentCircleDeptName != null" >
+        parent_circle_dept_name = #{parentCircleDeptName,jdbcType=VARCHAR},
+      </if>
+      <if test="orgName != null" >
+        org_name = #{orgName,jdbcType=VARCHAR},
+      </if>
+      <if test="orgType != null" >
+        org_type = #{orgType,jdbcType=CHAR},
+      </if>
+      <if test="orgCode != null" >
+        org_code = #{orgCode,jdbcType=VARCHAR},
+      </if>
+      <if test="deptCircleId != null" >
+        dept_circle_id = #{deptCircleId,jdbcType=INTEGER},
+      </if>
+      <if test="channel != null" >
+        channel = #{channel,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where rec_id = #{recId,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.shanyuan.platform.ms.dao.store.entity.SyBocOrg" >
+    update sy_boc_org
+    set circle_id = #{circleId,jdbcType=INTEGER},
+      circle_dept_name = #{circleDeptName,jdbcType=VARCHAR},
+      parent_circle_dept_name = #{parentCircleDeptName,jdbcType=VARCHAR},
+      org_name = #{orgName,jdbcType=VARCHAR},
+      org_type = #{orgType,jdbcType=CHAR},
+      org_code = #{orgCode,jdbcType=VARCHAR},
+      dept_circle_id = #{deptCircleId,jdbcType=INTEGER},
+      channel = #{channel,jdbcType=VARCHAR}
+    where rec_id = #{recId,jdbcType=INTEGER}
+  </update>
+</mapper>

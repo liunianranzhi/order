@@ -1,0 +1,496 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.shanyuan.platform.ms.dao.omorder.mapper.OmOrderGoodsMapper" >
+  <resultMap id="BaseResultMap" type="com.shanyuan.platform.ms.dao.omorder.entity.OmOrderGoods" >
+    <id column="ins_id" property="insId" jdbcType="INTEGER" />
+    <result column="order_id" property="orderId" jdbcType="VARCHAR" />
+    <result column="buyer_id" property="buyerId" jdbcType="INTEGER" />
+    <result column="main_id" property="mainId" jdbcType="VARCHAR" />
+    <result column="goods_common_id" property="goodsCommonId" jdbcType="INTEGER" />
+    <result column="goods_id" property="goodsId" jdbcType="INTEGER" />
+    <result column="goods_name" property="goodsName" jdbcType="VARCHAR" />
+    <result column="goods_point" property="goodsPoint" jdbcType="INTEGER" />
+    <result column="goods_price" property="goodsPrice" jdbcType="INTEGER" />
+    <result column="goods_num" property="goodsNum" jdbcType="INTEGER" />
+    <result column="goods_image" property="goodsImage" jdbcType="VARCHAR" />
+    <result column="goods_amount_price" property="goodsAmountPrice" jdbcType="INTEGER" />
+    <result column="goods_amount_point" property="goodsAmountPoint" jdbcType="INTEGER" />
+    <result column="goods_help_rate" property="goodsHelpRate" jdbcType="INTEGER" />
+    <result column="share_id" property="shareId" jdbcType="INTEGER" />
+    <result column="goods_spec" property="goodsSpec" jdbcType="VARCHAR" />
+    <result column="goods_unit" property="goodsUnit" jdbcType="VARCHAR" />
+    <result column="store_discount_fee" property="storeDiscountFee" jdbcType="INTEGER" />
+    <result column="plat_discount_fee" property="platDiscountFee" jdbcType="INTEGER" />
+    <result column="purchase_price" property="purchasePrice" jdbcType="INTEGER" />
+    <result column="remark" property="remark" jdbcType="VARCHAR" />
+    <result column="create_time" property="createTime" jdbcType="TIMESTAMP" />
+    <result column="update_time" property="updateTime" jdbcType="TIMESTAMP" />
+  </resultMap>
+  <sql id="Example_Where_Clause" >
+    <where >
+      <foreach collection="oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Update_By_Example_Where_Clause" >
+    <where >
+      <foreach collection="example.oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Base_Column_List" >
+    ins_id, order_id, buyer_id, main_id, goods_common_id, goods_id, goods_name, goods_point, 
+    goods_price, goods_num, goods_image, goods_amount_price, goods_amount_point, goods_help_rate, 
+    share_id, goods_spec, goods_unit, store_discount_fee, plat_discount_fee, purchase_price, 
+    remark, create_time, update_time
+  </sql>
+  <select id="selectByExample" resultMap="BaseResultMap" parameterType="com.shanyuan.platform.ms.dao.omorder.entity.OmOrderGoodsExample" >
+    select
+    <if test="distinct" >
+      distinct
+    </if>
+    <include refid="Base_Column_List" />
+    from om_order_goods
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null" >
+      order by ${orderByClause}
+    </if>
+  </select>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+    select 
+    <include refid="Base_Column_List" />
+    from om_order_goods
+    where ins_id = #{insId,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+    delete from om_order_goods
+    where ins_id = #{insId,jdbcType=INTEGER}
+  </delete>
+  <delete id="deleteByExample" parameterType="com.shanyuan.platform.ms.dao.omorder.entity.OmOrderGoodsExample" >
+    delete from om_order_goods
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </delete>
+  <insert id="insert" parameterType="com.shanyuan.platform.ms.dao.omorder.entity.OmOrderGoods" >
+    <selectKey resultType="java.lang.Integer" keyProperty="insId" order="AFTER" >
+      SELECT LAST_INSERT_ID()
+    </selectKey>
+    insert into om_order_goods (order_id, buyer_id, main_id, 
+      goods_common_id, goods_id, goods_name, 
+      goods_point, goods_price, goods_num, 
+      goods_image, goods_amount_price, goods_amount_point, 
+      goods_help_rate, share_id, goods_spec, 
+      goods_unit, store_discount_fee, plat_discount_fee, 
+      purchase_price, remark, create_time, 
+      update_time)
+    values (#{orderId,jdbcType=VARCHAR}, #{buyerId,jdbcType=INTEGER}, #{mainId,jdbcType=VARCHAR}, 
+      #{goodsCommonId,jdbcType=INTEGER}, #{goodsId,jdbcType=INTEGER}, #{goodsName,jdbcType=VARCHAR}, 
+      #{goodsPoint,jdbcType=INTEGER}, #{goodsPrice,jdbcType=INTEGER}, #{goodsNum,jdbcType=INTEGER}, 
+      #{goodsImage,jdbcType=VARCHAR}, #{goodsAmountPrice,jdbcType=INTEGER}, #{goodsAmountPoint,jdbcType=INTEGER}, 
+      #{goodsHelpRate,jdbcType=INTEGER}, #{shareId,jdbcType=INTEGER}, #{goodsSpec,jdbcType=VARCHAR}, 
+      #{goodsUnit,jdbcType=VARCHAR}, #{storeDiscountFee,jdbcType=INTEGER}, #{platDiscountFee,jdbcType=INTEGER}, 
+      #{purchasePrice,jdbcType=INTEGER}, #{remark,jdbcType=VARCHAR}, #{createTime,jdbcType=TIMESTAMP}, 
+      #{updateTime,jdbcType=TIMESTAMP})
+  </insert>
+  <insert id="insertSelective" parameterType="com.shanyuan.platform.ms.dao.omorder.entity.OmOrderGoods" >
+    <selectKey resultType="java.lang.Integer" keyProperty="insId" order="AFTER" >
+      SELECT LAST_INSERT_ID()
+    </selectKey>
+    insert into om_order_goods
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="orderId != null" >
+        order_id,
+      </if>
+      <if test="buyerId != null" >
+        buyer_id,
+      </if>
+      <if test="mainId != null" >
+        main_id,
+      </if>
+      <if test="goodsCommonId != null" >
+        goods_common_id,
+      </if>
+      <if test="goodsId != null" >
+        goods_id,
+      </if>
+      <if test="goodsName != null" >
+        goods_name,
+      </if>
+      <if test="goodsPoint != null" >
+        goods_point,
+      </if>
+      <if test="goodsPrice != null" >
+        goods_price,
+      </if>
+      <if test="goodsNum != null" >
+        goods_num,
+      </if>
+      <if test="goodsImage != null" >
+        goods_image,
+      </if>
+      <if test="goodsAmountPrice != null" >
+        goods_amount_price,
+      </if>
+      <if test="goodsAmountPoint != null" >
+        goods_amount_point,
+      </if>
+      <if test="goodsHelpRate != null" >
+        goods_help_rate,
+      </if>
+      <if test="shareId != null" >
+        share_id,
+      </if>
+      <if test="goodsSpec != null" >
+        goods_spec,
+      </if>
+      <if test="goodsUnit != null" >
+        goods_unit,
+      </if>
+      <if test="storeDiscountFee != null" >
+        store_discount_fee,
+      </if>
+      <if test="platDiscountFee != null" >
+        plat_discount_fee,
+      </if>
+      <if test="purchasePrice != null" >
+        purchase_price,
+      </if>
+      <if test="remark != null" >
+        remark,
+      </if>
+      <if test="createTime != null" >
+        create_time,
+      </if>
+      <if test="updateTime != null" >
+        update_time,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="orderId != null" >
+        #{orderId,jdbcType=VARCHAR},
+      </if>
+      <if test="buyerId != null" >
+        #{buyerId,jdbcType=INTEGER},
+      </if>
+      <if test="mainId != null" >
+        #{mainId,jdbcType=VARCHAR},
+      </if>
+      <if test="goodsCommonId != null" >
+        #{goodsCommonId,jdbcType=INTEGER},
+      </if>
+      <if test="goodsId != null" >
+        #{goodsId,jdbcType=INTEGER},
+      </if>
+      <if test="goodsName != null" >
+        #{goodsName,jdbcType=VARCHAR},
+      </if>
+      <if test="goodsPoint != null" >
+        #{goodsPoint,jdbcType=INTEGER},
+      </if>
+      <if test="goodsPrice != null" >
+        #{goodsPrice,jdbcType=INTEGER},
+      </if>
+      <if test="goodsNum != null" >
+        #{goodsNum,jdbcType=INTEGER},
+      </if>
+      <if test="goodsImage != null" >
+        #{goodsImage,jdbcType=VARCHAR},
+      </if>
+      <if test="goodsAmountPrice != null" >
+        #{goodsAmountPrice,jdbcType=INTEGER},
+      </if>
+      <if test="goodsAmountPoint != null" >
+        #{goodsAmountPoint,jdbcType=INTEGER},
+      </if>
+      <if test="goodsHelpRate != null" >
+        #{goodsHelpRate,jdbcType=INTEGER},
+      </if>
+      <if test="shareId != null" >
+        #{shareId,jdbcType=INTEGER},
+      </if>
+      <if test="goodsSpec != null" >
+        #{goodsSpec,jdbcType=VARCHAR},
+      </if>
+      <if test="goodsUnit != null" >
+        #{goodsUnit,jdbcType=VARCHAR},
+      </if>
+      <if test="storeDiscountFee != null" >
+        #{storeDiscountFee,jdbcType=INTEGER},
+      </if>
+      <if test="platDiscountFee != null" >
+        #{platDiscountFee,jdbcType=INTEGER},
+      </if>
+      <if test="purchasePrice != null" >
+        #{purchasePrice,jdbcType=INTEGER},
+      </if>
+      <if test="remark != null" >
+        #{remark,jdbcType=VARCHAR},
+      </if>
+      <if test="createTime != null" >
+        #{createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updateTime != null" >
+        #{updateTime,jdbcType=TIMESTAMP},
+      </if>
+    </trim>
+  </insert>
+  <select id="countByExample" parameterType="com.shanyuan.platform.ms.dao.omorder.entity.OmOrderGoodsExample" resultType="java.lang.Integer" >
+    select count(*) from om_order_goods
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </select>
+  <update id="updateByExampleSelective" parameterType="map" >
+    update om_order_goods
+    <set >
+      <if test="record.insId != null" >
+        ins_id = #{record.insId,jdbcType=INTEGER},
+      </if>
+      <if test="record.orderId != null" >
+        order_id = #{record.orderId,jdbcType=VARCHAR},
+      </if>
+      <if test="record.buyerId != null" >
+        buyer_id = #{record.buyerId,jdbcType=INTEGER},
+      </if>
+      <if test="record.mainId != null" >
+        main_id = #{record.mainId,jdbcType=VARCHAR},
+      </if>
+      <if test="record.goodsCommonId != null" >
+        goods_common_id = #{record.goodsCommonId,jdbcType=INTEGER},
+      </if>
+      <if test="record.goodsId != null" >
+        goods_id = #{record.goodsId,jdbcType=INTEGER},
+      </if>
+      <if test="record.goodsName != null" >
+        goods_name = #{record.goodsName,jdbcType=VARCHAR},
+      </if>
+      <if test="record.goodsPoint != null" >
+        goods_point = #{record.goodsPoint,jdbcType=INTEGER},
+      </if>
+      <if test="record.goodsPrice != null" >
+        goods_price = #{record.goodsPrice,jdbcType=INTEGER},
+      </if>
+      <if test="record.goodsNum != null" >
+        goods_num = #{record.goodsNum,jdbcType=INTEGER},
+      </if>
+      <if test="record.goodsImage != null" >
+        goods_image = #{record.goodsImage,jdbcType=VARCHAR},
+      </if>
+      <if test="record.goodsAmountPrice != null" >
+        goods_amount_price = #{record.goodsAmountPrice,jdbcType=INTEGER},
+      </if>
+      <if test="record.goodsAmountPoint != null" >
+        goods_amount_point = #{record.goodsAmountPoint,jdbcType=INTEGER},
+      </if>
+      <if test="record.goodsHelpRate != null" >
+        goods_help_rate = #{record.goodsHelpRate,jdbcType=INTEGER},
+      </if>
+      <if test="record.shareId != null" >
+        share_id = #{record.shareId,jdbcType=INTEGER},
+      </if>
+      <if test="record.goodsSpec != null" >
+        goods_spec = #{record.goodsSpec,jdbcType=VARCHAR},
+      </if>
+      <if test="record.goodsUnit != null" >
+        goods_unit = #{record.goodsUnit,jdbcType=VARCHAR},
+      </if>
+      <if test="record.storeDiscountFee != null" >
+        store_discount_fee = #{record.storeDiscountFee,jdbcType=INTEGER},
+      </if>
+      <if test="record.platDiscountFee != null" >
+        plat_discount_fee = #{record.platDiscountFee,jdbcType=INTEGER},
+      </if>
+      <if test="record.purchasePrice != null" >
+        purchase_price = #{record.purchasePrice,jdbcType=INTEGER},
+      </if>
+      <if test="record.remark != null" >
+        remark = #{record.remark,jdbcType=VARCHAR},
+      </if>
+      <if test="record.createTime != null" >
+        create_time = #{record.createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="record.updateTime != null" >
+        update_time = #{record.updateTime,jdbcType=TIMESTAMP},
+      </if>
+    </set>
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByExample" parameterType="map" >
+    update om_order_goods
+    set ins_id = #{record.insId,jdbcType=INTEGER},
+      order_id = #{record.orderId,jdbcType=VARCHAR},
+      buyer_id = #{record.buyerId,jdbcType=INTEGER},
+      main_id = #{record.mainId,jdbcType=VARCHAR},
+      goods_common_id = #{record.goodsCommonId,jdbcType=INTEGER},
+      goods_id = #{record.goodsId,jdbcType=INTEGER},
+      goods_name = #{record.goodsName,jdbcType=VARCHAR},
+      goods_point = #{record.goodsPoint,jdbcType=INTEGER},
+      goods_price = #{record.goodsPrice,jdbcType=INTEGER},
+      goods_num = #{record.goodsNum,jdbcType=INTEGER},
+      goods_image = #{record.goodsImage,jdbcType=VARCHAR},
+      goods_amount_price = #{record.goodsAmountPrice,jdbcType=INTEGER},
+      goods_amount_point = #{record.goodsAmountPoint,jdbcType=INTEGER},
+      goods_help_rate = #{record.goodsHelpRate,jdbcType=INTEGER},
+      share_id = #{record.shareId,jdbcType=INTEGER},
+      goods_spec = #{record.goodsSpec,jdbcType=VARCHAR},
+      goods_unit = #{record.goodsUnit,jdbcType=VARCHAR},
+      store_discount_fee = #{record.storeDiscountFee,jdbcType=INTEGER},
+      plat_discount_fee = #{record.platDiscountFee,jdbcType=INTEGER},
+      purchase_price = #{record.purchasePrice,jdbcType=INTEGER},
+      remark = #{record.remark,jdbcType=VARCHAR},
+      create_time = #{record.createTime,jdbcType=TIMESTAMP},
+      update_time = #{record.updateTime,jdbcType=TIMESTAMP}
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByPrimaryKeySelective" parameterType="com.shanyuan.platform.ms.dao.omorder.entity.OmOrderGoods" >
+    update om_order_goods
+    <set >
+      <if test="orderId != null" >
+        order_id = #{orderId,jdbcType=VARCHAR},
+      </if>
+      <if test="buyerId != null" >
+        buyer_id = #{buyerId,jdbcType=INTEGER},
+      </if>
+      <if test="mainId != null" >
+        main_id = #{mainId,jdbcType=VARCHAR},
+      </if>
+      <if test="goodsCommonId != null" >
+        goods_common_id = #{goodsCommonId,jdbcType=INTEGER},
+      </if>
+      <if test="goodsId != null" >
+        goods_id = #{goodsId,jdbcType=INTEGER},
+      </if>
+      <if test="goodsName != null" >
+        goods_name = #{goodsName,jdbcType=VARCHAR},
+      </if>
+      <if test="goodsPoint != null" >
+        goods_point = #{goodsPoint,jdbcType=INTEGER},
+      </if>
+      <if test="goodsPrice != null" >
+        goods_price = #{goodsPrice,jdbcType=INTEGER},
+      </if>
+      <if test="goodsNum != null" >
+        goods_num = #{goodsNum,jdbcType=INTEGER},
+      </if>
+      <if test="goodsImage != null" >
+        goods_image = #{goodsImage,jdbcType=VARCHAR},
+      </if>
+      <if test="goodsAmountPrice != null" >
+        goods_amount_price = #{goodsAmountPrice,jdbcType=INTEGER},
+      </if>
+      <if test="goodsAmountPoint != null" >
+        goods_amount_point = #{goodsAmountPoint,jdbcType=INTEGER},
+      </if>
+      <if test="goodsHelpRate != null" >
+        goods_help_rate = #{goodsHelpRate,jdbcType=INTEGER},
+      </if>
+      <if test="shareId != null" >
+        share_id = #{shareId,jdbcType=INTEGER},
+      </if>
+      <if test="goodsSpec != null" >
+        goods_spec = #{goodsSpec,jdbcType=VARCHAR},
+      </if>
+      <if test="goodsUnit != null" >
+        goods_unit = #{goodsUnit,jdbcType=VARCHAR},
+      </if>
+      <if test="storeDiscountFee != null" >
+        store_discount_fee = #{storeDiscountFee,jdbcType=INTEGER},
+      </if>
+      <if test="platDiscountFee != null" >
+        plat_discount_fee = #{platDiscountFee,jdbcType=INTEGER},
+      </if>
+      <if test="purchasePrice != null" >
+        purchase_price = #{purchasePrice,jdbcType=INTEGER},
+      </if>
+      <if test="remark != null" >
+        remark = #{remark,jdbcType=VARCHAR},
+      </if>
+      <if test="createTime != null" >
+        create_time = #{createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updateTime != null" >
+        update_time = #{updateTime,jdbcType=TIMESTAMP},
+      </if>
+    </set>
+    where ins_id = #{insId,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.shanyuan.platform.ms.dao.omorder.entity.OmOrderGoods" >
+    update om_order_goods
+    set order_id = #{orderId,jdbcType=VARCHAR},
+      buyer_id = #{buyerId,jdbcType=INTEGER},
+      main_id = #{mainId,jdbcType=VARCHAR},
+      goods_common_id = #{goodsCommonId,jdbcType=INTEGER},
+      goods_id = #{goodsId,jdbcType=INTEGER},
+      goods_name = #{goodsName,jdbcType=VARCHAR},
+      goods_point = #{goodsPoint,jdbcType=INTEGER},
+      goods_price = #{goodsPrice,jdbcType=INTEGER},
+      goods_num = #{goodsNum,jdbcType=INTEGER},
+      goods_image = #{goodsImage,jdbcType=VARCHAR},
+      goods_amount_price = #{goodsAmountPrice,jdbcType=INTEGER},
+      goods_amount_point = #{goodsAmountPoint,jdbcType=INTEGER},
+      goods_help_rate = #{goodsHelpRate,jdbcType=INTEGER},
+      share_id = #{shareId,jdbcType=INTEGER},
+      goods_spec = #{goodsSpec,jdbcType=VARCHAR},
+      goods_unit = #{goodsUnit,jdbcType=VARCHAR},
+      store_discount_fee = #{storeDiscountFee,jdbcType=INTEGER},
+      plat_discount_fee = #{platDiscountFee,jdbcType=INTEGER},
+      purchase_price = #{purchasePrice,jdbcType=INTEGER},
+      remark = #{remark,jdbcType=VARCHAR},
+      create_time = #{createTime,jdbcType=TIMESTAMP},
+      update_time = #{updateTime,jdbcType=TIMESTAMP}
+    where ins_id = #{insId,jdbcType=INTEGER}
+  </update>
+</mapper>

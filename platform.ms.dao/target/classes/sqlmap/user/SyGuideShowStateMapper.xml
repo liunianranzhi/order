@@ -1,0 +1,416 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.shanyuan.platform.ms.dao.user.mapper.SyGuideShowStateMapper" >
+  <resultMap id="BaseResultMap" type="com.shanyuan.platform.ms.dao.user.entity.SyGuideShowState" >
+    <id column="rec_id" property="recId" jdbcType="INTEGER" />
+    <result column="member_id" property="memberId" jdbcType="INTEGER" />
+    <result column="boc_support" property="bocSupport" jdbcType="TINYINT" />
+    <result column="boc_support_index" property="bocSupportIndex" jdbcType="TINYINT" />
+    <result column="boc_index" property="bocIndex" jdbcType="TINYINT" />
+    <result column="boc_rank" property="bocRank" jdbcType="TINYINT" />
+    <result column="boc_poor_goods" property="bocPoorGoods" jdbcType="TINYINT" />
+    <result column="boc_other_goods" property="bocOtherGoods" jdbcType="TINYINT" />
+    <result column="boc_cart" property="bocCart" jdbcType="TINYINT" />
+    <result column="boc_buy" property="bocBuy" jdbcType="TINYINT" />
+    <result column="agent_home" property="agentHome" jdbcType="TINYINT" />
+    <result column="agent_poor_list" property="agentPoorList" jdbcType="TINYINT" />
+    <result column="agent_poor_add_goods" property="agentPoorAddGoods" jdbcType="TINYINT" />
+    <result column="poor_home" property="poorHome" jdbcType="TINYINT" />
+    <result column="poor_goods_add" property="poorGoodsAdd" jdbcType="TINYINT" />
+    <result column="manager_add" property="managerAdd" jdbcType="TINYINT" />
+    <result column="member_cert" property="memberCert" jdbcType="TINYINT" />
+    <result column="user_agreement" property="userAgreement" jdbcType="TINYINT" />
+  </resultMap>
+  <sql id="Example_Where_Clause" >
+    <where >
+      <foreach collection="oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Update_By_Example_Where_Clause" >
+    <where >
+      <foreach collection="example.oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Base_Column_List" >
+    rec_id, member_id, boc_support, boc_support_index, boc_index, boc_rank, boc_poor_goods, 
+    boc_other_goods, boc_cart, boc_buy, agent_home, agent_poor_list, agent_poor_add_goods, 
+    poor_home, poor_goods_add, manager_add, member_cert, user_agreement
+  </sql>
+  <select id="selectByExample" resultMap="BaseResultMap" parameterType="com.shanyuan.platform.ms.dao.user.entity.SyGuideShowStateExample" >
+    select
+    <if test="distinct" >
+      distinct
+    </if>
+    <include refid="Base_Column_List" />
+    from sy_guide_show_state
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null" >
+      order by ${orderByClause}
+    </if>
+  </select>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+    select 
+    <include refid="Base_Column_List" />
+    from sy_guide_show_state
+    where rec_id = #{recId,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+    delete from sy_guide_show_state
+    where rec_id = #{recId,jdbcType=INTEGER}
+  </delete>
+  <delete id="deleteByExample" parameterType="com.shanyuan.platform.ms.dao.user.entity.SyGuideShowStateExample" >
+    delete from sy_guide_show_state
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </delete>
+  <insert id="insert" parameterType="com.shanyuan.platform.ms.dao.user.entity.SyGuideShowState" >
+    <selectKey resultType="java.lang.Integer" keyProperty="recId" order="AFTER" >
+      SELECT LAST_INSERT_ID()
+    </selectKey>
+    insert into sy_guide_show_state (member_id, boc_support, boc_support_index, 
+      boc_index, boc_rank, boc_poor_goods, 
+      boc_other_goods, boc_cart, boc_buy, 
+      agent_home, agent_poor_list, agent_poor_add_goods, 
+      poor_home, poor_goods_add, manager_add, 
+      member_cert, user_agreement)
+    values (#{memberId,jdbcType=INTEGER}, #{bocSupport,jdbcType=TINYINT}, #{bocSupportIndex,jdbcType=TINYINT}, 
+      #{bocIndex,jdbcType=TINYINT}, #{bocRank,jdbcType=TINYINT}, #{bocPoorGoods,jdbcType=TINYINT}, 
+      #{bocOtherGoods,jdbcType=TINYINT}, #{bocCart,jdbcType=TINYINT}, #{bocBuy,jdbcType=TINYINT}, 
+      #{agentHome,jdbcType=TINYINT}, #{agentPoorList,jdbcType=TINYINT}, #{agentPoorAddGoods,jdbcType=TINYINT}, 
+      #{poorHome,jdbcType=TINYINT}, #{poorGoodsAdd,jdbcType=TINYINT}, #{managerAdd,jdbcType=TINYINT}, 
+      #{memberCert,jdbcType=TINYINT}, #{userAgreement,jdbcType=TINYINT})
+  </insert>
+  <insert id="insertSelective" parameterType="com.shanyuan.platform.ms.dao.user.entity.SyGuideShowState" >
+    <selectKey resultType="java.lang.Integer" keyProperty="recId" order="AFTER" >
+      SELECT LAST_INSERT_ID()
+    </selectKey>
+    insert into sy_guide_show_state
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="memberId != null" >
+        member_id,
+      </if>
+      <if test="bocSupport != null" >
+        boc_support,
+      </if>
+      <if test="bocSupportIndex != null" >
+        boc_support_index,
+      </if>
+      <if test="bocIndex != null" >
+        boc_index,
+      </if>
+      <if test="bocRank != null" >
+        boc_rank,
+      </if>
+      <if test="bocPoorGoods != null" >
+        boc_poor_goods,
+      </if>
+      <if test="bocOtherGoods != null" >
+        boc_other_goods,
+      </if>
+      <if test="bocCart != null" >
+        boc_cart,
+      </if>
+      <if test="bocBuy != null" >
+        boc_buy,
+      </if>
+      <if test="agentHome != null" >
+        agent_home,
+      </if>
+      <if test="agentPoorList != null" >
+        agent_poor_list,
+      </if>
+      <if test="agentPoorAddGoods != null" >
+        agent_poor_add_goods,
+      </if>
+      <if test="poorHome != null" >
+        poor_home,
+      </if>
+      <if test="poorGoodsAdd != null" >
+        poor_goods_add,
+      </if>
+      <if test="managerAdd != null" >
+        manager_add,
+      </if>
+      <if test="memberCert != null" >
+        member_cert,
+      </if>
+      <if test="userAgreement != null" >
+        user_agreement,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="memberId != null" >
+        #{memberId,jdbcType=INTEGER},
+      </if>
+      <if test="bocSupport != null" >
+        #{bocSupport,jdbcType=TINYINT},
+      </if>
+      <if test="bocSupportIndex != null" >
+        #{bocSupportIndex,jdbcType=TINYINT},
+      </if>
+      <if test="bocIndex != null" >
+        #{bocIndex,jdbcType=TINYINT},
+      </if>
+      <if test="bocRank != null" >
+        #{bocRank,jdbcType=TINYINT},
+      </if>
+      <if test="bocPoorGoods != null" >
+        #{bocPoorGoods,jdbcType=TINYINT},
+      </if>
+      <if test="bocOtherGoods != null" >
+        #{bocOtherGoods,jdbcType=TINYINT},
+      </if>
+      <if test="bocCart != null" >
+        #{bocCart,jdbcType=TINYINT},
+      </if>
+      <if test="bocBuy != null" >
+        #{bocBuy,jdbcType=TINYINT},
+      </if>
+      <if test="agentHome != null" >
+        #{agentHome,jdbcType=TINYINT},
+      </if>
+      <if test="agentPoorList != null" >
+        #{agentPoorList,jdbcType=TINYINT},
+      </if>
+      <if test="agentPoorAddGoods != null" >
+        #{agentPoorAddGoods,jdbcType=TINYINT},
+      </if>
+      <if test="poorHome != null" >
+        #{poorHome,jdbcType=TINYINT},
+      </if>
+      <if test="poorGoodsAdd != null" >
+        #{poorGoodsAdd,jdbcType=TINYINT},
+      </if>
+      <if test="managerAdd != null" >
+        #{managerAdd,jdbcType=TINYINT},
+      </if>
+      <if test="memberCert != null" >
+        #{memberCert,jdbcType=TINYINT},
+      </if>
+      <if test="userAgreement != null" >
+        #{userAgreement,jdbcType=TINYINT},
+      </if>
+    </trim>
+  </insert>
+  <select id="countByExample" parameterType="com.shanyuan.platform.ms.dao.user.entity.SyGuideShowStateExample" resultType="java.lang.Integer" >
+    select count(*) from sy_guide_show_state
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </select>
+  <update id="updateByExampleSelective" parameterType="map" >
+    update sy_guide_show_state
+    <set >
+      <if test="record.recId != null" >
+        rec_id = #{record.recId,jdbcType=INTEGER},
+      </if>
+      <if test="record.memberId != null" >
+        member_id = #{record.memberId,jdbcType=INTEGER},
+      </if>
+      <if test="record.bocSupport != null" >
+        boc_support = #{record.bocSupport,jdbcType=TINYINT},
+      </if>
+      <if test="record.bocSupportIndex != null" >
+        boc_support_index = #{record.bocSupportIndex,jdbcType=TINYINT},
+      </if>
+      <if test="record.bocIndex != null" >
+        boc_index = #{record.bocIndex,jdbcType=TINYINT},
+      </if>
+      <if test="record.bocRank != null" >
+        boc_rank = #{record.bocRank,jdbcType=TINYINT},
+      </if>
+      <if test="record.bocPoorGoods != null" >
+        boc_poor_goods = #{record.bocPoorGoods,jdbcType=TINYINT},
+      </if>
+      <if test="record.bocOtherGoods != null" >
+        boc_other_goods = #{record.bocOtherGoods,jdbcType=TINYINT},
+      </if>
+      <if test="record.bocCart != null" >
+        boc_cart = #{record.bocCart,jdbcType=TINYINT},
+      </if>
+      <if test="record.bocBuy != null" >
+        boc_buy = #{record.bocBuy,jdbcType=TINYINT},
+      </if>
+      <if test="record.agentHome != null" >
+        agent_home = #{record.agentHome,jdbcType=TINYINT},
+      </if>
+      <if test="record.agentPoorList != null" >
+        agent_poor_list = #{record.agentPoorList,jdbcType=TINYINT},
+      </if>
+      <if test="record.agentPoorAddGoods != null" >
+        agent_poor_add_goods = #{record.agentPoorAddGoods,jdbcType=TINYINT},
+      </if>
+      <if test="record.poorHome != null" >
+        poor_home = #{record.poorHome,jdbcType=TINYINT},
+      </if>
+      <if test="record.poorGoodsAdd != null" >
+        poor_goods_add = #{record.poorGoodsAdd,jdbcType=TINYINT},
+      </if>
+      <if test="record.managerAdd != null" >
+        manager_add = #{record.managerAdd,jdbcType=TINYINT},
+      </if>
+      <if test="record.memberCert != null" >
+        member_cert = #{record.memberCert,jdbcType=TINYINT},
+      </if>
+      <if test="record.userAgreement != null" >
+        user_agreement = #{record.userAgreement,jdbcType=TINYINT},
+      </if>
+    </set>
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByExample" parameterType="map" >
+    update sy_guide_show_state
+    set rec_id = #{record.recId,jdbcType=INTEGER},
+      member_id = #{record.memberId,jdbcType=INTEGER},
+      boc_support = #{record.bocSupport,jdbcType=TINYINT},
+      boc_support_index = #{record.bocSupportIndex,jdbcType=TINYINT},
+      boc_index = #{record.bocIndex,jdbcType=TINYINT},
+      boc_rank = #{record.bocRank,jdbcType=TINYINT},
+      boc_poor_goods = #{record.bocPoorGoods,jdbcType=TINYINT},
+      boc_other_goods = #{record.bocOtherGoods,jdbcType=TINYINT},
+      boc_cart = #{record.bocCart,jdbcType=TINYINT},
+      boc_buy = #{record.bocBuy,jdbcType=TINYINT},
+      agent_home = #{record.agentHome,jdbcType=TINYINT},
+      agent_poor_list = #{record.agentPoorList,jdbcType=TINYINT},
+      agent_poor_add_goods = #{record.agentPoorAddGoods,jdbcType=TINYINT},
+      poor_home = #{record.poorHome,jdbcType=TINYINT},
+      poor_goods_add = #{record.poorGoodsAdd,jdbcType=TINYINT},
+      manager_add = #{record.managerAdd,jdbcType=TINYINT},
+      member_cert = #{record.memberCert,jdbcType=TINYINT},
+      user_agreement = #{record.userAgreement,jdbcType=TINYINT}
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByPrimaryKeySelective" parameterType="com.shanyuan.platform.ms.dao.user.entity.SyGuideShowState" >
+    update sy_guide_show_state
+    <set >
+      <if test="memberId != null" >
+        member_id = #{memberId,jdbcType=INTEGER},
+      </if>
+      <if test="bocSupport != null" >
+        boc_support = #{bocSupport,jdbcType=TINYINT},
+      </if>
+      <if test="bocSupportIndex != null" >
+        boc_support_index = #{bocSupportIndex,jdbcType=TINYINT},
+      </if>
+      <if test="bocIndex != null" >
+        boc_index = #{bocIndex,jdbcType=TINYINT},
+      </if>
+      <if test="bocRank != null" >
+        boc_rank = #{bocRank,jdbcType=TINYINT},
+      </if>
+      <if test="bocPoorGoods != null" >
+        boc_poor_goods = #{bocPoorGoods,jdbcType=TINYINT},
+      </if>
+      <if test="bocOtherGoods != null" >
+        boc_other_goods = #{bocOtherGoods,jdbcType=TINYINT},
+      </if>
+      <if test="bocCart != null" >
+        boc_cart = #{bocCart,jdbcType=TINYINT},
+      </if>
+      <if test="bocBuy != null" >
+        boc_buy = #{bocBuy,jdbcType=TINYINT},
+      </if>
+      <if test="agentHome != null" >
+        agent_home = #{agentHome,jdbcType=TINYINT},
+      </if>
+      <if test="agentPoorList != null" >
+        agent_poor_list = #{agentPoorList,jdbcType=TINYINT},
+      </if>
+      <if test="agentPoorAddGoods != null" >
+        agent_poor_add_goods = #{agentPoorAddGoods,jdbcType=TINYINT},
+      </if>
+      <if test="poorHome != null" >
+        poor_home = #{poorHome,jdbcType=TINYINT},
+      </if>
+      <if test="poorGoodsAdd != null" >
+        poor_goods_add = #{poorGoodsAdd,jdbcType=TINYINT},
+      </if>
+      <if test="managerAdd != null" >
+        manager_add = #{managerAdd,jdbcType=TINYINT},
+      </if>
+      <if test="memberCert != null" >
+        member_cert = #{memberCert,jdbcType=TINYINT},
+      </if>
+      <if test="userAgreement != null" >
+        user_agreement = #{userAgreement,jdbcType=TINYINT},
+      </if>
+    </set>
+    where rec_id = #{recId,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.shanyuan.platform.ms.dao.user.entity.SyGuideShowState" >
+    update sy_guide_show_state
+    set member_id = #{memberId,jdbcType=INTEGER},
+      boc_support = #{bocSupport,jdbcType=TINYINT},
+      boc_support_index = #{bocSupportIndex,jdbcType=TINYINT},
+      boc_index = #{bocIndex,jdbcType=TINYINT},
+      boc_rank = #{bocRank,jdbcType=TINYINT},
+      boc_poor_goods = #{bocPoorGoods,jdbcType=TINYINT},
+      boc_other_goods = #{bocOtherGoods,jdbcType=TINYINT},
+      boc_cart = #{bocCart,jdbcType=TINYINT},
+      boc_buy = #{bocBuy,jdbcType=TINYINT},
+      agent_home = #{agentHome,jdbcType=TINYINT},
+      agent_poor_list = #{agentPoorList,jdbcType=TINYINT},
+      agent_poor_add_goods = #{agentPoorAddGoods,jdbcType=TINYINT},
+      poor_home = #{poorHome,jdbcType=TINYINT},
+      poor_goods_add = #{poorGoodsAdd,jdbcType=TINYINT},
+      manager_add = #{managerAdd,jdbcType=TINYINT},
+      member_cert = #{memberCert,jdbcType=TINYINT},
+      user_agreement = #{userAgreement,jdbcType=TINYINT}
+    where rec_id = #{recId,jdbcType=INTEGER}
+  </update>
+</mapper>

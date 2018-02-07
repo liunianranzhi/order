@@ -1,0 +1,582 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.shanyuan.platform.ms.dao.order.mapper.SyVoucherTemplateMapper" >
+  <resultMap id="BaseResultMap" type="com.shanyuan.platform.ms.dao.user.entity.SyVoucherTemplate" >
+    <id column="voucher_t_id" property="voucherTId" jdbcType="INTEGER" />
+    <result column="voucher_t_title" property="voucherTTitle" jdbcType="VARCHAR" />
+    <result column="voucher_t_desc" property="voucherTDesc" jdbcType="VARCHAR" />
+    <result column="voucher_t_type" property="voucherTType" jdbcType="TINYINT" />
+    <result column="voucher_t_start_date" property="voucherTStartDate" jdbcType="INTEGER" />
+    <result column="voucher_t_end_date" property="voucherTEndDate" jdbcType="INTEGER" />
+    <result column="voucher_t_price" property="voucherTPrice" jdbcType="INTEGER" />
+    <result column="voucher_t_limit" property="voucherTLimit" jdbcType="DECIMAL" />
+    <result column="voucher_t_store_id" property="voucherTStoreId" jdbcType="INTEGER" />
+    <result column="voucher_t_storename" property="voucherTStorename" jdbcType="VARCHAR" />
+    <result column="voucher_t_creator_id" property="voucherTCreatorId" jdbcType="INTEGER" />
+    <result column="voucher_t_state" property="voucherTState" jdbcType="TINYINT" />
+    <result column="voucher_t_total" property="voucherTTotal" jdbcType="INTEGER" />
+    <result column="voucher_t_giveout" property="voucherTGiveout" jdbcType="INTEGER" />
+    <result column="voucher_t_used" property="voucherTUsed" jdbcType="INTEGER" />
+    <result column="voucher_t_add_date" property="voucherTAddDate" jdbcType="INTEGER" />
+    <result column="voucher_t_quotaid" property="voucherTQuotaid" jdbcType="INTEGER" />
+    <result column="voucher_t_points" property="voucherTPoints" jdbcType="INTEGER" />
+    <result column="voucher_t_goods_type" property="voucherTGoodsType" jdbcType="TINYINT" />
+    <result column="voucher_t_eachlimit" property="voucherTEachlimit" jdbcType="INTEGER" />
+    <result column="voucher_t_limit_type" property="voucherTLimitType" jdbcType="TINYINT" />
+    <result column="voucher_t_styleimg" property="voucherTStyleimg" jdbcType="VARCHAR" />
+    <result column="voucher_t_customimg" property="voucherTCustomimg" jdbcType="VARCHAR" />
+    <result column="voucher_t_cost_mode" property="voucherTCostMode" jdbcType="TINYINT" />
+    <result column="voucher_t_activity_id" property="voucherTActivityId" jdbcType="INTEGER" />
+    <result column="voucher_t_show_state" property="voucherTShowState" jdbcType="TINYINT" />
+    <result column="voucher_t_jump_url" property="voucherTJumpUrl" jdbcType="VARCHAR" />
+    
+    <result column="store_id" property="storeId" jdbcType="INTEGER" />
+    <result column="store_label" property="storeLabel" jdbcType="VARCHAR" />
+    <result column="store_name" property="storeName" jdbcType="VARCHAR" />
+    <result column="store_domain" property="storeDomain" jdbcType="VARCHAR" />
+  </resultMap>
+  <sql id="Example_Where_Clause" >
+    <where >
+      <foreach collection="oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Update_By_Example_Where_Clause" >
+    <where >
+      <foreach collection="example.oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Base_Column_List" >
+    voucher_t_id, voucher_t_title, voucher_t_desc, voucher_t_type, voucher_t_start_date, 
+    voucher_t_end_date, voucher_t_price, voucher_t_limit, voucher_t_store_id, voucher_t_storename, 
+    voucher_t_creator_id, voucher_t_state, voucher_t_total, voucher_t_giveout, voucher_t_used, 
+    voucher_t_add_date, voucher_t_quotaid, voucher_t_points, voucher_t_goods_type, voucher_t_eachlimit, 
+    voucher_t_limit_type, voucher_t_styleimg, voucher_t_customimg, voucher_t_cost_mode, 
+    voucher_t_activity_id, voucher_t_show_state, voucher_t_jump_url
+  </sql>
+  <select id="selectByExample" resultMap="BaseResultMap" parameterType="com.shanyuan.platform.ms.dao.user.entity.SyVoucherTemplateExample" >
+    select
+    <if test="distinct" >
+      distinct
+    </if>
+    <include refid="Base_Column_List" />
+    from sy_voucher_template
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null" >
+      order by ${orderByClause}
+    </if>
+  </select>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+    select 
+    <include refid="Base_Column_List" />
+    from sy_voucher_template
+    where voucher_t_id = #{voucherTId,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+    delete from sy_voucher_template
+    where voucher_t_id = #{voucherTId,jdbcType=INTEGER}
+  </delete>
+  <delete id="deleteByExample" parameterType="com.shanyuan.platform.ms.dao.user.entity.SyVoucherTemplateExample" >
+    delete from sy_voucher_template
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </delete>
+  <insert id="insert" parameterType="com.shanyuan.platform.ms.dao.user.entity.SyVoucherTemplate" >
+    <selectKey resultType="java.lang.Integer" keyProperty="voucherTId" order="AFTER" >
+      SELECT LAST_INSERT_ID()
+    </selectKey>
+    insert into sy_voucher_template (voucher_t_title, voucher_t_desc, voucher_t_type, 
+      voucher_t_start_date, voucher_t_end_date, voucher_t_price, 
+      voucher_t_limit, voucher_t_store_id, voucher_t_storename, 
+      voucher_t_creator_id, voucher_t_state, voucher_t_total, 
+      voucher_t_giveout, voucher_t_used, voucher_t_add_date, 
+      voucher_t_quotaid, voucher_t_points, voucher_t_goods_type, 
+      voucher_t_eachlimit, voucher_t_limit_type, voucher_t_styleimg, 
+      voucher_t_customimg, voucher_t_cost_mode, voucher_t_activity_id, 
+      voucher_t_show_state, voucher_t_jump_url)
+    values (#{voucherTTitle,jdbcType=VARCHAR}, #{voucherTDesc,jdbcType=VARCHAR}, #{voucherTType,jdbcType=TINYINT}, 
+      #{voucherTStartDate,jdbcType=INTEGER}, #{voucherTEndDate,jdbcType=INTEGER}, #{voucherTPrice,jdbcType=INTEGER}, 
+      #{voucherTLimit,jdbcType=DECIMAL}, #{voucherTStoreId,jdbcType=INTEGER}, #{voucherTStorename,jdbcType=VARCHAR}, 
+      #{voucherTCreatorId,jdbcType=INTEGER}, #{voucherTState,jdbcType=TINYINT}, #{voucherTTotal,jdbcType=INTEGER}, 
+      #{voucherTGiveout,jdbcType=INTEGER}, #{voucherTUsed,jdbcType=INTEGER}, #{voucherTAddDate,jdbcType=INTEGER}, 
+      #{voucherTQuotaid,jdbcType=INTEGER}, #{voucherTPoints,jdbcType=INTEGER}, #{voucherTGoodsType,jdbcType=TINYINT}, 
+      #{voucherTEachlimit,jdbcType=INTEGER}, #{voucherTLimitType,jdbcType=TINYINT}, #{voucherTStyleimg,jdbcType=VARCHAR}, 
+      #{voucherTCustomimg,jdbcType=VARCHAR}, #{voucherTCostMode,jdbcType=TINYINT}, #{voucherTActivityId,jdbcType=INTEGER}, 
+      #{voucherTShowState,jdbcType=TINYINT}, #{voucherTJumpUrl,jdbcType=VARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="com.shanyuan.platform.ms.dao.user.entity.SyVoucherTemplate" >
+    <selectKey resultType="java.lang.Integer" keyProperty="voucherTId" order="AFTER" >
+      SELECT LAST_INSERT_ID()
+    </selectKey>
+    insert into sy_voucher_template
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="voucherTTitle != null" >
+        voucher_t_title,
+      </if>
+      <if test="voucherTDesc != null" >
+        voucher_t_desc,
+      </if>
+      <if test="voucherTType != null" >
+        voucher_t_type,
+      </if>
+      <if test="voucherTStartDate != null" >
+        voucher_t_start_date,
+      </if>
+      <if test="voucherTEndDate != null" >
+        voucher_t_end_date,
+      </if>
+      <if test="voucherTPrice != null" >
+        voucher_t_price,
+      </if>
+      <if test="voucherTLimit != null" >
+        voucher_t_limit,
+      </if>
+      <if test="voucherTStoreId != null" >
+        voucher_t_store_id,
+      </if>
+      <if test="voucherTStorename != null" >
+        voucher_t_storename,
+      </if>
+      <if test="voucherTCreatorId != null" >
+        voucher_t_creator_id,
+      </if>
+      <if test="voucherTState != null" >
+        voucher_t_state,
+      </if>
+      <if test="voucherTTotal != null" >
+        voucher_t_total,
+      </if>
+      <if test="voucherTGiveout != null" >
+        voucher_t_giveout,
+      </if>
+      <if test="voucherTUsed != null" >
+        voucher_t_used,
+      </if>
+      <if test="voucherTAddDate != null" >
+        voucher_t_add_date,
+      </if>
+      <if test="voucherTQuotaid != null" >
+        voucher_t_quotaid,
+      </if>
+      <if test="voucherTPoints != null" >
+        voucher_t_points,
+      </if>
+      <if test="voucherTGoodsType != null" >
+        voucher_t_goods_type,
+      </if>
+      <if test="voucherTEachlimit != null" >
+        voucher_t_eachlimit,
+      </if>
+      <if test="voucherTLimitType != null" >
+        voucher_t_limit_type,
+      </if>
+      <if test="voucherTStyleimg != null" >
+        voucher_t_styleimg,
+      </if>
+      <if test="voucherTCustomimg != null" >
+        voucher_t_customimg,
+      </if>
+      <if test="voucherTCostMode != null" >
+        voucher_t_cost_mode,
+      </if>
+      <if test="voucherTActivityId != null" >
+        voucher_t_activity_id,
+      </if>
+      <if test="voucherTShowState != null" >
+        voucher_t_show_state,
+      </if>
+      <if test="voucherTJumpUrl != null" >
+        voucher_t_jump_url,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="voucherTTitle != null" >
+        #{voucherTTitle,jdbcType=VARCHAR},
+      </if>
+      <if test="voucherTDesc != null" >
+        #{voucherTDesc,jdbcType=VARCHAR},
+      </if>
+      <if test="voucherTType != null" >
+        #{voucherTType,jdbcType=TINYINT},
+      </if>
+      <if test="voucherTStartDate != null" >
+        #{voucherTStartDate,jdbcType=INTEGER},
+      </if>
+      <if test="voucherTEndDate != null" >
+        #{voucherTEndDate,jdbcType=INTEGER},
+      </if>
+      <if test="voucherTPrice != null" >
+        #{voucherTPrice,jdbcType=INTEGER},
+      </if>
+      <if test="voucherTLimit != null" >
+        #{voucherTLimit,jdbcType=DECIMAL},
+      </if>
+      <if test="voucherTStoreId != null" >
+        #{voucherTStoreId,jdbcType=INTEGER},
+      </if>
+      <if test="voucherTStorename != null" >
+        #{voucherTStorename,jdbcType=VARCHAR},
+      </if>
+      <if test="voucherTCreatorId != null" >
+        #{voucherTCreatorId,jdbcType=INTEGER},
+      </if>
+      <if test="voucherTState != null" >
+        #{voucherTState,jdbcType=TINYINT},
+      </if>
+      <if test="voucherTTotal != null" >
+        #{voucherTTotal,jdbcType=INTEGER},
+      </if>
+      <if test="voucherTGiveout != null" >
+        #{voucherTGiveout,jdbcType=INTEGER},
+      </if>
+      <if test="voucherTUsed != null" >
+        #{voucherTUsed,jdbcType=INTEGER},
+      </if>
+      <if test="voucherTAddDate != null" >
+        #{voucherTAddDate,jdbcType=INTEGER},
+      </if>
+      <if test="voucherTQuotaid != null" >
+        #{voucherTQuotaid,jdbcType=INTEGER},
+      </if>
+      <if test="voucherTPoints != null" >
+        #{voucherTPoints,jdbcType=INTEGER},
+      </if>
+      <if test="voucherTGoodsType != null" >
+        #{voucherTGoodsType,jdbcType=TINYINT},
+      </if>
+      <if test="voucherTEachlimit != null" >
+        #{voucherTEachlimit,jdbcType=INTEGER},
+      </if>
+      <if test="voucherTLimitType != null" >
+        #{voucherTLimitType,jdbcType=TINYINT},
+      </if>
+      <if test="voucherTStyleimg != null" >
+        #{voucherTStyleimg,jdbcType=VARCHAR},
+      </if>
+      <if test="voucherTCustomimg != null" >
+        #{voucherTCustomimg,jdbcType=VARCHAR},
+      </if>
+      <if test="voucherTCostMode != null" >
+        #{voucherTCostMode,jdbcType=TINYINT},
+      </if>
+      <if test="voucherTActivityId != null" >
+        #{voucherTActivityId,jdbcType=INTEGER},
+      </if>
+      <if test="voucherTShowState != null" >
+        #{voucherTShowState,jdbcType=TINYINT},
+      </if>
+      <if test="voucherTJumpUrl != null" >
+        #{voucherTJumpUrl,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <select id="countByExample" parameterType="com.shanyuan.platform.ms.dao.user.entity.SyVoucherTemplateExample" resultType="java.lang.Integer" >
+    select count(*) from sy_voucher_template
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </select>
+  <update id="updateByExampleSelective" parameterType="map" >
+    update sy_voucher_template
+    <set >
+      <if test="record.voucherTId != null" >
+        voucher_t_id = #{record.voucherTId,jdbcType=INTEGER},
+      </if>
+      <if test="record.voucherTTitle != null" >
+        voucher_t_title = #{record.voucherTTitle,jdbcType=VARCHAR},
+      </if>
+      <if test="record.voucherTDesc != null" >
+        voucher_t_desc = #{record.voucherTDesc,jdbcType=VARCHAR},
+      </if>
+      <if test="record.voucherTType != null" >
+        voucher_t_type = #{record.voucherTType,jdbcType=TINYINT},
+      </if>
+      <if test="record.voucherTStartDate != null" >
+        voucher_t_start_date = #{record.voucherTStartDate,jdbcType=INTEGER},
+      </if>
+      <if test="record.voucherTEndDate != null" >
+        voucher_t_end_date = #{record.voucherTEndDate,jdbcType=INTEGER},
+      </if>
+      <if test="record.voucherTPrice != null" >
+        voucher_t_price = #{record.voucherTPrice,jdbcType=INTEGER},
+      </if>
+      <if test="record.voucherTLimit != null" >
+        voucher_t_limit = #{record.voucherTLimit,jdbcType=DECIMAL},
+      </if>
+      <if test="record.voucherTStoreId != null" >
+        voucher_t_store_id = #{record.voucherTStoreId,jdbcType=INTEGER},
+      </if>
+      <if test="record.voucherTStorename != null" >
+        voucher_t_storename = #{record.voucherTStorename,jdbcType=VARCHAR},
+      </if>
+      <if test="record.voucherTCreatorId != null" >
+        voucher_t_creator_id = #{record.voucherTCreatorId,jdbcType=INTEGER},
+      </if>
+      <if test="record.voucherTState != null" >
+        voucher_t_state = #{record.voucherTState,jdbcType=TINYINT},
+      </if>
+      <if test="record.voucherTTotal != null" >
+        voucher_t_total = #{record.voucherTTotal,jdbcType=INTEGER},
+      </if>
+      <if test="record.voucherTGiveout != null" >
+        voucher_t_giveout = #{record.voucherTGiveout,jdbcType=INTEGER},
+      </if>
+      <if test="record.voucherTUsed != null" >
+        voucher_t_used = #{record.voucherTUsed,jdbcType=INTEGER},
+      </if>
+      <if test="record.voucherTAddDate != null" >
+        voucher_t_add_date = #{record.voucherTAddDate,jdbcType=INTEGER},
+      </if>
+      <if test="record.voucherTQuotaid != null" >
+        voucher_t_quotaid = #{record.voucherTQuotaid,jdbcType=INTEGER},
+      </if>
+      <if test="record.voucherTPoints != null" >
+        voucher_t_points = #{record.voucherTPoints,jdbcType=INTEGER},
+      </if>
+      <if test="record.voucherTGoodsType != null" >
+        voucher_t_goods_type = #{record.voucherTGoodsType,jdbcType=TINYINT},
+      </if>
+      <if test="record.voucherTEachlimit != null" >
+        voucher_t_eachlimit = #{record.voucherTEachlimit,jdbcType=INTEGER},
+      </if>
+      <if test="record.voucherTLimitType != null" >
+        voucher_t_limit_type = #{record.voucherTLimitType,jdbcType=TINYINT},
+      </if>
+      <if test="record.voucherTStyleimg != null" >
+        voucher_t_styleimg = #{record.voucherTStyleimg,jdbcType=VARCHAR},
+      </if>
+      <if test="record.voucherTCustomimg != null" >
+        voucher_t_customimg = #{record.voucherTCustomimg,jdbcType=VARCHAR},
+      </if>
+      <if test="record.voucherTCostMode != null" >
+        voucher_t_cost_mode = #{record.voucherTCostMode,jdbcType=TINYINT},
+      </if>
+      <if test="record.voucherTActivityId != null" >
+        voucher_t_activity_id = #{record.voucherTActivityId,jdbcType=INTEGER},
+      </if>
+      <if test="record.voucherTShowState != null" >
+        voucher_t_show_state = #{record.voucherTShowState,jdbcType=TINYINT},
+      </if>
+      <if test="record.voucherTJumpUrl != null" >
+        voucher_t_jump_url = #{record.voucherTJumpUrl,jdbcType=VARCHAR},
+      </if>
+    </set>
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByExample" parameterType="map" >
+    update sy_voucher_template
+    set voucher_t_id = #{record.voucherTId,jdbcType=INTEGER},
+      voucher_t_title = #{record.voucherTTitle,jdbcType=VARCHAR},
+      voucher_t_desc = #{record.voucherTDesc,jdbcType=VARCHAR},
+      voucher_t_type = #{record.voucherTType,jdbcType=TINYINT},
+      voucher_t_start_date = #{record.voucherTStartDate,jdbcType=INTEGER},
+      voucher_t_end_date = #{record.voucherTEndDate,jdbcType=INTEGER},
+      voucher_t_price = #{record.voucherTPrice,jdbcType=INTEGER},
+      voucher_t_limit = #{record.voucherTLimit,jdbcType=DECIMAL},
+      voucher_t_store_id = #{record.voucherTStoreId,jdbcType=INTEGER},
+      voucher_t_storename = #{record.voucherTStorename,jdbcType=VARCHAR},
+      voucher_t_creator_id = #{record.voucherTCreatorId,jdbcType=INTEGER},
+      voucher_t_state = #{record.voucherTState,jdbcType=TINYINT},
+      voucher_t_total = #{record.voucherTTotal,jdbcType=INTEGER},
+      voucher_t_giveout = #{record.voucherTGiveout,jdbcType=INTEGER},
+      voucher_t_used = #{record.voucherTUsed,jdbcType=INTEGER},
+      voucher_t_add_date = #{record.voucherTAddDate,jdbcType=INTEGER},
+      voucher_t_quotaid = #{record.voucherTQuotaid,jdbcType=INTEGER},
+      voucher_t_points = #{record.voucherTPoints,jdbcType=INTEGER},
+      voucher_t_goods_type = #{record.voucherTGoodsType,jdbcType=TINYINT},
+      voucher_t_eachlimit = #{record.voucherTEachlimit,jdbcType=INTEGER},
+      voucher_t_limit_type = #{record.voucherTLimitType,jdbcType=TINYINT},
+      voucher_t_styleimg = #{record.voucherTStyleimg,jdbcType=VARCHAR},
+      voucher_t_customimg = #{record.voucherTCustomimg,jdbcType=VARCHAR},
+      voucher_t_cost_mode = #{record.voucherTCostMode,jdbcType=TINYINT},
+      voucher_t_activity_id = #{record.voucherTActivityId,jdbcType=INTEGER},
+      voucher_t_show_state = #{record.voucherTShowState,jdbcType=TINYINT},
+      voucher_t_jump_url = #{record.voucherTJumpUrl,jdbcType=VARCHAR}
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByPrimaryKeySelective" parameterType="com.shanyuan.platform.ms.dao.user.entity.SyVoucherTemplate" >
+    update sy_voucher_template
+    <set >
+      <if test="voucherTTitle != null" >
+        voucher_t_title = #{voucherTTitle,jdbcType=VARCHAR},
+      </if>
+      <if test="voucherTDesc != null" >
+        voucher_t_desc = #{voucherTDesc,jdbcType=VARCHAR},
+      </if>
+      <if test="voucherTType != null" >
+        voucher_t_type = #{voucherTType,jdbcType=TINYINT},
+      </if>
+      <if test="voucherTStartDate != null" >
+        voucher_t_start_date = #{voucherTStartDate,jdbcType=INTEGER},
+      </if>
+      <if test="voucherTEndDate != null" >
+        voucher_t_end_date = #{voucherTEndDate,jdbcType=INTEGER},
+      </if>
+      <if test="voucherTPrice != null" >
+        voucher_t_price = #{voucherTPrice,jdbcType=INTEGER},
+      </if>
+      <if test="voucherTLimit != null" >
+        voucher_t_limit = #{voucherTLimit,jdbcType=DECIMAL},
+      </if>
+      <if test="voucherTStoreId != null" >
+        voucher_t_store_id = #{voucherTStoreId,jdbcType=INTEGER},
+      </if>
+      <if test="voucherTStorename != null" >
+        voucher_t_storename = #{voucherTStorename,jdbcType=VARCHAR},
+      </if>
+      <if test="voucherTCreatorId != null" >
+        voucher_t_creator_id = #{voucherTCreatorId,jdbcType=INTEGER},
+      </if>
+      <if test="voucherTState != null" >
+        voucher_t_state = #{voucherTState,jdbcType=TINYINT},
+      </if>
+      <if test="voucherTTotal != null" >
+        voucher_t_total = #{voucherTTotal,jdbcType=INTEGER},
+      </if>
+      <if test="voucherTGiveout != null" >
+        voucher_t_giveout = #{voucherTGiveout,jdbcType=INTEGER},
+      </if>
+      <if test="voucherTUsed != null" >
+        voucher_t_used = #{voucherTUsed,jdbcType=INTEGER},
+      </if>
+      <if test="voucherTAddDate != null" >
+        voucher_t_add_date = #{voucherTAddDate,jdbcType=INTEGER},
+      </if>
+      <if test="voucherTQuotaid != null" >
+        voucher_t_quotaid = #{voucherTQuotaid,jdbcType=INTEGER},
+      </if>
+      <if test="voucherTPoints != null" >
+        voucher_t_points = #{voucherTPoints,jdbcType=INTEGER},
+      </if>
+      <if test="voucherTGoodsType != null" >
+        voucher_t_goods_type = #{voucherTGoodsType,jdbcType=TINYINT},
+      </if>
+      <if test="voucherTEachlimit != null" >
+        voucher_t_eachlimit = #{voucherTEachlimit,jdbcType=INTEGER},
+      </if>
+      <if test="voucherTLimitType != null" >
+        voucher_t_limit_type = #{voucherTLimitType,jdbcType=TINYINT},
+      </if>
+      <if test="voucherTStyleimg != null" >
+        voucher_t_styleimg = #{voucherTStyleimg,jdbcType=VARCHAR},
+      </if>
+      <if test="voucherTCustomimg != null" >
+        voucher_t_customimg = #{voucherTCustomimg,jdbcType=VARCHAR},
+      </if>
+      <if test="voucherTCostMode != null" >
+        voucher_t_cost_mode = #{voucherTCostMode,jdbcType=TINYINT},
+      </if>
+      <if test="voucherTActivityId != null" >
+        voucher_t_activity_id = #{voucherTActivityId,jdbcType=INTEGER},
+      </if>
+      <if test="voucherTShowState != null" >
+        voucher_t_show_state = #{voucherTShowState,jdbcType=TINYINT},
+      </if>
+      <if test="voucherTJumpUrl != null" >
+        voucher_t_jump_url = #{voucherTJumpUrl,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where voucher_t_id = #{voucherTId,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.shanyuan.platform.ms.dao.user.entity.SyVoucherTemplate" >
+    update sy_voucher_template
+    set voucher_t_title = #{voucherTTitle,jdbcType=VARCHAR},
+      voucher_t_desc = #{voucherTDesc,jdbcType=VARCHAR},
+      voucher_t_type = #{voucherTType,jdbcType=TINYINT},
+      voucher_t_start_date = #{voucherTStartDate,jdbcType=INTEGER},
+      voucher_t_end_date = #{voucherTEndDate,jdbcType=INTEGER},
+      voucher_t_price = #{voucherTPrice,jdbcType=INTEGER},
+      voucher_t_limit = #{voucherTLimit,jdbcType=DECIMAL},
+      voucher_t_store_id = #{voucherTStoreId,jdbcType=INTEGER},
+      voucher_t_storename = #{voucherTStorename,jdbcType=VARCHAR},
+      voucher_t_creator_id = #{voucherTCreatorId,jdbcType=INTEGER},
+      voucher_t_state = #{voucherTState,jdbcType=TINYINT},
+      voucher_t_total = #{voucherTTotal,jdbcType=INTEGER},
+      voucher_t_giveout = #{voucherTGiveout,jdbcType=INTEGER},
+      voucher_t_used = #{voucherTUsed,jdbcType=INTEGER},
+      voucher_t_add_date = #{voucherTAddDate,jdbcType=INTEGER},
+      voucher_t_quotaid = #{voucherTQuotaid,jdbcType=INTEGER},
+      voucher_t_points = #{voucherTPoints,jdbcType=INTEGER},
+      voucher_t_goods_type = #{voucherTGoodsType,jdbcType=TINYINT},
+      voucher_t_eachlimit = #{voucherTEachlimit,jdbcType=INTEGER},
+      voucher_t_limit_type = #{voucherTLimitType,jdbcType=TINYINT},
+      voucher_t_styleimg = #{voucherTStyleimg,jdbcType=VARCHAR},
+      voucher_t_customimg = #{voucherTCustomimg,jdbcType=VARCHAR},
+      voucher_t_cost_mode = #{voucherTCostMode,jdbcType=TINYINT},
+      voucher_t_activity_id = #{voucherTActivityId,jdbcType=INTEGER},
+      voucher_t_show_state = #{voucherTShowState,jdbcType=TINYINT},
+      voucher_t_jump_url = #{voucherTJumpUrl,jdbcType=VARCHAR}
+    where voucher_t_id = #{voucherTId,jdbcType=INTEGER}
+  </update>
+  
+  <select id="selectVoucherAndStore" parameterType="com.shanyuan.platform.ms.dao.user.entity.SyVoucherTemplate">
+  	SELECT a.*,b.store_id,b.store_label,b.store_name,b.store_domain
+	FROM sy_voucher_template a LEFT JOIN sy_store b ON a.voucher_t_store_id=b.store_id
+	WHERE a.voucher_t_state=#{voucherTState}
+	AND a.voucher_t_id=#{voucherTId}
+	AND a.voucher_t_end_date <![CDATA[>]]> #{voucherTEnddate}
+  </select>
+  <select id="selectVoucherByStoreId" parameterType="com.shanyuan.platform.ms.dao.user.entity.SyVoucherTemplate">
+  	SELECT 
+  	   <include refid="Base_Column_List" />
+	FROM sy_voucher_template 
+	WHERE voucher_t_store_id=#{voucherTStoreId}
+	AND voucher_t_state=#{voucherTState}
+	AND voucher_t_total > voucher_t_giveout
+	AND voucher_t_end_date <![CDATA[>]]> #{voucherTEnddate}
+  </select>
+</mapper>

@@ -1,0 +1,528 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.shanyuan.platform.ms.dao.statistics.mapper.PlatformStatisticsSellerDataMapper" >
+  <resultMap id="BaseResultMap" type="com.shanyuan.platform.ms.dao.statistics.entity.PlatformStatisticsSellerData" >
+    <id column="id" property="id" jdbcType="INTEGER" />
+    <result column="assist_order_num" property="assistOrderNum" jdbcType="INTEGER" />
+    <result column="assist_goods_num" property="assistGoodsNum" jdbcType="INTEGER" />
+    <result column="assist_order_amount" property="assistOrderAmount" jdbcType="DECIMAL" />
+    <result column="assit_help_price" property="assitHelpPrice" jdbcType="DECIMAL" />
+    <result column="poor_order_num" property="poorOrderNum" jdbcType="INTEGER" />
+    <result column="poor_goods_num" property="poorGoodsNum" jdbcType="INTEGER" />
+    <result column="poor_order_amount" property="poorOrderAmount" jdbcType="DECIMAL" />
+    <result column="online_order_num" property="onlineOrderNum" jdbcType="INTEGER" />
+    <result column="online_goods_num" property="onlineGoodsNum" jdbcType="INTEGER" />
+    <result column="online_order_amount" property="onlineOrderAmount" jdbcType="DECIMAL" />
+    <result column="online_help_price" property="onlineHelpPrice" jdbcType="DECIMAL" />
+    <result column="offline_order_num" property="offlineOrderNum" jdbcType="INTEGER" />
+    <result column="offline_goods_num" property="offlineGoodsNum" jdbcType="INTEGER" />
+    <result column="offline_order_amount" property="offlineOrderAmount" jdbcType="DECIMAL" />
+    <result column="offline_help_price" property="offlineHelpPrice" jdbcType="DECIMAL" />
+    <result column="sy_order_num" property="syOrderNum" jdbcType="INTEGER" />
+    <result column="sy_goods_num" property="syGoodsNum" jdbcType="INTEGER" />
+    <result column="sy_order_amount" property="syOrderAmount" jdbcType="DECIMAL" />
+    <result column="sy_donation_amount" property="syDonationAmount" jdbcType="DECIMAL" />
+    <result column="c_time" property="cTime" jdbcType="INTEGER" />
+  </resultMap>
+  <sql id="Example_Where_Clause" >
+    <where >
+      <foreach collection="oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Update_By_Example_Where_Clause" >
+    <where >
+      <foreach collection="example.oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Base_Column_List" >
+    id, assist_order_num, assist_goods_num, assist_order_amount, assit_help_price, poor_order_num, 
+    poor_goods_num, poor_order_amount, online_order_num, online_goods_num, online_order_amount, 
+    online_help_price, offline_order_num, offline_goods_num, offline_order_amount, offline_help_price, 
+    sy_order_num, sy_goods_num, sy_order_amount, sy_donation_amount, c_time
+  </sql>
+  <select id="selectByExample" resultMap="BaseResultMap" parameterType="com.shanyuan.platform.ms.dao.statistics.entity.PlatformStatisticsSellerDataExample" >
+    select
+    <if test="distinct" >
+      distinct
+    </if>
+    <include refid="Base_Column_List" />
+    from statistics_platform_seller_data
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null" >
+      order by ${orderByClause}
+    </if>
+  </select>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+    select 
+    <include refid="Base_Column_List" />
+    from statistics_platform_seller_data
+    where id = #{id,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+    delete from statistics_platform_seller_data
+    where id = #{id,jdbcType=INTEGER}
+  </delete>
+  <delete id="deleteByExample" parameterType="com.shanyuan.platform.ms.dao.statistics.entity.PlatformStatisticsSellerDataExample" >
+    delete from statistics_platform_seller_data
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </delete>
+  <insert id="insert" parameterType="com.shanyuan.platform.ms.dao.statistics.entity.PlatformStatisticsSellerData" >
+    <selectKey resultType="java.lang.Integer" keyProperty="id" order="AFTER" >
+      SELECT LAST_INSERT_ID()
+    </selectKey>
+    insert into statistics_platform_seller_data (assist_order_num, assist_goods_num, assist_order_amount, 
+      assit_help_price, poor_order_num, poor_goods_num, 
+      poor_order_amount, online_order_num, online_goods_num, 
+      online_order_amount, online_help_price, offline_order_num, 
+      offline_goods_num, offline_order_amount, offline_help_price, 
+      sy_order_num, sy_goods_num, sy_order_amount, 
+      sy_donation_amount, c_time)
+    values (#{assistOrderNum,jdbcType=INTEGER}, #{assistGoodsNum,jdbcType=INTEGER}, #{assistOrderAmount,jdbcType=DECIMAL}, 
+      #{assitHelpPrice,jdbcType=DECIMAL}, #{poorOrderNum,jdbcType=INTEGER}, #{poorGoodsNum,jdbcType=INTEGER}, 
+      #{poorOrderAmount,jdbcType=DECIMAL}, #{onlineOrderNum,jdbcType=INTEGER}, #{onlineGoodsNum,jdbcType=INTEGER}, 
+      #{onlineOrderAmount,jdbcType=DECIMAL}, #{onlineHelpPrice,jdbcType=DECIMAL}, #{offlineOrderNum,jdbcType=INTEGER}, 
+      #{offlineGoodsNum,jdbcType=INTEGER}, #{offlineOrderAmount,jdbcType=DECIMAL}, #{offlineHelpPrice,jdbcType=DECIMAL}, 
+      #{syOrderNum,jdbcType=INTEGER}, #{syGoodsNum,jdbcType=INTEGER}, #{syOrderAmount,jdbcType=DECIMAL}, 
+      #{syDonationAmount,jdbcType=DECIMAL}, #{cTime,jdbcType=INTEGER})
+  </insert>
+  <insert id="insertSelective" parameterType="com.shanyuan.platform.ms.dao.statistics.entity.PlatformStatisticsSellerData" >
+    <selectKey resultType="java.lang.Integer" keyProperty="id" order="AFTER" >
+      SELECT LAST_INSERT_ID()
+    </selectKey>
+    insert into statistics_platform_seller_data
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="assistOrderNum != null" >
+        assist_order_num,
+      </if>
+      <if test="assistGoodsNum != null" >
+        assist_goods_num,
+      </if>
+      <if test="assistOrderAmount != null" >
+        assist_order_amount,
+      </if>
+      <if test="assitHelpPrice != null" >
+        assit_help_price,
+      </if>
+      <if test="poorOrderNum != null" >
+        poor_order_num,
+      </if>
+      <if test="poorGoodsNum != null" >
+        poor_goods_num,
+      </if>
+      <if test="poorOrderAmount != null" >
+        poor_order_amount,
+      </if>
+      <if test="onlineOrderNum != null" >
+        online_order_num,
+      </if>
+      <if test="onlineGoodsNum != null" >
+        online_goods_num,
+      </if>
+      <if test="onlineOrderAmount != null" >
+        online_order_amount,
+      </if>
+      <if test="onlineHelpPrice != null" >
+        online_help_price,
+      </if>
+      <if test="offlineOrderNum != null" >
+        offline_order_num,
+      </if>
+      <if test="offlineGoodsNum != null" >
+        offline_goods_num,
+      </if>
+      <if test="offlineOrderAmount != null" >
+        offline_order_amount,
+      </if>
+      <if test="offlineHelpPrice != null" >
+        offline_help_price,
+      </if>
+      <if test="syOrderNum != null" >
+        sy_order_num,
+      </if>
+      <if test="syGoodsNum != null" >
+        sy_goods_num,
+      </if>
+      <if test="syOrderAmount != null" >
+        sy_order_amount,
+      </if>
+      <if test="syDonationAmount != null" >
+        sy_donation_amount,
+      </if>
+      <if test="cTime != null" >
+        c_time,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="assistOrderNum != null" >
+        #{assistOrderNum,jdbcType=INTEGER},
+      </if>
+      <if test="assistGoodsNum != null" >
+        #{assistGoodsNum,jdbcType=INTEGER},
+      </if>
+      <if test="assistOrderAmount != null" >
+        #{assistOrderAmount,jdbcType=DECIMAL},
+      </if>
+      <if test="assitHelpPrice != null" >
+        #{assitHelpPrice,jdbcType=DECIMAL},
+      </if>
+      <if test="poorOrderNum != null" >
+        #{poorOrderNum,jdbcType=INTEGER},
+      </if>
+      <if test="poorGoodsNum != null" >
+        #{poorGoodsNum,jdbcType=INTEGER},
+      </if>
+      <if test="poorOrderAmount != null" >
+        #{poorOrderAmount,jdbcType=DECIMAL},
+      </if>
+      <if test="onlineOrderNum != null" >
+        #{onlineOrderNum,jdbcType=INTEGER},
+      </if>
+      <if test="onlineGoodsNum != null" >
+        #{onlineGoodsNum,jdbcType=INTEGER},
+      </if>
+      <if test="onlineOrderAmount != null" >
+        #{onlineOrderAmount,jdbcType=DECIMAL},
+      </if>
+      <if test="onlineHelpPrice != null" >
+        #{onlineHelpPrice,jdbcType=DECIMAL},
+      </if>
+      <if test="offlineOrderNum != null" >
+        #{offlineOrderNum,jdbcType=INTEGER},
+      </if>
+      <if test="offlineGoodsNum != null" >
+        #{offlineGoodsNum,jdbcType=INTEGER},
+      </if>
+      <if test="offlineOrderAmount != null" >
+        #{offlineOrderAmount,jdbcType=DECIMAL},
+      </if>
+      <if test="offlineHelpPrice != null" >
+        #{offlineHelpPrice,jdbcType=DECIMAL},
+      </if>
+      <if test="syOrderNum != null" >
+        #{syOrderNum,jdbcType=INTEGER},
+      </if>
+      <if test="syGoodsNum != null" >
+        #{syGoodsNum,jdbcType=INTEGER},
+      </if>
+      <if test="syOrderAmount != null" >
+        #{syOrderAmount,jdbcType=DECIMAL},
+      </if>
+      <if test="syDonationAmount != null" >
+        #{syDonationAmount,jdbcType=DECIMAL},
+      </if>
+      <if test="cTime != null" >
+        #{cTime,jdbcType=INTEGER},
+      </if>
+    </trim>
+  </insert>
+  <select id="countByExample" parameterType="com.shanyuan.platform.ms.dao.statistics.entity.PlatformStatisticsSellerDataExample" resultType="java.lang.Integer" >
+    select count(*) from statistics_platform_seller_data
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </select>
+  <update id="updateByExampleSelective" parameterType="map" >
+    update statistics_platform_seller_data
+    <set >
+      <if test="record.id != null" >
+        id = #{record.id,jdbcType=INTEGER},
+      </if>
+      <if test="record.assistOrderNum != null" >
+        assist_order_num = #{record.assistOrderNum,jdbcType=INTEGER},
+      </if>
+      <if test="record.assistGoodsNum != null" >
+        assist_goods_num = #{record.assistGoodsNum,jdbcType=INTEGER},
+      </if>
+      <if test="record.assistOrderAmount != null" >
+        assist_order_amount = #{record.assistOrderAmount,jdbcType=DECIMAL},
+      </if>
+      <if test="record.assitHelpPrice != null" >
+        assit_help_price = #{record.assitHelpPrice,jdbcType=DECIMAL},
+      </if>
+      <if test="record.poorOrderNum != null" >
+        poor_order_num = #{record.poorOrderNum,jdbcType=INTEGER},
+      </if>
+      <if test="record.poorGoodsNum != null" >
+        poor_goods_num = #{record.poorGoodsNum,jdbcType=INTEGER},
+      </if>
+      <if test="record.poorOrderAmount != null" >
+        poor_order_amount = #{record.poorOrderAmount,jdbcType=DECIMAL},
+      </if>
+      <if test="record.onlineOrderNum != null" >
+        online_order_num = #{record.onlineOrderNum,jdbcType=INTEGER},
+      </if>
+      <if test="record.onlineGoodsNum != null" >
+        online_goods_num = #{record.onlineGoodsNum,jdbcType=INTEGER},
+      </if>
+      <if test="record.onlineOrderAmount != null" >
+        online_order_amount = #{record.onlineOrderAmount,jdbcType=DECIMAL},
+      </if>
+      <if test="record.onlineHelpPrice != null" >
+        online_help_price = #{record.onlineHelpPrice,jdbcType=DECIMAL},
+      </if>
+      <if test="record.offlineOrderNum != null" >
+        offline_order_num = #{record.offlineOrderNum,jdbcType=INTEGER},
+      </if>
+      <if test="record.offlineGoodsNum != null" >
+        offline_goods_num = #{record.offlineGoodsNum,jdbcType=INTEGER},
+      </if>
+      <if test="record.offlineOrderAmount != null" >
+        offline_order_amount = #{record.offlineOrderAmount,jdbcType=DECIMAL},
+      </if>
+      <if test="record.offlineHelpPrice != null" >
+        offline_help_price = #{record.offlineHelpPrice,jdbcType=DECIMAL},
+      </if>
+      <if test="record.syOrderNum != null" >
+        sy_order_num = #{record.syOrderNum,jdbcType=INTEGER},
+      </if>
+      <if test="record.syGoodsNum != null" >
+        sy_goods_num = #{record.syGoodsNum,jdbcType=INTEGER},
+      </if>
+      <if test="record.syOrderAmount != null" >
+        sy_order_amount = #{record.syOrderAmount,jdbcType=DECIMAL},
+      </if>
+      <if test="record.syDonationAmount != null" >
+        sy_donation_amount = #{record.syDonationAmount,jdbcType=DECIMAL},
+      </if>
+      <if test="record.cTime != null" >
+        c_time = #{record.cTime,jdbcType=INTEGER},
+      </if>
+    </set>
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByExample" parameterType="map" >
+    update statistics_platform_seller_data
+    set id = #{record.id,jdbcType=INTEGER},
+      assist_order_num = #{record.assistOrderNum,jdbcType=INTEGER},
+      assist_goods_num = #{record.assistGoodsNum,jdbcType=INTEGER},
+      assist_order_amount = #{record.assistOrderAmount,jdbcType=DECIMAL},
+      assit_help_price = #{record.assitHelpPrice,jdbcType=DECIMAL},
+      poor_order_num = #{record.poorOrderNum,jdbcType=INTEGER},
+      poor_goods_num = #{record.poorGoodsNum,jdbcType=INTEGER},
+      poor_order_amount = #{record.poorOrderAmount,jdbcType=DECIMAL},
+      online_order_num = #{record.onlineOrderNum,jdbcType=INTEGER},
+      online_goods_num = #{record.onlineGoodsNum,jdbcType=INTEGER},
+      online_order_amount = #{record.onlineOrderAmount,jdbcType=DECIMAL},
+      online_help_price = #{record.onlineHelpPrice,jdbcType=DECIMAL},
+      offline_order_num = #{record.offlineOrderNum,jdbcType=INTEGER},
+      offline_goods_num = #{record.offlineGoodsNum,jdbcType=INTEGER},
+      offline_order_amount = #{record.offlineOrderAmount,jdbcType=DECIMAL},
+      offline_help_price = #{record.offlineHelpPrice,jdbcType=DECIMAL},
+      sy_order_num = #{record.syOrderNum,jdbcType=INTEGER},
+      sy_goods_num = #{record.syGoodsNum,jdbcType=INTEGER},
+      sy_order_amount = #{record.syOrderAmount,jdbcType=DECIMAL},
+      sy_donation_amount = #{record.syDonationAmount,jdbcType=DECIMAL},
+      c_time = #{record.cTime,jdbcType=INTEGER}
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByPrimaryKeySelective" parameterType="com.shanyuan.platform.ms.dao.statistics.entity.PlatformStatisticsSellerData" >
+    update statistics_platform_seller_data
+    <set >
+      <if test="assistOrderNum != null" >
+        assist_order_num = #{assistOrderNum,jdbcType=INTEGER},
+      </if>
+      <if test="assistGoodsNum != null" >
+        assist_goods_num = #{assistGoodsNum,jdbcType=INTEGER},
+      </if>
+      <if test="assistOrderAmount != null" >
+        assist_order_amount = #{assistOrderAmount,jdbcType=DECIMAL},
+      </if>
+      <if test="assitHelpPrice != null" >
+        assit_help_price = #{assitHelpPrice,jdbcType=DECIMAL},
+      </if>
+      <if test="poorOrderNum != null" >
+        poor_order_num = #{poorOrderNum,jdbcType=INTEGER},
+      </if>
+      <if test="poorGoodsNum != null" >
+        poor_goods_num = #{poorGoodsNum,jdbcType=INTEGER},
+      </if>
+      <if test="poorOrderAmount != null" >
+        poor_order_amount = #{poorOrderAmount,jdbcType=DECIMAL},
+      </if>
+      <if test="onlineOrderNum != null" >
+        online_order_num = #{onlineOrderNum,jdbcType=INTEGER},
+      </if>
+      <if test="onlineGoodsNum != null" >
+        online_goods_num = #{onlineGoodsNum,jdbcType=INTEGER},
+      </if>
+      <if test="onlineOrderAmount != null" >
+        online_order_amount = #{onlineOrderAmount,jdbcType=DECIMAL},
+      </if>
+      <if test="onlineHelpPrice != null" >
+        online_help_price = #{onlineHelpPrice,jdbcType=DECIMAL},
+      </if>
+      <if test="offlineOrderNum != null" >
+        offline_order_num = #{offlineOrderNum,jdbcType=INTEGER},
+      </if>
+      <if test="offlineGoodsNum != null" >
+        offline_goods_num = #{offlineGoodsNum,jdbcType=INTEGER},
+      </if>
+      <if test="offlineOrderAmount != null" >
+        offline_order_amount = #{offlineOrderAmount,jdbcType=DECIMAL},
+      </if>
+      <if test="offlineHelpPrice != null" >
+        offline_help_price = #{offlineHelpPrice,jdbcType=DECIMAL},
+      </if>
+      <if test="syOrderNum != null" >
+        sy_order_num = #{syOrderNum,jdbcType=INTEGER},
+      </if>
+      <if test="syGoodsNum != null" >
+        sy_goods_num = #{syGoodsNum,jdbcType=INTEGER},
+      </if>
+      <if test="syOrderAmount != null" >
+        sy_order_amount = #{syOrderAmount,jdbcType=DECIMAL},
+      </if>
+      <if test="syDonationAmount != null" >
+        sy_donation_amount = #{syDonationAmount,jdbcType=DECIMAL},
+      </if>
+      <if test="cTime != null" >
+        c_time = #{cTime,jdbcType=INTEGER},
+      </if>
+    </set>
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.shanyuan.platform.ms.dao.statistics.entity.PlatformStatisticsSellerData" >
+    update statistics_platform_seller_data
+    set assist_order_num = #{assistOrderNum,jdbcType=INTEGER},
+      assist_goods_num = #{assistGoodsNum,jdbcType=INTEGER},
+      assist_order_amount = #{assistOrderAmount,jdbcType=DECIMAL},
+      assit_help_price = #{assitHelpPrice,jdbcType=DECIMAL},
+      poor_order_num = #{poorOrderNum,jdbcType=INTEGER},
+      poor_goods_num = #{poorGoodsNum,jdbcType=INTEGER},
+      poor_order_amount = #{poorOrderAmount,jdbcType=DECIMAL},
+      online_order_num = #{onlineOrderNum,jdbcType=INTEGER},
+      online_goods_num = #{onlineGoodsNum,jdbcType=INTEGER},
+      online_order_amount = #{onlineOrderAmount,jdbcType=DECIMAL},
+      online_help_price = #{onlineHelpPrice,jdbcType=DECIMAL},
+      offline_order_num = #{offlineOrderNum,jdbcType=INTEGER},
+      offline_goods_num = #{offlineGoodsNum,jdbcType=INTEGER},
+      offline_order_amount = #{offlineOrderAmount,jdbcType=DECIMAL},
+      offline_help_price = #{offlineHelpPrice,jdbcType=DECIMAL},
+      sy_order_num = #{syOrderNum,jdbcType=INTEGER},
+      sy_goods_num = #{syGoodsNum,jdbcType=INTEGER},
+      sy_order_amount = #{syOrderAmount,jdbcType=DECIMAL},
+      sy_donation_amount = #{syDonationAmount,jdbcType=DECIMAL},
+      c_time = #{cTime,jdbcType=INTEGER}
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+   <insert id="batchInsertPlatformSellerData" parameterType="map">
+		<selectKey keyProperty="id" order="AFTER" resultType="java.lang.Integer">
+			SELECT LAST_INSERT_ID()
+		</selectKey>
+		insert into statistics_platform_seller_data
+		(assist_order_num,assist_goods_num,assist_order_amount,assit_help_price,
+		poor_order_num,poor_goods_num,poor_order_amount,
+		online_order_num,online_goods_num,online_order_amount,online_help_price,
+		offline_order_num,offline_goods_num,offline_order_amount,offline_help_price,
+		sy_order_num,sy_goods_num,sy_order_amount,sy_donation_amount ,c_time)
+		values 
+		<foreach collection="records" item="item" index="index" separator=",">
+        	(
+			#{item.assistOrderNum,jdbcType=INTEGER},
+			#{item.assistGoodsNum,jdbcType=INTEGER}, 
+			#{item.assistOrderAmount,jdbcType=BIGINT},
+			#{item.assitHelpPrice,jdbcType=BIGINT},
+			#{item.poorOrderNum,jdbcType=INTEGER},
+			#{item.poorGoodsNum,jdbcType=INTEGER}, 
+			#{item.poorOrderAmount,jdbcType=BIGINT},
+			#{item.onlineOrderNum,jdbcType=INTEGER},
+			#{item.onlineGoodsNum,jdbcType=INTEGER},
+			#{item.onlineOrderAmount,jdbcType=BIGINT}, 
+			#{item.onlineHelpPrice,jdbcType=BIGINT},
+			#{item.offlineOrderNum,jdbcType=INTEGER},
+			#{item.offlineGoodsNum,jdbcType=INTEGER},
+			#{item.offlineOrderAmount,jdbcType=BIGINT}, 
+			#{item.offlineHelpPrice,jdbcType=BIGINT},
+			#{item.syOrderNum,jdbcType=INTEGER},
+			#{item.syGoodsNum,jdbcType=INTEGER},
+			#{item.syOrderAmount,jdbcType=BIGINT}, 
+			#{item.syDonationAmount,jdbcType=BIGINT},
+			#{item.cTime,jdbcType=INTEGER}
+			)
+		</foreach>
+	</insert>
+	<select id="getStatisticsTotalDate" parameterType="com.shanyuan.platform.ms.dao.statistics.entity.PlatformStatisticsSellerDataExample" resultMap="BaseResultMap">
+		SELECT SUM(assist_order_num) AS assistOrderNum ,            
+			SUM(assist_goods_num) AS assistGoodsNum,
+			SUM(assist_order_amount) AS assistOrderAmount,                
+			SUM(assit_help_price) AS assitHelpPrice,                    
+			SUM(poor_order_num) AS poorOrderNum,                    
+			SUM(poor_goods_num) AS poorGoodsNum,                    
+			SUM(poor_order_amount) AS poorOrderAmount,              
+			SUM(online_order_num) AS onlineOrderNum,                 
+			SUM(online_goods_num) AS onlineGoodsNum,                  
+			SUM(online_order_amount) AS onlineOrderAmount,            
+			SUM(online_help_price) AS onlineHelpPrice,                  
+			SUM(offline_order_num) AS offlineOrderNum,                 
+			SUM(offline_goods_num) AS offlineGoodsNum,                
+			SUM(offline_order_amount) AS offlineOrderAmount,  
+			SUM(offline_help_price) AS offlineHelpPrice,         
+			SUM(sy_order_num) AS syOrderNum,                   
+			SUM(sy_goods_num) AS syGoodsNum,                      
+			SUM(sy_order_amount) AS syOrderAmount,                   
+			SUM(sy_donation_amount) AS syDonationAmount
+			FROM statistics_platform_seller_data
+			<if test="_parameter != null" >
+      			<include refid="Example_Where_Clause" />
+   			 </if>
+    		 <if test="orderByClause != null" >
+      			order by ${orderByClause}
+             </if>
+	</select>
+</mapper>

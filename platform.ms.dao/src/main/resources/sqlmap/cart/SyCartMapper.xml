@@ -1,0 +1,381 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.shanyuan.platform.ms.dao.cart.mapper.SyCartMapper" >
+  <resultMap id="BaseResultMap" type="com.shanyuan.platform.ms.dao.cart.entity.SyCart" >
+    <id column="cart_id" property="cartId" jdbcType="INTEGER" />
+    <result column="buyer_id" property="buyerId" jdbcType="INTEGER" />
+    <result column="store_id" property="storeId" jdbcType="INTEGER" />
+    <result column="store_name" property="storeName" jdbcType="VARCHAR" />
+    <result column="goods_id" property="goodsId" jdbcType="INTEGER" />
+    <result column="goods_name" property="goodsName" jdbcType="VARCHAR" />
+    <result column="goods_price" property="goodsPrice" jdbcType="DECIMAL" />
+    <result column="goods_num" property="goodsNum" jdbcType="SMALLINT" />
+    <result column="goods_image" property="goodsImage" jdbcType="VARCHAR" />
+    <result column="bl_id" property="blId" jdbcType="INTEGER" />
+    <result column="goods_project_type" property="goodsProjectType" jdbcType="INTEGER" />
+    <result column="proj_id" property="projId" jdbcType="INTEGER" />
+    <result column="checked" property="checked" jdbcType="TINYINT" />
+    <result column="new_add_state" property="newAddState" jdbcType="TINYINT" />
+    <result column="cart_num" property="cartNum" jdbcType="INTEGER" />
+  </resultMap>
+  <sql id="Example_Where_Clause" >
+    <where >
+      <foreach collection="oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Update_By_Example_Where_Clause" >
+    <where >
+      <foreach collection="example.oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Base_Column_List" >
+    cart_id, buyer_id, store_id, store_name, goods_id, goods_name, goods_price, goods_num, 
+    goods_image, bl_id, goods_project_type, proj_id, checked, new_add_state
+  </sql>
+  <select id="selectByExample" resultMap="BaseResultMap" parameterType="com.shanyuan.platform.ms.dao.cart.entity.SyCartExample" >
+    select
+    <if test="distinct" >
+      distinct
+    </if>
+    <include refid="Base_Column_List" />
+    from sy_cart
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null" >
+      order by ${orderByClause}
+    </if>
+  </select>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+    select 
+    <include refid="Base_Column_List" />
+    from sy_cart
+    where cart_id = #{cartId,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+    delete from sy_cart
+    where cart_id = #{cartId,jdbcType=INTEGER}
+  </delete>
+  <delete id="deleteByExample" parameterType="com.shanyuan.platform.ms.dao.cart.entity.SyCartExample" >
+    delete from sy_cart
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </delete>
+  <insert id="insert" parameterType="com.shanyuan.platform.ms.dao.cart.entity.SyCart" >
+    <selectKey resultType="java.lang.Integer" keyProperty="cartId" order="AFTER" >
+      SELECT LAST_INSERT_ID()
+    </selectKey>
+    insert into sy_cart (buyer_id, store_id, store_name, 
+      goods_id, goods_name, goods_price, 
+      goods_num, goods_image, bl_id, 
+      goods_project_type, proj_id, checked, 
+      new_add_state)
+    values (#{buyerId,jdbcType=INTEGER}, #{storeId,jdbcType=INTEGER}, #{storeName,jdbcType=VARCHAR}, 
+      #{goodsId,jdbcType=INTEGER}, #{goodsName,jdbcType=VARCHAR}, #{goodsPrice,jdbcType=DECIMAL}, 
+      #{goodsNum,jdbcType=SMALLINT}, #{goodsImage,jdbcType=VARCHAR}, #{blId,jdbcType=INTEGER}, 
+      #{goodsProjectType,jdbcType=INTEGER}, #{projId,jdbcType=INTEGER}, #{checked,jdbcType=TINYINT}, 
+      #{newAddState,jdbcType=TINYINT})
+  </insert>
+  <insert id="insertSelective" parameterType="com.shanyuan.platform.ms.dao.cart.entity.SyCart" >
+    <selectKey resultType="java.lang.Integer" keyProperty="cartId" order="AFTER" >
+      SELECT LAST_INSERT_ID()
+    </selectKey>
+    insert into sy_cart
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="buyerId != null" >
+        buyer_id,
+      </if>
+      <if test="storeId != null" >
+        store_id,
+      </if>
+      <if test="storeName != null" >
+        store_name,
+      </if>
+      <if test="goodsId != null" >
+        goods_id,
+      </if>
+      <if test="goodsName != null" >
+        goods_name,
+      </if>
+      <if test="goodsPrice != null" >
+        goods_price,
+      </if>
+      <if test="goodsNum != null" >
+        goods_num,
+      </if>
+      <if test="goodsImage != null" >
+        goods_image,
+      </if>
+      <if test="blId != null" >
+        bl_id,
+      </if>
+      <if test="goodsProjectType != null" >
+        goods_project_type,
+      </if>
+      <if test="projId != null" >
+        proj_id,
+      </if>
+      <if test="checked != null" >
+        checked,
+      </if>
+      <if test="newAddState != null" >
+        new_add_state,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="buyerId != null" >
+        #{buyerId,jdbcType=INTEGER},
+      </if>
+      <if test="storeId != null" >
+        #{storeId,jdbcType=INTEGER},
+      </if>
+      <if test="storeName != null" >
+        #{storeName,jdbcType=VARCHAR},
+      </if>
+      <if test="goodsId != null" >
+        #{goodsId,jdbcType=INTEGER},
+      </if>
+      <if test="goodsName != null" >
+        #{goodsName,jdbcType=VARCHAR},
+      </if>
+      <if test="goodsPrice != null" >
+        #{goodsPrice,jdbcType=DECIMAL},
+      </if>
+      <if test="goodsNum != null" >
+        #{goodsNum,jdbcType=SMALLINT},
+      </if>
+      <if test="goodsImage != null" >
+        #{goodsImage,jdbcType=VARCHAR},
+      </if>
+      <if test="blId != null" >
+        #{blId,jdbcType=INTEGER},
+      </if>
+      <if test="goodsProjectType != null" >
+        #{goodsProjectType,jdbcType=INTEGER},
+      </if>
+      <if test="projId != null" >
+        #{projId,jdbcType=INTEGER},
+      </if>
+      <if test="checked != null" >
+        #{checked,jdbcType=TINYINT},
+      </if>
+      <if test="newAddState != null" >
+        #{newAddState,jdbcType=TINYINT},
+      </if>
+    </trim>
+  </insert>
+  <select id="countByExample" parameterType="com.shanyuan.platform.ms.dao.cart.entity.SyCartExample" resultType="java.lang.Integer" >
+    select count(*) from sy_cart
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </select>
+  <update id="updateByExampleSelective" parameterType="map" >
+    update sy_cart
+    <set >
+      <if test="record.cartId != null" >
+        cart_id = #{record.cartId,jdbcType=INTEGER},
+      </if>
+      <if test="record.buyerId != null" >
+        buyer_id = #{record.buyerId,jdbcType=INTEGER},
+      </if>
+      <if test="record.storeId != null" >
+        store_id = #{record.storeId,jdbcType=INTEGER},
+      </if>
+      <if test="record.storeName != null" >
+        store_name = #{record.storeName,jdbcType=VARCHAR},
+      </if>
+      <if test="record.goodsId != null" >
+        goods_id = #{record.goodsId,jdbcType=INTEGER},
+      </if>
+      <if test="record.goodsName != null" >
+        goods_name = #{record.goodsName,jdbcType=VARCHAR},
+      </if>
+      <if test="record.goodsPrice != null" >
+        goods_price = #{record.goodsPrice,jdbcType=DECIMAL},
+      </if>
+      <if test="record.goodsNum != null" >
+        goods_num = #{record.goodsNum,jdbcType=SMALLINT},
+      </if>
+      <if test="record.goodsImage != null" >
+        goods_image = #{record.goodsImage,jdbcType=VARCHAR},
+      </if>
+      <if test="record.blId != null" >
+        bl_id = #{record.blId,jdbcType=INTEGER},
+      </if>
+      <if test="record.goodsProjectType != null" >
+        goods_project_type = #{record.goodsProjectType,jdbcType=INTEGER},
+      </if>
+      <if test="record.projId != null" >
+        proj_id = #{record.projId,jdbcType=INTEGER},
+      </if>
+      <if test="record.checked != null" >
+        checked = #{record.checked,jdbcType=TINYINT},
+      </if>
+      <if test="record.newAddState != null" >
+        new_add_state = #{record.newAddState,jdbcType=TINYINT},
+      </if>
+    </set>
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByExample" parameterType="map" >
+    update sy_cart
+    set cart_id = #{record.cartId,jdbcType=INTEGER},
+      buyer_id = #{record.buyerId,jdbcType=INTEGER},
+      store_id = #{record.storeId,jdbcType=INTEGER},
+      store_name = #{record.storeName,jdbcType=VARCHAR},
+      goods_id = #{record.goodsId,jdbcType=INTEGER},
+      goods_name = #{record.goodsName,jdbcType=VARCHAR},
+      goods_price = #{record.goodsPrice,jdbcType=DECIMAL},
+      goods_num = #{record.goodsNum,jdbcType=SMALLINT},
+      goods_image = #{record.goodsImage,jdbcType=VARCHAR},
+      bl_id = #{record.blId,jdbcType=INTEGER},
+      goods_project_type = #{record.goodsProjectType,jdbcType=INTEGER},
+      proj_id = #{record.projId,jdbcType=INTEGER},
+      checked = #{record.checked,jdbcType=TINYINT},
+      new_add_state = #{record.newAddState,jdbcType=TINYINT}
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByPrimaryKeySelective" parameterType="com.shanyuan.platform.ms.dao.cart.entity.SyCart" >
+    update sy_cart
+    <set >
+      <if test="buyerId != null" >
+        buyer_id = #{buyerId,jdbcType=INTEGER},
+      </if>
+      <if test="storeId != null" >
+        store_id = #{storeId,jdbcType=INTEGER},
+      </if>
+      <if test="storeName != null" >
+        store_name = #{storeName,jdbcType=VARCHAR},
+      </if>
+      <if test="goodsId != null" >
+        goods_id = #{goodsId,jdbcType=INTEGER},
+      </if>
+      <if test="goodsName != null" >
+        goods_name = #{goodsName,jdbcType=VARCHAR},
+      </if>
+      <if test="goodsPrice != null" >
+        goods_price = #{goodsPrice,jdbcType=DECIMAL},
+      </if>
+      <if test="goodsNum != null" >
+        goods_num = #{goodsNum,jdbcType=SMALLINT},
+      </if>
+      <if test="goodsImage != null" >
+        goods_image = #{goodsImage,jdbcType=VARCHAR},
+      </if>
+      <if test="blId != null" >
+        bl_id = #{blId,jdbcType=INTEGER},
+      </if>
+      <if test="goodsProjectType != null" >
+        goods_project_type = #{goodsProjectType,jdbcType=INTEGER},
+      </if>
+      <if test="projId != null" >
+        proj_id = #{projId,jdbcType=INTEGER},
+      </if>
+      <if test="checked != null" >
+        checked = #{checked,jdbcType=TINYINT},
+      </if>
+      <if test="newAddState != null" >
+        new_add_state = #{newAddState,jdbcType=TINYINT},
+      </if>
+    </set>
+    where cart_id = #{cartId,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.shanyuan.platform.ms.dao.cart.entity.SyCart" >
+    update sy_cart
+    set buyer_id = #{buyerId,jdbcType=INTEGER},
+      store_id = #{storeId,jdbcType=INTEGER},
+      store_name = #{storeName,jdbcType=VARCHAR},
+      goods_id = #{goodsId,jdbcType=INTEGER},
+      goods_name = #{goodsName,jdbcType=VARCHAR},
+      goods_price = #{goodsPrice,jdbcType=DECIMAL},
+      goods_num = #{goodsNum,jdbcType=SMALLINT},
+      goods_image = #{goodsImage,jdbcType=VARCHAR},
+      bl_id = #{blId,jdbcType=INTEGER},
+      goods_project_type = #{goodsProjectType,jdbcType=INTEGER},
+      proj_id = #{projId,jdbcType=INTEGER},
+      checked = #{checked,jdbcType=TINYINT},
+      new_add_state = #{newAddState,jdbcType=TINYINT}
+    where cart_id = #{cartId,jdbcType=INTEGER}
+  </update>
+  
+  <select id="selectCartAmountAndNum" parameterType="com.shanyuan.platform.ms.dao.cart.entity.SyCart" resultMap="BaseResultMap">
+ 	 SELECT SUM(goods_price*goods_num) AS goods_price,COUNT(1) AS cart_num,SUM(goods_num) as goods_num
+	 FROM sy_cart
+	 WHERE buyer_id = #{buyerId}
+	 <if test="checked!=null">
+	 	AND checked = #{checked}
+	 </if>
+  </select>
+   <select id="selectCartNum" parameterType="com.shanyuan.platform.ms.dao.cart.entity.SyCart" resultType="java.lang.Integer">
+ 	 SELECT COUNT(1) AS num
+	 FROM sy_cart
+	 WHERE buyer_id = #{buyerId}
+	 <if test="checked!=null">
+	 	AND checked = #{checked}
+	 </if>
+  </select>
+   <update id="updateNumAndState" parameterType="com.shanyuan.platform.ms.dao.cart.entity.SyCart" >
+    update sy_cart
+    set 
+      goods_num = ifnull(goods_num,0) + #{goodsNum,jdbcType=SMALLINT},
+      new_add_state = #{newAddState,jdbcType=TINYINT}
+    where cart_id = #{cartId,jdbcType=INTEGER}
+     and buyer_id= #{buyerId,jdbcType=INTEGER}
+   </update>
+  
+  
+</mapper>

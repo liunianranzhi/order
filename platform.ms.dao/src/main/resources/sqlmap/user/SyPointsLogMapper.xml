@@ -1,0 +1,379 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.shanyuan.platform.ms.dao.user.mapper.SyPointsLogMapper">
+  <resultMap id="BaseResultMap" type="com.shanyuan.platform.ms.dao.user.entity.SyPointsLog">
+    <id column="pl_id" jdbcType="INTEGER" property="plId" />
+    <result column="pl_memberid" jdbcType="INTEGER" property="plMemberid" />
+    <result column="pl_membername" jdbcType="VARCHAR" property="plMembername" />
+    <result column="pl_member_truename" jdbcType="VARCHAR" property="plMemberTruename" />
+    <result column="pl_member_idcard" jdbcType="VARCHAR" property="plMemberIdcard" />
+    <result column="pl_orderid" jdbcType="INTEGER" property="plOrderid" />
+    <result column="pl_adminid" jdbcType="INTEGER" property="plAdminid" />
+    <result column="pl_adminname" jdbcType="VARCHAR" property="plAdminname" />
+    <result column="pl_points" jdbcType="INTEGER" property="plPoints" />
+    <result column="pl_addtime" jdbcType="INTEGER" property="plAddtime" />
+    <result column="pl_desc" jdbcType="VARCHAR" property="plDesc" />
+    <result column="pl_stage" jdbcType="VARCHAR" property="plStage" />
+    <result column="channel" jdbcType="VARCHAR" property="channel" />
+    <result column="pl_memberid2" jdbcType="INTEGER" property="plMemberid2" />
+  </resultMap>
+  <sql id="Example_Where_Clause">
+    <where>
+      <foreach collection="oredCriteria" item="criteria" separator="or">
+        <if test="criteria.valid">
+          <trim prefix="(" prefixOverrides="and" suffix=")">
+            <foreach collection="criteria.criteria" item="criterion">
+              <choose>
+                <when test="criterion.noValue">
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue">
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue">
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue">
+                  and ${criterion.condition}
+                  <foreach close=")" collection="criterion.value" item="listItem" open="(" separator=",">
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Update_By_Example_Where_Clause">
+    <where>
+      <foreach collection="example.oredCriteria" item="criteria" separator="or">
+        <if test="criteria.valid">
+          <trim prefix="(" prefixOverrides="and" suffix=")">
+            <foreach collection="criteria.criteria" item="criterion">
+              <choose>
+                <when test="criterion.noValue">
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue">
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue">
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue">
+                  and ${criterion.condition}
+                  <foreach close=")" collection="criterion.value" item="listItem" open="(" separator=",">
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Base_Column_List">
+    pl_id, pl_memberid, pl_membername, pl_member_truename, pl_member_idcard, pl_orderid, 
+    pl_adminid, pl_adminname, pl_points, pl_addtime, pl_desc, pl_stage, channel, pl_memberid2
+  </sql>
+  <select id="selectByExample" parameterType="com.shanyuan.platform.ms.dao.user.entity.SyPointsLogExample" resultMap="BaseResultMap">
+    select
+    <if test="distinct">
+      distinct
+    </if>
+    <include refid="Base_Column_List" />
+    from sy_points_log
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null">
+      order by ${orderByClause}
+    </if>
+  </select>
+  <select id="selectByExampleDetail" parameterType="com.shanyuan.platform.ms.dao.user.entity.SyPointsLogExample" resultMap="BaseResultMap">
+    select
+    <if test="distinct">
+      distinct
+    </if>
+    <include refid="Base_Column_List" />
+    from sy_points_log
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+  </select>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from sy_points_log
+    where pl_id = #{plId,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+    delete from sy_points_log
+    where pl_id = #{plId,jdbcType=INTEGER}
+  </delete>
+  <delete id="deleteByExample" parameterType="com.shanyuan.platform.ms.dao.user.entity.SyPointsLogExample">
+    delete from sy_points_log
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+  </delete>
+  <insert id="insert" parameterType="com.shanyuan.platform.ms.dao.user.entity.SyPointsLog">
+    <selectKey keyProperty="plId" order="AFTER" resultType="java.lang.Integer">
+      SELECT LAST_INSERT_ID()
+    </selectKey>
+    insert into sy_points_log (pl_memberid, pl_membername, pl_member_truename, 
+      pl_member_idcard, pl_orderid, pl_adminid, 
+      pl_adminname, pl_points, pl_addtime, 
+      pl_desc, pl_stage, channel, 
+      pl_memberid2)
+    values (#{plMemberid,jdbcType=INTEGER}, #{plMembername,jdbcType=VARCHAR}, #{plMemberTruename,jdbcType=VARCHAR}, 
+      #{plMemberIdcard,jdbcType=VARCHAR}, #{plOrderid,jdbcType=INTEGER}, #{plAdminid,jdbcType=INTEGER}, 
+      #{plAdminname,jdbcType=VARCHAR}, #{plPoints,jdbcType=INTEGER}, #{plAddtime,jdbcType=INTEGER}, 
+      #{plDesc,jdbcType=VARCHAR}, #{plStage,jdbcType=VARCHAR}, #{channel,jdbcType=VARCHAR}, 
+      #{plMemberid2,jdbcType=INTEGER})
+  </insert>
+  <insert id="insertSelective" parameterType="com.shanyuan.platform.ms.dao.user.entity.SyPointsLog">
+    <selectKey keyProperty="plId" order="AFTER" resultType="java.lang.Integer">
+      SELECT LAST_INSERT_ID()
+    </selectKey>
+    insert into sy_points_log
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="plMemberid != null">
+        pl_memberid,
+      </if>
+      <if test="plMembername != null">
+        pl_membername,
+      </if>
+      <if test="plMemberTruename != null">
+        pl_member_truename,
+      </if>
+      <if test="plMemberIdcard != null">
+        pl_member_idcard,
+      </if>
+      <if test="plOrderid != null">
+        pl_orderid,
+      </if>
+      <if test="plAdminid != null">
+        pl_adminid,
+      </if>
+      <if test="plAdminname != null">
+        pl_adminname,
+      </if>
+      <if test="plPoints != null">
+        pl_points,
+      </if>
+      <if test="plAddtime != null">
+        pl_addtime,
+      </if>
+      <if test="plDesc != null">
+        pl_desc,
+      </if>
+      <if test="plStage != null">
+        pl_stage,
+      </if>
+      <if test="channel != null">
+        channel,
+      </if>
+      <if test="plMemberid2 != null">
+        pl_memberid2,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="plMemberid != null">
+        #{plMemberid,jdbcType=INTEGER},
+      </if>
+      <if test="plMembername != null">
+        #{plMembername,jdbcType=VARCHAR},
+      </if>
+      <if test="plMemberTruename != null">
+        #{plMemberTruename,jdbcType=VARCHAR},
+      </if>
+      <if test="plMemberIdcard != null">
+        #{plMemberIdcard,jdbcType=VARCHAR},
+      </if>
+      <if test="plOrderid != null">
+        #{plOrderid,jdbcType=INTEGER},
+      </if>
+      <if test="plAdminid != null">
+        #{plAdminid,jdbcType=INTEGER},
+      </if>
+      <if test="plAdminname != null">
+        #{plAdminname,jdbcType=VARCHAR},
+      </if>
+      <if test="plPoints != null">
+        #{plPoints,jdbcType=INTEGER},
+      </if>
+      <if test="plAddtime != null">
+        #{plAddtime,jdbcType=INTEGER},
+      </if>
+      <if test="plDesc != null">
+        #{plDesc,jdbcType=VARCHAR},
+      </if>
+      <if test="plStage != null">
+        #{plStage,jdbcType=VARCHAR},
+      </if>
+      <if test="channel != null">
+        #{channel,jdbcType=VARCHAR},
+      </if>
+      <if test="plMemberid2 != null">
+        #{plMemberid2,jdbcType=INTEGER},
+      </if>
+    </trim>
+  </insert>
+  <select id="countByExample" parameterType="com.shanyuan.platform.ms.dao.user.entity.SyPointsLogExample" resultType="java.lang.Integer">
+    select count(*) from sy_points_log
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+  </select>
+  <update id="updateByExampleSelective" parameterType="map">
+    update sy_points_log
+    <set>
+      <if test="record.plId != null">
+        pl_id = #{record.plId,jdbcType=INTEGER},
+      </if>
+      <if test="record.plMemberid != null">
+        pl_memberid = #{record.plMemberid,jdbcType=INTEGER},
+      </if>
+      <if test="record.plMembername != null">
+        pl_membername = #{record.plMembername,jdbcType=VARCHAR},
+      </if>
+      <if test="record.plMemberTruename != null">
+        pl_member_truename = #{record.plMemberTruename,jdbcType=VARCHAR},
+      </if>
+      <if test="record.plMemberIdcard != null">
+        pl_member_idcard = #{record.plMemberIdcard,jdbcType=VARCHAR},
+      </if>
+      <if test="record.plOrderid != null">
+        pl_orderid = #{record.plOrderid,jdbcType=INTEGER},
+      </if>
+      <if test="record.plAdminid != null">
+        pl_adminid = #{record.plAdminid,jdbcType=INTEGER},
+      </if>
+      <if test="record.plAdminname != null">
+        pl_adminname = #{record.plAdminname,jdbcType=VARCHAR},
+      </if>
+      <if test="record.plPoints != null">
+        pl_points = #{record.plPoints,jdbcType=INTEGER},
+      </if>
+      <if test="record.plAddtime != null">
+        pl_addtime = #{record.plAddtime,jdbcType=INTEGER},
+      </if>
+      <if test="record.plDesc != null">
+        pl_desc = #{record.plDesc,jdbcType=VARCHAR},
+      </if>
+      <if test="record.plStage != null">
+        pl_stage = #{record.plStage,jdbcType=VARCHAR},
+      </if>
+      <if test="record.channel != null">
+        channel = #{record.channel,jdbcType=VARCHAR},
+      </if>
+      <if test="record.plMemberid2 != null">
+        pl_memberid2 = #{record.plMemberid2,jdbcType=INTEGER},
+      </if>
+    </set>
+    <if test="_parameter != null">
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByExample" parameterType="map">
+    update sy_points_log
+    set pl_id = #{record.plId,jdbcType=INTEGER},
+      pl_memberid = #{record.plMemberid,jdbcType=INTEGER},
+      pl_membername = #{record.plMembername,jdbcType=VARCHAR},
+      pl_member_truename = #{record.plMemberTruename,jdbcType=VARCHAR},
+      pl_member_idcard = #{record.plMemberIdcard,jdbcType=VARCHAR},
+      pl_orderid = #{record.plOrderid,jdbcType=INTEGER},
+      pl_adminid = #{record.plAdminid,jdbcType=INTEGER},
+      pl_adminname = #{record.plAdminname,jdbcType=VARCHAR},
+      pl_points = #{record.plPoints,jdbcType=INTEGER},
+      pl_addtime = #{record.plAddtime,jdbcType=INTEGER},
+      pl_desc = #{record.plDesc,jdbcType=VARCHAR},
+      pl_stage = #{record.plStage,jdbcType=VARCHAR},
+      channel = #{record.channel,jdbcType=VARCHAR},
+      pl_memberid2 = #{record.plMemberid2,jdbcType=INTEGER}
+    <if test="_parameter != null">
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByPrimaryKeySelective" parameterType="com.shanyuan.platform.ms.dao.user.entity.SyPointsLog">
+    update sy_points_log
+    <set>
+      <if test="plMemberid != null">
+        pl_memberid = #{plMemberid,jdbcType=INTEGER},
+      </if>
+      <if test="plMembername != null">
+        pl_membername = #{plMembername,jdbcType=VARCHAR},
+      </if>
+      <if test="plMemberTruename != null">
+        pl_member_truename = #{plMemberTruename,jdbcType=VARCHAR},
+      </if>
+      <if test="plMemberIdcard != null">
+        pl_member_idcard = #{plMemberIdcard,jdbcType=VARCHAR},
+      </if>
+      <if test="plOrderid != null">
+        pl_orderid = #{plOrderid,jdbcType=INTEGER},
+      </if>
+      <if test="plAdminid != null">
+        pl_adminid = #{plAdminid,jdbcType=INTEGER},
+      </if>
+      <if test="plAdminname != null">
+        pl_adminname = #{plAdminname,jdbcType=VARCHAR},
+      </if>
+      <if test="plPoints != null">
+        pl_points = #{plPoints,jdbcType=INTEGER},
+      </if>
+      <if test="plAddtime != null">
+        pl_addtime = #{plAddtime,jdbcType=INTEGER},
+      </if>
+      <if test="plDesc != null">
+        pl_desc = #{plDesc,jdbcType=VARCHAR},
+      </if>
+      <if test="plStage != null">
+        pl_stage = #{plStage,jdbcType=VARCHAR},
+      </if>
+      <if test="channel != null">
+        channel = #{channel,jdbcType=VARCHAR},
+      </if>
+      <if test="plMemberid2 != null">
+        pl_memberid2 = #{plMemberid2,jdbcType=INTEGER},
+      </if>
+    </set>
+    where pl_id = #{plId,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.shanyuan.platform.ms.dao.user.entity.SyPointsLog">
+    update sy_points_log
+    set pl_memberid = #{plMemberid,jdbcType=INTEGER},
+      pl_membername = #{plMembername,jdbcType=VARCHAR},
+      pl_member_truename = #{plMemberTruename,jdbcType=VARCHAR},
+      pl_member_idcard = #{plMemberIdcard,jdbcType=VARCHAR},
+      pl_orderid = #{plOrderid,jdbcType=INTEGER},
+      pl_adminid = #{plAdminid,jdbcType=INTEGER},
+      pl_adminname = #{plAdminname,jdbcType=VARCHAR},
+      pl_points = #{plPoints,jdbcType=INTEGER},
+      pl_addtime = #{plAddtime,jdbcType=INTEGER},
+      pl_desc = #{plDesc,jdbcType=VARCHAR},
+      pl_stage = #{plStage,jdbcType=VARCHAR},
+      channel = #{channel,jdbcType=VARCHAR},
+      pl_memberid2 = #{plMemberid2,jdbcType=INTEGER}
+    where pl_id = #{plId,jdbcType=INTEGER}
+  </update>
+  
+  <select id="selectUserPointList" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+  	SELECT pl_addtime, pl_stage, pl_desc 
+  	FROM sy_points_log 
+  	WHERE pl_memberid=#{memberId,jdbcType=INTEGER} 
+  	ORDER BY pl_addtime DESC
+  </select>
+  
+  <select id="selectPointList" parameterType="com.shanyuan.platform.ms.dao.user.entity.SyPointsLog" resultMap="BaseResultMap">
+  	SELECT 
+	<include refid="Base_Column_List" /> 
+  	FROM sy_points_log 
+  	WHERE 1=1 
+  	ORDER BY pl_addtime DESC
+  </select>
+</mapper>

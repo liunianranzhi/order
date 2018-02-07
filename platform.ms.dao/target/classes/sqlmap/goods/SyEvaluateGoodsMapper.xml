@@ -1,0 +1,615 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.shanyuan.platform.ms.dao.goods.mapper.SyEvaluateGoodsMapper" >
+  <resultMap id="BaseResultMap" type="com.shanyuan.platform.ms.dao.goods.entity.SyEvaluateGoods" >
+    <id column="geval_id" property="gevalId" jdbcType="INTEGER" />
+    <result column="geval_orderid" property="gevalOrderid" jdbcType="INTEGER" />
+    <result column="geval_orderno" property="gevalOrderno" jdbcType="BIGINT" />
+    <result column="geval_ordergoodsid" property="gevalOrdergoodsid" jdbcType="INTEGER" />
+    <result column="geval_goodsid" property="gevalGoodsid" jdbcType="INTEGER" />
+    <result column="geval_goodsname" property="gevalGoodsname" jdbcType="VARCHAR" />
+    <result column="geval_goodsprice" property="gevalGoodsprice" jdbcType="DECIMAL" />
+    <result column="geval_scores" property="gevalScores" jdbcType="TINYINT" />
+    <result column="geval_content" property="gevalContent" jdbcType="VARCHAR" />
+    <result column="geval_isanonymous" property="gevalIsanonymous" jdbcType="TINYINT" />
+    <result column="geval_addtime" property="gevalAddtime" jdbcType="INTEGER" />
+    <result column="geval_storeid" property="gevalStoreid" jdbcType="INTEGER" />
+    <result column="geval_storename" property="gevalStorename" jdbcType="VARCHAR" />
+    <result column="geval_frommemberid" property="gevalFrommemberid" jdbcType="INTEGER" />
+    <result column="geval_frommembername" property="gevalFrommembername" jdbcType="VARCHAR" />
+    <result column="geval_state" property="gevalState" jdbcType="TINYINT" />
+    <result column="geval_remark" property="gevalRemark" jdbcType="VARCHAR" />
+    <result column="geval_explain" property="gevalExplain" jdbcType="VARCHAR" />
+    <result column="geval_image" property="gevalImage" jdbcType="VARCHAR" />
+    <result column="publisher_id" property="publisherId" jdbcType="INTEGER" />
+    <result column="edittime" property="edittime" jdbcType="INTEGER" />
+    <result column="geval_type" property="gevalType" jdbcType="TINYINT" />
+    <result column="geval_communication_status" property="gevalCommunicationStatus" jdbcType="TINYINT" />
+    <result column="goods_commonid" property="goodsCommonid" jdbcType="INTEGER" />
+    <result column="geval_image2" property="gevalImage2" jdbcType="VARCHAR" />
+    <result column="geval_image3" property="gevalImage3" jdbcType="VARCHAR" />
+    <result column="num" property="num" jdbcType="INTEGER" />
+    <result column="goodsScoreAvg" property="goodsScoreAvg" jdbcType="DECIMAL" />
+  </resultMap>
+  <sql id="Example_Where_Clause" >
+    <where >
+      <foreach collection="oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Update_By_Example_Where_Clause" >
+    <where >
+      <foreach collection="example.oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Base_Column_List" >
+    geval_id, geval_orderid, geval_orderno, geval_ordergoodsid, geval_goodsid, geval_goodsname, 
+    geval_goodsprice, geval_scores, geval_content, geval_isanonymous, geval_addtime, 
+    geval_storeid, geval_storename, geval_frommemberid, geval_frommembername, geval_state, 
+    geval_remark, geval_explain, geval_image, publisher_id, edittime, geval_type, geval_communication_status, 
+    goods_commonid, geval_image2, geval_image3
+  </sql>
+  <select id="selectByExample" resultMap="BaseResultMap" parameterType="com.shanyuan.platform.ms.dao.goods.entity.SyEvaluateGoodsExample" >
+    select
+    <if test="distinct" >
+      distinct
+    </if>
+    <include refid="Base_Column_List" />
+    from sy_evaluate_goods
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null" >
+      order by ${orderByClause}
+    </if>
+  </select>
+
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+    select 
+    <include refid="Base_Column_List" />
+    from sy_evaluate_goods
+    where geval_id = #{gevalId,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+    delete from sy_evaluate_goods
+    where geval_id = #{gevalId,jdbcType=INTEGER}
+  </delete>
+  <delete id="deleteByExample" parameterType="com.shanyuan.platform.ms.dao.goods.entity.SyEvaluateGoodsExample" >
+    delete from sy_evaluate_goods
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </delete>
+  <insert id="insert" parameterType="com.shanyuan.platform.ms.dao.goods.entity.SyEvaluateGoods" >
+    <selectKey resultType="java.lang.Integer" keyProperty="gevalId" order="AFTER" >
+      SELECT LAST_INSERT_ID()
+    </selectKey>
+    insert into sy_evaluate_goods (geval_orderid, geval_orderno, geval_ordergoodsid, 
+      geval_goodsid, geval_goodsname, geval_goodsprice, 
+      geval_scores, geval_content, geval_isanonymous, 
+      geval_addtime, geval_storeid, geval_storename, 
+      geval_frommemberid, geval_frommembername, 
+      geval_state, geval_remark, geval_explain, 
+      geval_image, publisher_id, edittime, 
+      geval_type, geval_communication_status, goods_commonid, 
+      geval_image2, geval_image3)
+    values (#{gevalOrderid,jdbcType=INTEGER}, #{gevalOrderno,jdbcType=BIGINT}, #{gevalOrdergoodsid,jdbcType=INTEGER}, 
+      #{gevalGoodsid,jdbcType=INTEGER}, #{gevalGoodsname,jdbcType=VARCHAR}, #{gevalGoodsprice,jdbcType=DECIMAL}, 
+      #{gevalScores,jdbcType=TINYINT}, #{gevalContent,jdbcType=VARCHAR}, #{gevalIsanonymous,jdbcType=TINYINT}, 
+      #{gevalAddtime,jdbcType=INTEGER}, #{gevalStoreid,jdbcType=INTEGER}, #{gevalStorename,jdbcType=VARCHAR}, 
+      #{gevalFrommemberid,jdbcType=INTEGER}, #{gevalFrommembername,jdbcType=VARCHAR}, 
+      #{gevalState,jdbcType=TINYINT}, #{gevalRemark,jdbcType=VARCHAR}, #{gevalExplain,jdbcType=VARCHAR}, 
+      #{gevalImage,jdbcType=VARCHAR}, #{publisherId,jdbcType=INTEGER}, #{edittime,jdbcType=INTEGER}, 
+      #{gevalType,jdbcType=TINYINT}, #{gevalCommunicationStatus,jdbcType=TINYINT}, #{goodsCommonid,jdbcType=INTEGER}, 
+      #{gevalImage2,jdbcType=VARCHAR}, #{gevalImage3,jdbcType=VARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="com.shanyuan.platform.ms.dao.goods.entity.SyEvaluateGoods" >
+    <selectKey resultType="java.lang.Integer" keyProperty="gevalId" order="AFTER" >
+      SELECT LAST_INSERT_ID()
+    </selectKey>
+    insert into sy_evaluate_goods
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="gevalOrderid != null" >
+        geval_orderid,
+      </if>
+      <if test="gevalOrderno != null" >
+        geval_orderno,
+      </if>
+      <if test="gevalOrdergoodsid != null" >
+        geval_ordergoodsid,
+      </if>
+      <if test="gevalGoodsid != null" >
+        geval_goodsid,
+      </if>
+      <if test="gevalGoodsname != null" >
+        geval_goodsname,
+      </if>
+      <if test="gevalGoodsprice != null" >
+        geval_goodsprice,
+      </if>
+      <if test="gevalScores != null" >
+        geval_scores,
+      </if>
+      <if test="gevalContent != null" >
+        geval_content,
+      </if>
+      <if test="gevalIsanonymous != null" >
+        geval_isanonymous,
+      </if>
+      <if test="gevalAddtime != null" >
+        geval_addtime,
+      </if>
+      <if test="gevalStoreid != null" >
+        geval_storeid,
+      </if>
+      <if test="gevalStorename != null" >
+        geval_storename,
+      </if>
+      <if test="gevalFrommemberid != null" >
+        geval_frommemberid,
+      </if>
+      <if test="gevalFrommembername != null" >
+        geval_frommembername,
+      </if>
+      <if test="gevalState != null" >
+        geval_state,
+      </if>
+      <if test="gevalRemark != null" >
+        geval_remark,
+      </if>
+      <if test="gevalExplain != null" >
+        geval_explain,
+      </if>
+      <if test="gevalImage != null" >
+        geval_image,
+      </if>
+      <if test="publisherId != null" >
+        publisher_id,
+      </if>
+      <if test="edittime != null" >
+        edittime,
+      </if>
+      <if test="gevalType != null" >
+        geval_type,
+      </if>
+      <if test="gevalCommunicationStatus != null" >
+        geval_communication_status,
+      </if>
+      <if test="goodsCommonid != null" >
+        goods_commonid,
+      </if>
+      <if test="gevalImage2 != null" >
+        geval_image2,
+      </if>
+      <if test="gevalImage3 != null" >
+        geval_image3,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="gevalOrderid != null" >
+        #{gevalOrderid,jdbcType=INTEGER},
+      </if>
+      <if test="gevalOrderno != null" >
+        #{gevalOrderno,jdbcType=BIGINT},
+      </if>
+      <if test="gevalOrdergoodsid != null" >
+        #{gevalOrdergoodsid,jdbcType=INTEGER},
+      </if>
+      <if test="gevalGoodsid != null" >
+        #{gevalGoodsid,jdbcType=INTEGER},
+      </if>
+      <if test="gevalGoodsname != null" >
+        #{gevalGoodsname,jdbcType=VARCHAR},
+      </if>
+      <if test="gevalGoodsprice != null" >
+        #{gevalGoodsprice,jdbcType=DECIMAL},
+      </if>
+      <if test="gevalScores != null" >
+        #{gevalScores,jdbcType=TINYINT},
+      </if>
+      <if test="gevalContent != null" >
+        #{gevalContent,jdbcType=VARCHAR},
+      </if>
+      <if test="gevalIsanonymous != null" >
+        #{gevalIsanonymous,jdbcType=TINYINT},
+      </if>
+      <if test="gevalAddtime != null" >
+        #{gevalAddtime,jdbcType=INTEGER},
+      </if>
+      <if test="gevalStoreid != null" >
+        #{gevalStoreid,jdbcType=INTEGER},
+      </if>
+      <if test="gevalStorename != null" >
+        #{gevalStorename,jdbcType=VARCHAR},
+      </if>
+      <if test="gevalFrommemberid != null" >
+        #{gevalFrommemberid,jdbcType=INTEGER},
+      </if>
+      <if test="gevalFrommembername != null" >
+        #{gevalFrommembername,jdbcType=VARCHAR},
+      </if>
+      <if test="gevalState != null" >
+        #{gevalState,jdbcType=TINYINT},
+      </if>
+      <if test="gevalRemark != null" >
+        #{gevalRemark,jdbcType=VARCHAR},
+      </if>
+      <if test="gevalExplain != null" >
+        #{gevalExplain,jdbcType=VARCHAR},
+      </if>
+      <if test="gevalImage != null" >
+        #{gevalImage,jdbcType=VARCHAR},
+      </if>
+      <if test="publisherId != null" >
+        #{publisherId,jdbcType=INTEGER},
+      </if>
+      <if test="edittime != null" >
+        #{edittime,jdbcType=INTEGER},
+      </if>
+      <if test="gevalType != null" >
+        #{gevalType,jdbcType=TINYINT},
+      </if>
+      <if test="gevalCommunicationStatus != null" >
+        #{gevalCommunicationStatus,jdbcType=TINYINT},
+      </if>
+      <if test="goodsCommonid != null" >
+        #{goodsCommonid,jdbcType=INTEGER},
+      </if>
+      <if test="gevalImage2 != null" >
+        #{gevalImage2,jdbcType=VARCHAR},
+      </if>
+      <if test="gevalImage3 != null" >
+        #{gevalImage3,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <select id="countByExample" parameterType="com.shanyuan.platform.ms.dao.goods.entity.SyEvaluateGoodsExample" resultType="java.lang.Integer" >
+    select count(*) from sy_evaluate_goods
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </select>
+  <update id="updateByExampleSelective" parameterType="map" >
+    update sy_evaluate_goods
+    <set >
+      <if test="record.gevalId != null" >
+        geval_id = #{record.gevalId,jdbcType=INTEGER},
+      </if>
+      <if test="record.gevalOrderid != null" >
+        geval_orderid = #{record.gevalOrderid,jdbcType=INTEGER},
+      </if>
+      <if test="record.gevalOrderno != null" >
+        geval_orderno = #{record.gevalOrderno,jdbcType=BIGINT},
+      </if>
+      <if test="record.gevalOrdergoodsid != null" >
+        geval_ordergoodsid = #{record.gevalOrdergoodsid,jdbcType=INTEGER},
+      </if>
+      <if test="record.gevalGoodsid != null" >
+        geval_goodsid = #{record.gevalGoodsid,jdbcType=INTEGER},
+      </if>
+      <if test="record.gevalGoodsname != null" >
+        geval_goodsname = #{record.gevalGoodsname,jdbcType=VARCHAR},
+      </if>
+      <if test="record.gevalGoodsprice != null" >
+        geval_goodsprice = #{record.gevalGoodsprice,jdbcType=DECIMAL},
+      </if>
+      <if test="record.gevalScores != null" >
+        geval_scores = #{record.gevalScores,jdbcType=TINYINT},
+      </if>
+      <if test="record.gevalContent != null" >
+        geval_content = #{record.gevalContent,jdbcType=VARCHAR},
+      </if>
+      <if test="record.gevalIsanonymous != null" >
+        geval_isanonymous = #{record.gevalIsanonymous,jdbcType=TINYINT},
+      </if>
+      <if test="record.gevalAddtime != null" >
+        geval_addtime = #{record.gevalAddtime,jdbcType=INTEGER},
+      </if>
+      <if test="record.gevalStoreid != null" >
+        geval_storeid = #{record.gevalStoreid,jdbcType=INTEGER},
+      </if>
+      <if test="record.gevalStorename != null" >
+        geval_storename = #{record.gevalStorename,jdbcType=VARCHAR},
+      </if>
+      <if test="record.gevalFrommemberid != null" >
+        geval_frommemberid = #{record.gevalFrommemberid,jdbcType=INTEGER},
+      </if>
+      <if test="record.gevalFrommembername != null" >
+        geval_frommembername = #{record.gevalFrommembername,jdbcType=VARCHAR},
+      </if>
+      <if test="record.gevalState != null" >
+        geval_state = #{record.gevalState,jdbcType=TINYINT},
+      </if>
+      <if test="record.gevalRemark != null" >
+        geval_remark = #{record.gevalRemark,jdbcType=VARCHAR},
+      </if>
+      <if test="record.gevalExplain != null" >
+        geval_explain = #{record.gevalExplain,jdbcType=VARCHAR},
+      </if>
+      <if test="record.gevalImage != null" >
+        geval_image = #{record.gevalImage,jdbcType=VARCHAR},
+      </if>
+      <if test="record.publisherId != null" >
+        publisher_id = #{record.publisherId,jdbcType=INTEGER},
+      </if>
+      <if test="record.edittime != null" >
+        edittime = #{record.edittime,jdbcType=INTEGER},
+      </if>
+      <if test="record.gevalType != null" >
+        geval_type = #{record.gevalType,jdbcType=TINYINT},
+      </if>
+      <if test="record.gevalCommunicationStatus != null" >
+        geval_communication_status = #{record.gevalCommunicationStatus,jdbcType=TINYINT},
+      </if>
+      <if test="record.goodsCommonid != null" >
+        goods_commonid = #{record.goodsCommonid,jdbcType=INTEGER},
+      </if>
+      <if test="record.gevalImage2 != null" >
+        geval_image2 = #{record.gevalImage2,jdbcType=VARCHAR},
+      </if>
+      <if test="record.gevalImage3 != null" >
+        geval_image3 = #{record.gevalImage3,jdbcType=VARCHAR},
+      </if>
+    </set>
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByExample" parameterType="map" >
+    update sy_evaluate_goods
+    set geval_id = #{record.gevalId,jdbcType=INTEGER},
+      geval_orderid = #{record.gevalOrderid,jdbcType=INTEGER},
+      geval_orderno = #{record.gevalOrderno,jdbcType=BIGINT},
+      geval_ordergoodsid = #{record.gevalOrdergoodsid,jdbcType=INTEGER},
+      geval_goodsid = #{record.gevalGoodsid,jdbcType=INTEGER},
+      geval_goodsname = #{record.gevalGoodsname,jdbcType=VARCHAR},
+      geval_goodsprice = #{record.gevalGoodsprice,jdbcType=DECIMAL},
+      geval_scores = #{record.gevalScores,jdbcType=TINYINT},
+      geval_content = #{record.gevalContent,jdbcType=VARCHAR},
+      geval_isanonymous = #{record.gevalIsanonymous,jdbcType=TINYINT},
+      geval_addtime = #{record.gevalAddtime,jdbcType=INTEGER},
+      geval_storeid = #{record.gevalStoreid,jdbcType=INTEGER},
+      geval_storename = #{record.gevalStorename,jdbcType=VARCHAR},
+      geval_frommemberid = #{record.gevalFrommemberid,jdbcType=INTEGER},
+      geval_frommembername = #{record.gevalFrommembername,jdbcType=VARCHAR},
+      geval_state = #{record.gevalState,jdbcType=TINYINT},
+      geval_remark = #{record.gevalRemark,jdbcType=VARCHAR},
+      geval_explain = #{record.gevalExplain,jdbcType=VARCHAR},
+      geval_image = #{record.gevalImage,jdbcType=VARCHAR},
+      publisher_id = #{record.publisherId,jdbcType=INTEGER},
+      edittime = #{record.edittime,jdbcType=INTEGER},
+      geval_type = #{record.gevalType,jdbcType=TINYINT},
+      geval_communication_status = #{record.gevalCommunicationStatus,jdbcType=TINYINT},
+      goods_commonid = #{record.goodsCommonid,jdbcType=INTEGER},
+      geval_image2 = #{record.gevalImage2,jdbcType=VARCHAR},
+      geval_image3 = #{record.gevalImage3,jdbcType=VARCHAR}
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByPrimaryKeySelective" parameterType="com.shanyuan.platform.ms.dao.goods.entity.SyEvaluateGoods" >
+    update sy_evaluate_goods
+    <set >
+      <if test="gevalOrderid != null" >
+        geval_orderid = #{gevalOrderid,jdbcType=INTEGER},
+      </if>
+      <if test="gevalOrderno != null" >
+        geval_orderno = #{gevalOrderno,jdbcType=BIGINT},
+      </if>
+      <if test="gevalOrdergoodsid != null" >
+        geval_ordergoodsid = #{gevalOrdergoodsid,jdbcType=INTEGER},
+      </if>
+      <if test="gevalGoodsid != null" >
+        geval_goodsid = #{gevalGoodsid,jdbcType=INTEGER},
+      </if>
+      <if test="gevalGoodsname != null" >
+        geval_goodsname = #{gevalGoodsname,jdbcType=VARCHAR},
+      </if>
+      <if test="gevalGoodsprice != null" >
+        geval_goodsprice = #{gevalGoodsprice,jdbcType=DECIMAL},
+      </if>
+      <if test="gevalScores != null" >
+        geval_scores = #{gevalScores,jdbcType=TINYINT},
+      </if>
+      <if test="gevalContent != null" >
+        geval_content = #{gevalContent,jdbcType=VARCHAR},
+      </if>
+      <if test="gevalIsanonymous != null" >
+        geval_isanonymous = #{gevalIsanonymous,jdbcType=TINYINT},
+      </if>
+      <if test="gevalAddtime != null" >
+        geval_addtime = #{gevalAddtime,jdbcType=INTEGER},
+      </if>
+      <if test="gevalStoreid != null" >
+        geval_storeid = #{gevalStoreid,jdbcType=INTEGER},
+      </if>
+      <if test="gevalStorename != null" >
+        geval_storename = #{gevalStorename,jdbcType=VARCHAR},
+      </if>
+      <if test="gevalFrommemberid != null" >
+        geval_frommemberid = #{gevalFrommemberid,jdbcType=INTEGER},
+      </if>
+      <if test="gevalFrommembername != null" >
+        geval_frommembername = #{gevalFrommembername,jdbcType=VARCHAR},
+      </if>
+      <if test="gevalState != null" >
+        geval_state = #{gevalState,jdbcType=TINYINT},
+      </if>
+      <if test="gevalRemark != null" >
+        geval_remark = #{gevalRemark,jdbcType=VARCHAR},
+      </if>
+      <if test="gevalExplain != null" >
+        geval_explain = #{gevalExplain,jdbcType=VARCHAR},
+      </if>
+      <if test="gevalImage != null" >
+        geval_image = #{gevalImage,jdbcType=VARCHAR},
+      </if>
+      <if test="publisherId != null" >
+        publisher_id = #{publisherId,jdbcType=INTEGER},
+      </if>
+      <if test="edittime != null" >
+        edittime = #{edittime,jdbcType=INTEGER},
+      </if>
+      <if test="gevalType != null" >
+        geval_type = #{gevalType,jdbcType=TINYINT},
+      </if>
+      <if test="gevalCommunicationStatus != null" >
+        geval_communication_status = #{gevalCommunicationStatus,jdbcType=TINYINT},
+      </if>
+      <if test="goodsCommonid != null" >
+        goods_commonid = #{goodsCommonid,jdbcType=INTEGER},
+      </if>
+      <if test="gevalImage2 != null" >
+        geval_image2 = #{gevalImage2,jdbcType=VARCHAR},
+      </if>
+      <if test="gevalImage3 != null" >
+        geval_image3 = #{gevalImage3,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where geval_id = #{gevalId,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.shanyuan.platform.ms.dao.goods.entity.SyEvaluateGoods" >
+    update sy_evaluate_goods
+    set geval_orderid = #{gevalOrderid,jdbcType=INTEGER},
+      geval_orderno = #{gevalOrderno,jdbcType=BIGINT},
+      geval_ordergoodsid = #{gevalOrdergoodsid,jdbcType=INTEGER},
+      geval_goodsid = #{gevalGoodsid,jdbcType=INTEGER},
+      geval_goodsname = #{gevalGoodsname,jdbcType=VARCHAR},
+      geval_goodsprice = #{gevalGoodsprice,jdbcType=DECIMAL},
+      geval_scores = #{gevalScores,jdbcType=TINYINT},
+      geval_content = #{gevalContent,jdbcType=VARCHAR},
+      geval_isanonymous = #{gevalIsanonymous,jdbcType=TINYINT},
+      geval_addtime = #{gevalAddtime,jdbcType=INTEGER},
+      geval_storeid = #{gevalStoreid,jdbcType=INTEGER},
+      geval_storename = #{gevalStorename,jdbcType=VARCHAR},
+      geval_frommemberid = #{gevalFrommemberid,jdbcType=INTEGER},
+      geval_frommembername = #{gevalFrommembername,jdbcType=VARCHAR},
+      geval_state = #{gevalState,jdbcType=TINYINT},
+      geval_remark = #{gevalRemark,jdbcType=VARCHAR},
+      geval_explain = #{gevalExplain,jdbcType=VARCHAR},
+      geval_image = #{gevalImage,jdbcType=VARCHAR},
+      publisher_id = #{publisherId,jdbcType=INTEGER},
+      edittime = #{edittime,jdbcType=INTEGER},
+      geval_type = #{gevalType,jdbcType=TINYINT},
+      geval_communication_status = #{gevalCommunicationStatus,jdbcType=TINYINT},
+      goods_commonid = #{goodsCommonid,jdbcType=INTEGER},
+      geval_image2 = #{gevalImage2,jdbcType=VARCHAR},
+      geval_image3 = #{gevalImage3,jdbcType=VARCHAR}
+    where geval_id = #{gevalId,jdbcType=INTEGER}
+  </update>
+   <select id="selectEvaluateList" resultMap="BaseResultMap" parameterType="java.util.List" >
+	SELECT COUNT(geval_orderid) num, geval_orderid 
+	FROM sy_evaluate_goods WHERE geval_orderid IN 
+	<foreach collection="list" index="index" item="item" open="(" separator="," close=")"> 
+		  #{item}
+	</foreach>
+  GROUP BY geval_orderid 
+  </select>
+  
+  <!-- <select id="getEvaluateScore" resultMap="BaseResultMap" parameterType="java.util.List" >
+  SELECT COUNT(*)goods_evaluate_count, IFNULL(SUM(geval_scores),0)goods_evaluate_sum FROM sy_evaluate_goods
+	WHERE  geval_state = 0 AND publisher_id IN 
+	<foreach collection="list" index="index" item="item" open="(" separator="," close=")"> 
+		  #{item}
+	</foreach>
+  </select>-->
+  
+  <!-- 计算商品评价的平均分  -->
+  <select id="selectEvaluateGoodsScore" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+  	SELECT ROUND(AVG(geval_scores),2) AS goodsScoreAvg FROM sy_evaluate_goods WHERE geval_state=0 
+  	AND publisher_id = #{publisherId,jdbcType=INTEGER}  
+  </select>
+
+  <select id="selectEvaluateCount" resultType="java.lang.Double" >
+  	SELECT COUNT(a.geval_id) FROM sy_evaluate_goods a
+	WHERE a.publisher_id=#{memberId,jdbcType=INTEGER} 
+	<if test="score != null">
+	AND a.geval_scores &lt; 3 
+	</if> 
+  </select>
+  <!--  zhongying -->
+  <select id="selectNumByParam" resultType="java.lang.Integer"  parameterType="com.shanyuan.platform.ms.dao.goods.entity.SyEvaluateGoods">
+  	SELECT COUNT(a.geval_id) num  FROM sy_evaluate_goods a
+	WHERE 
+	<if test="evalType != 'order'">
+	a.goods_commonid=#{goodsCommonid,jdbcType=INTEGER} 
+	</if> 
+	<if test="evalType == 'order'">
+	a.geval_orderid=#{gevalOrderid,jdbcType=INTEGER}  AND a.geval_frommemberid=#{gevalFrommemberid,jdbcType=INTEGER}
+	</if> 
+	<if test="evalType == 'well'">
+	AND a.geval_scores &gt; 3 
+	</if> 
+	<if test="evalType == 'middle'">
+	AND a.geval_scores = 3 
+	</if>
+	<if test="evalType == 'negative'">
+	AND a.geval_scores &lt; 3 
+	</if>
+	<if test="evalType == 'picture'">
+	AND (geval_image or geval_image2 or geval_image3)  !='' 
+	AND  (geval_image or geval_image2 or geval_image3) is not null
+	</if>
+	 AND geval_state=0
+  </select>
+  <!--zhongyign  -->
+      <select id="selectByPicture" resultMap="BaseResultMap" parameterType="java.util.Map" >
+    select
+    <include refid="Base_Column_List" />
+    from sy_evaluate_goods
+    WHERE 
+    goods_commonid=#{goodsCommonid,jdbcType=INTEGER}
+    AND (geval_image or geval_image2 or geval_image3)  !='' 
+    AND  (geval_image or geval_image2 or geval_image3) is not null
+  <if test="orderByClause != null" >
+      order by ${orderByClause}
+    </if> 
+  </select>
+</mapper>

@@ -1,0 +1,802 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.shanyuan.platform.ms.dao.stats.mapper.SyPoorFpbRawDataMapper" >
+  <resultMap id="BaseResultMap" type="com.shanyuan.platform.ms.dao.stats.entity.SyPoorFpbRawData" >
+    <id column="rec_id" property="recId" jdbcType="INTEGER" />
+    <result column="member_id" property="memberId" jdbcType="INTEGER" />
+    <result column="member_name" property="memberName" jdbcType="VARCHAR" />
+    <result column="id_type" property="idType" jdbcType="TINYINT" />
+    <result column="id_value" property="idValue" jdbcType="VARCHAR" />
+    <result column="member_sex" property="memberSex" jdbcType="VARCHAR" />
+    <result column="is_master" property="isMaster" jdbcType="TINYINT" />
+    <result column="relation" property="relation" jdbcType="VARCHAR" />
+    <result column="national" property="national" jdbcType="VARCHAR" />
+    <result column="birthday" property="birthday" jdbcType="INTEGER" />
+    <result column="education" property="education" jdbcType="VARCHAR" />
+    <result column="student" property="student" jdbcType="VARCHAR" />
+    <result column="health" property="health" jdbcType="VARCHAR" />
+    <result column="skill" property="skill" jdbcType="VARCHAR" />
+    <result column="working_condition" property="workingCondition" jdbcType="VARCHAR" />
+    <result column="poverty_prop" property="povertyProp" jdbcType="VARCHAR" />
+    <result column="poor_prop" property="poorProp" jdbcType="VARCHAR" />
+    <result column="member_mobile" property="memberMobile" jdbcType="VARCHAR" />
+    <result column="poverty_reason" property="povertyReason" jdbcType="VARCHAR" />
+    <result column="income_year_per_person" property="incomeYearPerPerson" jdbcType="DECIMAL" />
+    <result column="p_addr1" property="pAddr1" jdbcType="VARCHAR" />
+    <result column="p_addr2" property="pAddr2" jdbcType="VARCHAR" />
+    <result column="p_addr3" property="pAddr3" jdbcType="VARCHAR" />
+    <result column="p_addr4" property="pAddr4" jdbcType="VARCHAR" />
+    <result column="p_addr5" property="pAddr5" jdbcType="VARCHAR" />
+    <result column="p_addr6" property="pAddr6" jdbcType="VARCHAR" />
+    <result column="areaid_1" property="areaid1" jdbcType="BIGINT" />
+    <result column="areaid_2" property="areaid2" jdbcType="BIGINT" />
+    <result column="areaid_3" property="areaid3" jdbcType="BIGINT" />
+    <result column="poor_bank_account_number" property="poorBankAccountNumber" jdbcType="VARCHAR" />
+    <result column="poor_receiver_name" property="poorReceiverName" jdbcType="VARCHAR" />
+    <result column="poor_bank_name" property="poorBankName" jdbcType="VARCHAR" />
+    <result column="family_member_num" property="familyMemberNum" jdbcType="TINYINT" />
+    <result column="master_rec_id" property="masterRecId" jdbcType="INTEGER" />
+    <result column="family_no" property="familyNo" jdbcType="VARCHAR" />
+    <result column="member_no" property="memberNo" jdbcType="VARCHAR" />
+    <result column="state" property="state" jdbcType="TINYINT" />
+    <result column="is_soldiers_family" property="isSoldiersFamily" jdbcType="TINYINT" />
+    <result column="channel" property="channel" jdbcType="VARCHAR" />
+    <result column="valid" property="valid" jdbcType="TINYINT" />
+    <result column="error" property="error" jdbcType="VARCHAR" />
+    <result column="error2" property="error2" jdbcType="VARCHAR" />
+  </resultMap>
+  <sql id="Example_Where_Clause" >
+    <where >
+      <foreach collection="oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Update_By_Example_Where_Clause" >
+    <where >
+      <foreach collection="example.oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Base_Column_List" >
+    rec_id, member_id, member_name, id_type, id_value, member_sex, is_master, relation, 
+    national, birthday, education, student, health, skill, working_condition, poverty_prop, 
+    poor_prop, member_mobile, poverty_reason, income_year_per_person, p_addr1, p_addr2, 
+    p_addr3, p_addr4, p_addr5, p_addr6, areaid_1, areaid_2, areaid_3, poor_bank_account_number, 
+    poor_receiver_name, poor_bank_name, family_member_num, master_rec_id, family_no, 
+    member_no, state, is_soldiers_family, channel, valid, error, error2
+  </sql>
+  <select id="selectByExample" resultMap="BaseResultMap" parameterType="com.shanyuan.platform.ms.dao.stats.entity.SyPoorFpbRawDataExample" >
+    select
+    <if test="distinct" >
+      distinct
+    </if>
+    <include refid="Base_Column_List" />
+    from sy_poor_fpb_raw_data
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null" >
+      order by ${orderByClause}
+    </if>
+  </select>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+    select 
+    <include refid="Base_Column_List" />
+    from sy_poor_fpb_raw_data
+    where rec_id = #{recId,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+    delete from sy_poor_fpb_raw_data
+    where rec_id = #{recId,jdbcType=INTEGER}
+  </delete>
+  <delete id="deleteByExample" parameterType="com.shanyuan.platform.ms.dao.stats.entity.SyPoorFpbRawDataExample" >
+    delete from sy_poor_fpb_raw_data
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </delete>
+  <insert id="insert" parameterType="com.shanyuan.platform.ms.dao.stats.entity.SyPoorFpbRawData" >
+    <selectKey resultType="java.lang.Integer" keyProperty="recId" order="AFTER" >
+      SELECT LAST_INSERT_ID()
+    </selectKey>
+    insert into sy_poor_fpb_raw_data (member_id, member_name, id_type, 
+      id_value, member_sex, is_master, 
+      relation, national, birthday, 
+      education, student, health, 
+      skill, working_condition, poverty_prop, 
+      poor_prop, member_mobile, poverty_reason, 
+      income_year_per_person, p_addr1, p_addr2, 
+      p_addr3, p_addr4, p_addr5, 
+      p_addr6, areaid_1, areaid_2, 
+      areaid_3, poor_bank_account_number, poor_receiver_name, 
+      poor_bank_name, family_member_num, master_rec_id, 
+      family_no, member_no, state, 
+      is_soldiers_family, channel, valid, 
+      error, error2)
+    values (#{memberId,jdbcType=INTEGER}, #{memberName,jdbcType=VARCHAR}, #{idType,jdbcType=TINYINT}, 
+      #{idValue,jdbcType=VARCHAR}, #{memberSex,jdbcType=VARCHAR}, #{isMaster,jdbcType=TINYINT}, 
+      #{relation,jdbcType=VARCHAR}, #{national,jdbcType=VARCHAR}, #{birthday,jdbcType=INTEGER}, 
+      #{education,jdbcType=VARCHAR}, #{student,jdbcType=VARCHAR}, #{health,jdbcType=VARCHAR}, 
+      #{skill,jdbcType=VARCHAR}, #{workingCondition,jdbcType=VARCHAR}, #{povertyProp,jdbcType=VARCHAR}, 
+      #{poorProp,jdbcType=VARCHAR}, #{memberMobile,jdbcType=VARCHAR}, #{povertyReason,jdbcType=VARCHAR}, 
+      #{incomeYearPerPerson,jdbcType=DECIMAL}, #{pAddr1,jdbcType=VARCHAR}, #{pAddr2,jdbcType=VARCHAR}, 
+      #{pAddr3,jdbcType=VARCHAR}, #{pAddr4,jdbcType=VARCHAR}, #{pAddr5,jdbcType=VARCHAR}, 
+      #{pAddr6,jdbcType=VARCHAR}, #{areaid1,jdbcType=BIGINT}, #{areaid2,jdbcType=BIGINT}, 
+      #{areaid3,jdbcType=BIGINT}, #{poorBankAccountNumber,jdbcType=VARCHAR}, #{poorReceiverName,jdbcType=VARCHAR}, 
+      #{poorBankName,jdbcType=VARCHAR}, #{familyMemberNum,jdbcType=TINYINT}, #{masterRecId,jdbcType=INTEGER}, 
+      #{familyNo,jdbcType=VARCHAR}, #{memberNo,jdbcType=VARCHAR}, #{state,jdbcType=TINYINT}, 
+      #{isSoldiersFamily,jdbcType=TINYINT}, #{channel,jdbcType=VARCHAR}, #{valid,jdbcType=TINYINT}, 
+      #{error,jdbcType=VARCHAR}, #{error2,jdbcType=VARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="com.shanyuan.platform.ms.dao.stats.entity.SyPoorFpbRawData" >
+    <selectKey resultType="java.lang.Integer" keyProperty="recId" order="AFTER" >
+      SELECT LAST_INSERT_ID()
+    </selectKey>
+    insert into sy_poor_fpb_raw_data
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="memberId != null" >
+        member_id,
+      </if>
+      <if test="memberName != null" >
+        member_name,
+      </if>
+      <if test="idType != null" >
+        id_type,
+      </if>
+      <if test="idValue != null" >
+        id_value,
+      </if>
+      <if test="memberSex != null" >
+        member_sex,
+      </if>
+      <if test="isMaster != null" >
+        is_master,
+      </if>
+      <if test="relation != null" >
+        relation,
+      </if>
+      <if test="national != null" >
+        national,
+      </if>
+      <if test="birthday != null" >
+        birthday,
+      </if>
+      <if test="education != null" >
+        education,
+      </if>
+      <if test="student != null" >
+        student,
+      </if>
+      <if test="health != null" >
+        health,
+      </if>
+      <if test="skill != null" >
+        skill,
+      </if>
+      <if test="workingCondition != null" >
+        working_condition,
+      </if>
+      <if test="povertyProp != null" >
+        poverty_prop,
+      </if>
+      <if test="poorProp != null" >
+        poor_prop,
+      </if>
+      <if test="memberMobile != null" >
+        member_mobile,
+      </if>
+      <if test="povertyReason != null" >
+        poverty_reason,
+      </if>
+      <if test="incomeYearPerPerson != null" >
+        income_year_per_person,
+      </if>
+      <if test="pAddr1 != null" >
+        p_addr1,
+      </if>
+      <if test="pAddr2 != null" >
+        p_addr2,
+      </if>
+      <if test="pAddr3 != null" >
+        p_addr3,
+      </if>
+      <if test="pAddr4 != null" >
+        p_addr4,
+      </if>
+      <if test="pAddr5 != null" >
+        p_addr5,
+      </if>
+      <if test="pAddr6 != null" >
+        p_addr6,
+      </if>
+      <if test="areaid1 != null" >
+        areaid_1,
+      </if>
+      <if test="areaid2 != null" >
+        areaid_2,
+      </if>
+      <if test="areaid3 != null" >
+        areaid_3,
+      </if>
+      <if test="poorBankAccountNumber != null" >
+        poor_bank_account_number,
+      </if>
+      <if test="poorReceiverName != null" >
+        poor_receiver_name,
+      </if>
+      <if test="poorBankName != null" >
+        poor_bank_name,
+      </if>
+      <if test="familyMemberNum != null" >
+        family_member_num,
+      </if>
+      <if test="masterRecId != null" >
+        master_rec_id,
+      </if>
+      <if test="familyNo != null" >
+        family_no,
+      </if>
+      <if test="memberNo != null" >
+        member_no,
+      </if>
+      <if test="state != null" >
+        state,
+      </if>
+      <if test="isSoldiersFamily != null" >
+        is_soldiers_family,
+      </if>
+      <if test="channel != null" >
+        channel,
+      </if>
+      <if test="valid != null" >
+        valid,
+      </if>
+      <if test="error != null" >
+        error,
+      </if>
+      <if test="error2 != null" >
+        error2,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="memberId != null" >
+        #{memberId,jdbcType=INTEGER},
+      </if>
+      <if test="memberName != null" >
+        #{memberName,jdbcType=VARCHAR},
+      </if>
+      <if test="idType != null" >
+        #{idType,jdbcType=TINYINT},
+      </if>
+      <if test="idValue != null" >
+        #{idValue,jdbcType=VARCHAR},
+      </if>
+      <if test="memberSex != null" >
+        #{memberSex,jdbcType=VARCHAR},
+      </if>
+      <if test="isMaster != null" >
+        #{isMaster,jdbcType=TINYINT},
+      </if>
+      <if test="relation != null" >
+        #{relation,jdbcType=VARCHAR},
+      </if>
+      <if test="national != null" >
+        #{national,jdbcType=VARCHAR},
+      </if>
+      <if test="birthday != null" >
+        #{birthday,jdbcType=INTEGER},
+      </if>
+      <if test="education != null" >
+        #{education,jdbcType=VARCHAR},
+      </if>
+      <if test="student != null" >
+        #{student,jdbcType=VARCHAR},
+      </if>
+      <if test="health != null" >
+        #{health,jdbcType=VARCHAR},
+      </if>
+      <if test="skill != null" >
+        #{skill,jdbcType=VARCHAR},
+      </if>
+      <if test="workingCondition != null" >
+        #{workingCondition,jdbcType=VARCHAR},
+      </if>
+      <if test="povertyProp != null" >
+        #{povertyProp,jdbcType=VARCHAR},
+      </if>
+      <if test="poorProp != null" >
+        #{poorProp,jdbcType=VARCHAR},
+      </if>
+      <if test="memberMobile != null" >
+        #{memberMobile,jdbcType=VARCHAR},
+      </if>
+      <if test="povertyReason != null" >
+        #{povertyReason,jdbcType=VARCHAR},
+      </if>
+      <if test="incomeYearPerPerson != null" >
+        #{incomeYearPerPerson,jdbcType=DECIMAL},
+      </if>
+      <if test="pAddr1 != null" >
+        #{pAddr1,jdbcType=VARCHAR},
+      </if>
+      <if test="pAddr2 != null" >
+        #{pAddr2,jdbcType=VARCHAR},
+      </if>
+      <if test="pAddr3 != null" >
+        #{pAddr3,jdbcType=VARCHAR},
+      </if>
+      <if test="pAddr4 != null" >
+        #{pAddr4,jdbcType=VARCHAR},
+      </if>
+      <if test="pAddr5 != null" >
+        #{pAddr5,jdbcType=VARCHAR},
+      </if>
+      <if test="pAddr6 != null" >
+        #{pAddr6,jdbcType=VARCHAR},
+      </if>
+      <if test="areaid1 != null" >
+        #{areaid1,jdbcType=BIGINT},
+      </if>
+      <if test="areaid2 != null" >
+        #{areaid2,jdbcType=BIGINT},
+      </if>
+      <if test="areaid3 != null" >
+        #{areaid3,jdbcType=BIGINT},
+      </if>
+      <if test="poorBankAccountNumber != null" >
+        #{poorBankAccountNumber,jdbcType=VARCHAR},
+      </if>
+      <if test="poorReceiverName != null" >
+        #{poorReceiverName,jdbcType=VARCHAR},
+      </if>
+      <if test="poorBankName != null" >
+        #{poorBankName,jdbcType=VARCHAR},
+      </if>
+      <if test="familyMemberNum != null" >
+        #{familyMemberNum,jdbcType=TINYINT},
+      </if>
+      <if test="masterRecId != null" >
+        #{masterRecId,jdbcType=INTEGER},
+      </if>
+      <if test="familyNo != null" >
+        #{familyNo,jdbcType=VARCHAR},
+      </if>
+      <if test="memberNo != null" >
+        #{memberNo,jdbcType=VARCHAR},
+      </if>
+      <if test="state != null" >
+        #{state,jdbcType=TINYINT},
+      </if>
+      <if test="isSoldiersFamily != null" >
+        #{isSoldiersFamily,jdbcType=TINYINT},
+      </if>
+      <if test="channel != null" >
+        #{channel,jdbcType=VARCHAR},
+      </if>
+      <if test="valid != null" >
+        #{valid,jdbcType=TINYINT},
+      </if>
+      <if test="error != null" >
+        #{error,jdbcType=VARCHAR},
+      </if>
+      <if test="error2 != null" >
+        #{error2,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <select id="countByExample" parameterType="com.shanyuan.platform.ms.dao.stats.entity.SyPoorFpbRawDataExample" resultType="java.lang.Integer" >
+    select count(*) from sy_poor_fpb_raw_data
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </select>
+  <update id="updateByExampleSelective" parameterType="map" >
+    update sy_poor_fpb_raw_data
+    <set >
+      <if test="record.recId != null" >
+        rec_id = #{record.recId,jdbcType=INTEGER},
+      </if>
+      <if test="record.memberId != null" >
+        member_id = #{record.memberId,jdbcType=INTEGER},
+      </if>
+      <if test="record.memberName != null" >
+        member_name = #{record.memberName,jdbcType=VARCHAR},
+      </if>
+      <if test="record.idType != null" >
+        id_type = #{record.idType,jdbcType=TINYINT},
+      </if>
+      <if test="record.idValue != null" >
+        id_value = #{record.idValue,jdbcType=VARCHAR},
+      </if>
+      <if test="record.memberSex != null" >
+        member_sex = #{record.memberSex,jdbcType=VARCHAR},
+      </if>
+      <if test="record.isMaster != null" >
+        is_master = #{record.isMaster,jdbcType=TINYINT},
+      </if>
+      <if test="record.relation != null" >
+        relation = #{record.relation,jdbcType=VARCHAR},
+      </if>
+      <if test="record.national != null" >
+        national = #{record.national,jdbcType=VARCHAR},
+      </if>
+      <if test="record.birthday != null" >
+        birthday = #{record.birthday,jdbcType=INTEGER},
+      </if>
+      <if test="record.education != null" >
+        education = #{record.education,jdbcType=VARCHAR},
+      </if>
+      <if test="record.student != null" >
+        student = #{record.student,jdbcType=VARCHAR},
+      </if>
+      <if test="record.health != null" >
+        health = #{record.health,jdbcType=VARCHAR},
+      </if>
+      <if test="record.skill != null" >
+        skill = #{record.skill,jdbcType=VARCHAR},
+      </if>
+      <if test="record.workingCondition != null" >
+        working_condition = #{record.workingCondition,jdbcType=VARCHAR},
+      </if>
+      <if test="record.povertyProp != null" >
+        poverty_prop = #{record.povertyProp,jdbcType=VARCHAR},
+      </if>
+      <if test="record.poorProp != null" >
+        poor_prop = #{record.poorProp,jdbcType=VARCHAR},
+      </if>
+      <if test="record.memberMobile != null" >
+        member_mobile = #{record.memberMobile,jdbcType=VARCHAR},
+      </if>
+      <if test="record.povertyReason != null" >
+        poverty_reason = #{record.povertyReason,jdbcType=VARCHAR},
+      </if>
+      <if test="record.incomeYearPerPerson != null" >
+        income_year_per_person = #{record.incomeYearPerPerson,jdbcType=DECIMAL},
+      </if>
+      <if test="record.pAddr1 != null" >
+        p_addr1 = #{record.pAddr1,jdbcType=VARCHAR},
+      </if>
+      <if test="record.pAddr2 != null" >
+        p_addr2 = #{record.pAddr2,jdbcType=VARCHAR},
+      </if>
+      <if test="record.pAddr3 != null" >
+        p_addr3 = #{record.pAddr3,jdbcType=VARCHAR},
+      </if>
+      <if test="record.pAddr4 != null" >
+        p_addr4 = #{record.pAddr4,jdbcType=VARCHAR},
+      </if>
+      <if test="record.pAddr5 != null" >
+        p_addr5 = #{record.pAddr5,jdbcType=VARCHAR},
+      </if>
+      <if test="record.pAddr6 != null" >
+        p_addr6 = #{record.pAddr6,jdbcType=VARCHAR},
+      </if>
+      <if test="record.areaid1 != null" >
+        areaid_1 = #{record.areaid1,jdbcType=BIGINT},
+      </if>
+      <if test="record.areaid2 != null" >
+        areaid_2 = #{record.areaid2,jdbcType=BIGINT},
+      </if>
+      <if test="record.areaid3 != null" >
+        areaid_3 = #{record.areaid3,jdbcType=BIGINT},
+      </if>
+      <if test="record.poorBankAccountNumber != null" >
+        poor_bank_account_number = #{record.poorBankAccountNumber,jdbcType=VARCHAR},
+      </if>
+      <if test="record.poorReceiverName != null" >
+        poor_receiver_name = #{record.poorReceiverName,jdbcType=VARCHAR},
+      </if>
+      <if test="record.poorBankName != null" >
+        poor_bank_name = #{record.poorBankName,jdbcType=VARCHAR},
+      </if>
+      <if test="record.familyMemberNum != null" >
+        family_member_num = #{record.familyMemberNum,jdbcType=TINYINT},
+      </if>
+      <if test="record.masterRecId != null" >
+        master_rec_id = #{record.masterRecId,jdbcType=INTEGER},
+      </if>
+      <if test="record.familyNo != null" >
+        family_no = #{record.familyNo,jdbcType=VARCHAR},
+      </if>
+      <if test="record.memberNo != null" >
+        member_no = #{record.memberNo,jdbcType=VARCHAR},
+      </if>
+      <if test="record.state != null" >
+        state = #{record.state,jdbcType=TINYINT},
+      </if>
+      <if test="record.isSoldiersFamily != null" >
+        is_soldiers_family = #{record.isSoldiersFamily,jdbcType=TINYINT},
+      </if>
+      <if test="record.channel != null" >
+        channel = #{record.channel,jdbcType=VARCHAR},
+      </if>
+      <if test="record.valid != null" >
+        valid = #{record.valid,jdbcType=TINYINT},
+      </if>
+      <if test="record.error != null" >
+        error = #{record.error,jdbcType=VARCHAR},
+      </if>
+      <if test="record.error2 != null" >
+        error2 = #{record.error2,jdbcType=VARCHAR},
+      </if>
+    </set>
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByExample" parameterType="map" >
+    update sy_poor_fpb_raw_data
+    set rec_id = #{record.recId,jdbcType=INTEGER},
+      member_id = #{record.memberId,jdbcType=INTEGER},
+      member_name = #{record.memberName,jdbcType=VARCHAR},
+      id_type = #{record.idType,jdbcType=TINYINT},
+      id_value = #{record.idValue,jdbcType=VARCHAR},
+      member_sex = #{record.memberSex,jdbcType=VARCHAR},
+      is_master = #{record.isMaster,jdbcType=TINYINT},
+      relation = #{record.relation,jdbcType=VARCHAR},
+      national = #{record.national,jdbcType=VARCHAR},
+      birthday = #{record.birthday,jdbcType=INTEGER},
+      education = #{record.education,jdbcType=VARCHAR},
+      student = #{record.student,jdbcType=VARCHAR},
+      health = #{record.health,jdbcType=VARCHAR},
+      skill = #{record.skill,jdbcType=VARCHAR},
+      working_condition = #{record.workingCondition,jdbcType=VARCHAR},
+      poverty_prop = #{record.povertyProp,jdbcType=VARCHAR},
+      poor_prop = #{record.poorProp,jdbcType=VARCHAR},
+      member_mobile = #{record.memberMobile,jdbcType=VARCHAR},
+      poverty_reason = #{record.povertyReason,jdbcType=VARCHAR},
+      income_year_per_person = #{record.incomeYearPerPerson,jdbcType=DECIMAL},
+      p_addr1 = #{record.pAddr1,jdbcType=VARCHAR},
+      p_addr2 = #{record.pAddr2,jdbcType=VARCHAR},
+      p_addr3 = #{record.pAddr3,jdbcType=VARCHAR},
+      p_addr4 = #{record.pAddr4,jdbcType=VARCHAR},
+      p_addr5 = #{record.pAddr5,jdbcType=VARCHAR},
+      p_addr6 = #{record.pAddr6,jdbcType=VARCHAR},
+      areaid_1 = #{record.areaid1,jdbcType=BIGINT},
+      areaid_2 = #{record.areaid2,jdbcType=BIGINT},
+      areaid_3 = #{record.areaid3,jdbcType=BIGINT},
+      poor_bank_account_number = #{record.poorBankAccountNumber,jdbcType=VARCHAR},
+      poor_receiver_name = #{record.poorReceiverName,jdbcType=VARCHAR},
+      poor_bank_name = #{record.poorBankName,jdbcType=VARCHAR},
+      family_member_num = #{record.familyMemberNum,jdbcType=TINYINT},
+      master_rec_id = #{record.masterRecId,jdbcType=INTEGER},
+      family_no = #{record.familyNo,jdbcType=VARCHAR},
+      member_no = #{record.memberNo,jdbcType=VARCHAR},
+      state = #{record.state,jdbcType=TINYINT},
+      is_soldiers_family = #{record.isSoldiersFamily,jdbcType=TINYINT},
+      channel = #{record.channel,jdbcType=VARCHAR},
+      valid = #{record.valid,jdbcType=TINYINT},
+      error = #{record.error,jdbcType=VARCHAR},
+      error2 = #{record.error2,jdbcType=VARCHAR}
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByPrimaryKeySelective" parameterType="com.shanyuan.platform.ms.dao.stats.entity.SyPoorFpbRawData" >
+    update sy_poor_fpb_raw_data
+    <set >
+      <if test="memberId != null" >
+        member_id = #{memberId,jdbcType=INTEGER},
+      </if>
+      <if test="memberName != null" >
+        member_name = #{memberName,jdbcType=VARCHAR},
+      </if>
+      <if test="idType != null" >
+        id_type = #{idType,jdbcType=TINYINT},
+      </if>
+      <if test="idValue != null" >
+        id_value = #{idValue,jdbcType=VARCHAR},
+      </if>
+      <if test="memberSex != null" >
+        member_sex = #{memberSex,jdbcType=VARCHAR},
+      </if>
+      <if test="isMaster != null" >
+        is_master = #{isMaster,jdbcType=TINYINT},
+      </if>
+      <if test="relation != null" >
+        relation = #{relation,jdbcType=VARCHAR},
+      </if>
+      <if test="national != null" >
+        national = #{national,jdbcType=VARCHAR},
+      </if>
+      <if test="birthday != null" >
+        birthday = #{birthday,jdbcType=INTEGER},
+      </if>
+      <if test="education != null" >
+        education = #{education,jdbcType=VARCHAR},
+      </if>
+      <if test="student != null" >
+        student = #{student,jdbcType=VARCHAR},
+      </if>
+      <if test="health != null" >
+        health = #{health,jdbcType=VARCHAR},
+      </if>
+      <if test="skill != null" >
+        skill = #{skill,jdbcType=VARCHAR},
+      </if>
+      <if test="workingCondition != null" >
+        working_condition = #{workingCondition,jdbcType=VARCHAR},
+      </if>
+      <if test="povertyProp != null" >
+        poverty_prop = #{povertyProp,jdbcType=VARCHAR},
+      </if>
+      <if test="poorProp != null" >
+        poor_prop = #{poorProp,jdbcType=VARCHAR},
+      </if>
+      <if test="memberMobile != null" >
+        member_mobile = #{memberMobile,jdbcType=VARCHAR},
+      </if>
+      <if test="povertyReason != null" >
+        poverty_reason = #{povertyReason,jdbcType=VARCHAR},
+      </if>
+      <if test="incomeYearPerPerson != null" >
+        income_year_per_person = #{incomeYearPerPerson,jdbcType=DECIMAL},
+      </if>
+      <if test="pAddr1 != null" >
+        p_addr1 = #{pAddr1,jdbcType=VARCHAR},
+      </if>
+      <if test="pAddr2 != null" >
+        p_addr2 = #{pAddr2,jdbcType=VARCHAR},
+      </if>
+      <if test="pAddr3 != null" >
+        p_addr3 = #{pAddr3,jdbcType=VARCHAR},
+      </if>
+      <if test="pAddr4 != null" >
+        p_addr4 = #{pAddr4,jdbcType=VARCHAR},
+      </if>
+      <if test="pAddr5 != null" >
+        p_addr5 = #{pAddr5,jdbcType=VARCHAR},
+      </if>
+      <if test="pAddr6 != null" >
+        p_addr6 = #{pAddr6,jdbcType=VARCHAR},
+      </if>
+      <if test="areaid1 != null" >
+        areaid_1 = #{areaid1,jdbcType=BIGINT},
+      </if>
+      <if test="areaid2 != null" >
+        areaid_2 = #{areaid2,jdbcType=BIGINT},
+      </if>
+      <if test="areaid3 != null" >
+        areaid_3 = #{areaid3,jdbcType=BIGINT},
+      </if>
+      <if test="poorBankAccountNumber != null" >
+        poor_bank_account_number = #{poorBankAccountNumber,jdbcType=VARCHAR},
+      </if>
+      <if test="poorReceiverName != null" >
+        poor_receiver_name = #{poorReceiverName,jdbcType=VARCHAR},
+      </if>
+      <if test="poorBankName != null" >
+        poor_bank_name = #{poorBankName,jdbcType=VARCHAR},
+      </if>
+      <if test="familyMemberNum != null" >
+        family_member_num = #{familyMemberNum,jdbcType=TINYINT},
+      </if>
+      <if test="masterRecId != null" >
+        master_rec_id = #{masterRecId,jdbcType=INTEGER},
+      </if>
+      <if test="familyNo != null" >
+        family_no = #{familyNo,jdbcType=VARCHAR},
+      </if>
+      <if test="memberNo != null" >
+        member_no = #{memberNo,jdbcType=VARCHAR},
+      </if>
+      <if test="state != null" >
+        state = #{state,jdbcType=TINYINT},
+      </if>
+      <if test="isSoldiersFamily != null" >
+        is_soldiers_family = #{isSoldiersFamily,jdbcType=TINYINT},
+      </if>
+      <if test="channel != null" >
+        channel = #{channel,jdbcType=VARCHAR},
+      </if>
+      <if test="valid != null" >
+        valid = #{valid,jdbcType=TINYINT},
+      </if>
+      <if test="error != null" >
+        error = #{error,jdbcType=VARCHAR},
+      </if>
+      <if test="error2 != null" >
+        error2 = #{error2,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where rec_id = #{recId,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.shanyuan.platform.ms.dao.stats.entity.SyPoorFpbRawData" >
+    update sy_poor_fpb_raw_data
+    set member_id = #{memberId,jdbcType=INTEGER},
+      member_name = #{memberName,jdbcType=VARCHAR},
+      id_type = #{idType,jdbcType=TINYINT},
+      id_value = #{idValue,jdbcType=VARCHAR},
+      member_sex = #{memberSex,jdbcType=VARCHAR},
+      is_master = #{isMaster,jdbcType=TINYINT},
+      relation = #{relation,jdbcType=VARCHAR},
+      national = #{national,jdbcType=VARCHAR},
+      birthday = #{birthday,jdbcType=INTEGER},
+      education = #{education,jdbcType=VARCHAR},
+      student = #{student,jdbcType=VARCHAR},
+      health = #{health,jdbcType=VARCHAR},
+      skill = #{skill,jdbcType=VARCHAR},
+      working_condition = #{workingCondition,jdbcType=VARCHAR},
+      poverty_prop = #{povertyProp,jdbcType=VARCHAR},
+      poor_prop = #{poorProp,jdbcType=VARCHAR},
+      member_mobile = #{memberMobile,jdbcType=VARCHAR},
+      poverty_reason = #{povertyReason,jdbcType=VARCHAR},
+      income_year_per_person = #{incomeYearPerPerson,jdbcType=DECIMAL},
+      p_addr1 = #{pAddr1,jdbcType=VARCHAR},
+      p_addr2 = #{pAddr2,jdbcType=VARCHAR},
+      p_addr3 = #{pAddr3,jdbcType=VARCHAR},
+      p_addr4 = #{pAddr4,jdbcType=VARCHAR},
+      p_addr5 = #{pAddr5,jdbcType=VARCHAR},
+      p_addr6 = #{pAddr6,jdbcType=VARCHAR},
+      areaid_1 = #{areaid1,jdbcType=BIGINT},
+      areaid_2 = #{areaid2,jdbcType=BIGINT},
+      areaid_3 = #{areaid3,jdbcType=BIGINT},
+      poor_bank_account_number = #{poorBankAccountNumber,jdbcType=VARCHAR},
+      poor_receiver_name = #{poorReceiverName,jdbcType=VARCHAR},
+      poor_bank_name = #{poorBankName,jdbcType=VARCHAR},
+      family_member_num = #{familyMemberNum,jdbcType=TINYINT},
+      master_rec_id = #{masterRecId,jdbcType=INTEGER},
+      family_no = #{familyNo,jdbcType=VARCHAR},
+      member_no = #{memberNo,jdbcType=VARCHAR},
+      state = #{state,jdbcType=TINYINT},
+      is_soldiers_family = #{isSoldiersFamily,jdbcType=TINYINT},
+      channel = #{channel,jdbcType=VARCHAR},
+      valid = #{valid,jdbcType=TINYINT},
+      error = #{error,jdbcType=VARCHAR},
+      error2 = #{error2,jdbcType=VARCHAR}
+    where rec_id = #{recId,jdbcType=INTEGER}
+  </update>
+  
+  <select id="selectPoorNum" resultType="java.lang.Integer" parameterType="java.lang.Long" >
+    select 
+    count(rec_id) 
+    from sy_poor_fpb_raw_data 
+    where areaid_3 = #{areaId3,jdbcType=INTEGER}
+  </select>
+</mapper>

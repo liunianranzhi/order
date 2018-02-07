@@ -1,0 +1,717 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.shanyuan.platform.ms.dao.order.mapper.SyOrderCommonMapper" >
+  <resultMap id="BaseResultMap" type="com.shanyuan.platform.ms.dao.order.entity.SyOrderCommon" >
+    <id column="order_id" property="orderId" jdbcType="INTEGER" />
+    <result column="store_id" property="storeId" jdbcType="INTEGER" />
+    <result column="shipping_time" property="shippingTime" jdbcType="INTEGER" />
+    <result column="shipping_express_id" property="shippingExpressId" jdbcType="TINYINT" />
+    <result column="evaluation_time" property="evaluationTime" jdbcType="INTEGER" />
+    <result column="evalseller_state" property="evalsellerState" jdbcType="CHAR" />
+    <result column="evalseller_time" property="evalsellerTime" jdbcType="INTEGER" />
+    <result column="order_message" property="orderMessage" jdbcType="VARCHAR" />
+    <result column="order_pointscount" property="orderPointscount" jdbcType="INTEGER" />
+    <result column="voucher_price" property="voucherPrice" jdbcType="INTEGER" />
+    <result column="voucher_code" property="voucherCode" jdbcType="VARCHAR" />
+    <result column="daddress_id" property="daddressId" jdbcType="INTEGER" />
+    <result column="reciver_name" property="reciverName" jdbcType="VARCHAR" />
+    <result column="reciver_info" property="reciverInfo" jdbcType="VARCHAR" />
+    <result column="reciver_province_id" property="reciverProvinceId" jdbcType="INTEGER" />
+    <result column="invoice_info" property="invoiceInfo" jdbcType="VARCHAR" />
+    <result column="promotion_info" property="promotionInfo" jdbcType="VARCHAR" />
+    <result column="spec_name" property="specName" jdbcType="VARCHAR" />
+    <result column="goods_title" property="goodsTitle" jdbcType="VARCHAR" />
+    <result column="goods_delivery_info" property="goodsDeliveryInfo" jdbcType="VARCHAR" />
+    <result column="order_delivery_info" property="orderDeliveryInfo" jdbcType="VARCHAR" />
+    <result column="chnl_info" property="chnlInfo" jdbcType="VARCHAR" />
+    <result column="weight" property="weight" jdbcType="DECIMAL" />
+    <result column="transport_type" property="transportType" jdbcType="TINYINT" />
+    <result column="express_image" property="expressImage" jdbcType="VARCHAR" />
+    <result column="purchase_reason" property="purchaseReason" jdbcType="VARCHAR" />
+    <result column="poor_type" property="poorType" jdbcType="TINYINT" />
+    <result column="remark" property="remark" jdbcType="VARCHAR" />
+  </resultMap>
+  <resultMap id="ResultMapWithBLOBs" type="com.shanyuan.platform.ms.dao.order.entity.SyOrderCommonWithBLOBs" extends="BaseResultMap" >
+    <result column="deliver_explain" property="deliverExplain" jdbcType="LONGVARCHAR" />
+    <result column="spec_value" property="specValue" jdbcType="LONGVARCHAR" />
+    <result column="goods_attr" property="goodsAttr" jdbcType="LONGVARCHAR" />
+  </resultMap>
+  <sql id="Example_Where_Clause" >
+    <where >
+      <foreach collection="oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Update_By_Example_Where_Clause" >
+    <where >
+      <foreach collection="example.oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Base_Column_List" >
+    order_id, store_id, shipping_time, shipping_express_id, evaluation_time, evalseller_state, 
+    evalseller_time, order_message, order_pointscount, voucher_price, voucher_code, daddress_id, 
+    reciver_name, reciver_info, reciver_province_id, invoice_info, promotion_info, spec_name, 
+    goods_title, goods_delivery_info, order_delivery_info, chnl_info, weight, transport_type, 
+    express_image, purchase_reason, poor_type, remark
+  </sql>
+  <sql id="Blob_Column_List" >
+    deliver_explain, spec_value, goods_attr
+  </sql>
+  <select id="selectByExampleWithBLOBs" resultMap="ResultMapWithBLOBs" parameterType="com.shanyuan.platform.ms.dao.order.entity.SyOrderCommonExample" >
+    select
+    <if test="distinct" >
+      distinct
+    </if>
+    <include refid="Base_Column_List" />
+    ,
+    <include refid="Blob_Column_List" />
+    from sy_order_common
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null" >
+      order by ${orderByClause}
+    </if>
+  </select>
+  <select id="selectByExample" resultMap="BaseResultMap" parameterType="com.shanyuan.platform.ms.dao.order.entity.SyOrderCommonExample" >
+    select
+    <if test="distinct" >
+      distinct
+    </if>
+    <include refid="Base_Column_List" />
+    from sy_order_common
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null" >
+      order by ${orderByClause}
+    </if>
+  </select>
+  <select id="selectByPrimaryKey" resultMap="ResultMapWithBLOBs" parameterType="java.lang.Integer" >
+    select 
+    <include refid="Base_Column_List" />
+    ,
+    <include refid="Blob_Column_List" />
+    from sy_order_common
+    where order_id = #{orderId,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+    delete from sy_order_common
+    where order_id = #{orderId,jdbcType=INTEGER}
+  </delete>
+  <delete id="deleteByExample" parameterType="com.shanyuan.platform.ms.dao.order.entity.SyOrderCommonExample" >
+    delete from sy_order_common
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </delete>
+  <insert id="insert" parameterType="com.shanyuan.platform.ms.dao.order.entity.SyOrderCommonWithBLOBs" >
+    <selectKey resultType="java.lang.Integer" keyProperty="orderId" order="AFTER" >
+      SELECT LAST_INSERT_ID()
+    </selectKey>
+    insert into sy_order_common (store_id, shipping_time, shipping_express_id, 
+      evaluation_time, evalseller_state, evalseller_time, 
+      order_message, order_pointscount, voucher_price, 
+      voucher_code, daddress_id, reciver_name, 
+      reciver_info, reciver_province_id, invoice_info, 
+      promotion_info, spec_name, goods_title, 
+      goods_delivery_info, order_delivery_info, chnl_info, 
+      weight, transport_type, express_image, 
+      purchase_reason, poor_type, remark, 
+      deliver_explain, spec_value, goods_attr
+      )
+    values (#{storeId,jdbcType=INTEGER}, #{shippingTime,jdbcType=INTEGER}, #{shippingExpressId,jdbcType=TINYINT}, 
+      #{evaluationTime,jdbcType=INTEGER}, #{evalsellerState,jdbcType=CHAR}, #{evalsellerTime,jdbcType=INTEGER}, 
+      #{orderMessage,jdbcType=VARCHAR}, #{orderPointscount,jdbcType=INTEGER}, #{voucherPrice,jdbcType=INTEGER}, 
+      #{voucherCode,jdbcType=VARCHAR}, #{daddressId,jdbcType=INTEGER}, #{reciverName,jdbcType=VARCHAR}, 
+      #{reciverInfo,jdbcType=VARCHAR}, #{reciverProvinceId,jdbcType=INTEGER}, #{invoiceInfo,jdbcType=VARCHAR}, 
+      #{promotionInfo,jdbcType=VARCHAR}, #{specName,jdbcType=VARCHAR}, #{goodsTitle,jdbcType=VARCHAR}, 
+      #{goodsDeliveryInfo,jdbcType=VARCHAR}, #{orderDeliveryInfo,jdbcType=VARCHAR}, #{chnlInfo,jdbcType=VARCHAR}, 
+      #{weight,jdbcType=DECIMAL}, #{transportType,jdbcType=TINYINT}, #{expressImage,jdbcType=VARCHAR}, 
+      #{purchaseReason,jdbcType=VARCHAR}, #{poorType,jdbcType=TINYINT}, #{remark,jdbcType=VARCHAR}, 
+      #{deliverExplain,jdbcType=LONGVARCHAR}, #{specValue,jdbcType=LONGVARCHAR}, #{goodsAttr,jdbcType=LONGVARCHAR}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="com.shanyuan.platform.ms.dao.order.entity.SyOrderCommonWithBLOBs" >
+   <!--  <selectKey resultType="java.lang.Integer" keyProperty="orderId" order="AFTER" >
+      SELECT LAST_INSERT_ID()
+    </selectKey> -->
+    insert into sy_order_common
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="orderId != null" >
+        order_id,
+      </if>
+      <if test="storeId != null" >
+        store_id,
+      </if>
+      <if test="shippingTime != null" >
+        shipping_time,
+      </if>
+      <if test="shippingExpressId != null" >
+        shipping_express_id,
+      </if>
+      <if test="evaluationTime != null" >
+        evaluation_time,
+      </if>
+      <if test="evalsellerState != null" >
+        evalseller_state,
+      </if>
+      <if test="evalsellerTime != null" >
+        evalseller_time,
+      </if>
+      <if test="orderMessage != null" >
+        order_message,
+      </if>
+      <if test="orderPointscount != null" >
+        order_pointscount,
+      </if>
+      <if test="voucherPrice != null" >
+        voucher_price,
+      </if>
+      <if test="voucherCode != null" >
+        voucher_code,
+      </if>
+      <if test="daddressId != null" >
+        daddress_id,
+      </if>
+      <if test="reciverName != null" >
+        reciver_name,
+      </if>
+      <if test="reciverInfo != null" >
+        reciver_info,
+      </if>
+      <if test="reciverProvinceId != null" >
+        reciver_province_id,
+      </if>
+      <if test="invoiceInfo != null" >
+        invoice_info,
+      </if>
+      <if test="promotionInfo != null" >
+        promotion_info,
+      </if>
+      <if test="specName != null" >
+        spec_name,
+      </if>
+      <if test="goodsTitle != null" >
+        goods_title,
+      </if>
+      <if test="goodsDeliveryInfo != null" >
+        goods_delivery_info,
+      </if>
+      <if test="orderDeliveryInfo != null" >
+        order_delivery_info,
+      </if>
+      <if test="chnlInfo != null" >
+        chnl_info,
+      </if>
+      <if test="weight != null" >
+        weight,
+      </if>
+      <if test="transportType != null" >
+        transport_type,
+      </if>
+      <if test="expressImage != null" >
+        express_image,
+      </if>
+      <if test="purchaseReason != null" >
+        purchase_reason,
+      </if>
+      <if test="poorType != null" >
+        poor_type,
+      </if>
+      <if test="remark != null" >
+        remark,
+      </if>
+      <if test="deliverExplain != null" >
+        deliver_explain,
+      </if>
+      <if test="specValue != null" >
+        spec_value,
+      </if>
+      <if test="goodsAttr != null" >
+        goods_attr,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+    <if test="orderId != null" >
+        #{orderId,jdbcType=INTEGER},
+      </if>
+      <if test="storeId != null" >
+        #{storeId,jdbcType=INTEGER},
+      </if>
+      <if test="shippingTime != null" >
+        #{shippingTime,jdbcType=INTEGER},
+      </if>
+      <if test="shippingExpressId != null" >
+        #{shippingExpressId,jdbcType=TINYINT},
+      </if>
+      <if test="evaluationTime != null" >
+        #{evaluationTime,jdbcType=INTEGER},
+      </if>
+      <if test="evalsellerState != null" >
+        #{evalsellerState,jdbcType=CHAR},
+      </if>
+      <if test="evalsellerTime != null" >
+        #{evalsellerTime,jdbcType=INTEGER},
+      </if>
+      <if test="orderMessage != null" >
+        #{orderMessage,jdbcType=VARCHAR},
+      </if>
+      <if test="orderPointscount != null" >
+        #{orderPointscount,jdbcType=INTEGER},
+      </if>
+      <if test="voucherPrice != null" >
+        #{voucherPrice,jdbcType=INTEGER},
+      </if>
+      <if test="voucherCode != null" >
+        #{voucherCode,jdbcType=VARCHAR},
+      </if>
+      <if test="daddressId != null" >
+        #{daddressId,jdbcType=INTEGER},
+      </if>
+      <if test="reciverName != null" >
+        #{reciverName,jdbcType=VARCHAR},
+      </if>
+      <if test="reciverInfo != null" >
+        #{reciverInfo,jdbcType=VARCHAR},
+      </if>
+      <if test="reciverProvinceId != null" >
+        #{reciverProvinceId,jdbcType=INTEGER},
+      </if>
+      <if test="invoiceInfo != null" >
+        #{invoiceInfo,jdbcType=VARCHAR},
+      </if>
+      <if test="promotionInfo != null" >
+        #{promotionInfo,jdbcType=VARCHAR},
+      </if>
+      <if test="specName != null" >
+        #{specName,jdbcType=VARCHAR},
+      </if>
+      <if test="goodsTitle != null" >
+        #{goodsTitle,jdbcType=VARCHAR},
+      </if>
+      <if test="goodsDeliveryInfo != null" >
+        #{goodsDeliveryInfo,jdbcType=VARCHAR},
+      </if>
+      <if test="orderDeliveryInfo != null" >
+        #{orderDeliveryInfo,jdbcType=VARCHAR},
+      </if>
+      <if test="chnlInfo != null" >
+        #{chnlInfo,jdbcType=VARCHAR},
+      </if>
+      <if test="weight != null" >
+        #{weight,jdbcType=DECIMAL},
+      </if>
+      <if test="transportType != null" >
+        #{transportType,jdbcType=TINYINT},
+      </if>
+      <if test="expressImage != null" >
+        #{expressImage,jdbcType=VARCHAR},
+      </if>
+      <if test="purchaseReason != null" >
+        #{purchaseReason,jdbcType=VARCHAR},
+      </if>
+      <if test="poorType != null" >
+        #{poorType,jdbcType=TINYINT},
+      </if>
+      <if test="remark != null" >
+        #{remark,jdbcType=VARCHAR},
+      </if>
+      <if test="deliverExplain != null" >
+        #{deliverExplain,jdbcType=LONGVARCHAR},
+      </if>
+      <if test="specValue != null" >
+        #{specValue,jdbcType=LONGVARCHAR},
+      </if>
+      <if test="goodsAttr != null" >
+        #{goodsAttr,jdbcType=LONGVARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <select id="countByExample" parameterType="com.shanyuan.platform.ms.dao.order.entity.SyOrderCommonExample" resultType="java.lang.Integer" >
+    select count(*) from sy_order_common
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </select>
+  <update id="updateByExampleSelective" parameterType="map" >
+    update sy_order_common
+    <set >
+      <if test="record.orderId != null" >
+        order_id = #{record.orderId,jdbcType=INTEGER},
+      </if>
+      <if test="record.storeId != null" >
+        store_id = #{record.storeId,jdbcType=INTEGER},
+      </if>
+      <if test="record.shippingTime != null" >
+        shipping_time = #{record.shippingTime,jdbcType=INTEGER},
+      </if>
+      <if test="record.shippingExpressId != null" >
+        shipping_express_id = #{record.shippingExpressId,jdbcType=TINYINT},
+      </if>
+      <if test="record.evaluationTime != null" >
+        evaluation_time = #{record.evaluationTime,jdbcType=INTEGER},
+      </if>
+      <if test="record.evalsellerState != null" >
+        evalseller_state = #{record.evalsellerState,jdbcType=CHAR},
+      </if>
+      <if test="record.evalsellerTime != null" >
+        evalseller_time = #{record.evalsellerTime,jdbcType=INTEGER},
+      </if>
+      <if test="record.orderMessage != null" >
+        order_message = #{record.orderMessage,jdbcType=VARCHAR},
+      </if>
+      <if test="record.orderPointscount != null" >
+        order_pointscount = #{record.orderPointscount,jdbcType=INTEGER},
+      </if>
+      <if test="record.voucherPrice != null" >
+        voucher_price = #{record.voucherPrice,jdbcType=INTEGER},
+      </if>
+      <if test="record.voucherCode != null" >
+        voucher_code = #{record.voucherCode,jdbcType=VARCHAR},
+      </if>
+      <if test="record.daddressId != null" >
+        daddress_id = #{record.daddressId,jdbcType=INTEGER},
+      </if>
+      <if test="record.reciverName != null" >
+        reciver_name = #{record.reciverName,jdbcType=VARCHAR},
+      </if>
+      <if test="record.reciverInfo != null" >
+        reciver_info = #{record.reciverInfo,jdbcType=VARCHAR},
+      </if>
+      <if test="record.reciverProvinceId != null" >
+        reciver_province_id = #{record.reciverProvinceId,jdbcType=INTEGER},
+      </if>
+      <if test="record.invoiceInfo != null" >
+        invoice_info = #{record.invoiceInfo,jdbcType=VARCHAR},
+      </if>
+      <if test="record.promotionInfo != null" >
+        promotion_info = #{record.promotionInfo,jdbcType=VARCHAR},
+      </if>
+      <if test="record.specName != null" >
+        spec_name = #{record.specName,jdbcType=VARCHAR},
+      </if>
+      <if test="record.goodsTitle != null" >
+        goods_title = #{record.goodsTitle,jdbcType=VARCHAR},
+      </if>
+      <if test="record.goodsDeliveryInfo != null" >
+        goods_delivery_info = #{record.goodsDeliveryInfo,jdbcType=VARCHAR},
+      </if>
+      <if test="record.orderDeliveryInfo != null" >
+        order_delivery_info = #{record.orderDeliveryInfo,jdbcType=VARCHAR},
+      </if>
+      <if test="record.chnlInfo != null" >
+        chnl_info = #{record.chnlInfo,jdbcType=VARCHAR},
+      </if>
+      <if test="record.weight != null" >
+        weight = #{record.weight,jdbcType=DECIMAL},
+      </if>
+      <if test="record.transportType != null" >
+        transport_type = #{record.transportType,jdbcType=TINYINT},
+      </if>
+      <if test="record.expressImage != null" >
+        express_image = #{record.expressImage,jdbcType=VARCHAR},
+      </if>
+      <if test="record.purchaseReason != null" >
+        purchase_reason = #{record.purchaseReason,jdbcType=VARCHAR},
+      </if>
+      <if test="record.poorType != null" >
+        poor_type = #{record.poorType,jdbcType=TINYINT},
+      </if>
+      <if test="record.remark != null" >
+        remark = #{record.remark,jdbcType=VARCHAR},
+      </if>
+      <if test="record.deliverExplain != null" >
+        deliver_explain = #{record.deliverExplain,jdbcType=LONGVARCHAR},
+      </if>
+      <if test="record.specValue != null" >
+        spec_value = #{record.specValue,jdbcType=LONGVARCHAR},
+      </if>
+      <if test="record.goodsAttr != null" >
+        goods_attr = #{record.goodsAttr,jdbcType=LONGVARCHAR},
+      </if>
+    </set>
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByExampleWithBLOBs" parameterType="map" >
+    update sy_order_common
+    set order_id = #{record.orderId,jdbcType=INTEGER},
+      store_id = #{record.storeId,jdbcType=INTEGER},
+      shipping_time = #{record.shippingTime,jdbcType=INTEGER},
+      shipping_express_id = #{record.shippingExpressId,jdbcType=TINYINT},
+      evaluation_time = #{record.evaluationTime,jdbcType=INTEGER},
+      evalseller_state = #{record.evalsellerState,jdbcType=CHAR},
+      evalseller_time = #{record.evalsellerTime,jdbcType=INTEGER},
+      order_message = #{record.orderMessage,jdbcType=VARCHAR},
+      order_pointscount = #{record.orderPointscount,jdbcType=INTEGER},
+      voucher_price = #{record.voucherPrice,jdbcType=INTEGER},
+      voucher_code = #{record.voucherCode,jdbcType=VARCHAR},
+      daddress_id = #{record.daddressId,jdbcType=INTEGER},
+      reciver_name = #{record.reciverName,jdbcType=VARCHAR},
+      reciver_info = #{record.reciverInfo,jdbcType=VARCHAR},
+      reciver_province_id = #{record.reciverProvinceId,jdbcType=INTEGER},
+      invoice_info = #{record.invoiceInfo,jdbcType=VARCHAR},
+      promotion_info = #{record.promotionInfo,jdbcType=VARCHAR},
+      spec_name = #{record.specName,jdbcType=VARCHAR},
+      goods_title = #{record.goodsTitle,jdbcType=VARCHAR},
+      goods_delivery_info = #{record.goodsDeliveryInfo,jdbcType=VARCHAR},
+      order_delivery_info = #{record.orderDeliveryInfo,jdbcType=VARCHAR},
+      chnl_info = #{record.chnlInfo,jdbcType=VARCHAR},
+      weight = #{record.weight,jdbcType=DECIMAL},
+      transport_type = #{record.transportType,jdbcType=TINYINT},
+      express_image = #{record.expressImage,jdbcType=VARCHAR},
+      purchase_reason = #{record.purchaseReason,jdbcType=VARCHAR},
+      poor_type = #{record.poorType,jdbcType=TINYINT},
+      remark = #{record.remark,jdbcType=VARCHAR},
+      deliver_explain = #{record.deliverExplain,jdbcType=LONGVARCHAR},
+      spec_value = #{record.specValue,jdbcType=LONGVARCHAR},
+      goods_attr = #{record.goodsAttr,jdbcType=LONGVARCHAR}
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByExample" parameterType="map" >
+    update sy_order_common
+    set order_id = #{record.orderId,jdbcType=INTEGER},
+      store_id = #{record.storeId,jdbcType=INTEGER},
+      shipping_time = #{record.shippingTime,jdbcType=INTEGER},
+      shipping_express_id = #{record.shippingExpressId,jdbcType=TINYINT},
+      evaluation_time = #{record.evaluationTime,jdbcType=INTEGER},
+      evalseller_state = #{record.evalsellerState,jdbcType=CHAR},
+      evalseller_time = #{record.evalsellerTime,jdbcType=INTEGER},
+      order_message = #{record.orderMessage,jdbcType=VARCHAR},
+      order_pointscount = #{record.orderPointscount,jdbcType=INTEGER},
+      voucher_price = #{record.voucherPrice,jdbcType=INTEGER},
+      voucher_code = #{record.voucherCode,jdbcType=VARCHAR},
+      daddress_id = #{record.daddressId,jdbcType=INTEGER},
+      reciver_name = #{record.reciverName,jdbcType=VARCHAR},
+      reciver_info = #{record.reciverInfo,jdbcType=VARCHAR},
+      reciver_province_id = #{record.reciverProvinceId,jdbcType=INTEGER},
+      invoice_info = #{record.invoiceInfo,jdbcType=VARCHAR},
+      promotion_info = #{record.promotionInfo,jdbcType=VARCHAR},
+      spec_name = #{record.specName,jdbcType=VARCHAR},
+      goods_title = #{record.goodsTitle,jdbcType=VARCHAR},
+      goods_delivery_info = #{record.goodsDeliveryInfo,jdbcType=VARCHAR},
+      order_delivery_info = #{record.orderDeliveryInfo,jdbcType=VARCHAR},
+      chnl_info = #{record.chnlInfo,jdbcType=VARCHAR},
+      weight = #{record.weight,jdbcType=DECIMAL},
+      transport_type = #{record.transportType,jdbcType=TINYINT},
+      express_image = #{record.expressImage,jdbcType=VARCHAR},
+      purchase_reason = #{record.purchaseReason,jdbcType=VARCHAR},
+      poor_type = #{record.poorType,jdbcType=TINYINT},
+      remark = #{record.remark,jdbcType=VARCHAR}
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByPrimaryKeySelective" parameterType="com.shanyuan.platform.ms.dao.order.entity.SyOrderCommonWithBLOBs" >
+    update sy_order_common
+    <set >
+      <if test="storeId != null" >
+        store_id = #{storeId,jdbcType=INTEGER},
+      </if>
+      <if test="shippingTime != null" >
+        shipping_time = #{shippingTime,jdbcType=INTEGER},
+      </if>
+      <if test="shippingExpressId != null" >
+        shipping_express_id = #{shippingExpressId,jdbcType=TINYINT},
+      </if>
+      <if test="evaluationTime != null" >
+        evaluation_time = #{evaluationTime,jdbcType=INTEGER},
+      </if>
+      <if test="evalsellerState != null" >
+        evalseller_state = #{evalsellerState,jdbcType=CHAR},
+      </if>
+      <if test="evalsellerTime != null" >
+        evalseller_time = #{evalsellerTime,jdbcType=INTEGER},
+      </if>
+      <if test="orderMessage != null" >
+        order_message = #{orderMessage,jdbcType=VARCHAR},
+      </if>
+      <if test="orderPointscount != null" >
+        order_pointscount = #{orderPointscount,jdbcType=INTEGER},
+      </if>
+      <if test="voucherPrice != null" >
+        voucher_price = #{voucherPrice,jdbcType=INTEGER},
+      </if>
+      <if test="voucherCode != null" >
+        voucher_code = #{voucherCode,jdbcType=VARCHAR},
+      </if>
+      <if test="daddressId != null" >
+        daddress_id = #{daddressId,jdbcType=INTEGER},
+      </if>
+      <if test="reciverName != null" >
+        reciver_name = #{reciverName,jdbcType=VARCHAR},
+      </if>
+      <if test="reciverInfo != null" >
+        reciver_info = #{reciverInfo,jdbcType=VARCHAR},
+      </if>
+      <if test="reciverProvinceId != null" >
+        reciver_province_id = #{reciverProvinceId,jdbcType=INTEGER},
+      </if>
+      <if test="invoiceInfo != null" >
+        invoice_info = #{invoiceInfo,jdbcType=VARCHAR},
+      </if>
+      <if test="promotionInfo != null" >
+        promotion_info = #{promotionInfo,jdbcType=VARCHAR},
+      </if>
+      <if test="specName != null" >
+        spec_name = #{specName,jdbcType=VARCHAR},
+      </if>
+      <if test="goodsTitle != null" >
+        goods_title = #{goodsTitle,jdbcType=VARCHAR},
+      </if>
+      <if test="goodsDeliveryInfo != null" >
+        goods_delivery_info = #{goodsDeliveryInfo,jdbcType=VARCHAR},
+      </if>
+      <if test="orderDeliveryInfo != null" >
+        order_delivery_info = #{orderDeliveryInfo,jdbcType=VARCHAR},
+      </if>
+      <if test="chnlInfo != null" >
+        chnl_info = #{chnlInfo,jdbcType=VARCHAR},
+      </if>
+      <if test="weight != null" >
+        weight = #{weight,jdbcType=DECIMAL},
+      </if>
+      <if test="transportType != null" >
+        transport_type = #{transportType,jdbcType=TINYINT},
+      </if>
+      <if test="expressImage != null" >
+        express_image = #{expressImage,jdbcType=VARCHAR},
+      </if>
+      <if test="purchaseReason != null" >
+        purchase_reason = #{purchaseReason,jdbcType=VARCHAR},
+      </if>
+      <if test="poorType != null" >
+        poor_type = #{poorType,jdbcType=TINYINT},
+      </if>
+      <if test="remark != null" >
+        remark = #{remark,jdbcType=VARCHAR},
+      </if>
+      <if test="deliverExplain != null" >
+        deliver_explain = #{deliverExplain,jdbcType=LONGVARCHAR},
+      </if>
+      <if test="specValue != null" >
+        spec_value = #{specValue,jdbcType=LONGVARCHAR},
+      </if>
+      <if test="goodsAttr != null" >
+        goods_attr = #{goodsAttr,jdbcType=LONGVARCHAR},
+      </if>
+    </set>
+    where order_id = #{orderId,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKeyWithBLOBs" parameterType="com.shanyuan.platform.ms.dao.order.entity.SyOrderCommonWithBLOBs" >
+    update sy_order_common
+    set store_id = #{storeId,jdbcType=INTEGER},
+      shipping_time = #{shippingTime,jdbcType=INTEGER},
+      shipping_express_id = #{shippingExpressId,jdbcType=TINYINT},
+      evaluation_time = #{evaluationTime,jdbcType=INTEGER},
+      evalseller_state = #{evalsellerState,jdbcType=CHAR},
+      evalseller_time = #{evalsellerTime,jdbcType=INTEGER},
+      order_message = #{orderMessage,jdbcType=VARCHAR},
+      order_pointscount = #{orderPointscount,jdbcType=INTEGER},
+      voucher_price = #{voucherPrice,jdbcType=INTEGER},
+      voucher_code = #{voucherCode,jdbcType=VARCHAR},
+      daddress_id = #{daddressId,jdbcType=INTEGER},
+      reciver_name = #{reciverName,jdbcType=VARCHAR},
+      reciver_info = #{reciverInfo,jdbcType=VARCHAR},
+      reciver_province_id = #{reciverProvinceId,jdbcType=INTEGER},
+      invoice_info = #{invoiceInfo,jdbcType=VARCHAR},
+      promotion_info = #{promotionInfo,jdbcType=VARCHAR},
+      spec_name = #{specName,jdbcType=VARCHAR},
+      goods_title = #{goodsTitle,jdbcType=VARCHAR},
+      goods_delivery_info = #{goodsDeliveryInfo,jdbcType=VARCHAR},
+      order_delivery_info = #{orderDeliveryInfo,jdbcType=VARCHAR},
+      chnl_info = #{chnlInfo,jdbcType=VARCHAR},
+      weight = #{weight,jdbcType=DECIMAL},
+      transport_type = #{transportType,jdbcType=TINYINT},
+      express_image = #{expressImage,jdbcType=VARCHAR},
+      purchase_reason = #{purchaseReason,jdbcType=VARCHAR},
+      poor_type = #{poorType,jdbcType=TINYINT},
+      remark = #{remark,jdbcType=VARCHAR},
+      deliver_explain = #{deliverExplain,jdbcType=LONGVARCHAR},
+      spec_value = #{specValue,jdbcType=LONGVARCHAR},
+      goods_attr = #{goodsAttr,jdbcType=LONGVARCHAR}
+    where order_id = #{orderId,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.shanyuan.platform.ms.dao.order.entity.SyOrderCommon" >
+    update sy_order_common
+    set store_id = #{storeId,jdbcType=INTEGER},
+      shipping_time = #{shippingTime,jdbcType=INTEGER},
+      shipping_express_id = #{shippingExpressId,jdbcType=TINYINT},
+      evaluation_time = #{evaluationTime,jdbcType=INTEGER},
+      evalseller_state = #{evalsellerState,jdbcType=CHAR},
+      evalseller_time = #{evalsellerTime,jdbcType=INTEGER},
+      order_message = #{orderMessage,jdbcType=VARCHAR},
+      order_pointscount = #{orderPointscount,jdbcType=INTEGER},
+      voucher_price = #{voucherPrice,jdbcType=INTEGER},
+      voucher_code = #{voucherCode,jdbcType=VARCHAR},
+      daddress_id = #{daddressId,jdbcType=INTEGER},
+      reciver_name = #{reciverName,jdbcType=VARCHAR},
+      reciver_info = #{reciverInfo,jdbcType=VARCHAR},
+      reciver_province_id = #{reciverProvinceId,jdbcType=INTEGER},
+      invoice_info = #{invoiceInfo,jdbcType=VARCHAR},
+      promotion_info = #{promotionInfo,jdbcType=VARCHAR},
+      spec_name = #{specName,jdbcType=VARCHAR},
+      goods_title = #{goodsTitle,jdbcType=VARCHAR},
+      goods_delivery_info = #{goodsDeliveryInfo,jdbcType=VARCHAR},
+      order_delivery_info = #{orderDeliveryInfo,jdbcType=VARCHAR},
+      chnl_info = #{chnlInfo,jdbcType=VARCHAR},
+      weight = #{weight,jdbcType=DECIMAL},
+      transport_type = #{transportType,jdbcType=TINYINT},
+      express_image = #{expressImage,jdbcType=VARCHAR},
+      purchase_reason = #{purchaseReason,jdbcType=VARCHAR},
+      poor_type = #{poorType,jdbcType=TINYINT},
+      remark = #{remark,jdbcType=VARCHAR}
+    where order_id = #{orderId,jdbcType=INTEGER}
+  </update>
+</mapper>

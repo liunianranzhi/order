@@ -1,0 +1,590 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.shanyuan.platform.ms.dao.store.mapper.SyCircleMemberMapper" >
+  <resultMap id="BaseResultMap" type="com.shanyuan.platform.ms.dao.store.entity.SyCircleMember" >
+    <id column="member_id" property="memberId" jdbcType="INTEGER" />
+    <id column="circle_id" property="circleId" jdbcType="INTEGER" />
+    <result column="circle_name" property="circleName" jdbcType="VARCHAR" />
+    <result column="member_name" property="memberName" jdbcType="VARCHAR" />
+    <result column="cm_applycontent" property="cmApplycontent" jdbcType="VARCHAR" />
+    <result column="cm_applytime" property="cmApplytime" jdbcType="VARCHAR" />
+    <result column="cm_state" property="cmState" jdbcType="TINYINT" />
+    <result column="cm_intro" property="cmIntro" jdbcType="VARCHAR" />
+    <result column="cm_jointime" property="cmJointime" jdbcType="VARCHAR" />
+    <result column="cm_level" property="cmLevel" jdbcType="INTEGER" />
+    <result column="cm_levelname" property="cmLevelname" jdbcType="VARCHAR" />
+    <result column="cm_exp" property="cmExp" jdbcType="INTEGER" />
+    <result column="cm_nextexp" property="cmNextexp" jdbcType="INTEGER" />
+    <result column="is_identity" property="isIdentity" jdbcType="TINYINT" />
+    <result column="is_allowspeak" property="isAllowspeak" jdbcType="TINYINT" />
+    <result column="is_star" property="isStar" jdbcType="TINYINT" />
+    <result column="cm_thcount" property="cmThcount" jdbcType="INTEGER" />
+    <result column="cm_comcount" property="cmComcount" jdbcType="INTEGER" />
+    <result column="cm_lastspeaktime" property="cmLastspeaktime" jdbcType="VARCHAR" />
+    <result column="is_recommend" property="isRecommend" jdbcType="TINYINT" />
+    <result column="dept_id" property="deptId" jdbcType="INTEGER" />
+    <result column="sendmsg_state" property="sendmsgState" jdbcType="TINYINT" />
+    <result column="issending" property="issending" jdbcType="TINYINT" />
+    <result column="code" property="code" jdbcType="VARCHAR" />
+    <result column="emp_no" property="empNo" jdbcType="VARCHAR" />
+    <result column="cm_tag" property="cmTag" jdbcType="VARCHAR" />
+    <result column="dept_tag1" property="deptTag1" jdbcType="VARCHAR" />
+    <result column="dept_tag2" property="deptTag2" jdbcType="VARCHAR" />
+    <result column="dept_tag3" property="deptTag3" jdbcType="VARCHAR" />
+  </resultMap>
+  <sql id="Example_Where_Clause" >
+    <where >
+      <foreach collection="oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Update_By_Example_Where_Clause" >
+    <where >
+      <foreach collection="example.oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Base_Column_List" >
+    member_id, circle_id, circle_name, member_name, cm_applycontent, cm_applytime, cm_state, 
+    cm_intro, cm_jointime, cm_level, cm_levelname, cm_exp, cm_nextexp, is_identity, is_allowspeak, 
+    is_star, cm_thcount, cm_comcount, cm_lastspeaktime, is_recommend, dept_id, sendmsg_state, 
+    issending, code, emp_no, cm_tag, dept_tag1, dept_tag2, dept_tag3
+  </sql>
+  <select id="selectByExample" resultMap="BaseResultMap" parameterType="com.shanyuan.platform.ms.dao.store.entity.SyCircleMemberExample" >
+    select
+    <if test="distinct" >
+      distinct
+    </if>
+    <include refid="Base_Column_List" />
+    from sy_circle_member
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null" >
+      order by ${orderByClause}
+    </if>
+  </select>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="com.shanyuan.platform.ms.dao.store.entity.SyCircleMemberKey" >
+    select 
+    <include refid="Base_Column_List" />
+    from sy_circle_member
+    where member_id = #{memberId,jdbcType=INTEGER}
+      and circle_id = #{circleId,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="com.shanyuan.platform.ms.dao.store.entity.SyCircleMemberKey" >
+    delete from sy_circle_member
+    where member_id = #{memberId,jdbcType=INTEGER}
+      and circle_id = #{circleId,jdbcType=INTEGER}
+  </delete>
+  <delete id="deleteByExample" parameterType="com.shanyuan.platform.ms.dao.store.entity.SyCircleMemberExample" >
+    delete from sy_circle_member
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </delete>
+  <insert id="insert" parameterType="com.shanyuan.platform.ms.dao.store.entity.SyCircleMember" >
+    insert into sy_circle_member (member_id, circle_id, circle_name, 
+      member_name, cm_applycontent, cm_applytime, 
+      cm_state, cm_intro, cm_jointime, 
+      cm_level, cm_levelname, cm_exp, 
+      cm_nextexp, is_identity, is_allowspeak, 
+      is_star, cm_thcount, cm_comcount, 
+      cm_lastspeaktime, is_recommend, dept_id, 
+      sendmsg_state, issending, code, 
+      emp_no, cm_tag, dept_tag1, 
+      dept_tag2, dept_tag3)
+    values (#{memberId,jdbcType=INTEGER}, #{circleId,jdbcType=INTEGER}, #{circleName,jdbcType=VARCHAR}, 
+      #{memberName,jdbcType=VARCHAR}, #{cmApplycontent,jdbcType=VARCHAR}, #{cmApplytime,jdbcType=VARCHAR}, 
+      #{cmState,jdbcType=TINYINT}, #{cmIntro,jdbcType=VARCHAR}, #{cmJointime,jdbcType=VARCHAR}, 
+      #{cmLevel,jdbcType=INTEGER}, #{cmLevelname,jdbcType=VARCHAR}, #{cmExp,jdbcType=INTEGER}, 
+      #{cmNextexp,jdbcType=INTEGER}, #{isIdentity,jdbcType=TINYINT}, #{isAllowspeak,jdbcType=TINYINT}, 
+      #{isStar,jdbcType=TINYINT}, #{cmThcount,jdbcType=INTEGER}, #{cmComcount,jdbcType=INTEGER}, 
+      #{cmLastspeaktime,jdbcType=VARCHAR}, #{isRecommend,jdbcType=TINYINT}, #{deptId,jdbcType=INTEGER}, 
+      #{sendmsgState,jdbcType=TINYINT}, #{issending,jdbcType=TINYINT}, #{code,jdbcType=VARCHAR}, 
+      #{empNo,jdbcType=VARCHAR}, #{cmTag,jdbcType=VARCHAR}, #{deptTag1,jdbcType=VARCHAR}, 
+      #{deptTag2,jdbcType=VARCHAR}, #{deptTag3,jdbcType=VARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="com.shanyuan.platform.ms.dao.store.entity.SyCircleMember" >
+    insert into sy_circle_member
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="memberId != null" >
+        member_id,
+      </if>
+      <if test="circleId != null" >
+        circle_id,
+      </if>
+      <if test="circleName != null" >
+        circle_name,
+      </if>
+      <if test="memberName != null" >
+        member_name,
+      </if>
+      <if test="cmApplycontent != null" >
+        cm_applycontent,
+      </if>
+      <if test="cmApplytime != null" >
+        cm_applytime,
+      </if>
+      <if test="cmState != null" >
+        cm_state,
+      </if>
+      <if test="cmIntro != null" >
+        cm_intro,
+      </if>
+      <if test="cmJointime != null" >
+        cm_jointime,
+      </if>
+      <if test="cmLevel != null" >
+        cm_level,
+      </if>
+      <if test="cmLevelname != null" >
+        cm_levelname,
+      </if>
+      <if test="cmExp != null" >
+        cm_exp,
+      </if>
+      <if test="cmNextexp != null" >
+        cm_nextexp,
+      </if>
+      <if test="isIdentity != null" >
+        is_identity,
+      </if>
+      <if test="isAllowspeak != null" >
+        is_allowspeak,
+      </if>
+      <if test="isStar != null" >
+        is_star,
+      </if>
+      <if test="cmThcount != null" >
+        cm_thcount,
+      </if>
+      <if test="cmComcount != null" >
+        cm_comcount,
+      </if>
+      <if test="cmLastspeaktime != null" >
+        cm_lastspeaktime,
+      </if>
+      <if test="isRecommend != null" >
+        is_recommend,
+      </if>
+      <if test="deptId != null" >
+        dept_id,
+      </if>
+      <if test="sendmsgState != null" >
+        sendmsg_state,
+      </if>
+      <if test="issending != null" >
+        issending,
+      </if>
+      <if test="code != null" >
+        code,
+      </if>
+      <if test="empNo != null" >
+        emp_no,
+      </if>
+      <if test="cmTag != null" >
+        cm_tag,
+      </if>
+      <if test="deptTag1 != null" >
+        dept_tag1,
+      </if>
+      <if test="deptTag2 != null" >
+        dept_tag2,
+      </if>
+      <if test="deptTag3 != null" >
+        dept_tag3,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="memberId != null" >
+        #{memberId,jdbcType=INTEGER},
+      </if>
+      <if test="circleId != null" >
+        #{circleId,jdbcType=INTEGER},
+      </if>
+      <if test="circleName != null" >
+        #{circleName,jdbcType=VARCHAR},
+      </if>
+      <if test="memberName != null" >
+        #{memberName,jdbcType=VARCHAR},
+      </if>
+      <if test="cmApplycontent != null" >
+        #{cmApplycontent,jdbcType=VARCHAR},
+      </if>
+      <if test="cmApplytime != null" >
+        #{cmApplytime,jdbcType=VARCHAR},
+      </if>
+      <if test="cmState != null" >
+        #{cmState,jdbcType=TINYINT},
+      </if>
+      <if test="cmIntro != null" >
+        #{cmIntro,jdbcType=VARCHAR},
+      </if>
+      <if test="cmJointime != null" >
+        #{cmJointime,jdbcType=VARCHAR},
+      </if>
+      <if test="cmLevel != null" >
+        #{cmLevel,jdbcType=INTEGER},
+      </if>
+      <if test="cmLevelname != null" >
+        #{cmLevelname,jdbcType=VARCHAR},
+      </if>
+      <if test="cmExp != null" >
+        #{cmExp,jdbcType=INTEGER},
+      </if>
+      <if test="cmNextexp != null" >
+        #{cmNextexp,jdbcType=INTEGER},
+      </if>
+      <if test="isIdentity != null" >
+        #{isIdentity,jdbcType=TINYINT},
+      </if>
+      <if test="isAllowspeak != null" >
+        #{isAllowspeak,jdbcType=TINYINT},
+      </if>
+      <if test="isStar != null" >
+        #{isStar,jdbcType=TINYINT},
+      </if>
+      <if test="cmThcount != null" >
+        #{cmThcount,jdbcType=INTEGER},
+      </if>
+      <if test="cmComcount != null" >
+        #{cmComcount,jdbcType=INTEGER},
+      </if>
+      <if test="cmLastspeaktime != null" >
+        #{cmLastspeaktime,jdbcType=VARCHAR},
+      </if>
+      <if test="isRecommend != null" >
+        #{isRecommend,jdbcType=TINYINT},
+      </if>
+      <if test="deptId != null" >
+        #{deptId,jdbcType=INTEGER},
+      </if>
+      <if test="sendmsgState != null" >
+        #{sendmsgState,jdbcType=TINYINT},
+      </if>
+      <if test="issending != null" >
+        #{issending,jdbcType=TINYINT},
+      </if>
+      <if test="code != null" >
+        #{code,jdbcType=VARCHAR},
+      </if>
+      <if test="empNo != null" >
+        #{empNo,jdbcType=VARCHAR},
+      </if>
+      <if test="cmTag != null" >
+        #{cmTag,jdbcType=VARCHAR},
+      </if>
+      <if test="deptTag1 != null" >
+        #{deptTag1,jdbcType=VARCHAR},
+      </if>
+      <if test="deptTag2 != null" >
+        #{deptTag2,jdbcType=VARCHAR},
+      </if>
+      <if test="deptTag3 != null" >
+        #{deptTag3,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <select id="countByExample" parameterType="com.shanyuan.platform.ms.dao.store.entity.SyCircleMemberExample" resultType="java.lang.Integer" >
+    select count(*) from sy_circle_member
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </select>
+  <update id="updateByExampleSelective" parameterType="map" >
+    update sy_circle_member
+    <set >
+      <if test="record.memberId != null" >
+        member_id = #{record.memberId,jdbcType=INTEGER},
+      </if>
+      <if test="record.circleId != null" >
+        circle_id = #{record.circleId,jdbcType=INTEGER},
+      </if>
+      <if test="record.circleName != null" >
+        circle_name = #{record.circleName,jdbcType=VARCHAR},
+      </if>
+      <if test="record.memberName != null" >
+        member_name = #{record.memberName,jdbcType=VARCHAR},
+      </if>
+      <if test="record.cmApplycontent != null" >
+        cm_applycontent = #{record.cmApplycontent,jdbcType=VARCHAR},
+      </if>
+      <if test="record.cmApplytime != null" >
+        cm_applytime = #{record.cmApplytime,jdbcType=VARCHAR},
+      </if>
+      <if test="record.cmState != null" >
+        cm_state = #{record.cmState,jdbcType=TINYINT},
+      </if>
+      <if test="record.cmIntro != null" >
+        cm_intro = #{record.cmIntro,jdbcType=VARCHAR},
+      </if>
+      <if test="record.cmJointime != null" >
+        cm_jointime = #{record.cmJointime,jdbcType=VARCHAR},
+      </if>
+      <if test="record.cmLevel != null" >
+        cm_level = #{record.cmLevel,jdbcType=INTEGER},
+      </if>
+      <if test="record.cmLevelname != null" >
+        cm_levelname = #{record.cmLevelname,jdbcType=VARCHAR},
+      </if>
+      <if test="record.cmExp != null" >
+        cm_exp = #{record.cmExp,jdbcType=INTEGER},
+      </if>
+      <if test="record.cmNextexp != null" >
+        cm_nextexp = #{record.cmNextexp,jdbcType=INTEGER},
+      </if>
+      <if test="record.isIdentity != null" >
+        is_identity = #{record.isIdentity,jdbcType=TINYINT},
+      </if>
+      <if test="record.isAllowspeak != null" >
+        is_allowspeak = #{record.isAllowspeak,jdbcType=TINYINT},
+      </if>
+      <if test="record.isStar != null" >
+        is_star = #{record.isStar,jdbcType=TINYINT},
+      </if>
+      <if test="record.cmThcount != null" >
+        cm_thcount = #{record.cmThcount,jdbcType=INTEGER},
+      </if>
+      <if test="record.cmComcount != null" >
+        cm_comcount = #{record.cmComcount,jdbcType=INTEGER},
+      </if>
+      <if test="record.cmLastspeaktime != null" >
+        cm_lastspeaktime = #{record.cmLastspeaktime,jdbcType=VARCHAR},
+      </if>
+      <if test="record.isRecommend != null" >
+        is_recommend = #{record.isRecommend,jdbcType=TINYINT},
+      </if>
+      <if test="record.deptId != null" >
+        dept_id = #{record.deptId,jdbcType=INTEGER},
+      </if>
+      <if test="record.sendmsgState != null" >
+        sendmsg_state = #{record.sendmsgState,jdbcType=TINYINT},
+      </if>
+      <if test="record.issending != null" >
+        issending = #{record.issending,jdbcType=TINYINT},
+      </if>
+      <if test="record.code != null" >
+        code = #{record.code,jdbcType=VARCHAR},
+      </if>
+      <if test="record.empNo != null" >
+        emp_no = #{record.empNo,jdbcType=VARCHAR},
+      </if>
+      <if test="record.cmTag != null" >
+        cm_tag = #{record.cmTag,jdbcType=VARCHAR},
+      </if>
+      <if test="record.deptTag1 != null" >
+        dept_tag1 = #{record.deptTag1,jdbcType=VARCHAR},
+      </if>
+      <if test="record.deptTag2 != null" >
+        dept_tag2 = #{record.deptTag2,jdbcType=VARCHAR},
+      </if>
+      <if test="record.deptTag3 != null" >
+        dept_tag3 = #{record.deptTag3,jdbcType=VARCHAR},
+      </if>
+    </set>
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByExample" parameterType="map" >
+    update sy_circle_member
+    set member_id = #{record.memberId,jdbcType=INTEGER},
+      circle_id = #{record.circleId,jdbcType=INTEGER},
+      circle_name = #{record.circleName,jdbcType=VARCHAR},
+      member_name = #{record.memberName,jdbcType=VARCHAR},
+      cm_applycontent = #{record.cmApplycontent,jdbcType=VARCHAR},
+      cm_applytime = #{record.cmApplytime,jdbcType=VARCHAR},
+      cm_state = #{record.cmState,jdbcType=TINYINT},
+      cm_intro = #{record.cmIntro,jdbcType=VARCHAR},
+      cm_jointime = #{record.cmJointime,jdbcType=VARCHAR},
+      cm_level = #{record.cmLevel,jdbcType=INTEGER},
+      cm_levelname = #{record.cmLevelname,jdbcType=VARCHAR},
+      cm_exp = #{record.cmExp,jdbcType=INTEGER},
+      cm_nextexp = #{record.cmNextexp,jdbcType=INTEGER},
+      is_identity = #{record.isIdentity,jdbcType=TINYINT},
+      is_allowspeak = #{record.isAllowspeak,jdbcType=TINYINT},
+      is_star = #{record.isStar,jdbcType=TINYINT},
+      cm_thcount = #{record.cmThcount,jdbcType=INTEGER},
+      cm_comcount = #{record.cmComcount,jdbcType=INTEGER},
+      cm_lastspeaktime = #{record.cmLastspeaktime,jdbcType=VARCHAR},
+      is_recommend = #{record.isRecommend,jdbcType=TINYINT},
+      dept_id = #{record.deptId,jdbcType=INTEGER},
+      sendmsg_state = #{record.sendmsgState,jdbcType=TINYINT},
+      issending = #{record.issending,jdbcType=TINYINT},
+      code = #{record.code,jdbcType=VARCHAR},
+      emp_no = #{record.empNo,jdbcType=VARCHAR},
+      cm_tag = #{record.cmTag,jdbcType=VARCHAR},
+      dept_tag1 = #{record.deptTag1,jdbcType=VARCHAR},
+      dept_tag2 = #{record.deptTag2,jdbcType=VARCHAR},
+      dept_tag3 = #{record.deptTag3,jdbcType=VARCHAR}
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByPrimaryKeySelective" parameterType="com.shanyuan.platform.ms.dao.store.entity.SyCircleMember" >
+    update sy_circle_member
+    <set >
+      <if test="circleName != null" >
+        circle_name = #{circleName,jdbcType=VARCHAR},
+      </if>
+      <if test="memberName != null" >
+        member_name = #{memberName,jdbcType=VARCHAR},
+      </if>
+      <if test="cmApplycontent != null" >
+        cm_applycontent = #{cmApplycontent,jdbcType=VARCHAR},
+      </if>
+      <if test="cmApplytime != null" >
+        cm_applytime = #{cmApplytime,jdbcType=VARCHAR},
+      </if>
+      <if test="cmState != null" >
+        cm_state = #{cmState,jdbcType=TINYINT},
+      </if>
+      <if test="cmIntro != null" >
+        cm_intro = #{cmIntro,jdbcType=VARCHAR},
+      </if>
+      <if test="cmJointime != null" >
+        cm_jointime = #{cmJointime,jdbcType=VARCHAR},
+      </if>
+      <if test="cmLevel != null" >
+        cm_level = #{cmLevel,jdbcType=INTEGER},
+      </if>
+      <if test="cmLevelname != null" >
+        cm_levelname = #{cmLevelname,jdbcType=VARCHAR},
+      </if>
+      <if test="cmExp != null" >
+        cm_exp = #{cmExp,jdbcType=INTEGER},
+      </if>
+      <if test="cmNextexp != null" >
+        cm_nextexp = #{cmNextexp,jdbcType=INTEGER},
+      </if>
+      <if test="isIdentity != null" >
+        is_identity = #{isIdentity,jdbcType=TINYINT},
+      </if>
+      <if test="isAllowspeak != null" >
+        is_allowspeak = #{isAllowspeak,jdbcType=TINYINT},
+      </if>
+      <if test="isStar != null" >
+        is_star = #{isStar,jdbcType=TINYINT},
+      </if>
+      <if test="cmThcount != null" >
+        cm_thcount = #{cmThcount,jdbcType=INTEGER},
+      </if>
+      <if test="cmComcount != null" >
+        cm_comcount = #{cmComcount,jdbcType=INTEGER},
+      </if>
+      <if test="cmLastspeaktime != null" >
+        cm_lastspeaktime = #{cmLastspeaktime,jdbcType=VARCHAR},
+      </if>
+      <if test="isRecommend != null" >
+        is_recommend = #{isRecommend,jdbcType=TINYINT},
+      </if>
+      <if test="deptId != null" >
+        dept_id = #{deptId,jdbcType=INTEGER},
+      </if>
+      <if test="sendmsgState != null" >
+        sendmsg_state = #{sendmsgState,jdbcType=TINYINT},
+      </if>
+      <if test="issending != null" >
+        issending = #{issending,jdbcType=TINYINT},
+      </if>
+      <if test="code != null" >
+        code = #{code,jdbcType=VARCHAR},
+      </if>
+      <if test="empNo != null" >
+        emp_no = #{empNo,jdbcType=VARCHAR},
+      </if>
+      <if test="cmTag != null" >
+        cm_tag = #{cmTag,jdbcType=VARCHAR},
+      </if>
+      <if test="deptTag1 != null" >
+        dept_tag1 = #{deptTag1,jdbcType=VARCHAR},
+      </if>
+      <if test="deptTag2 != null" >
+        dept_tag2 = #{deptTag2,jdbcType=VARCHAR},
+      </if>
+      <if test="deptTag3 != null" >
+        dept_tag3 = #{deptTag3,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where member_id = #{memberId,jdbcType=INTEGER}
+      and circle_id = #{circleId,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.shanyuan.platform.ms.dao.store.entity.SyCircleMember" >
+    update sy_circle_member
+    set circle_name = #{circleName,jdbcType=VARCHAR},
+      member_name = #{memberName,jdbcType=VARCHAR},
+      cm_applycontent = #{cmApplycontent,jdbcType=VARCHAR},
+      cm_applytime = #{cmApplytime,jdbcType=VARCHAR},
+      cm_state = #{cmState,jdbcType=TINYINT},
+      cm_intro = #{cmIntro,jdbcType=VARCHAR},
+      cm_jointime = #{cmJointime,jdbcType=VARCHAR},
+      cm_level = #{cmLevel,jdbcType=INTEGER},
+      cm_levelname = #{cmLevelname,jdbcType=VARCHAR},
+      cm_exp = #{cmExp,jdbcType=INTEGER},
+      cm_nextexp = #{cmNextexp,jdbcType=INTEGER},
+      is_identity = #{isIdentity,jdbcType=TINYINT},
+      is_allowspeak = #{isAllowspeak,jdbcType=TINYINT},
+      is_star = #{isStar,jdbcType=TINYINT},
+      cm_thcount = #{cmThcount,jdbcType=INTEGER},
+      cm_comcount = #{cmComcount,jdbcType=INTEGER},
+      cm_lastspeaktime = #{cmLastspeaktime,jdbcType=VARCHAR},
+      is_recommend = #{isRecommend,jdbcType=TINYINT},
+      dept_id = #{deptId,jdbcType=INTEGER},
+      sendmsg_state = #{sendmsgState,jdbcType=TINYINT},
+      issending = #{issending,jdbcType=TINYINT},
+      code = #{code,jdbcType=VARCHAR},
+      emp_no = #{empNo,jdbcType=VARCHAR},
+      cm_tag = #{cmTag,jdbcType=VARCHAR},
+      dept_tag1 = #{deptTag1,jdbcType=VARCHAR},
+      dept_tag2 = #{deptTag2,jdbcType=VARCHAR},
+      dept_tag3 = #{deptTag3,jdbcType=VARCHAR}
+    where member_id = #{memberId,jdbcType=INTEGER}
+      and circle_id = #{circleId,jdbcType=INTEGER}
+  </update>
+</mapper>

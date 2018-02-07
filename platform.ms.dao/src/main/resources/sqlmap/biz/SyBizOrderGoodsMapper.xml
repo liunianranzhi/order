@@ -1,0 +1,538 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.shanyuan.platform.ms.dao.biz.mapper.SyBizOrderGoodsMapper" >
+  <resultMap id="BaseResultMap" type="com.shanyuan.platform.ms.dao.biz.entity.SyBizOrderGoods" >
+    <id column="rec_id" property="recId" jdbcType="INTEGER" />
+    <result column="main_order_id" property="mainOrderId" jdbcType="INTEGER" />
+    <result column="order_id" property="orderId" jdbcType="INTEGER" />
+    <result column="ref_store_id" property="refStoreId" jdbcType="INTEGER" />
+    <result column="goods_id" property="goodsId" jdbcType="INTEGER" />
+    <result column="goods_name" property="goodsName" jdbcType="VARCHAR" />
+    <result column="goods_price" property="goodsPrice" jdbcType="DECIMAL" />
+    <result column="goods_num" property="goodsNum" jdbcType="INTEGER" />
+    <result column="goods_image" property="goodsImage" jdbcType="VARCHAR" />
+    <result column="unit" property="unit" jdbcType="VARCHAR" />
+    <result column="unit_spec" property="unitSpec" jdbcType="VARCHAR" />
+    <result column="product_spec" property="productSpec" jdbcType="VARCHAR" />
+    <result column="goods_state" property="goodsState" jdbcType="CHAR" />
+    <result column="assist_id" property="assistId" jdbcType="INTEGER" />
+    <result column="send_time" property="sendTime" jdbcType="INTEGER" />
+    <result column="publisher_id" property="publisherId" jdbcType="INTEGER" />
+    <result column="purchase_price" property="purchasePrice" jdbcType="DECIMAL" />
+    <result column="biz_operation_mid" property="bizOperationMid" jdbcType="INTEGER" />
+    <result column="goods_commonid" property="goodsCommonid" jdbcType="INTEGER" />
+    <result column="wholesale_info" property="wholesaleInfo" jdbcType="VARCHAR" />
+  </resultMap>
+  <resultMap id="ResultMapWithBLOBs" type="com.shanyuan.platform.ms.dao.biz.entity.SyBizOrderGoods" extends="BaseResultMap" >
+    <result column="goods_spec" property="goodsSpec" jdbcType="LONGVARCHAR" />
+  </resultMap>
+  <sql id="Example_Where_Clause" >
+    <where >
+      <foreach collection="oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Update_By_Example_Where_Clause" >
+    <where >
+      <foreach collection="example.oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Base_Column_List" >
+    rec_id, main_order_id, order_id, ref_store_id, goods_id, goods_name, goods_price, 
+    goods_num, goods_image, unit, unit_spec, product_spec, goods_state, assist_id, send_time, 
+    publisher_id, purchase_price, biz_operation_mid, goods_commonid, wholesale_info
+  </sql>
+  <sql id="Blob_Column_List" >
+    goods_spec
+  </sql>
+  <select id="selectByExampleWithBLOBs" resultMap="ResultMapWithBLOBs" parameterType="com.shanyuan.platform.ms.dao.biz.entity.SyBizOrderGoodsExample" >
+    select
+    <if test="distinct" >
+      distinct
+    </if>
+    <include refid="Base_Column_List" />
+    ,
+    <include refid="Blob_Column_List" />
+    from sy_biz_order_goods
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null" >
+      order by ${orderByClause}
+    </if>
+  </select>
+  <select id="selectByExample" resultMap="BaseResultMap" parameterType="com.shanyuan.platform.ms.dao.biz.entity.SyBizOrderGoodsExample" >
+    select
+    <if test="distinct" >
+      distinct
+    </if>
+    <include refid="Base_Column_List" />
+    from sy_biz_order_goods
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null" >
+      order by ${orderByClause}
+    </if>
+  </select>
+  <select id="selectByPrimaryKey" resultMap="ResultMapWithBLOBs" parameterType="java.lang.Integer" >
+    select 
+    <include refid="Base_Column_List" />
+    ,
+    <include refid="Blob_Column_List" />
+    from sy_biz_order_goods
+    where rec_id = #{recId,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+    delete from sy_biz_order_goods
+    where rec_id = #{recId,jdbcType=INTEGER}
+  </delete>
+  <delete id="deleteByExample" parameterType="com.shanyuan.platform.ms.dao.biz.entity.SyBizOrderGoodsExample" >
+    delete from sy_biz_order_goods
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </delete>
+  <insert id="insert" parameterType="com.shanyuan.platform.ms.dao.biz.entity.SyBizOrderGoods" >
+    insert into sy_biz_order_goods (rec_id, main_order_id, order_id, 
+      ref_store_id, goods_id, goods_name, 
+      goods_price, goods_num, goods_image, 
+      unit, unit_spec, product_spec, 
+      goods_state, assist_id, send_time, 
+      publisher_id, purchase_price, biz_operation_mid, 
+      goods_commonid, wholesale_info, goods_spec
+      )
+    values (#{recId,jdbcType=INTEGER}, #{mainOrderId,jdbcType=INTEGER}, #{orderId,jdbcType=INTEGER}, 
+      #{refStoreId,jdbcType=INTEGER}, #{goodsId,jdbcType=INTEGER}, #{goodsName,jdbcType=VARCHAR}, 
+      #{goodsPrice,jdbcType=DECIMAL}, #{goodsNum,jdbcType=INTEGER}, #{goodsImage,jdbcType=VARCHAR}, 
+      #{unit,jdbcType=VARCHAR}, #{unitSpec,jdbcType=VARCHAR}, #{productSpec,jdbcType=VARCHAR}, 
+      #{goodsState,jdbcType=CHAR}, #{assistId,jdbcType=INTEGER}, #{sendTime,jdbcType=INTEGER}, 
+      #{publisherId,jdbcType=INTEGER}, #{purchasePrice,jdbcType=DECIMAL}, #{bizOperationMid,jdbcType=INTEGER}, 
+      #{goodsCommonid,jdbcType=INTEGER}, #{wholesaleInfo,jdbcType=VARCHAR}, #{goodsSpec,jdbcType=LONGVARCHAR}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="com.shanyuan.platform.ms.dao.biz.entity.SyBizOrderGoods" >
+    insert into sy_biz_order_goods
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="recId != null" >
+        rec_id,
+      </if>
+      <if test="mainOrderId != null" >
+        main_order_id,
+      </if>
+      <if test="orderId != null" >
+        order_id,
+      </if>
+      <if test="refStoreId != null" >
+        ref_store_id,
+      </if>
+      <if test="goodsId != null" >
+        goods_id,
+      </if>
+      <if test="goodsName != null" >
+        goods_name,
+      </if>
+      <if test="goodsPrice != null" >
+        goods_price,
+      </if>
+      <if test="goodsNum != null" >
+        goods_num,
+      </if>
+      <if test="goodsImage != null" >
+        goods_image,
+      </if>
+      <if test="unit != null" >
+        unit,
+      </if>
+      <if test="unitSpec != null" >
+        unit_spec,
+      </if>
+      <if test="productSpec != null" >
+        product_spec,
+      </if>
+      <if test="goodsState != null" >
+        goods_state,
+      </if>
+      <if test="assistId != null" >
+        assist_id,
+      </if>
+      <if test="sendTime != null" >
+        send_time,
+      </if>
+      <if test="publisherId != null" >
+        publisher_id,
+      </if>
+      <if test="purchasePrice != null" >
+        purchase_price,
+      </if>
+      <if test="bizOperationMid != null" >
+        biz_operation_mid,
+      </if>
+      <if test="goodsCommonid != null" >
+        goods_commonid,
+      </if>
+      <if test="wholesaleInfo != null" >
+        wholesale_info,
+      </if>
+      <if test="goodsSpec != null" >
+        goods_spec,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="recId != null" >
+        #{recId,jdbcType=INTEGER},
+      </if>
+      <if test="mainOrderId != null" >
+        #{mainOrderId,jdbcType=INTEGER},
+      </if>
+      <if test="orderId != null" >
+        #{orderId,jdbcType=INTEGER},
+      </if>
+      <if test="refStoreId != null" >
+        #{refStoreId,jdbcType=INTEGER},
+      </if>
+      <if test="goodsId != null" >
+        #{goodsId,jdbcType=INTEGER},
+      </if>
+      <if test="goodsName != null" >
+        #{goodsName,jdbcType=VARCHAR},
+      </if>
+      <if test="goodsPrice != null" >
+        #{goodsPrice,jdbcType=DECIMAL},
+      </if>
+      <if test="goodsNum != null" >
+        #{goodsNum,jdbcType=INTEGER},
+      </if>
+      <if test="goodsImage != null" >
+        #{goodsImage,jdbcType=VARCHAR},
+      </if>
+      <if test="unit != null" >
+        #{unit,jdbcType=VARCHAR},
+      </if>
+      <if test="unitSpec != null" >
+        #{unitSpec,jdbcType=VARCHAR},
+      </if>
+      <if test="productSpec != null" >
+        #{productSpec,jdbcType=VARCHAR},
+      </if>
+      <if test="goodsState != null" >
+        #{goodsState,jdbcType=CHAR},
+      </if>
+      <if test="assistId != null" >
+        #{assistId,jdbcType=INTEGER},
+      </if>
+      <if test="sendTime != null" >
+        #{sendTime,jdbcType=INTEGER},
+      </if>
+      <if test="publisherId != null" >
+        #{publisherId,jdbcType=INTEGER},
+      </if>
+      <if test="purchasePrice != null" >
+        #{purchasePrice,jdbcType=DECIMAL},
+      </if>
+      <if test="bizOperationMid != null" >
+        #{bizOperationMid,jdbcType=INTEGER},
+      </if>
+      <if test="goodsCommonid != null" >
+        #{goodsCommonid,jdbcType=INTEGER},
+      </if>
+      <if test="wholesaleInfo != null" >
+        #{wholesaleInfo,jdbcType=VARCHAR},
+      </if>
+      <if test="goodsSpec != null" >
+        #{goodsSpec,jdbcType=LONGVARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <select id="countByExample" parameterType="com.shanyuan.platform.ms.dao.biz.entity.SyBizOrderGoodsExample" resultType="java.lang.Integer" >
+    select count(*) from sy_biz_order_goods
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </select>
+  <update id="updateByExampleSelective" parameterType="map" >
+    update sy_biz_order_goods
+    <set >
+      <if test="record.recId != null" >
+        rec_id = #{record.recId,jdbcType=INTEGER},
+      </if>
+      <if test="record.mainOrderId != null" >
+        main_order_id = #{record.mainOrderId,jdbcType=INTEGER},
+      </if>
+      <if test="record.orderId != null" >
+        order_id = #{record.orderId,jdbcType=INTEGER},
+      </if>
+      <if test="record.refStoreId != null" >
+        ref_store_id = #{record.refStoreId,jdbcType=INTEGER},
+      </if>
+      <if test="record.goodsId != null" >
+        goods_id = #{record.goodsId,jdbcType=INTEGER},
+      </if>
+      <if test="record.goodsName != null" >
+        goods_name = #{record.goodsName,jdbcType=VARCHAR},
+      </if>
+      <if test="record.goodsPrice != null" >
+        goods_price = #{record.goodsPrice,jdbcType=DECIMAL},
+      </if>
+      <if test="record.goodsNum != null" >
+        goods_num = #{record.goodsNum,jdbcType=INTEGER},
+      </if>
+      <if test="record.goodsImage != null" >
+        goods_image = #{record.goodsImage,jdbcType=VARCHAR},
+      </if>
+      <if test="record.unit != null" >
+        unit = #{record.unit,jdbcType=VARCHAR},
+      </if>
+      <if test="record.unitSpec != null" >
+        unit_spec = #{record.unitSpec,jdbcType=VARCHAR},
+      </if>
+      <if test="record.productSpec != null" >
+        product_spec = #{record.productSpec,jdbcType=VARCHAR},
+      </if>
+      <if test="record.goodsState != null" >
+        goods_state = #{record.goodsState,jdbcType=CHAR},
+      </if>
+      <if test="record.assistId != null" >
+        assist_id = #{record.assistId,jdbcType=INTEGER},
+      </if>
+      <if test="record.sendTime != null" >
+        send_time = #{record.sendTime,jdbcType=INTEGER},
+      </if>
+      <if test="record.publisherId != null" >
+        publisher_id = #{record.publisherId,jdbcType=INTEGER},
+      </if>
+      <if test="record.purchasePrice != null" >
+        purchase_price = #{record.purchasePrice,jdbcType=DECIMAL},
+      </if>
+      <if test="record.bizOperationMid != null" >
+        biz_operation_mid = #{record.bizOperationMid,jdbcType=INTEGER},
+      </if>
+      <if test="record.goodsCommonid != null" >
+        goods_commonid = #{record.goodsCommonid,jdbcType=INTEGER},
+      </if>
+      <if test="record.wholesaleInfo != null" >
+        wholesale_info = #{record.wholesaleInfo,jdbcType=VARCHAR},
+      </if>
+      <if test="record.goodsSpec != null" >
+        goods_spec = #{record.goodsSpec,jdbcType=LONGVARCHAR},
+      </if>
+    </set>
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByExampleWithBLOBs" parameterType="map" >
+    update sy_biz_order_goods
+    set rec_id = #{record.recId,jdbcType=INTEGER},
+      main_order_id = #{record.mainOrderId,jdbcType=INTEGER},
+      order_id = #{record.orderId,jdbcType=INTEGER},
+      ref_store_id = #{record.refStoreId,jdbcType=INTEGER},
+      goods_id = #{record.goodsId,jdbcType=INTEGER},
+      goods_name = #{record.goodsName,jdbcType=VARCHAR},
+      goods_price = #{record.goodsPrice,jdbcType=DECIMAL},
+      goods_num = #{record.goodsNum,jdbcType=INTEGER},
+      goods_image = #{record.goodsImage,jdbcType=VARCHAR},
+      unit = #{record.unit,jdbcType=VARCHAR},
+      unit_spec = #{record.unitSpec,jdbcType=VARCHAR},
+      product_spec = #{record.productSpec,jdbcType=VARCHAR},
+      goods_state = #{record.goodsState,jdbcType=CHAR},
+      assist_id = #{record.assistId,jdbcType=INTEGER},
+      send_time = #{record.sendTime,jdbcType=INTEGER},
+      publisher_id = #{record.publisherId,jdbcType=INTEGER},
+      purchase_price = #{record.purchasePrice,jdbcType=DECIMAL},
+      biz_operation_mid = #{record.bizOperationMid,jdbcType=INTEGER},
+      goods_commonid = #{record.goodsCommonid,jdbcType=INTEGER},
+      wholesale_info = #{record.wholesaleInfo,jdbcType=VARCHAR},
+      goods_spec = #{record.goodsSpec,jdbcType=LONGVARCHAR}
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByExample" parameterType="map" >
+    update sy_biz_order_goods
+    set rec_id = #{record.recId,jdbcType=INTEGER},
+      main_order_id = #{record.mainOrderId,jdbcType=INTEGER},
+      order_id = #{record.orderId,jdbcType=INTEGER},
+      ref_store_id = #{record.refStoreId,jdbcType=INTEGER},
+      goods_id = #{record.goodsId,jdbcType=INTEGER},
+      goods_name = #{record.goodsName,jdbcType=VARCHAR},
+      goods_price = #{record.goodsPrice,jdbcType=DECIMAL},
+      goods_num = #{record.goodsNum,jdbcType=INTEGER},
+      goods_image = #{record.goodsImage,jdbcType=VARCHAR},
+      unit = #{record.unit,jdbcType=VARCHAR},
+      unit_spec = #{record.unitSpec,jdbcType=VARCHAR},
+      product_spec = #{record.productSpec,jdbcType=VARCHAR},
+      goods_state = #{record.goodsState,jdbcType=CHAR},
+      assist_id = #{record.assistId,jdbcType=INTEGER},
+      send_time = #{record.sendTime,jdbcType=INTEGER},
+      publisher_id = #{record.publisherId,jdbcType=INTEGER},
+      purchase_price = #{record.purchasePrice,jdbcType=DECIMAL},
+      biz_operation_mid = #{record.bizOperationMid,jdbcType=INTEGER},
+      goods_commonid = #{record.goodsCommonid,jdbcType=INTEGER},
+      wholesale_info = #{record.wholesaleInfo,jdbcType=VARCHAR}
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByPrimaryKeySelective" parameterType="com.shanyuan.platform.ms.dao.biz.entity.SyBizOrderGoods" >
+    update sy_biz_order_goods
+    <set >
+      <if test="mainOrderId != null" >
+        main_order_id = #{mainOrderId,jdbcType=INTEGER},
+      </if>
+      <if test="orderId != null" >
+        order_id = #{orderId,jdbcType=INTEGER},
+      </if>
+      <if test="refStoreId != null" >
+        ref_store_id = #{refStoreId,jdbcType=INTEGER},
+      </if>
+      <if test="goodsId != null" >
+        goods_id = #{goodsId,jdbcType=INTEGER},
+      </if>
+      <if test="goodsName != null" >
+        goods_name = #{goodsName,jdbcType=VARCHAR},
+      </if>
+      <if test="goodsPrice != null" >
+        goods_price = #{goodsPrice,jdbcType=DECIMAL},
+      </if>
+      <if test="goodsNum != null" >
+        goods_num = #{goodsNum,jdbcType=INTEGER},
+      </if>
+      <if test="goodsImage != null" >
+        goods_image = #{goodsImage,jdbcType=VARCHAR},
+      </if>
+      <if test="unit != null" >
+        unit = #{unit,jdbcType=VARCHAR},
+      </if>
+      <if test="unitSpec != null" >
+        unit_spec = #{unitSpec,jdbcType=VARCHAR},
+      </if>
+      <if test="productSpec != null" >
+        product_spec = #{productSpec,jdbcType=VARCHAR},
+      </if>
+      <if test="goodsState != null" >
+        goods_state = #{goodsState,jdbcType=CHAR},
+      </if>
+      <if test="assistId != null" >
+        assist_id = #{assistId,jdbcType=INTEGER},
+      </if>
+      <if test="sendTime != null" >
+        send_time = #{sendTime,jdbcType=INTEGER},
+      </if>
+      <if test="publisherId != null" >
+        publisher_id = #{publisherId,jdbcType=INTEGER},
+      </if>
+      <if test="purchasePrice != null" >
+        purchase_price = #{purchasePrice,jdbcType=DECIMAL},
+      </if>
+      <if test="bizOperationMid != null" >
+        biz_operation_mid = #{bizOperationMid,jdbcType=INTEGER},
+      </if>
+      <if test="goodsCommonid != null" >
+        goods_commonid = #{goodsCommonid,jdbcType=INTEGER},
+      </if>
+      <if test="wholesaleInfo != null" >
+        wholesale_info = #{wholesaleInfo,jdbcType=VARCHAR},
+      </if>
+      <if test="goodsSpec != null" >
+        goods_spec = #{goodsSpec,jdbcType=LONGVARCHAR},
+      </if>
+    </set>
+    where rec_id = #{recId,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKeyWithBLOBs" parameterType="com.shanyuan.platform.ms.dao.biz.entity.SyBizOrderGoods" >
+    update sy_biz_order_goods
+    set main_order_id = #{mainOrderId,jdbcType=INTEGER},
+      order_id = #{orderId,jdbcType=INTEGER},
+      ref_store_id = #{refStoreId,jdbcType=INTEGER},
+      goods_id = #{goodsId,jdbcType=INTEGER},
+      goods_name = #{goodsName,jdbcType=VARCHAR},
+      goods_price = #{goodsPrice,jdbcType=DECIMAL},
+      goods_num = #{goodsNum,jdbcType=INTEGER},
+      goods_image = #{goodsImage,jdbcType=VARCHAR},
+      unit = #{unit,jdbcType=VARCHAR},
+      unit_spec = #{unitSpec,jdbcType=VARCHAR},
+      product_spec = #{productSpec,jdbcType=VARCHAR},
+      goods_state = #{goodsState,jdbcType=CHAR},
+      assist_id = #{assistId,jdbcType=INTEGER},
+      send_time = #{sendTime,jdbcType=INTEGER},
+      publisher_id = #{publisherId,jdbcType=INTEGER},
+      purchase_price = #{purchasePrice,jdbcType=DECIMAL},
+      biz_operation_mid = #{bizOperationMid,jdbcType=INTEGER},
+      goods_commonid = #{goodsCommonid,jdbcType=INTEGER},
+      wholesale_info = #{wholesaleInfo,jdbcType=VARCHAR},
+      goods_spec = #{goodsSpec,jdbcType=LONGVARCHAR}
+    where rec_id = #{recId,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.shanyuan.platform.ms.dao.biz.entity.SyBizOrderGoods" >
+    update sy_biz_order_goods
+    set main_order_id = #{mainOrderId,jdbcType=INTEGER},
+      order_id = #{orderId,jdbcType=INTEGER},
+      ref_store_id = #{refStoreId,jdbcType=INTEGER},
+      goods_id = #{goodsId,jdbcType=INTEGER},
+      goods_name = #{goodsName,jdbcType=VARCHAR},
+      goods_price = #{goodsPrice,jdbcType=DECIMAL},
+      goods_num = #{goodsNum,jdbcType=INTEGER},
+      goods_image = #{goodsImage,jdbcType=VARCHAR},
+      unit = #{unit,jdbcType=VARCHAR},
+      unit_spec = #{unitSpec,jdbcType=VARCHAR},
+      product_spec = #{productSpec,jdbcType=VARCHAR},
+      goods_state = #{goodsState,jdbcType=CHAR},
+      assist_id = #{assistId,jdbcType=INTEGER},
+      send_time = #{sendTime,jdbcType=INTEGER},
+      publisher_id = #{publisherId,jdbcType=INTEGER},
+      purchase_price = #{purchasePrice,jdbcType=DECIMAL},
+      biz_operation_mid = #{bizOperationMid,jdbcType=INTEGER},
+      goods_commonid = #{goodsCommonid,jdbcType=INTEGER},
+      wholesale_info = #{wholesaleInfo,jdbcType=VARCHAR}
+    where rec_id = #{recId,jdbcType=INTEGER}
+  </update>
+  
+</mapper>

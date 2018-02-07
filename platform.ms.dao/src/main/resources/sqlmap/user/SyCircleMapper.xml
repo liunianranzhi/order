@@ -1,0 +1,749 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.shanyuan.platform.ms.dao.user.mapper.SyCircleMapper" >
+  <resultMap id="BaseResultMap" type="com.shanyuan.platform.ms.dao.user.entity.SyCircle" >
+    <id column="circle_id" property="circleId" jdbcType="INTEGER" />
+    <result column="circle_name" property="circleName" jdbcType="VARCHAR" />
+    <result column="parent_circle_name" property="parentCircleName" jdbcType="VARCHAR" />
+    <result column="org_name" property="orgName" jdbcType="VARCHAR" />
+    <result column="circle_desc" property="circleDesc" jdbcType="VARCHAR" />
+    <result column="circle_masterid" property="circleMasterid" jdbcType="INTEGER" />
+    <result column="circle_mastername" property="circleMastername" jdbcType="VARCHAR" />
+    <result column="circle_img" property="circleImg" jdbcType="VARCHAR" />
+    <result column="class_id" property="classId" jdbcType="INTEGER" />
+    <result column="circle_mcount" property="circleMcount" jdbcType="INTEGER" />
+    <result column="circle_thcount" property="circleThcount" jdbcType="INTEGER" />
+    <result column="circle_gcount" property="circleGcount" jdbcType="INTEGER" />
+    <result column="circle_pursuereason" property="circlePursuereason" jdbcType="VARCHAR" />
+    <result column="circle_notice" property="circleNotice" jdbcType="VARCHAR" />
+    <result column="circle_status" property="circleStatus" jdbcType="TINYINT" />
+    <result column="circle_statusinfo" property="circleStatusinfo" jdbcType="VARCHAR" />
+    <result column="circle_joinaudit" property="circleJoinaudit" jdbcType="TINYINT" />
+    <result column="circle_addtime" property="circleAddtime" jdbcType="VARCHAR" />
+    <result column="circle_noticetime" property="circleNoticetime" jdbcType="VARCHAR" />
+    <result column="is_recommend" property="isRecommend" jdbcType="TINYINT" />
+    <result column="is_hot" property="isHot" jdbcType="TINYINT" />
+    <result column="circle_tag" property="circleTag" jdbcType="VARCHAR" />
+    <result column="new_verifycount" property="newVerifycount" jdbcType="INTEGER" />
+    <result column="new_informcount" property="newInformcount" jdbcType="INTEGER" />
+    <result column="mapply_open" property="mapplyOpen" jdbcType="TINYINT" />
+    <result column="mapply_ml" property="mapplyMl" jdbcType="TINYINT" />
+    <result column="new_mapplycount" property="newMapplycount" jdbcType="INTEGER" />
+    <result column="circle_type" property="circleType" jdbcType="TINYINT" />
+    <result column="parent_circle_id" property="parentCircleId" jdbcType="INTEGER" />
+    <result column="code" property="code" jdbcType="VARCHAR" />
+    <result column="resp_id" property="respId" jdbcType="INTEGER" />
+    <result column="resp_name" property="respName" jdbcType="VARCHAR" />
+    <result column="resp_mobile" property="respMobile" jdbcType="VARCHAR" />
+    <result column="boc_sort" property="bocSort" jdbcType="INTEGER" />
+    <result column="dept_level" property="deptLevel" jdbcType="TINYINT" />
+    <result column="org_circle_id" property="orgCircleId" jdbcType="INTEGER" />
+    <result column="channel" property="channel" jdbcType="VARCHAR" />
+    <result column="has_child_flag" property="hasChildFlag" jdbcType="TINYINT" />
+    <result column="staffs_amount" property="staffsAmount" jdbcType="INTEGER" />
+  </resultMap>
+  <sql id="Example_Where_Clause" >
+    <where >
+      <foreach collection="oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Update_By_Example_Where_Clause" >
+    <where >
+      <foreach collection="example.oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Base_Column_List" >
+    circle_id, circle_name, parent_circle_name, org_name, circle_desc, circle_masterid, 
+    circle_mastername, circle_img, class_id, circle_mcount, circle_thcount, circle_gcount, 
+    circle_pursuereason, circle_notice, circle_status, circle_statusinfo, circle_joinaudit, 
+    circle_addtime, circle_noticetime, is_recommend, is_hot, circle_tag, new_verifycount, 
+    new_informcount, mapply_open, mapply_ml, new_mapplycount, circle_type, parent_circle_id, 
+    code, resp_id, resp_name, resp_mobile, boc_sort, dept_level, org_circle_id, channel, 
+    has_child_flag, staffs_amount
+  </sql>
+  <select id="selectByExample" resultMap="BaseResultMap" parameterType="com.shanyuan.platform.ms.dao.user.entity.SyCircleExample" >
+    select
+    <if test="distinct" >
+      distinct
+    </if>
+    <include refid="Base_Column_List" />
+    from sy_circle
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null" >
+      order by ${orderByClause}
+    </if>
+  </select>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+    select 
+    <include refid="Base_Column_List" />
+    from sy_circle
+    where circle_id = #{circleId,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+    delete from sy_circle
+    where circle_id = #{circleId,jdbcType=INTEGER}
+  </delete>
+  <delete id="deleteByExample" parameterType="com.shanyuan.platform.ms.dao.user.entity.SyCircleExample" >
+    delete from sy_circle
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </delete>
+  <insert id="insert" parameterType="com.shanyuan.platform.ms.dao.user.entity.SyCircle" >
+    <selectKey resultType="java.lang.Integer" keyProperty="circleId" order="AFTER" >
+      SELECT LAST_INSERT_ID()
+    </selectKey>
+    insert into sy_circle (circle_name, parent_circle_name, org_name, 
+      circle_desc, circle_masterid, circle_mastername, 
+      circle_img, class_id, circle_mcount, 
+      circle_thcount, circle_gcount, circle_pursuereason, 
+      circle_notice, circle_status, circle_statusinfo, 
+      circle_joinaudit, circle_addtime, circle_noticetime, 
+      is_recommend, is_hot, circle_tag, 
+      new_verifycount, new_informcount, mapply_open, 
+      mapply_ml, new_mapplycount, circle_type, 
+      parent_circle_id, code, resp_id, 
+      resp_name, resp_mobile, boc_sort, 
+      dept_level, org_circle_id, channel, 
+      has_child_flag, staffs_amount)
+    values (#{circleName,jdbcType=VARCHAR}, #{parentCircleName,jdbcType=VARCHAR}, #{orgName,jdbcType=VARCHAR}, 
+      #{circleDesc,jdbcType=VARCHAR}, #{circleMasterid,jdbcType=INTEGER}, #{circleMastername,jdbcType=VARCHAR}, 
+      #{circleImg,jdbcType=VARCHAR}, #{classId,jdbcType=INTEGER}, #{circleMcount,jdbcType=INTEGER}, 
+      #{circleThcount,jdbcType=INTEGER}, #{circleGcount,jdbcType=INTEGER}, #{circlePursuereason,jdbcType=VARCHAR}, 
+      #{circleNotice,jdbcType=VARCHAR}, #{circleStatus,jdbcType=TINYINT}, #{circleStatusinfo,jdbcType=VARCHAR}, 
+      #{circleJoinaudit,jdbcType=TINYINT}, #{circleAddtime,jdbcType=VARCHAR}, #{circleNoticetime,jdbcType=VARCHAR}, 
+      #{isRecommend,jdbcType=TINYINT}, #{isHot,jdbcType=TINYINT}, #{circleTag,jdbcType=VARCHAR}, 
+      #{newVerifycount,jdbcType=INTEGER}, #{newInformcount,jdbcType=INTEGER}, #{mapplyOpen,jdbcType=TINYINT}, 
+      #{mapplyMl,jdbcType=TINYINT}, #{newMapplycount,jdbcType=INTEGER}, #{circleType,jdbcType=TINYINT}, 
+      #{parentCircleId,jdbcType=INTEGER}, #{code,jdbcType=VARCHAR}, #{respId,jdbcType=INTEGER}, 
+      #{respName,jdbcType=VARCHAR}, #{respMobile,jdbcType=VARCHAR}, #{bocSort,jdbcType=INTEGER}, 
+      #{deptLevel,jdbcType=TINYINT}, #{orgCircleId,jdbcType=INTEGER}, #{channel,jdbcType=VARCHAR}, 
+      #{hasChildFlag,jdbcType=TINYINT}, #{staffsAmount,jdbcType=INTEGER})
+  </insert>
+  <insert id="insertSelective" parameterType="com.shanyuan.platform.ms.dao.user.entity.SyCircle" >
+    <selectKey resultType="java.lang.Integer" keyProperty="circleId" order="AFTER" >
+      SELECT LAST_INSERT_ID()
+    </selectKey>
+    insert into sy_circle
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="circleName != null" >
+        circle_name,
+      </if>
+      <if test="parentCircleName != null" >
+        parent_circle_name,
+      </if>
+      <if test="orgName != null" >
+        org_name,
+      </if>
+      <if test="circleDesc != null" >
+        circle_desc,
+      </if>
+      <if test="circleMasterid != null" >
+        circle_masterid,
+      </if>
+      <if test="circleMastername != null" >
+        circle_mastername,
+      </if>
+      <if test="circleImg != null" >
+        circle_img,
+      </if>
+      <if test="classId != null" >
+        class_id,
+      </if>
+      <if test="circleMcount != null" >
+        circle_mcount,
+      </if>
+      <if test="circleThcount != null" >
+        circle_thcount,
+      </if>
+      <if test="circleGcount != null" >
+        circle_gcount,
+      </if>
+      <if test="circlePursuereason != null" >
+        circle_pursuereason,
+      </if>
+      <if test="circleNotice != null" >
+        circle_notice,
+      </if>
+      <if test="circleStatus != null" >
+        circle_status,
+      </if>
+      <if test="circleStatusinfo != null" >
+        circle_statusinfo,
+      </if>
+      <if test="circleJoinaudit != null" >
+        circle_joinaudit,
+      </if>
+      <if test="circleAddtime != null" >
+        circle_addtime,
+      </if>
+      <if test="circleNoticetime != null" >
+        circle_noticetime,
+      </if>
+      <if test="isRecommend != null" >
+        is_recommend,
+      </if>
+      <if test="isHot != null" >
+        is_hot,
+      </if>
+      <if test="circleTag != null" >
+        circle_tag,
+      </if>
+      <if test="newVerifycount != null" >
+        new_verifycount,
+      </if>
+      <if test="newInformcount != null" >
+        new_informcount,
+      </if>
+      <if test="mapplyOpen != null" >
+        mapply_open,
+      </if>
+      <if test="mapplyMl != null" >
+        mapply_ml,
+      </if>
+      <if test="newMapplycount != null" >
+        new_mapplycount,
+      </if>
+      <if test="circleType != null" >
+        circle_type,
+      </if>
+      <if test="parentCircleId != null" >
+        parent_circle_id,
+      </if>
+      <if test="code != null" >
+        code,
+      </if>
+      <if test="respId != null" >
+        resp_id,
+      </if>
+      <if test="respName != null" >
+        resp_name,
+      </if>
+      <if test="respMobile != null" >
+        resp_mobile,
+      </if>
+      <if test="bocSort != null" >
+        boc_sort,
+      </if>
+      <if test="deptLevel != null" >
+        dept_level,
+      </if>
+      <if test="orgCircleId != null" >
+        org_circle_id,
+      </if>
+      <if test="channel != null" >
+        channel,
+      </if>
+      <if test="hasChildFlag != null" >
+        has_child_flag,
+      </if>
+      <if test="staffsAmount != null" >
+        staffs_amount,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="circleName != null" >
+        #{circleName,jdbcType=VARCHAR},
+      </if>
+      <if test="parentCircleName != null" >
+        #{parentCircleName,jdbcType=VARCHAR},
+      </if>
+      <if test="orgName != null" >
+        #{orgName,jdbcType=VARCHAR},
+      </if>
+      <if test="circleDesc != null" >
+        #{circleDesc,jdbcType=VARCHAR},
+      </if>
+      <if test="circleMasterid != null" >
+        #{circleMasterid,jdbcType=INTEGER},
+      </if>
+      <if test="circleMastername != null" >
+        #{circleMastername,jdbcType=VARCHAR},
+      </if>
+      <if test="circleImg != null" >
+        #{circleImg,jdbcType=VARCHAR},
+      </if>
+      <if test="classId != null" >
+        #{classId,jdbcType=INTEGER},
+      </if>
+      <if test="circleMcount != null" >
+        #{circleMcount,jdbcType=INTEGER},
+      </if>
+      <if test="circleThcount != null" >
+        #{circleThcount,jdbcType=INTEGER},
+      </if>
+      <if test="circleGcount != null" >
+        #{circleGcount,jdbcType=INTEGER},
+      </if>
+      <if test="circlePursuereason != null" >
+        #{circlePursuereason,jdbcType=VARCHAR},
+      </if>
+      <if test="circleNotice != null" >
+        #{circleNotice,jdbcType=VARCHAR},
+      </if>
+      <if test="circleStatus != null" >
+        #{circleStatus,jdbcType=TINYINT},
+      </if>
+      <if test="circleStatusinfo != null" >
+        #{circleStatusinfo,jdbcType=VARCHAR},
+      </if>
+      <if test="circleJoinaudit != null" >
+        #{circleJoinaudit,jdbcType=TINYINT},
+      </if>
+      <if test="circleAddtime != null" >
+        #{circleAddtime,jdbcType=VARCHAR},
+      </if>
+      <if test="circleNoticetime != null" >
+        #{circleNoticetime,jdbcType=VARCHAR},
+      </if>
+      <if test="isRecommend != null" >
+        #{isRecommend,jdbcType=TINYINT},
+      </if>
+      <if test="isHot != null" >
+        #{isHot,jdbcType=TINYINT},
+      </if>
+      <if test="circleTag != null" >
+        #{circleTag,jdbcType=VARCHAR},
+      </if>
+      <if test="newVerifycount != null" >
+        #{newVerifycount,jdbcType=INTEGER},
+      </if>
+      <if test="newInformcount != null" >
+        #{newInformcount,jdbcType=INTEGER},
+      </if>
+      <if test="mapplyOpen != null" >
+        #{mapplyOpen,jdbcType=TINYINT},
+      </if>
+      <if test="mapplyMl != null" >
+        #{mapplyMl,jdbcType=TINYINT},
+      </if>
+      <if test="newMapplycount != null" >
+        #{newMapplycount,jdbcType=INTEGER},
+      </if>
+      <if test="circleType != null" >
+        #{circleType,jdbcType=TINYINT},
+      </if>
+      <if test="parentCircleId != null" >
+        #{parentCircleId,jdbcType=INTEGER},
+      </if>
+      <if test="code != null" >
+        #{code,jdbcType=VARCHAR},
+      </if>
+      <if test="respId != null" >
+        #{respId,jdbcType=INTEGER},
+      </if>
+      <if test="respName != null" >
+        #{respName,jdbcType=VARCHAR},
+      </if>
+      <if test="respMobile != null" >
+        #{respMobile,jdbcType=VARCHAR},
+      </if>
+      <if test="bocSort != null" >
+        #{bocSort,jdbcType=INTEGER},
+      </if>
+      <if test="deptLevel != null" >
+        #{deptLevel,jdbcType=TINYINT},
+      </if>
+      <if test="orgCircleId != null" >
+        #{orgCircleId,jdbcType=INTEGER},
+      </if>
+      <if test="channel != null" >
+        #{channel,jdbcType=VARCHAR},
+      </if>
+      <if test="hasChildFlag != null" >
+        #{hasChildFlag,jdbcType=TINYINT},
+      </if>
+      <if test="staffsAmount != null" >
+        #{staffsAmount,jdbcType=INTEGER},
+      </if>
+    </trim>
+  </insert>
+  <select id="countByExample" parameterType="com.shanyuan.platform.ms.dao.user.entity.SyCircleExample" resultType="java.lang.Integer" >
+    select count(*) from sy_circle
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </select>
+  <update id="updateByExampleSelective" parameterType="map" >
+    update sy_circle
+    <set >
+      <if test="record.circleId != null" >
+        circle_id = #{record.circleId,jdbcType=INTEGER},
+      </if>
+      <if test="record.circleName != null" >
+        circle_name = #{record.circleName,jdbcType=VARCHAR},
+      </if>
+      <if test="record.parentCircleName != null" >
+        parent_circle_name = #{record.parentCircleName,jdbcType=VARCHAR},
+      </if>
+      <if test="record.orgName != null" >
+        org_name = #{record.orgName,jdbcType=VARCHAR},
+      </if>
+      <if test="record.circleDesc != null" >
+        circle_desc = #{record.circleDesc,jdbcType=VARCHAR},
+      </if>
+      <if test="record.circleMasterid != null" >
+        circle_masterid = #{record.circleMasterid,jdbcType=INTEGER},
+      </if>
+      <if test="record.circleMastername != null" >
+        circle_mastername = #{record.circleMastername,jdbcType=VARCHAR},
+      </if>
+      <if test="record.circleImg != null" >
+        circle_img = #{record.circleImg,jdbcType=VARCHAR},
+      </if>
+      <if test="record.classId != null" >
+        class_id = #{record.classId,jdbcType=INTEGER},
+      </if>
+      <if test="record.circleMcount != null" >
+        circle_mcount = #{record.circleMcount,jdbcType=INTEGER},
+      </if>
+      <if test="record.circleThcount != null" >
+        circle_thcount = #{record.circleThcount,jdbcType=INTEGER},
+      </if>
+      <if test="record.circleGcount != null" >
+        circle_gcount = #{record.circleGcount,jdbcType=INTEGER},
+      </if>
+      <if test="record.circlePursuereason != null" >
+        circle_pursuereason = #{record.circlePursuereason,jdbcType=VARCHAR},
+      </if>
+      <if test="record.circleNotice != null" >
+        circle_notice = #{record.circleNotice,jdbcType=VARCHAR},
+      </if>
+      <if test="record.circleStatus != null" >
+        circle_status = #{record.circleStatus,jdbcType=TINYINT},
+      </if>
+      <if test="record.circleStatusinfo != null" >
+        circle_statusinfo = #{record.circleStatusinfo,jdbcType=VARCHAR},
+      </if>
+      <if test="record.circleJoinaudit != null" >
+        circle_joinaudit = #{record.circleJoinaudit,jdbcType=TINYINT},
+      </if>
+      <if test="record.circleAddtime != null" >
+        circle_addtime = #{record.circleAddtime,jdbcType=VARCHAR},
+      </if>
+      <if test="record.circleNoticetime != null" >
+        circle_noticetime = #{record.circleNoticetime,jdbcType=VARCHAR},
+      </if>
+      <if test="record.isRecommend != null" >
+        is_recommend = #{record.isRecommend,jdbcType=TINYINT},
+      </if>
+      <if test="record.isHot != null" >
+        is_hot = #{record.isHot,jdbcType=TINYINT},
+      </if>
+      <if test="record.circleTag != null" >
+        circle_tag = #{record.circleTag,jdbcType=VARCHAR},
+      </if>
+      <if test="record.newVerifycount != null" >
+        new_verifycount = #{record.newVerifycount,jdbcType=INTEGER},
+      </if>
+      <if test="record.newInformcount != null" >
+        new_informcount = #{record.newInformcount,jdbcType=INTEGER},
+      </if>
+      <if test="record.mapplyOpen != null" >
+        mapply_open = #{record.mapplyOpen,jdbcType=TINYINT},
+      </if>
+      <if test="record.mapplyMl != null" >
+        mapply_ml = #{record.mapplyMl,jdbcType=TINYINT},
+      </if>
+      <if test="record.newMapplycount != null" >
+        new_mapplycount = #{record.newMapplycount,jdbcType=INTEGER},
+      </if>
+      <if test="record.circleType != null" >
+        circle_type = #{record.circleType,jdbcType=TINYINT},
+      </if>
+      <if test="record.parentCircleId != null" >
+        parent_circle_id = #{record.parentCircleId,jdbcType=INTEGER},
+      </if>
+      <if test="record.code != null" >
+        code = #{record.code,jdbcType=VARCHAR},
+      </if>
+      <if test="record.respId != null" >
+        resp_id = #{record.respId,jdbcType=INTEGER},
+      </if>
+      <if test="record.respName != null" >
+        resp_name = #{record.respName,jdbcType=VARCHAR},
+      </if>
+      <if test="record.respMobile != null" >
+        resp_mobile = #{record.respMobile,jdbcType=VARCHAR},
+      </if>
+      <if test="record.bocSort != null" >
+        boc_sort = #{record.bocSort,jdbcType=INTEGER},
+      </if>
+      <if test="record.deptLevel != null" >
+        dept_level = #{record.deptLevel,jdbcType=TINYINT},
+      </if>
+      <if test="record.orgCircleId != null" >
+        org_circle_id = #{record.orgCircleId,jdbcType=INTEGER},
+      </if>
+      <if test="record.channel != null" >
+        channel = #{record.channel,jdbcType=VARCHAR},
+      </if>
+      <if test="record.hasChildFlag != null" >
+        has_child_flag = #{record.hasChildFlag,jdbcType=TINYINT},
+      </if>
+      <if test="record.staffsAmount != null" >
+        staffs_amount = #{record.staffsAmount,jdbcType=INTEGER},
+      </if>
+    </set>
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByExample" parameterType="map" >
+    update sy_circle
+    set circle_id = #{record.circleId,jdbcType=INTEGER},
+      circle_name = #{record.circleName,jdbcType=VARCHAR},
+      parent_circle_name = #{record.parentCircleName,jdbcType=VARCHAR},
+      org_name = #{record.orgName,jdbcType=VARCHAR},
+      circle_desc = #{record.circleDesc,jdbcType=VARCHAR},
+      circle_masterid = #{record.circleMasterid,jdbcType=INTEGER},
+      circle_mastername = #{record.circleMastername,jdbcType=VARCHAR},
+      circle_img = #{record.circleImg,jdbcType=VARCHAR},
+      class_id = #{record.classId,jdbcType=INTEGER},
+      circle_mcount = #{record.circleMcount,jdbcType=INTEGER},
+      circle_thcount = #{record.circleThcount,jdbcType=INTEGER},
+      circle_gcount = #{record.circleGcount,jdbcType=INTEGER},
+      circle_pursuereason = #{record.circlePursuereason,jdbcType=VARCHAR},
+      circle_notice = #{record.circleNotice,jdbcType=VARCHAR},
+      circle_status = #{record.circleStatus,jdbcType=TINYINT},
+      circle_statusinfo = #{record.circleStatusinfo,jdbcType=VARCHAR},
+      circle_joinaudit = #{record.circleJoinaudit,jdbcType=TINYINT},
+      circle_addtime = #{record.circleAddtime,jdbcType=VARCHAR},
+      circle_noticetime = #{record.circleNoticetime,jdbcType=VARCHAR},
+      is_recommend = #{record.isRecommend,jdbcType=TINYINT},
+      is_hot = #{record.isHot,jdbcType=TINYINT},
+      circle_tag = #{record.circleTag,jdbcType=VARCHAR},
+      new_verifycount = #{record.newVerifycount,jdbcType=INTEGER},
+      new_informcount = #{record.newInformcount,jdbcType=INTEGER},
+      mapply_open = #{record.mapplyOpen,jdbcType=TINYINT},
+      mapply_ml = #{record.mapplyMl,jdbcType=TINYINT},
+      new_mapplycount = #{record.newMapplycount,jdbcType=INTEGER},
+      circle_type = #{record.circleType,jdbcType=TINYINT},
+      parent_circle_id = #{record.parentCircleId,jdbcType=INTEGER},
+      code = #{record.code,jdbcType=VARCHAR},
+      resp_id = #{record.respId,jdbcType=INTEGER},
+      resp_name = #{record.respName,jdbcType=VARCHAR},
+      resp_mobile = #{record.respMobile,jdbcType=VARCHAR},
+      boc_sort = #{record.bocSort,jdbcType=INTEGER},
+      dept_level = #{record.deptLevel,jdbcType=TINYINT},
+      org_circle_id = #{record.orgCircleId,jdbcType=INTEGER},
+      channel = #{record.channel,jdbcType=VARCHAR},
+      has_child_flag = #{record.hasChildFlag,jdbcType=TINYINT},
+      staffs_amount = #{record.staffsAmount,jdbcType=INTEGER}
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByPrimaryKeySelective" parameterType="com.shanyuan.platform.ms.dao.user.entity.SyCircle" >
+    update sy_circle
+    <set >
+      <if test="circleName != null" >
+        circle_name = #{circleName,jdbcType=VARCHAR},
+      </if>
+      <if test="parentCircleName != null" >
+        parent_circle_name = #{parentCircleName,jdbcType=VARCHAR},
+      </if>
+      <if test="orgName != null" >
+        org_name = #{orgName,jdbcType=VARCHAR},
+      </if>
+      <if test="circleDesc != null" >
+        circle_desc = #{circleDesc,jdbcType=VARCHAR},
+      </if>
+      <if test="circleMasterid != null" >
+        circle_masterid = #{circleMasterid,jdbcType=INTEGER},
+      </if>
+      <if test="circleMastername != null" >
+        circle_mastername = #{circleMastername,jdbcType=VARCHAR},
+      </if>
+      <if test="circleImg != null" >
+        circle_img = #{circleImg,jdbcType=VARCHAR},
+      </if>
+      <if test="classId != null" >
+        class_id = #{classId,jdbcType=INTEGER},
+      </if>
+      <if test="circleMcount != null" >
+        circle_mcount = #{circleMcount,jdbcType=INTEGER},
+      </if>
+      <if test="circleThcount != null" >
+        circle_thcount = #{circleThcount,jdbcType=INTEGER},
+      </if>
+      <if test="circleGcount != null" >
+        circle_gcount = #{circleGcount,jdbcType=INTEGER},
+      </if>
+      <if test="circlePursuereason != null" >
+        circle_pursuereason = #{circlePursuereason,jdbcType=VARCHAR},
+      </if>
+      <if test="circleNotice != null" >
+        circle_notice = #{circleNotice,jdbcType=VARCHAR},
+      </if>
+      <if test="circleStatus != null" >
+        circle_status = #{circleStatus,jdbcType=TINYINT},
+      </if>
+      <if test="circleStatusinfo != null" >
+        circle_statusinfo = #{circleStatusinfo,jdbcType=VARCHAR},
+      </if>
+      <if test="circleJoinaudit != null" >
+        circle_joinaudit = #{circleJoinaudit,jdbcType=TINYINT},
+      </if>
+      <if test="circleAddtime != null" >
+        circle_addtime = #{circleAddtime,jdbcType=VARCHAR},
+      </if>
+      <if test="circleNoticetime != null" >
+        circle_noticetime = #{circleNoticetime,jdbcType=VARCHAR},
+      </if>
+      <if test="isRecommend != null" >
+        is_recommend = #{isRecommend,jdbcType=TINYINT},
+      </if>
+      <if test="isHot != null" >
+        is_hot = #{isHot,jdbcType=TINYINT},
+      </if>
+      <if test="circleTag != null" >
+        circle_tag = #{circleTag,jdbcType=VARCHAR},
+      </if>
+      <if test="newVerifycount != null" >
+        new_verifycount = #{newVerifycount,jdbcType=INTEGER},
+      </if>
+      <if test="newInformcount != null" >
+        new_informcount = #{newInformcount,jdbcType=INTEGER},
+      </if>
+      <if test="mapplyOpen != null" >
+        mapply_open = #{mapplyOpen,jdbcType=TINYINT},
+      </if>
+      <if test="mapplyMl != null" >
+        mapply_ml = #{mapplyMl,jdbcType=TINYINT},
+      </if>
+      <if test="newMapplycount != null" >
+        new_mapplycount = #{newMapplycount,jdbcType=INTEGER},
+      </if>
+      <if test="circleType != null" >
+        circle_type = #{circleType,jdbcType=TINYINT},
+      </if>
+      <if test="parentCircleId != null" >
+        parent_circle_id = #{parentCircleId,jdbcType=INTEGER},
+      </if>
+      <if test="code != null" >
+        code = #{code,jdbcType=VARCHAR},
+      </if>
+      <if test="respId != null" >
+        resp_id = #{respId,jdbcType=INTEGER},
+      </if>
+      <if test="respName != null" >
+        resp_name = #{respName,jdbcType=VARCHAR},
+      </if>
+      <if test="respMobile != null" >
+        resp_mobile = #{respMobile,jdbcType=VARCHAR},
+      </if>
+      <if test="bocSort != null" >
+        boc_sort = #{bocSort,jdbcType=INTEGER},
+      </if>
+      <if test="deptLevel != null" >
+        dept_level = #{deptLevel,jdbcType=TINYINT},
+      </if>
+      <if test="orgCircleId != null" >
+        org_circle_id = #{orgCircleId,jdbcType=INTEGER},
+      </if>
+      <if test="channel != null" >
+        channel = #{channel,jdbcType=VARCHAR},
+      </if>
+      <if test="hasChildFlag != null" >
+        has_child_flag = #{hasChildFlag,jdbcType=TINYINT},
+      </if>
+      <if test="staffsAmount != null" >
+        staffs_amount = #{staffsAmount,jdbcType=INTEGER},
+      </if>
+    </set>
+    where circle_id = #{circleId,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.shanyuan.platform.ms.dao.user.entity.SyCircle" >
+    update sy_circle
+    set circle_name = #{circleName,jdbcType=VARCHAR},
+      parent_circle_name = #{parentCircleName,jdbcType=VARCHAR},
+      org_name = #{orgName,jdbcType=VARCHAR},
+      circle_desc = #{circleDesc,jdbcType=VARCHAR},
+      circle_masterid = #{circleMasterid,jdbcType=INTEGER},
+      circle_mastername = #{circleMastername,jdbcType=VARCHAR},
+      circle_img = #{circleImg,jdbcType=VARCHAR},
+      class_id = #{classId,jdbcType=INTEGER},
+      circle_mcount = #{circleMcount,jdbcType=INTEGER},
+      circle_thcount = #{circleThcount,jdbcType=INTEGER},
+      circle_gcount = #{circleGcount,jdbcType=INTEGER},
+      circle_pursuereason = #{circlePursuereason,jdbcType=VARCHAR},
+      circle_notice = #{circleNotice,jdbcType=VARCHAR},
+      circle_status = #{circleStatus,jdbcType=TINYINT},
+      circle_statusinfo = #{circleStatusinfo,jdbcType=VARCHAR},
+      circle_joinaudit = #{circleJoinaudit,jdbcType=TINYINT},
+      circle_addtime = #{circleAddtime,jdbcType=VARCHAR},
+      circle_noticetime = #{circleNoticetime,jdbcType=VARCHAR},
+      is_recommend = #{isRecommend,jdbcType=TINYINT},
+      is_hot = #{isHot,jdbcType=TINYINT},
+      circle_tag = #{circleTag,jdbcType=VARCHAR},
+      new_verifycount = #{newVerifycount,jdbcType=INTEGER},
+      new_informcount = #{newInformcount,jdbcType=INTEGER},
+      mapply_open = #{mapplyOpen,jdbcType=TINYINT},
+      mapply_ml = #{mapplyMl,jdbcType=TINYINT},
+      new_mapplycount = #{newMapplycount,jdbcType=INTEGER},
+      circle_type = #{circleType,jdbcType=TINYINT},
+      parent_circle_id = #{parentCircleId,jdbcType=INTEGER},
+      code = #{code,jdbcType=VARCHAR},
+      resp_id = #{respId,jdbcType=INTEGER},
+      resp_name = #{respName,jdbcType=VARCHAR},
+      resp_mobile = #{respMobile,jdbcType=VARCHAR},
+      boc_sort = #{bocSort,jdbcType=INTEGER},
+      dept_level = #{deptLevel,jdbcType=TINYINT},
+      org_circle_id = #{orgCircleId,jdbcType=INTEGER},
+      channel = #{channel,jdbcType=VARCHAR},
+      has_child_flag = #{hasChildFlag,jdbcType=TINYINT},
+      staffs_amount = #{staffsAmount,jdbcType=INTEGER}
+    where circle_id = #{circleId,jdbcType=INTEGER}
+  </update>
+</mapper>

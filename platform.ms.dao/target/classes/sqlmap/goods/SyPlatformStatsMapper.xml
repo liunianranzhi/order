@@ -1,0 +1,652 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.shanyuan.platform.ms.dao.goods.mapper.SyPlatformStatsMapper" >
+  <resultMap id="BaseResultMap" type="com.shanyuan.platform.ms.dao.goods.entity.SyPlatformStats" >
+    <id column="rec_id" property="recId" jdbcType="INTEGER" />
+    <result column="latest_refund_rate" property="latestRefundRate" jdbcType="DECIMAL" />
+    <result column="latest_complain_rate" property="latestComplainRate" jdbcType="DECIMAL" />
+    <result column="stats_time" property="statsTime" jdbcType="INTEGER" />
+    <result column="latest_send_speed" property="latestSendSpeed" jdbcType="DECIMAL" />
+    <result column="daai_order_amount" property="daaiOrderAmount" jdbcType="DECIMAL" />
+    <result column="daai_order_count" property="daaiOrderCount" jdbcType="INTEGER" />
+    <result column="daai_refund_count" property="daaiRefundCount" jdbcType="INTEGER" />
+    <result column="daai_complain_count" property="daaiComplainCount" jdbcType="INTEGER" />
+    <result column="jicai_order_amount" property="jicaiOrderAmount" jdbcType="DECIMAL" />
+    <result column="jicai_order_count" property="jicaiOrderCount" jdbcType="INTEGER" />
+    <result column="jicai_refund_count" property="jicaiRefundCount" jdbcType="INTEGER" />
+    <result column="jicai_complain_count" property="jicaiComplainCount" jdbcType="INTEGER" />
+    <result column="syshop_order_amount" property="syshopOrderAmount" jdbcType="DECIMAL" />
+    <result column="syshop_order_count" property="syshopOrderCount" jdbcType="INTEGER" />
+    <result column="syshop_refund_count" property="syshopRefundCount" jdbcType="INTEGER" />
+    <result column="syshop_complain_count" property="syshopComplainCount" jdbcType="INTEGER" />
+    <result column="increase_member_count" property="increaseMemberCount" jdbcType="INTEGER" />
+    <result column="increase_invite_member_count" property="increaseInviteMemberCount" jdbcType="INTEGER" />
+    <result column="member_count" property="memberCount" jdbcType="INTEGER" />
+    <result column="invite_member_count" property="inviteMemberCount" jdbcType="INTEGER" />
+    <result column="other_increase_member_count" property="otherIncreaseMemberCount" jdbcType="INTEGER" />
+    <result column="other_increase_invite_member_count" property="otherIncreaseInviteMemberCount" jdbcType="INTEGER" />
+    <result column="other_member_count" property="otherMemberCount" jdbcType="INTEGER" />
+    <result column="other_invite_member_count" property="otherInviteMemberCount" jdbcType="INTEGER" />
+    <result column="all_member_regist_count" property="allMemberRegistCount" jdbcType="INTEGER" />
+    <result column="add_time" property="addTime" jdbcType="INTEGER" />
+    <result column="member_only_spending" property="memberOnlySpending" jdbcType="INTEGER" />
+    <result column="member_only_donative" property="memberOnlyDonative" jdbcType="INTEGER" />
+    <result column="member_spending_and_donative" property="memberSpendingAndDonative" jdbcType="INTEGER" />
+    <result column="member_spending_or_donative" property="memberSpendingOrDonative" jdbcType="INTEGER" />
+    <result column="member_none" property="memberNone" jdbcType="INTEGER" />
+  </resultMap>
+  <sql id="Example_Where_Clause" >
+    <where >
+      <foreach collection="oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Update_By_Example_Where_Clause" >
+    <where >
+      <foreach collection="example.oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Base_Column_List" >
+    rec_id, latest_refund_rate, latest_complain_rate, stats_time, latest_send_speed, 
+    daai_order_amount, daai_order_count, daai_refund_count, daai_complain_count, jicai_order_amount, 
+    jicai_order_count, jicai_refund_count, jicai_complain_count, syshop_order_amount, 
+    syshop_order_count, syshop_refund_count, syshop_complain_count, increase_member_count, 
+    increase_invite_member_count, member_count, invite_member_count, other_increase_member_count, 
+    other_increase_invite_member_count, other_member_count, other_invite_member_count, 
+    all_member_regist_count, add_time, member_only_spending, member_only_donative, member_spending_and_donative, 
+    member_spending_or_donative, member_none
+  </sql>
+  <select id="selectByExample" resultMap="BaseResultMap" parameterType="com.shanyuan.platform.ms.dao.goods.entity.SyPlatformStatsExample" >
+    select
+    <if test="distinct" >
+      distinct
+    </if>
+    <include refid="Base_Column_List" />
+    from sy_platform_stats
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null" >
+      order by ${orderByClause}
+    </if>
+  </select>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+    select 
+    <include refid="Base_Column_List" />
+    from sy_platform_stats
+    where rec_id = #{recId,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+    delete from sy_platform_stats
+    where rec_id = #{recId,jdbcType=INTEGER}
+  </delete>
+  <delete id="deleteByExample" parameterType="com.shanyuan.platform.ms.dao.goods.entity.SyPlatformStatsExample" >
+    delete from sy_platform_stats
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </delete>
+  <insert id="insert" parameterType="com.shanyuan.platform.ms.dao.goods.entity.SyPlatformStats" >
+    <selectKey resultType="java.lang.Integer" keyProperty="recId" order="AFTER" >
+      SELECT LAST_INSERT_ID()
+    </selectKey>
+    insert into sy_platform_stats (latest_refund_rate, latest_complain_rate, 
+      stats_time, latest_send_speed, daai_order_amount, 
+      daai_order_count, daai_refund_count, daai_complain_count, 
+      jicai_order_amount, jicai_order_count, jicai_refund_count, 
+      jicai_complain_count, syshop_order_amount, 
+      syshop_order_count, syshop_refund_count, syshop_complain_count, 
+      increase_member_count, increase_invite_member_count, 
+      member_count, invite_member_count, other_increase_member_count, 
+      other_increase_invite_member_count, other_member_count, 
+      other_invite_member_count, all_member_regist_count, 
+      add_time, member_only_spending, member_only_donative, 
+      member_spending_and_donative, member_spending_or_donative, 
+      member_none)
+    values (#{latestRefundRate,jdbcType=DECIMAL}, #{latestComplainRate,jdbcType=DECIMAL}, 
+      #{statsTime,jdbcType=INTEGER}, #{latestSendSpeed,jdbcType=DECIMAL}, #{daaiOrderAmount,jdbcType=DECIMAL}, 
+      #{daaiOrderCount,jdbcType=INTEGER}, #{daaiRefundCount,jdbcType=INTEGER}, #{daaiComplainCount,jdbcType=INTEGER}, 
+      #{jicaiOrderAmount,jdbcType=DECIMAL}, #{jicaiOrderCount,jdbcType=INTEGER}, #{jicaiRefundCount,jdbcType=INTEGER}, 
+      #{jicaiComplainCount,jdbcType=INTEGER}, #{syshopOrderAmount,jdbcType=DECIMAL}, 
+      #{syshopOrderCount,jdbcType=INTEGER}, #{syshopRefundCount,jdbcType=INTEGER}, #{syshopComplainCount,jdbcType=INTEGER}, 
+      #{increaseMemberCount,jdbcType=INTEGER}, #{increaseInviteMemberCount,jdbcType=INTEGER}, 
+      #{memberCount,jdbcType=INTEGER}, #{inviteMemberCount,jdbcType=INTEGER}, #{otherIncreaseMemberCount,jdbcType=INTEGER}, 
+      #{otherIncreaseInviteMemberCount,jdbcType=INTEGER}, #{otherMemberCount,jdbcType=INTEGER}, 
+      #{otherInviteMemberCount,jdbcType=INTEGER}, #{allMemberRegistCount,jdbcType=INTEGER}, 
+      #{addTime,jdbcType=INTEGER}, #{memberOnlySpending,jdbcType=INTEGER}, #{memberOnlyDonative,jdbcType=INTEGER}, 
+      #{memberSpendingAndDonative,jdbcType=INTEGER}, #{memberSpendingOrDonative,jdbcType=INTEGER}, 
+      #{memberNone,jdbcType=INTEGER})
+  </insert>
+  <insert id="insertSelective" parameterType="com.shanyuan.platform.ms.dao.goods.entity.SyPlatformStats" >
+    <selectKey resultType="java.lang.Integer" keyProperty="recId" order="AFTER" >
+      SELECT LAST_INSERT_ID()
+    </selectKey>
+    insert into sy_platform_stats
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="latestRefundRate != null" >
+        latest_refund_rate,
+      </if>
+      <if test="latestComplainRate != null" >
+        latest_complain_rate,
+      </if>
+      <if test="statsTime != null" >
+        stats_time,
+      </if>
+      <if test="latestSendSpeed != null" >
+        latest_send_speed,
+      </if>
+      <if test="daaiOrderAmount != null" >
+        daai_order_amount,
+      </if>
+      <if test="daaiOrderCount != null" >
+        daai_order_count,
+      </if>
+      <if test="daaiRefundCount != null" >
+        daai_refund_count,
+      </if>
+      <if test="daaiComplainCount != null" >
+        daai_complain_count,
+      </if>
+      <if test="jicaiOrderAmount != null" >
+        jicai_order_amount,
+      </if>
+      <if test="jicaiOrderCount != null" >
+        jicai_order_count,
+      </if>
+      <if test="jicaiRefundCount != null" >
+        jicai_refund_count,
+      </if>
+      <if test="jicaiComplainCount != null" >
+        jicai_complain_count,
+      </if>
+      <if test="syshopOrderAmount != null" >
+        syshop_order_amount,
+      </if>
+      <if test="syshopOrderCount != null" >
+        syshop_order_count,
+      </if>
+      <if test="syshopRefundCount != null" >
+        syshop_refund_count,
+      </if>
+      <if test="syshopComplainCount != null" >
+        syshop_complain_count,
+      </if>
+      <if test="increaseMemberCount != null" >
+        increase_member_count,
+      </if>
+      <if test="increaseInviteMemberCount != null" >
+        increase_invite_member_count,
+      </if>
+      <if test="memberCount != null" >
+        member_count,
+      </if>
+      <if test="inviteMemberCount != null" >
+        invite_member_count,
+      </if>
+      <if test="otherIncreaseMemberCount != null" >
+        other_increase_member_count,
+      </if>
+      <if test="otherIncreaseInviteMemberCount != null" >
+        other_increase_invite_member_count,
+      </if>
+      <if test="otherMemberCount != null" >
+        other_member_count,
+      </if>
+      <if test="otherInviteMemberCount != null" >
+        other_invite_member_count,
+      </if>
+      <if test="allMemberRegistCount != null" >
+        all_member_regist_count,
+      </if>
+      <if test="addTime != null" >
+        add_time,
+      </if>
+      <if test="memberOnlySpending != null" >
+        member_only_spending,
+      </if>
+      <if test="memberOnlyDonative != null" >
+        member_only_donative,
+      </if>
+      <if test="memberSpendingAndDonative != null" >
+        member_spending_and_donative,
+      </if>
+      <if test="memberSpendingOrDonative != null" >
+        member_spending_or_donative,
+      </if>
+      <if test="memberNone != null" >
+        member_none,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="latestRefundRate != null" >
+        #{latestRefundRate,jdbcType=DECIMAL},
+      </if>
+      <if test="latestComplainRate != null" >
+        #{latestComplainRate,jdbcType=DECIMAL},
+      </if>
+      <if test="statsTime != null" >
+        #{statsTime,jdbcType=INTEGER},
+      </if>
+      <if test="latestSendSpeed != null" >
+        #{latestSendSpeed,jdbcType=DECIMAL},
+      </if>
+      <if test="daaiOrderAmount != null" >
+        #{daaiOrderAmount,jdbcType=DECIMAL},
+      </if>
+      <if test="daaiOrderCount != null" >
+        #{daaiOrderCount,jdbcType=INTEGER},
+      </if>
+      <if test="daaiRefundCount != null" >
+        #{daaiRefundCount,jdbcType=INTEGER},
+      </if>
+      <if test="daaiComplainCount != null" >
+        #{daaiComplainCount,jdbcType=INTEGER},
+      </if>
+      <if test="jicaiOrderAmount != null" >
+        #{jicaiOrderAmount,jdbcType=DECIMAL},
+      </if>
+      <if test="jicaiOrderCount != null" >
+        #{jicaiOrderCount,jdbcType=INTEGER},
+      </if>
+      <if test="jicaiRefundCount != null" >
+        #{jicaiRefundCount,jdbcType=INTEGER},
+      </if>
+      <if test="jicaiComplainCount != null" >
+        #{jicaiComplainCount,jdbcType=INTEGER},
+      </if>
+      <if test="syshopOrderAmount != null" >
+        #{syshopOrderAmount,jdbcType=DECIMAL},
+      </if>
+      <if test="syshopOrderCount != null" >
+        #{syshopOrderCount,jdbcType=INTEGER},
+      </if>
+      <if test="syshopRefundCount != null" >
+        #{syshopRefundCount,jdbcType=INTEGER},
+      </if>
+      <if test="syshopComplainCount != null" >
+        #{syshopComplainCount,jdbcType=INTEGER},
+      </if>
+      <if test="increaseMemberCount != null" >
+        #{increaseMemberCount,jdbcType=INTEGER},
+      </if>
+      <if test="increaseInviteMemberCount != null" >
+        #{increaseInviteMemberCount,jdbcType=INTEGER},
+      </if>
+      <if test="memberCount != null" >
+        #{memberCount,jdbcType=INTEGER},
+      </if>
+      <if test="inviteMemberCount != null" >
+        #{inviteMemberCount,jdbcType=INTEGER},
+      </if>
+      <if test="otherIncreaseMemberCount != null" >
+        #{otherIncreaseMemberCount,jdbcType=INTEGER},
+      </if>
+      <if test="otherIncreaseInviteMemberCount != null" >
+        #{otherIncreaseInviteMemberCount,jdbcType=INTEGER},
+      </if>
+      <if test="otherMemberCount != null" >
+        #{otherMemberCount,jdbcType=INTEGER},
+      </if>
+      <if test="otherInviteMemberCount != null" >
+        #{otherInviteMemberCount,jdbcType=INTEGER},
+      </if>
+      <if test="allMemberRegistCount != null" >
+        #{allMemberRegistCount,jdbcType=INTEGER},
+      </if>
+      <if test="addTime != null" >
+        #{addTime,jdbcType=INTEGER},
+      </if>
+      <if test="memberOnlySpending != null" >
+        #{memberOnlySpending,jdbcType=INTEGER},
+      </if>
+      <if test="memberOnlyDonative != null" >
+        #{memberOnlyDonative,jdbcType=INTEGER},
+      </if>
+      <if test="memberSpendingAndDonative != null" >
+        #{memberSpendingAndDonative,jdbcType=INTEGER},
+      </if>
+      <if test="memberSpendingOrDonative != null" >
+        #{memberSpendingOrDonative,jdbcType=INTEGER},
+      </if>
+      <if test="memberNone != null" >
+        #{memberNone,jdbcType=INTEGER},
+      </if>
+    </trim>
+  </insert>
+  <select id="countByExample" parameterType="com.shanyuan.platform.ms.dao.goods.entity.SyPlatformStatsExample" resultType="java.lang.Integer" >
+    select count(*) from sy_platform_stats
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </select>
+  <update id="updateByExampleSelective" parameterType="map" >
+    update sy_platform_stats
+    <set >
+      <if test="record.recId != null" >
+        rec_id = #{record.recId,jdbcType=INTEGER},
+      </if>
+      <if test="record.latestRefundRate != null" >
+        latest_refund_rate = #{record.latestRefundRate,jdbcType=DECIMAL},
+      </if>
+      <if test="record.latestComplainRate != null" >
+        latest_complain_rate = #{record.latestComplainRate,jdbcType=DECIMAL},
+      </if>
+      <if test="record.statsTime != null" >
+        stats_time = #{record.statsTime,jdbcType=INTEGER},
+      </if>
+      <if test="record.latestSendSpeed != null" >
+        latest_send_speed = #{record.latestSendSpeed,jdbcType=DECIMAL},
+      </if>
+      <if test="record.daaiOrderAmount != null" >
+        daai_order_amount = #{record.daaiOrderAmount,jdbcType=DECIMAL},
+      </if>
+      <if test="record.daaiOrderCount != null" >
+        daai_order_count = #{record.daaiOrderCount,jdbcType=INTEGER},
+      </if>
+      <if test="record.daaiRefundCount != null" >
+        daai_refund_count = #{record.daaiRefundCount,jdbcType=INTEGER},
+      </if>
+      <if test="record.daaiComplainCount != null" >
+        daai_complain_count = #{record.daaiComplainCount,jdbcType=INTEGER},
+      </if>
+      <if test="record.jicaiOrderAmount != null" >
+        jicai_order_amount = #{record.jicaiOrderAmount,jdbcType=DECIMAL},
+      </if>
+      <if test="record.jicaiOrderCount != null" >
+        jicai_order_count = #{record.jicaiOrderCount,jdbcType=INTEGER},
+      </if>
+      <if test="record.jicaiRefundCount != null" >
+        jicai_refund_count = #{record.jicaiRefundCount,jdbcType=INTEGER},
+      </if>
+      <if test="record.jicaiComplainCount != null" >
+        jicai_complain_count = #{record.jicaiComplainCount,jdbcType=INTEGER},
+      </if>
+      <if test="record.syshopOrderAmount != null" >
+        syshop_order_amount = #{record.syshopOrderAmount,jdbcType=DECIMAL},
+      </if>
+      <if test="record.syshopOrderCount != null" >
+        syshop_order_count = #{record.syshopOrderCount,jdbcType=INTEGER},
+      </if>
+      <if test="record.syshopRefundCount != null" >
+        syshop_refund_count = #{record.syshopRefundCount,jdbcType=INTEGER},
+      </if>
+      <if test="record.syshopComplainCount != null" >
+        syshop_complain_count = #{record.syshopComplainCount,jdbcType=INTEGER},
+      </if>
+      <if test="record.increaseMemberCount != null" >
+        increase_member_count = #{record.increaseMemberCount,jdbcType=INTEGER},
+      </if>
+      <if test="record.increaseInviteMemberCount != null" >
+        increase_invite_member_count = #{record.increaseInviteMemberCount,jdbcType=INTEGER},
+      </if>
+      <if test="record.memberCount != null" >
+        member_count = #{record.memberCount,jdbcType=INTEGER},
+      </if>
+      <if test="record.inviteMemberCount != null" >
+        invite_member_count = #{record.inviteMemberCount,jdbcType=INTEGER},
+      </if>
+      <if test="record.otherIncreaseMemberCount != null" >
+        other_increase_member_count = #{record.otherIncreaseMemberCount,jdbcType=INTEGER},
+      </if>
+      <if test="record.otherIncreaseInviteMemberCount != null" >
+        other_increase_invite_member_count = #{record.otherIncreaseInviteMemberCount,jdbcType=INTEGER},
+      </if>
+      <if test="record.otherMemberCount != null" >
+        other_member_count = #{record.otherMemberCount,jdbcType=INTEGER},
+      </if>
+      <if test="record.otherInviteMemberCount != null" >
+        other_invite_member_count = #{record.otherInviteMemberCount,jdbcType=INTEGER},
+      </if>
+      <if test="record.allMemberRegistCount != null" >
+        all_member_regist_count = #{record.allMemberRegistCount,jdbcType=INTEGER},
+      </if>
+      <if test="record.addTime != null" >
+        add_time = #{record.addTime,jdbcType=INTEGER},
+      </if>
+      <if test="record.memberOnlySpending != null" >
+        member_only_spending = #{record.memberOnlySpending,jdbcType=INTEGER},
+      </if>
+      <if test="record.memberOnlyDonative != null" >
+        member_only_donative = #{record.memberOnlyDonative,jdbcType=INTEGER},
+      </if>
+      <if test="record.memberSpendingAndDonative != null" >
+        member_spending_and_donative = #{record.memberSpendingAndDonative,jdbcType=INTEGER},
+      </if>
+      <if test="record.memberSpendingOrDonative != null" >
+        member_spending_or_donative = #{record.memberSpendingOrDonative,jdbcType=INTEGER},
+      </if>
+      <if test="record.memberNone != null" >
+        member_none = #{record.memberNone,jdbcType=INTEGER},
+      </if>
+    </set>
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByExample" parameterType="map" >
+    update sy_platform_stats
+    set rec_id = #{record.recId,jdbcType=INTEGER},
+      latest_refund_rate = #{record.latestRefundRate,jdbcType=DECIMAL},
+      latest_complain_rate = #{record.latestComplainRate,jdbcType=DECIMAL},
+      stats_time = #{record.statsTime,jdbcType=INTEGER},
+      latest_send_speed = #{record.latestSendSpeed,jdbcType=DECIMAL},
+      daai_order_amount = #{record.daaiOrderAmount,jdbcType=DECIMAL},
+      daai_order_count = #{record.daaiOrderCount,jdbcType=INTEGER},
+      daai_refund_count = #{record.daaiRefundCount,jdbcType=INTEGER},
+      daai_complain_count = #{record.daaiComplainCount,jdbcType=INTEGER},
+      jicai_order_amount = #{record.jicaiOrderAmount,jdbcType=DECIMAL},
+      jicai_order_count = #{record.jicaiOrderCount,jdbcType=INTEGER},
+      jicai_refund_count = #{record.jicaiRefundCount,jdbcType=INTEGER},
+      jicai_complain_count = #{record.jicaiComplainCount,jdbcType=INTEGER},
+      syshop_order_amount = #{record.syshopOrderAmount,jdbcType=DECIMAL},
+      syshop_order_count = #{record.syshopOrderCount,jdbcType=INTEGER},
+      syshop_refund_count = #{record.syshopRefundCount,jdbcType=INTEGER},
+      syshop_complain_count = #{record.syshopComplainCount,jdbcType=INTEGER},
+      increase_member_count = #{record.increaseMemberCount,jdbcType=INTEGER},
+      increase_invite_member_count = #{record.increaseInviteMemberCount,jdbcType=INTEGER},
+      member_count = #{record.memberCount,jdbcType=INTEGER},
+      invite_member_count = #{record.inviteMemberCount,jdbcType=INTEGER},
+      other_increase_member_count = #{record.otherIncreaseMemberCount,jdbcType=INTEGER},
+      other_increase_invite_member_count = #{record.otherIncreaseInviteMemberCount,jdbcType=INTEGER},
+      other_member_count = #{record.otherMemberCount,jdbcType=INTEGER},
+      other_invite_member_count = #{record.otherInviteMemberCount,jdbcType=INTEGER},
+      all_member_regist_count = #{record.allMemberRegistCount,jdbcType=INTEGER},
+      add_time = #{record.addTime,jdbcType=INTEGER},
+      member_only_spending = #{record.memberOnlySpending,jdbcType=INTEGER},
+      member_only_donative = #{record.memberOnlyDonative,jdbcType=INTEGER},
+      member_spending_and_donative = #{record.memberSpendingAndDonative,jdbcType=INTEGER},
+      member_spending_or_donative = #{record.memberSpendingOrDonative,jdbcType=INTEGER},
+      member_none = #{record.memberNone,jdbcType=INTEGER}
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByPrimaryKeySelective" parameterType="com.shanyuan.platform.ms.dao.goods.entity.SyPlatformStats" >
+    update sy_platform_stats
+    <set >
+      <if test="latestRefundRate != null" >
+        latest_refund_rate = #{latestRefundRate,jdbcType=DECIMAL},
+      </if>
+      <if test="latestComplainRate != null" >
+        latest_complain_rate = #{latestComplainRate,jdbcType=DECIMAL},
+      </if>
+      <if test="statsTime != null" >
+        stats_time = #{statsTime,jdbcType=INTEGER},
+      </if>
+      <if test="latestSendSpeed != null" >
+        latest_send_speed = #{latestSendSpeed,jdbcType=DECIMAL},
+      </if>
+      <if test="daaiOrderAmount != null" >
+        daai_order_amount = #{daaiOrderAmount,jdbcType=DECIMAL},
+      </if>
+      <if test="daaiOrderCount != null" >
+        daai_order_count = #{daaiOrderCount,jdbcType=INTEGER},
+      </if>
+      <if test="daaiRefundCount != null" >
+        daai_refund_count = #{daaiRefundCount,jdbcType=INTEGER},
+      </if>
+      <if test="daaiComplainCount != null" >
+        daai_complain_count = #{daaiComplainCount,jdbcType=INTEGER},
+      </if>
+      <if test="jicaiOrderAmount != null" >
+        jicai_order_amount = #{jicaiOrderAmount,jdbcType=DECIMAL},
+      </if>
+      <if test="jicaiOrderCount != null" >
+        jicai_order_count = #{jicaiOrderCount,jdbcType=INTEGER},
+      </if>
+      <if test="jicaiRefundCount != null" >
+        jicai_refund_count = #{jicaiRefundCount,jdbcType=INTEGER},
+      </if>
+      <if test="jicaiComplainCount != null" >
+        jicai_complain_count = #{jicaiComplainCount,jdbcType=INTEGER},
+      </if>
+      <if test="syshopOrderAmount != null" >
+        syshop_order_amount = #{syshopOrderAmount,jdbcType=DECIMAL},
+      </if>
+      <if test="syshopOrderCount != null" >
+        syshop_order_count = #{syshopOrderCount,jdbcType=INTEGER},
+      </if>
+      <if test="syshopRefundCount != null" >
+        syshop_refund_count = #{syshopRefundCount,jdbcType=INTEGER},
+      </if>
+      <if test="syshopComplainCount != null" >
+        syshop_complain_count = #{syshopComplainCount,jdbcType=INTEGER},
+      </if>
+      <if test="increaseMemberCount != null" >
+        increase_member_count = #{increaseMemberCount,jdbcType=INTEGER},
+      </if>
+      <if test="increaseInviteMemberCount != null" >
+        increase_invite_member_count = #{increaseInviteMemberCount,jdbcType=INTEGER},
+      </if>
+      <if test="memberCount != null" >
+        member_count = #{memberCount,jdbcType=INTEGER},
+      </if>
+      <if test="inviteMemberCount != null" >
+        invite_member_count = #{inviteMemberCount,jdbcType=INTEGER},
+      </if>
+      <if test="otherIncreaseMemberCount != null" >
+        other_increase_member_count = #{otherIncreaseMemberCount,jdbcType=INTEGER},
+      </if>
+      <if test="otherIncreaseInviteMemberCount != null" >
+        other_increase_invite_member_count = #{otherIncreaseInviteMemberCount,jdbcType=INTEGER},
+      </if>
+      <if test="otherMemberCount != null" >
+        other_member_count = #{otherMemberCount,jdbcType=INTEGER},
+      </if>
+      <if test="otherInviteMemberCount != null" >
+        other_invite_member_count = #{otherInviteMemberCount,jdbcType=INTEGER},
+      </if>
+      <if test="allMemberRegistCount != null" >
+        all_member_regist_count = #{allMemberRegistCount,jdbcType=INTEGER},
+      </if>
+      <if test="addTime != null" >
+        add_time = #{addTime,jdbcType=INTEGER},
+      </if>
+      <if test="memberOnlySpending != null" >
+        member_only_spending = #{memberOnlySpending,jdbcType=INTEGER},
+      </if>
+      <if test="memberOnlyDonative != null" >
+        member_only_donative = #{memberOnlyDonative,jdbcType=INTEGER},
+      </if>
+      <if test="memberSpendingAndDonative != null" >
+        member_spending_and_donative = #{memberSpendingAndDonative,jdbcType=INTEGER},
+      </if>
+      <if test="memberSpendingOrDonative != null" >
+        member_spending_or_donative = #{memberSpendingOrDonative,jdbcType=INTEGER},
+      </if>
+      <if test="memberNone != null" >
+        member_none = #{memberNone,jdbcType=INTEGER},
+      </if>
+    </set>
+    where rec_id = #{recId,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.shanyuan.platform.ms.dao.goods.entity.SyPlatformStats" >
+    update sy_platform_stats
+    set latest_refund_rate = #{latestRefundRate,jdbcType=DECIMAL},
+      latest_complain_rate = #{latestComplainRate,jdbcType=DECIMAL},
+      stats_time = #{statsTime,jdbcType=INTEGER},
+      latest_send_speed = #{latestSendSpeed,jdbcType=DECIMAL},
+      daai_order_amount = #{daaiOrderAmount,jdbcType=DECIMAL},
+      daai_order_count = #{daaiOrderCount,jdbcType=INTEGER},
+      daai_refund_count = #{daaiRefundCount,jdbcType=INTEGER},
+      daai_complain_count = #{daaiComplainCount,jdbcType=INTEGER},
+      jicai_order_amount = #{jicaiOrderAmount,jdbcType=DECIMAL},
+      jicai_order_count = #{jicaiOrderCount,jdbcType=INTEGER},
+      jicai_refund_count = #{jicaiRefundCount,jdbcType=INTEGER},
+      jicai_complain_count = #{jicaiComplainCount,jdbcType=INTEGER},
+      syshop_order_amount = #{syshopOrderAmount,jdbcType=DECIMAL},
+      syshop_order_count = #{syshopOrderCount,jdbcType=INTEGER},
+      syshop_refund_count = #{syshopRefundCount,jdbcType=INTEGER},
+      syshop_complain_count = #{syshopComplainCount,jdbcType=INTEGER},
+      increase_member_count = #{increaseMemberCount,jdbcType=INTEGER},
+      increase_invite_member_count = #{increaseInviteMemberCount,jdbcType=INTEGER},
+      member_count = #{memberCount,jdbcType=INTEGER},
+      invite_member_count = #{inviteMemberCount,jdbcType=INTEGER},
+      other_increase_member_count = #{otherIncreaseMemberCount,jdbcType=INTEGER},
+      other_increase_invite_member_count = #{otherIncreaseInviteMemberCount,jdbcType=INTEGER},
+      other_member_count = #{otherMemberCount,jdbcType=INTEGER},
+      other_invite_member_count = #{otherInviteMemberCount,jdbcType=INTEGER},
+      all_member_regist_count = #{allMemberRegistCount,jdbcType=INTEGER},
+      add_time = #{addTime,jdbcType=INTEGER},
+      member_only_spending = #{memberOnlySpending,jdbcType=INTEGER},
+      member_only_donative = #{memberOnlyDonative,jdbcType=INTEGER},
+      member_spending_and_donative = #{memberSpendingAndDonative,jdbcType=INTEGER},
+      member_spending_or_donative = #{memberSpendingOrDonative,jdbcType=INTEGER},
+      member_none = #{memberNone,jdbcType=INTEGER}
+    where rec_id = #{recId,jdbcType=INTEGER}
+  </update>
+  
+  <select id="selectPlatformInfo" resultMap="BaseResultMap">
+    SELECT 
+    IFNULL(latest_refund_rate,0) latest_refund_rate,IFNULL(latest_complain_rate,0) latest_complain_rate 
+    FROM sy_platform_stats 
+	WHERE rec_id=(SELECT MAX(rec_id) FROM sy_platform_stats)
+  </select>
+</mapper>

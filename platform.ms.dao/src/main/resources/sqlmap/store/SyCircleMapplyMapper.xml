@@ -1,0 +1,211 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.shanyuan.platform.ms.dao.store.mapper.SyCircleMapplyMapper" >
+  <resultMap id="BaseResultMap" type="com.shanyuan.platform.ms.dao.store.entity.SyCircleMapply" >
+    <id column="mapply_id" property="mapplyId" jdbcType="INTEGER" />
+    <result column="circle_id" property="circleId" jdbcType="INTEGER" />
+    <result column="member_id" property="memberId" jdbcType="INTEGER" />
+    <result column="mapply_reason" property="mapplyReason" jdbcType="VARCHAR" />
+    <result column="mapply_time" property="mapplyTime" jdbcType="VARCHAR" />
+  </resultMap>
+  <sql id="Example_Where_Clause" >
+    <where >
+      <foreach collection="oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Update_By_Example_Where_Clause" >
+    <where >
+      <foreach collection="example.oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Base_Column_List" >
+    mapply_id, circle_id, member_id, mapply_reason, mapply_time
+  </sql>
+  <select id="selectByExample" resultMap="BaseResultMap" parameterType="com.shanyuan.platform.ms.dao.store.entity.SyCircleMapplyExample" >
+    select
+    <if test="distinct" >
+      distinct
+    </if>
+    <include refid="Base_Column_List" />
+    from sy_circle_mapply
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null" >
+      order by ${orderByClause}
+    </if>
+  </select>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+    select 
+    <include refid="Base_Column_List" />
+    from sy_circle_mapply
+    where mapply_id = #{mapplyId,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+    delete from sy_circle_mapply
+    where mapply_id = #{mapplyId,jdbcType=INTEGER}
+  </delete>
+  <delete id="deleteByExample" parameterType="com.shanyuan.platform.ms.dao.store.entity.SyCircleMapplyExample" >
+    delete from sy_circle_mapply
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </delete>
+  <insert id="insert" parameterType="com.shanyuan.platform.ms.dao.store.entity.SyCircleMapply" >
+    <selectKey resultType="java.lang.Integer" keyProperty="mapplyId" order="AFTER" >
+      SELECT LAST_INSERT_ID()
+    </selectKey>
+    insert into sy_circle_mapply (circle_id, member_id, mapply_reason, 
+      mapply_time)
+    values (#{circleId,jdbcType=INTEGER}, #{memberId,jdbcType=INTEGER}, #{mapplyReason,jdbcType=VARCHAR}, 
+      #{mapplyTime,jdbcType=VARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="com.shanyuan.platform.ms.dao.store.entity.SyCircleMapply" >
+    <selectKey resultType="java.lang.Integer" keyProperty="mapplyId" order="AFTER" >
+      SELECT LAST_INSERT_ID()
+    </selectKey>
+    insert into sy_circle_mapply
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="circleId != null" >
+        circle_id,
+      </if>
+      <if test="memberId != null" >
+        member_id,
+      </if>
+      <if test="mapplyReason != null" >
+        mapply_reason,
+      </if>
+      <if test="mapplyTime != null" >
+        mapply_time,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="circleId != null" >
+        #{circleId,jdbcType=INTEGER},
+      </if>
+      <if test="memberId != null" >
+        #{memberId,jdbcType=INTEGER},
+      </if>
+      <if test="mapplyReason != null" >
+        #{mapplyReason,jdbcType=VARCHAR},
+      </if>
+      <if test="mapplyTime != null" >
+        #{mapplyTime,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <select id="countByExample" parameterType="com.shanyuan.platform.ms.dao.store.entity.SyCircleMapplyExample" resultType="java.lang.Integer" >
+    select count(*) from sy_circle_mapply
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </select>
+  <update id="updateByExampleSelective" parameterType="map" >
+    update sy_circle_mapply
+    <set >
+      <if test="record.mapplyId != null" >
+        mapply_id = #{record.mapplyId,jdbcType=INTEGER},
+      </if>
+      <if test="record.circleId != null" >
+        circle_id = #{record.circleId,jdbcType=INTEGER},
+      </if>
+      <if test="record.memberId != null" >
+        member_id = #{record.memberId,jdbcType=INTEGER},
+      </if>
+      <if test="record.mapplyReason != null" >
+        mapply_reason = #{record.mapplyReason,jdbcType=VARCHAR},
+      </if>
+      <if test="record.mapplyTime != null" >
+        mapply_time = #{record.mapplyTime,jdbcType=VARCHAR},
+      </if>
+    </set>
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByExample" parameterType="map" >
+    update sy_circle_mapply
+    set mapply_id = #{record.mapplyId,jdbcType=INTEGER},
+      circle_id = #{record.circleId,jdbcType=INTEGER},
+      member_id = #{record.memberId,jdbcType=INTEGER},
+      mapply_reason = #{record.mapplyReason,jdbcType=VARCHAR},
+      mapply_time = #{record.mapplyTime,jdbcType=VARCHAR}
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByPrimaryKeySelective" parameterType="com.shanyuan.platform.ms.dao.store.entity.SyCircleMapply" >
+    update sy_circle_mapply
+    <set >
+      <if test="circleId != null" >
+        circle_id = #{circleId,jdbcType=INTEGER},
+      </if>
+      <if test="memberId != null" >
+        member_id = #{memberId,jdbcType=INTEGER},
+      </if>
+      <if test="mapplyReason != null" >
+        mapply_reason = #{mapplyReason,jdbcType=VARCHAR},
+      </if>
+      <if test="mapplyTime != null" >
+        mapply_time = #{mapplyTime,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where mapply_id = #{mapplyId,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.shanyuan.platform.ms.dao.store.entity.SyCircleMapply" >
+    update sy_circle_mapply
+    set circle_id = #{circleId,jdbcType=INTEGER},
+      member_id = #{memberId,jdbcType=INTEGER},
+      mapply_reason = #{mapplyReason,jdbcType=VARCHAR},
+      mapply_time = #{mapplyTime,jdbcType=VARCHAR}
+    where mapply_id = #{mapplyId,jdbcType=INTEGER}
+  </update>
+</mapper>

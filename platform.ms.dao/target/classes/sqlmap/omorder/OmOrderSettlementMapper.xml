@@ -1,0 +1,338 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.shanyuan.platform.ms.dao.omorder.mapper.OmOrderSettlementMapper" >
+  <resultMap id="BaseResultMap" type="com.shanyuan.platform.ms.dao.omorder.entity.OmOrderSettlement" >
+    <id column="order_id" property="orderId" jdbcType="VARCHAR" />
+    <result column="main_id" property="mainId" jdbcType="VARCHAR" />
+    <result column="handing_rate" property="handingRate" jdbcType="INTEGER" />
+    <result column="handing_fee" property="handingFee" jdbcType="INTEGER" />
+    <result column="base_fee" property="baseFee" jdbcType="INTEGER" />
+    <result column="send_point_rate" property="sendPointRate" jdbcType="INTEGER" />
+    <result column="send_point" property="sendPoint" jdbcType="INTEGER" />
+    <result column="help_rate" property="helpRate" jdbcType="INTEGER" />
+    <result column="help_fee" property="helpFee" jdbcType="INTEGER" />
+    <result column="fund_rate" property="fundRate" jdbcType="INTEGER" />
+    <result column="fund_fee" property="fundFee" jdbcType="INTEGER" />
+    <result column="seller_income" property="sellerIncome" jdbcType="INTEGER" />
+    <result column="Column_13" property="column13" jdbcType="CHAR" />
+  </resultMap>
+  <sql id="Example_Where_Clause" >
+    <where >
+      <foreach collection="oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Update_By_Example_Where_Clause" >
+    <where >
+      <foreach collection="example.oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Base_Column_List" >
+    order_id, main_id, handing_rate, handing_fee, base_fee, send_point_rate, send_point, 
+    help_rate, help_fee, fund_rate, fund_fee, seller_income, Column_13
+  </sql>
+  <select id="selectByExample" resultMap="BaseResultMap" parameterType="com.shanyuan.platform.ms.dao.omorder.entity.OmOrderSettlementExample" >
+    select
+    <if test="distinct" >
+      distinct
+    </if>
+    <include refid="Base_Column_List" />
+    from om_order_settlement
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null" >
+      order by ${orderByClause}
+    </if>
+  </select>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.String" >
+    select 
+    <include refid="Base_Column_List" />
+    from om_order_settlement
+    where order_id = #{orderId,jdbcType=VARCHAR}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.String" >
+    delete from om_order_settlement
+    where order_id = #{orderId,jdbcType=VARCHAR}
+  </delete>
+  <delete id="deleteByExample" parameterType="com.shanyuan.platform.ms.dao.omorder.entity.OmOrderSettlementExample" >
+    delete from om_order_settlement
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </delete>
+  <insert id="insert" parameterType="com.shanyuan.platform.ms.dao.omorder.entity.OmOrderSettlement" >
+    insert into om_order_settlement (order_id, main_id, handing_rate, 
+      handing_fee, base_fee, send_point_rate, 
+      send_point, help_rate, help_fee, 
+      fund_rate, fund_fee, seller_income, 
+      Column_13)
+    values (#{orderId,jdbcType=VARCHAR}, #{mainId,jdbcType=VARCHAR}, #{handingRate,jdbcType=INTEGER}, 
+      #{handingFee,jdbcType=INTEGER}, #{baseFee,jdbcType=INTEGER}, #{sendPointRate,jdbcType=INTEGER}, 
+      #{sendPoint,jdbcType=INTEGER}, #{helpRate,jdbcType=INTEGER}, #{helpFee,jdbcType=INTEGER}, 
+      #{fundRate,jdbcType=INTEGER}, #{fundFee,jdbcType=INTEGER}, #{sellerIncome,jdbcType=INTEGER}, 
+      #{column13,jdbcType=CHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="com.shanyuan.platform.ms.dao.omorder.entity.OmOrderSettlement" >
+    insert into om_order_settlement
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="orderId != null" >
+        order_id,
+      </if>
+      <if test="mainId != null" >
+        main_id,
+      </if>
+      <if test="handingRate != null" >
+        handing_rate,
+      </if>
+      <if test="handingFee != null" >
+        handing_fee,
+      </if>
+      <if test="baseFee != null" >
+        base_fee,
+      </if>
+      <if test="sendPointRate != null" >
+        send_point_rate,
+      </if>
+      <if test="sendPoint != null" >
+        send_point,
+      </if>
+      <if test="helpRate != null" >
+        help_rate,
+      </if>
+      <if test="helpFee != null" >
+        help_fee,
+      </if>
+      <if test="fundRate != null" >
+        fund_rate,
+      </if>
+      <if test="fundFee != null" >
+        fund_fee,
+      </if>
+      <if test="sellerIncome != null" >
+        seller_income,
+      </if>
+      <if test="column13 != null" >
+        Column_13,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="orderId != null" >
+        #{orderId,jdbcType=VARCHAR},
+      </if>
+      <if test="mainId != null" >
+        #{mainId,jdbcType=VARCHAR},
+      </if>
+      <if test="handingRate != null" >
+        #{handingRate,jdbcType=INTEGER},
+      </if>
+      <if test="handingFee != null" >
+        #{handingFee,jdbcType=INTEGER},
+      </if>
+      <if test="baseFee != null" >
+        #{baseFee,jdbcType=INTEGER},
+      </if>
+      <if test="sendPointRate != null" >
+        #{sendPointRate,jdbcType=INTEGER},
+      </if>
+      <if test="sendPoint != null" >
+        #{sendPoint,jdbcType=INTEGER},
+      </if>
+      <if test="helpRate != null" >
+        #{helpRate,jdbcType=INTEGER},
+      </if>
+      <if test="helpFee != null" >
+        #{helpFee,jdbcType=INTEGER},
+      </if>
+      <if test="fundRate != null" >
+        #{fundRate,jdbcType=INTEGER},
+      </if>
+      <if test="fundFee != null" >
+        #{fundFee,jdbcType=INTEGER},
+      </if>
+      <if test="sellerIncome != null" >
+        #{sellerIncome,jdbcType=INTEGER},
+      </if>
+      <if test="column13 != null" >
+        #{column13,jdbcType=CHAR},
+      </if>
+    </trim>
+  </insert>
+  <select id="countByExample" parameterType="com.shanyuan.platform.ms.dao.omorder.entity.OmOrderSettlementExample" resultType="java.lang.Integer" >
+    select count(*) from om_order_settlement
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </select>
+  <update id="updateByExampleSelective" parameterType="map" >
+    update om_order_settlement
+    <set >
+      <if test="record.orderId != null" >
+        order_id = #{record.orderId,jdbcType=VARCHAR},
+      </if>
+      <if test="record.mainId != null" >
+        main_id = #{record.mainId,jdbcType=VARCHAR},
+      </if>
+      <if test="record.handingRate != null" >
+        handing_rate = #{record.handingRate,jdbcType=INTEGER},
+      </if>
+      <if test="record.handingFee != null" >
+        handing_fee = #{record.handingFee,jdbcType=INTEGER},
+      </if>
+      <if test="record.baseFee != null" >
+        base_fee = #{record.baseFee,jdbcType=INTEGER},
+      </if>
+      <if test="record.sendPointRate != null" >
+        send_point_rate = #{record.sendPointRate,jdbcType=INTEGER},
+      </if>
+      <if test="record.sendPoint != null" >
+        send_point = #{record.sendPoint,jdbcType=INTEGER},
+      </if>
+      <if test="record.helpRate != null" >
+        help_rate = #{record.helpRate,jdbcType=INTEGER},
+      </if>
+      <if test="record.helpFee != null" >
+        help_fee = #{record.helpFee,jdbcType=INTEGER},
+      </if>
+      <if test="record.fundRate != null" >
+        fund_rate = #{record.fundRate,jdbcType=INTEGER},
+      </if>
+      <if test="record.fundFee != null" >
+        fund_fee = #{record.fundFee,jdbcType=INTEGER},
+      </if>
+      <if test="record.sellerIncome != null" >
+        seller_income = #{record.sellerIncome,jdbcType=INTEGER},
+      </if>
+      <if test="record.column13 != null" >
+        Column_13 = #{record.column13,jdbcType=CHAR},
+      </if>
+    </set>
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByExample" parameterType="map" >
+    update om_order_settlement
+    set order_id = #{record.orderId,jdbcType=VARCHAR},
+      main_id = #{record.mainId,jdbcType=VARCHAR},
+      handing_rate = #{record.handingRate,jdbcType=INTEGER},
+      handing_fee = #{record.handingFee,jdbcType=INTEGER},
+      base_fee = #{record.baseFee,jdbcType=INTEGER},
+      send_point_rate = #{record.sendPointRate,jdbcType=INTEGER},
+      send_point = #{record.sendPoint,jdbcType=INTEGER},
+      help_rate = #{record.helpRate,jdbcType=INTEGER},
+      help_fee = #{record.helpFee,jdbcType=INTEGER},
+      fund_rate = #{record.fundRate,jdbcType=INTEGER},
+      fund_fee = #{record.fundFee,jdbcType=INTEGER},
+      seller_income = #{record.sellerIncome,jdbcType=INTEGER},
+      Column_13 = #{record.column13,jdbcType=CHAR}
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByPrimaryKeySelective" parameterType="com.shanyuan.platform.ms.dao.omorder.entity.OmOrderSettlement" >
+    update om_order_settlement
+    <set >
+      <if test="mainId != null" >
+        main_id = #{mainId,jdbcType=VARCHAR},
+      </if>
+      <if test="handingRate != null" >
+        handing_rate = #{handingRate,jdbcType=INTEGER},
+      </if>
+      <if test="handingFee != null" >
+        handing_fee = #{handingFee,jdbcType=INTEGER},
+      </if>
+      <if test="baseFee != null" >
+        base_fee = #{baseFee,jdbcType=INTEGER},
+      </if>
+      <if test="sendPointRate != null" >
+        send_point_rate = #{sendPointRate,jdbcType=INTEGER},
+      </if>
+      <if test="sendPoint != null" >
+        send_point = #{sendPoint,jdbcType=INTEGER},
+      </if>
+      <if test="helpRate != null" >
+        help_rate = #{helpRate,jdbcType=INTEGER},
+      </if>
+      <if test="helpFee != null" >
+        help_fee = #{helpFee,jdbcType=INTEGER},
+      </if>
+      <if test="fundRate != null" >
+        fund_rate = #{fundRate,jdbcType=INTEGER},
+      </if>
+      <if test="fundFee != null" >
+        fund_fee = #{fundFee,jdbcType=INTEGER},
+      </if>
+      <if test="sellerIncome != null" >
+        seller_income = #{sellerIncome,jdbcType=INTEGER},
+      </if>
+      <if test="column13 != null" >
+        Column_13 = #{column13,jdbcType=CHAR},
+      </if>
+    </set>
+    where order_id = #{orderId,jdbcType=VARCHAR}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.shanyuan.platform.ms.dao.omorder.entity.OmOrderSettlement" >
+    update om_order_settlement
+    set main_id = #{mainId,jdbcType=VARCHAR},
+      handing_rate = #{handingRate,jdbcType=INTEGER},
+      handing_fee = #{handingFee,jdbcType=INTEGER},
+      base_fee = #{baseFee,jdbcType=INTEGER},
+      send_point_rate = #{sendPointRate,jdbcType=INTEGER},
+      send_point = #{sendPoint,jdbcType=INTEGER},
+      help_rate = #{helpRate,jdbcType=INTEGER},
+      help_fee = #{helpFee,jdbcType=INTEGER},
+      fund_rate = #{fundRate,jdbcType=INTEGER},
+      fund_fee = #{fundFee,jdbcType=INTEGER},
+      seller_income = #{sellerIncome,jdbcType=INTEGER},
+      Column_13 = #{column13,jdbcType=CHAR}
+    where order_id = #{orderId,jdbcType=VARCHAR}
+  </update>
+</mapper>

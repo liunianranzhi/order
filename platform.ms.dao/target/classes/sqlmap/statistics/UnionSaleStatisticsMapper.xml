@@ -1,0 +1,596 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.shanyuan.platform.ms.dao.statistics.mapper.UnionSaleStatisticsMapper" >
+  <resultMap id="BaseResultMap" type="com.shanyuan.platform.ms.dao.statistics.entity.UnionSaleStatistics" >
+    <id column="id" property="id" jdbcType="INTEGER" />
+    <result column="assist_order_num" property="assistOrderNum" jdbcType="INTEGER" />
+    <result column="assist_sale_num" property="assistSaleNum" jdbcType="INTEGER" />
+    <result column="assist_sale_amount" property="assistSaleAmount" jdbcType="DECIMAL" />
+    <result column="assist_help_price" property="assistHelpPrice" jdbcType="DECIMAL" />
+    <result column="assist_self_help_price" property="assistSelfHelpPrice" jdbcType="DECIMAL" />
+    <result column="poor_order_num" property="poorOrderNum" jdbcType="INTEGER" />
+    <result column="poor_sale_num" property="poorSaleNum" jdbcType="INTEGER" />
+    <result column="poor_sale_amount" property="poorSaleAmount" jdbcType="DECIMAL" />
+    <result column="poor_self_help_price" property="poorSelfHelpPrice" jdbcType="DECIMAL" />
+    <result column="syzx_online_order_num" property="syzxOnlineOrderNum" jdbcType="INTEGER" />
+    <result column="syzx_online_sale_num" property="syzxOnlineSaleNum" jdbcType="INTEGER" />
+    <result column="syzx_online_sale_amount" property="syzxOnlineSaleAmount" jdbcType="DECIMAL" />
+    <result column="syzx_online_help_price" property="syzxOnlineHelpPrice" jdbcType="DECIMAL" />
+    <result column="syzx_online_self_help_price" property="syzxOnlineSelfHelpPrice" jdbcType="DECIMAL" />
+    <result column="syzx_offline_order_num" property="syzxOfflineOrderNum" jdbcType="INTEGER" />
+    <result column="syzx_offline_sale_num" property="syzxOfflineSaleNum" jdbcType="INTEGER" />
+    <result column="syzx_offline_sale_amount" property="syzxOfflineSaleAmount" jdbcType="DECIMAL" />
+    <result column="syzx_offline_help_price" property="syzxOfflineHelpPrice" jdbcType="DECIMAL" />
+    <result column="syzx_offline_self_help_price" property="syzxOfflineSelfHelpPrice" jdbcType="DECIMAL" />
+    <result column="c_time" property="cTime" jdbcType="INTEGER" />
+    <result column="union_id" property="unionId" jdbcType="INTEGER" />
+    <result column="union_name" property="unionName" jdbcType="VARCHAR" />
+    <result column="area_id" property="areaId" jdbcType="INTEGER" />
+    <result column="area_name" property="areaName" jdbcType="VARCHAR" />
+    <result column="channel" property="channel" jdbcType="VARCHAR" />
+  </resultMap>
+  <sql id="Example_Where_Clause" >
+    <where >
+      <foreach collection="oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Update_By_Example_Where_Clause" >
+    <where >
+      <foreach collection="example.oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Base_Column_List" >
+    id, assist_order_num, assist_sale_num, assist_sale_amount, assist_help_price, assist_self_help_price, 
+    poor_order_num, poor_sale_num, poor_sale_amount, poor_self_help_price, syzx_online_order_num, 
+    syzx_online_sale_num, syzx_online_sale_amount, syzx_online_help_price, syzx_online_self_help_price, 
+    syzx_offline_order_num, syzx_offline_sale_num, syzx_offline_sale_amount, syzx_offline_help_price, 
+    syzx_offline_self_help_price, c_time, union_id, union_name, area_id, area_name, channel
+  </sql>
+  <select id="selectByExample" resultMap="BaseResultMap" parameterType="com.shanyuan.platform.ms.dao.statistics.entity.UnionSaleStatisticsExample" >
+    select
+    <if test="distinct" >
+      distinct
+    </if>
+    <include refid="Base_Column_List" />
+    from statistics_union_sale
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null" >
+      order by ${orderByClause}
+    </if>
+  </select>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+    select 
+    <include refid="Base_Column_List" />
+    from statistics_union_sale
+    where id = #{id,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+    delete from statistics_union_sale
+    where id = #{id,jdbcType=INTEGER}
+  </delete>
+  <delete id="deleteByExample" parameterType="com.shanyuan.platform.ms.dao.statistics.entity.UnionSaleStatisticsExample" >
+    delete from statistics_union_sale
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </delete>
+  <insert id="insert" parameterType="com.shanyuan.platform.ms.dao.statistics.entity.UnionSaleStatistics" >
+    <selectKey resultType="java.lang.Integer" keyProperty="id" order="AFTER" >
+      SELECT LAST_INSERT_ID()
+    </selectKey>
+    insert into statistics_union_sale (assist_order_num, assist_sale_num, assist_sale_amount, 
+      assist_help_price, assist_self_help_price, poor_order_num, 
+      poor_sale_num, poor_sale_amount, poor_self_help_price, 
+      syzx_online_order_num, syzx_online_sale_num, 
+      syzx_online_sale_amount, syzx_online_help_price, 
+      syzx_online_self_help_price, syzx_offline_order_num, 
+      syzx_offline_sale_num, syzx_offline_sale_amount, 
+      syzx_offline_help_price, syzx_offline_self_help_price, 
+      c_time, union_id, union_name, 
+      area_id, area_name, channel
+      )
+    values (#{assistOrderNum,jdbcType=INTEGER}, #{assistSaleNum,jdbcType=INTEGER}, #{assistSaleAmount,jdbcType=DECIMAL}, 
+      #{assistHelpPrice,jdbcType=DECIMAL}, #{assistSelfHelpPrice,jdbcType=DECIMAL}, #{poorOrderNum,jdbcType=INTEGER}, 
+      #{poorSaleNum,jdbcType=INTEGER}, #{poorSaleAmount,jdbcType=DECIMAL}, #{poorSelfHelpPrice,jdbcType=DECIMAL}, 
+      #{syzxOnlineOrderNum,jdbcType=INTEGER}, #{syzxOnlineSaleNum,jdbcType=INTEGER}, 
+      #{syzxOnlineSaleAmount,jdbcType=DECIMAL}, #{syzxOnlineHelpPrice,jdbcType=DECIMAL}, 
+      #{syzxOnlineSelfHelpPrice,jdbcType=DECIMAL}, #{syzxOfflineOrderNum,jdbcType=INTEGER}, 
+      #{syzxOfflineSaleNum,jdbcType=INTEGER}, #{syzxOfflineSaleAmount,jdbcType=DECIMAL}, 
+      #{syzxOfflineHelpPrice,jdbcType=DECIMAL}, #{syzxOfflineSelfHelpPrice,jdbcType=DECIMAL}, 
+      #{cTime,jdbcType=INTEGER}, #{unionId,jdbcType=INTEGER}, #{unionName,jdbcType=VARCHAR}, 
+      #{areaId,jdbcType=INTEGER}, #{areaName,jdbcType=VARCHAR}, #{channel,jdbcType=VARCHAR}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="com.shanyuan.platform.ms.dao.statistics.entity.UnionSaleStatistics" >
+    <selectKey resultType="java.lang.Integer" keyProperty="id" order="AFTER" >
+      SELECT LAST_INSERT_ID()
+    </selectKey>
+    insert into statistics_union_sale
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="assistOrderNum != null" >
+        assist_order_num,
+      </if>
+      <if test="assistSaleNum != null" >
+        assist_sale_num,
+      </if>
+      <if test="assistSaleAmount != null" >
+        assist_sale_amount,
+      </if>
+      <if test="assistHelpPrice != null" >
+        assist_help_price,
+      </if>
+      <if test="assistSelfHelpPrice != null" >
+        assist_self_help_price,
+      </if>
+      <if test="poorOrderNum != null" >
+        poor_order_num,
+      </if>
+      <if test="poorSaleNum != null" >
+        poor_sale_num,
+      </if>
+      <if test="poorSaleAmount != null" >
+        poor_sale_amount,
+      </if>
+      <if test="poorSelfHelpPrice != null" >
+        poor_self_help_price,
+      </if>
+      <if test="syzxOnlineOrderNum != null" >
+        syzx_online_order_num,
+      </if>
+      <if test="syzxOnlineSaleNum != null" >
+        syzx_online_sale_num,
+      </if>
+      <if test="syzxOnlineSaleAmount != null" >
+        syzx_online_sale_amount,
+      </if>
+      <if test="syzxOnlineHelpPrice != null" >
+        syzx_online_help_price,
+      </if>
+      <if test="syzxOnlineSelfHelpPrice != null" >
+        syzx_online_self_help_price,
+      </if>
+      <if test="syzxOfflineOrderNum != null" >
+        syzx_offline_order_num,
+      </if>
+      <if test="syzxOfflineSaleNum != null" >
+        syzx_offline_sale_num,
+      </if>
+      <if test="syzxOfflineSaleAmount != null" >
+        syzx_offline_sale_amount,
+      </if>
+      <if test="syzxOfflineHelpPrice != null" >
+        syzx_offline_help_price,
+      </if>
+      <if test="syzxOfflineSelfHelpPrice != null" >
+        syzx_offline_self_help_price,
+      </if>
+      <if test="cTime != null" >
+        c_time,
+      </if>
+      <if test="unionId != null" >
+        union_id,
+      </if>
+      <if test="unionName != null" >
+        union_name,
+      </if>
+      <if test="areaId != null" >
+        area_id,
+      </if>
+      <if test="areaName != null" >
+        area_name,
+      </if>
+      <if test="channel != null" >
+        channel,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="assistOrderNum != null" >
+        #{assistOrderNum,jdbcType=INTEGER},
+      </if>
+      <if test="assistSaleNum != null" >
+        #{assistSaleNum,jdbcType=INTEGER},
+      </if>
+      <if test="assistSaleAmount != null" >
+        #{assistSaleAmount,jdbcType=DECIMAL},
+      </if>
+      <if test="assistHelpPrice != null" >
+        #{assistHelpPrice,jdbcType=DECIMAL},
+      </if>
+      <if test="assistSelfHelpPrice != null" >
+        #{assistSelfHelpPrice,jdbcType=DECIMAL},
+      </if>
+      <if test="poorOrderNum != null" >
+        #{poorOrderNum,jdbcType=INTEGER},
+      </if>
+      <if test="poorSaleNum != null" >
+        #{poorSaleNum,jdbcType=INTEGER},
+      </if>
+      <if test="poorSaleAmount != null" >
+        #{poorSaleAmount,jdbcType=DECIMAL},
+      </if>
+      <if test="poorSelfHelpPrice != null" >
+        #{poorSelfHelpPrice,jdbcType=DECIMAL},
+      </if>
+      <if test="syzxOnlineOrderNum != null" >
+        #{syzxOnlineOrderNum,jdbcType=INTEGER},
+      </if>
+      <if test="syzxOnlineSaleNum != null" >
+        #{syzxOnlineSaleNum,jdbcType=INTEGER},
+      </if>
+      <if test="syzxOnlineSaleAmount != null" >
+        #{syzxOnlineSaleAmount,jdbcType=DECIMAL},
+      </if>
+      <if test="syzxOnlineHelpPrice != null" >
+        #{syzxOnlineHelpPrice,jdbcType=DECIMAL},
+      </if>
+      <if test="syzxOnlineSelfHelpPrice != null" >
+        #{syzxOnlineSelfHelpPrice,jdbcType=DECIMAL},
+      </if>
+      <if test="syzxOfflineOrderNum != null" >
+        #{syzxOfflineOrderNum,jdbcType=INTEGER},
+      </if>
+      <if test="syzxOfflineSaleNum != null" >
+        #{syzxOfflineSaleNum,jdbcType=INTEGER},
+      </if>
+      <if test="syzxOfflineSaleAmount != null" >
+        #{syzxOfflineSaleAmount,jdbcType=DECIMAL},
+      </if>
+      <if test="syzxOfflineHelpPrice != null" >
+        #{syzxOfflineHelpPrice,jdbcType=DECIMAL},
+      </if>
+      <if test="syzxOfflineSelfHelpPrice != null" >
+        #{syzxOfflineSelfHelpPrice,jdbcType=DECIMAL},
+      </if>
+      <if test="cTime != null" >
+        #{cTime,jdbcType=INTEGER},
+      </if>
+      <if test="unionId != null" >
+        #{unionId,jdbcType=INTEGER},
+      </if>
+      <if test="unionName != null" >
+        #{unionName,jdbcType=VARCHAR},
+      </if>
+      <if test="areaId != null" >
+        #{areaId,jdbcType=INTEGER},
+      </if>
+      <if test="areaName != null" >
+        #{areaName,jdbcType=VARCHAR},
+      </if>
+      <if test="channel != null" >
+        #{channel,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <select id="countByExample" parameterType="com.shanyuan.platform.ms.dao.statistics.entity.UnionSaleStatisticsExample" resultType="java.lang.Integer" >
+    select count(*) from statistics_union_sale
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </select>
+  <update id="updateByExampleSelective" parameterType="map" >
+    update statistics_union_sale
+    <set >
+      <if test="record.id != null" >
+        id = #{record.id,jdbcType=INTEGER},
+      </if>
+      <if test="record.assistOrderNum != null" >
+        assist_order_num = #{record.assistOrderNum,jdbcType=INTEGER},
+      </if>
+      <if test="record.assistSaleNum != null" >
+        assist_sale_num = #{record.assistSaleNum,jdbcType=INTEGER},
+      </if>
+      <if test="record.assistSaleAmount != null" >
+        assist_sale_amount = #{record.assistSaleAmount,jdbcType=DECIMAL},
+      </if>
+      <if test="record.assistHelpPrice != null" >
+        assist_help_price = #{record.assistHelpPrice,jdbcType=DECIMAL},
+      </if>
+      <if test="record.assistSelfHelpPrice != null" >
+        assist_self_help_price = #{record.assistSelfHelpPrice,jdbcType=DECIMAL},
+      </if>
+      <if test="record.poorOrderNum != null" >
+        poor_order_num = #{record.poorOrderNum,jdbcType=INTEGER},
+      </if>
+      <if test="record.poorSaleNum != null" >
+        poor_sale_num = #{record.poorSaleNum,jdbcType=INTEGER},
+      </if>
+      <if test="record.poorSaleAmount != null" >
+        poor_sale_amount = #{record.poorSaleAmount,jdbcType=DECIMAL},
+      </if>
+      <if test="record.poorSelfHelpPrice != null" >
+        poor_self_help_price = #{record.poorSelfHelpPrice,jdbcType=DECIMAL},
+      </if>
+      <if test="record.syzxOnlineOrderNum != null" >
+        syzx_online_order_num = #{record.syzxOnlineOrderNum,jdbcType=INTEGER},
+      </if>
+      <if test="record.syzxOnlineSaleNum != null" >
+        syzx_online_sale_num = #{record.syzxOnlineSaleNum,jdbcType=INTEGER},
+      </if>
+      <if test="record.syzxOnlineSaleAmount != null" >
+        syzx_online_sale_amount = #{record.syzxOnlineSaleAmount,jdbcType=DECIMAL},
+      </if>
+      <if test="record.syzxOnlineHelpPrice != null" >
+        syzx_online_help_price = #{record.syzxOnlineHelpPrice,jdbcType=DECIMAL},
+      </if>
+      <if test="record.syzxOnlineSelfHelpPrice != null" >
+        syzx_online_self_help_price = #{record.syzxOnlineSelfHelpPrice,jdbcType=DECIMAL},
+      </if>
+      <if test="record.syzxOfflineOrderNum != null" >
+        syzx_offline_order_num = #{record.syzxOfflineOrderNum,jdbcType=INTEGER},
+      </if>
+      <if test="record.syzxOfflineSaleNum != null" >
+        syzx_offline_sale_num = #{record.syzxOfflineSaleNum,jdbcType=INTEGER},
+      </if>
+      <if test="record.syzxOfflineSaleAmount != null" >
+        syzx_offline_sale_amount = #{record.syzxOfflineSaleAmount,jdbcType=DECIMAL},
+      </if>
+      <if test="record.syzxOfflineHelpPrice != null" >
+        syzx_offline_help_price = #{record.syzxOfflineHelpPrice,jdbcType=DECIMAL},
+      </if>
+      <if test="record.syzxOfflineSelfHelpPrice != null" >
+        syzx_offline_self_help_price = #{record.syzxOfflineSelfHelpPrice,jdbcType=DECIMAL},
+      </if>
+      <if test="record.cTime != null" >
+        c_time = #{record.cTime,jdbcType=INTEGER},
+      </if>
+      <if test="record.unionId != null" >
+        union_id = #{record.unionId,jdbcType=INTEGER},
+      </if>
+      <if test="record.unionName != null" >
+        union_name = #{record.unionName,jdbcType=VARCHAR},
+      </if>
+      <if test="record.areaId != null" >
+        area_id = #{record.areaId,jdbcType=INTEGER},
+      </if>
+      <if test="record.areaName != null" >
+        area_name = #{record.areaName,jdbcType=VARCHAR},
+      </if>
+      <if test="record.channel != null" >
+        channel = #{record.channel,jdbcType=VARCHAR},
+      </if>
+    </set>
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByExample" parameterType="map" >
+    update statistics_union_sale
+    set id = #{record.id,jdbcType=INTEGER},
+      assist_order_num = #{record.assistOrderNum,jdbcType=INTEGER},
+      assist_sale_num = #{record.assistSaleNum,jdbcType=INTEGER},
+      assist_sale_amount = #{record.assistSaleAmount,jdbcType=DECIMAL},
+      assist_help_price = #{record.assistHelpPrice,jdbcType=DECIMAL},
+      assist_self_help_price = #{record.assistSelfHelpPrice,jdbcType=DECIMAL},
+      poor_order_num = #{record.poorOrderNum,jdbcType=INTEGER},
+      poor_sale_num = #{record.poorSaleNum,jdbcType=INTEGER},
+      poor_sale_amount = #{record.poorSaleAmount,jdbcType=DECIMAL},
+      poor_self_help_price = #{record.poorSelfHelpPrice,jdbcType=DECIMAL},
+      syzx_online_order_num = #{record.syzxOnlineOrderNum,jdbcType=INTEGER},
+      syzx_online_sale_num = #{record.syzxOnlineSaleNum,jdbcType=INTEGER},
+      syzx_online_sale_amount = #{record.syzxOnlineSaleAmount,jdbcType=DECIMAL},
+      syzx_online_help_price = #{record.syzxOnlineHelpPrice,jdbcType=DECIMAL},
+      syzx_online_self_help_price = #{record.syzxOnlineSelfHelpPrice,jdbcType=DECIMAL},
+      syzx_offline_order_num = #{record.syzxOfflineOrderNum,jdbcType=INTEGER},
+      syzx_offline_sale_num = #{record.syzxOfflineSaleNum,jdbcType=INTEGER},
+      syzx_offline_sale_amount = #{record.syzxOfflineSaleAmount,jdbcType=DECIMAL},
+      syzx_offline_help_price = #{record.syzxOfflineHelpPrice,jdbcType=DECIMAL},
+      syzx_offline_self_help_price = #{record.syzxOfflineSelfHelpPrice,jdbcType=DECIMAL},
+      c_time = #{record.cTime,jdbcType=INTEGER},
+      union_id = #{record.unionId,jdbcType=INTEGER},
+      union_name = #{record.unionName,jdbcType=VARCHAR},
+      area_id = #{record.areaId,jdbcType=INTEGER},
+      area_name = #{record.areaName,jdbcType=VARCHAR},
+      channel = #{record.channel,jdbcType=VARCHAR}
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByPrimaryKeySelective" parameterType="com.shanyuan.platform.ms.dao.statistics.entity.UnionSaleStatistics" >
+    update statistics_union_sale
+    <set >
+      <if test="assistOrderNum != null" >
+        assist_order_num = #{assistOrderNum,jdbcType=INTEGER},
+      </if>
+      <if test="assistSaleNum != null" >
+        assist_sale_num = #{assistSaleNum,jdbcType=INTEGER},
+      </if>
+      <if test="assistSaleAmount != null" >
+        assist_sale_amount = #{assistSaleAmount,jdbcType=DECIMAL},
+      </if>
+      <if test="assistHelpPrice != null" >
+        assist_help_price = #{assistHelpPrice,jdbcType=DECIMAL},
+      </if>
+      <if test="assistSelfHelpPrice != null" >
+        assist_self_help_price = #{assistSelfHelpPrice,jdbcType=DECIMAL},
+      </if>
+      <if test="poorOrderNum != null" >
+        poor_order_num = #{poorOrderNum,jdbcType=INTEGER},
+      </if>
+      <if test="poorSaleNum != null" >
+        poor_sale_num = #{poorSaleNum,jdbcType=INTEGER},
+      </if>
+      <if test="poorSaleAmount != null" >
+        poor_sale_amount = #{poorSaleAmount,jdbcType=DECIMAL},
+      </if>
+      <if test="poorSelfHelpPrice != null" >
+        poor_self_help_price = #{poorSelfHelpPrice,jdbcType=DECIMAL},
+      </if>
+      <if test="syzxOnlineOrderNum != null" >
+        syzx_online_order_num = #{syzxOnlineOrderNum,jdbcType=INTEGER},
+      </if>
+      <if test="syzxOnlineSaleNum != null" >
+        syzx_online_sale_num = #{syzxOnlineSaleNum,jdbcType=INTEGER},
+      </if>
+      <if test="syzxOnlineSaleAmount != null" >
+        syzx_online_sale_amount = #{syzxOnlineSaleAmount,jdbcType=DECIMAL},
+      </if>
+      <if test="syzxOnlineHelpPrice != null" >
+        syzx_online_help_price = #{syzxOnlineHelpPrice,jdbcType=DECIMAL},
+      </if>
+      <if test="syzxOnlineSelfHelpPrice != null" >
+        syzx_online_self_help_price = #{syzxOnlineSelfHelpPrice,jdbcType=DECIMAL},
+      </if>
+      <if test="syzxOfflineOrderNum != null" >
+        syzx_offline_order_num = #{syzxOfflineOrderNum,jdbcType=INTEGER},
+      </if>
+      <if test="syzxOfflineSaleNum != null" >
+        syzx_offline_sale_num = #{syzxOfflineSaleNum,jdbcType=INTEGER},
+      </if>
+      <if test="syzxOfflineSaleAmount != null" >
+        syzx_offline_sale_amount = #{syzxOfflineSaleAmount,jdbcType=DECIMAL},
+      </if>
+      <if test="syzxOfflineHelpPrice != null" >
+        syzx_offline_help_price = #{syzxOfflineHelpPrice,jdbcType=DECIMAL},
+      </if>
+      <if test="syzxOfflineSelfHelpPrice != null" >
+        syzx_offline_self_help_price = #{syzxOfflineSelfHelpPrice,jdbcType=DECIMAL},
+      </if>
+      <if test="cTime != null" >
+        c_time = #{cTime,jdbcType=INTEGER},
+      </if>
+      <if test="unionId != null" >
+        union_id = #{unionId,jdbcType=INTEGER},
+      </if>
+      <if test="unionName != null" >
+        union_name = #{unionName,jdbcType=VARCHAR},
+      </if>
+      <if test="areaId != null" >
+        area_id = #{areaId,jdbcType=INTEGER},
+      </if>
+      <if test="areaName != null" >
+        area_name = #{areaName,jdbcType=VARCHAR},
+      </if>
+      <if test="channel != null" >
+        channel = #{channel,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.shanyuan.platform.ms.dao.statistics.entity.UnionSaleStatistics" >
+    update statistics_union_sale
+    set assist_order_num = #{assistOrderNum,jdbcType=INTEGER},
+      assist_sale_num = #{assistSaleNum,jdbcType=INTEGER},
+      assist_sale_amount = #{assistSaleAmount,jdbcType=DECIMAL},
+      assist_help_price = #{assistHelpPrice,jdbcType=DECIMAL},
+      assist_self_help_price = #{assistSelfHelpPrice,jdbcType=DECIMAL},
+      poor_order_num = #{poorOrderNum,jdbcType=INTEGER},
+      poor_sale_num = #{poorSaleNum,jdbcType=INTEGER},
+      poor_sale_amount = #{poorSaleAmount,jdbcType=DECIMAL},
+      poor_self_help_price = #{poorSelfHelpPrice,jdbcType=DECIMAL},
+      syzx_online_order_num = #{syzxOnlineOrderNum,jdbcType=INTEGER},
+      syzx_online_sale_num = #{syzxOnlineSaleNum,jdbcType=INTEGER},
+      syzx_online_sale_amount = #{syzxOnlineSaleAmount,jdbcType=DECIMAL},
+      syzx_online_help_price = #{syzxOnlineHelpPrice,jdbcType=DECIMAL},
+      syzx_online_self_help_price = #{syzxOnlineSelfHelpPrice,jdbcType=DECIMAL},
+      syzx_offline_order_num = #{syzxOfflineOrderNum,jdbcType=INTEGER},
+      syzx_offline_sale_num = #{syzxOfflineSaleNum,jdbcType=INTEGER},
+      syzx_offline_sale_amount = #{syzxOfflineSaleAmount,jdbcType=DECIMAL},
+      syzx_offline_help_price = #{syzxOfflineHelpPrice,jdbcType=DECIMAL},
+      syzx_offline_self_help_price = #{syzxOfflineSelfHelpPrice,jdbcType=DECIMAL},
+      c_time = #{cTime,jdbcType=INTEGER},
+      union_id = #{unionId,jdbcType=INTEGER},
+      union_name = #{unionName,jdbcType=VARCHAR},
+      area_id = #{areaId,jdbcType=INTEGER},
+      area_name = #{areaName,jdbcType=VARCHAR},
+      channel = #{channel,jdbcType=VARCHAR}
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+  
+  <insert id="batchInsert" parameterType="map">
+		<selectKey keyProperty="id" order="AFTER" resultType="java.lang.Integer">
+			SELECT LAST_INSERT_ID()
+		</selectKey>
+		insert into statistics_union_sale (assist_order_num, assist_sale_num, assist_sale_amount, 
+	      assist_help_price, assist_self_help_price, poor_order_num, 
+	      poor_sale_num, poor_sale_amount, poor_self_help_price, 
+	      syzx_online_order_num, syzx_online_sale_num, 
+	      syzx_online_sale_amount, syzx_online_help_price, 
+	      syzx_online_self_help_price, syzx_offline_order_num, 
+	      syzx_offline_sale_num, syzx_offline_sale_amount, 
+	      syzx_offline_help_price, syzx_offline_self_help_price, 
+	      c_time, union_id, union_name, 
+	      area_id, area_name, channel
+	      )
+	    values
+		<foreach collection="records" item="item" index="index" separator=",">
+         (#{item.assistOrderNum,jdbcType=INTEGER}, 			#{item.assistSaleNum,jdbcType=INTEGER}, 		#{item.assistSaleAmount,jdbcType=DECIMAL}, 
+	      #{item.assistHelpPrice,jdbcType=DECIMAL}, 		#{item.assistSelfHelpPrice,jdbcType=DECIMAL}, 	#{item.poorOrderNum,jdbcType=INTEGER}, 
+	      #{item.poorSaleNum,jdbcType=INTEGER}, 			#{item.poorSaleAmount,jdbcType=DECIMAL}, 		#{item.poorSelfHelpPrice,jdbcType=DECIMAL}, 
+	      #{item.syzxOnlineOrderNum,jdbcType=INTEGER}, 		#{item.syzxOnlineSaleNum,jdbcType=INTEGER}, 
+	      #{item.syzxOnlineSaleAmount,jdbcType=DECIMAL}, 	#{item.syzxOnlineHelpPrice,jdbcType=DECIMAL}, 
+	      #{item.syzxOnlineSelfHelpPrice,jdbcType=DECIMAL}, #{item.syzxOfflineOrderNum,jdbcType=INTEGER}, 
+	      #{item.syzxOfflineSaleNum,jdbcType=INTEGER},		#{item.syzxOfflineSaleAmount,jdbcType=DECIMAL}, 
+	      #{item.syzxOfflineHelpPrice,jdbcType=DECIMAL}, 	#{item.syzxOfflineSelfHelpPrice,jdbcType=DECIMAL}, 
+	      #{item.cTime,jdbcType=INTEGER}, 					#{item.unionId,jdbcType=INTEGER}, 			#{item.unionName,jdbcType=VARCHAR}, 
+	      #{item.areaId,jdbcType=INTEGER}, 					#{item.areaName,jdbcType=VARCHAR}, 			#{item.channel,jdbcType=VARCHAR}
+      )
+		</foreach>
+	</insert>
+	
+	<select id="selectSum" resultMap="BaseResultMap" parameterType="com.shanyuan.platform.ms.dao.statistics.entity.UnionSaleStatisticsExample">
+	select
+      SUM(assist_order_num) AS assistOrderNum,SUM(assist_sale_num) AS assistSaleNum,SUM(assist_sale_amount) AS assistSaleAmount,SUM(assist_help_price) AS assistHelpPrice,SUM(assist_self_help_price) AS assistSelfHelpPrice,
+	SUM(poor_order_num) AS poorOrderNum,SUM(poor_sale_num) AS poorSaleNum,SUM(poor_sale_amount) AS poorSaleAmount,SUM(poor_self_help_price) AS poorSelfHelpPrice,
+	SUM(syzx_online_order_num) AS syzxOnlineOrderNum,SUM(syzx_online_sale_num) AS syzxOnlineSaleNum,SUM(syzx_online_sale_amount) AS syzxOnlineSaleAmount,SUM(syzx_online_help_price) AS syzxOnlineHelpPrice,SUM(syzx_online_self_help_price) AS syzxOnlineSelfHelpPrice,
+	SUM(syzx_offline_order_num) AS syzxOfflineOrderNum,SUM(syzx_offline_sale_num) AS syzxOfflineSaleNum,SUM(syzx_offline_sale_amount) AS syzxOfflineSaleAmount,SUM(syzx_offline_help_price) AS syzxOfflineHelpPrice,SUM(syzx_offline_self_help_price) AS syzxOfflineSelfHelpPrice
+    from statistics_union_sale
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null" >
+      order by ${orderByClause}
+    </if>
+  </select>
+  
+    
+</mapper>

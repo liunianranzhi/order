@@ -1,0 +1,399 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.shanyuan.platform.ms.dao.statistics.mapper.PointDetailsTagMapper" >
+  <resultMap id="BaseResultMap" type="com.shanyuan.platform.ms.dao.statistics.entity.PointDetailsTag" >
+    <id column="member_id" property="memberId" jdbcType="INTEGER" />
+    <result column="union_id" property="unionId" jdbcType="INTEGER" />
+    <result column="union_name" property="unionName" jdbcType="VARCHAR" />
+    <result column="channel" property="channel" jdbcType="VARCHAR" />
+    <result column="total_point_tag" property="totalPointTag" jdbcType="BIGINT" />
+    <result column="valid_point_tag" property="validPointTag" jdbcType="BIGINT" />
+    <result column="total_point" property="totalPoint" jdbcType="DECIMAL" />
+    <result column="valid_point" property="validPoint" jdbcType="DECIMAL" />
+    <result column="member_mobile" property="memberMobile" jdbcType="VARCHAR" />
+    <result column="member_truename" property="memberTruename" jdbcType="VARCHAR" />
+    <result column="member_disp_name" property="memberDispName" jdbcType="VARCHAR" />
+    <result column="member_name" property="memberName" jdbcType="VARCHAR" />
+  </resultMap>
+  <sql id="Example_Where_Clause" >
+    <where >
+      <foreach collection="oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Update_By_Example_Where_Clause" >
+    <where >
+      <foreach collection="example.oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Base_Column_List" >
+    member_id, union_id, union_name, channel, total_point_tag, valid_point_tag, total_point, 
+    valid_point, member_mobile, member_truename, member_disp_name, member_name
+  </sql>
+  <select id="selectByExample" resultMap="BaseResultMap" parameterType="com.shanyuan.platform.ms.dao.statistics.entity.PointDetailsTagExample" >
+    select
+    <if test="distinct" >
+      distinct
+    </if>
+    <include refid="Base_Column_List" />
+    from statistics_point_details_tag
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null" >
+      order by ${orderByClause}
+    </if>
+  </select>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+    select 
+    <include refid="Base_Column_List" />
+    from statistics_point_details_tag
+    where member_id = #{memberId,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+    delete from statistics_point_details_tag
+    where member_id = #{memberId,jdbcType=INTEGER}
+  </delete>
+  <delete id="deleteByExample" parameterType="com.shanyuan.platform.ms.dao.statistics.entity.PointDetailsTagExample" >
+    delete from statistics_point_details_tag
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </delete>
+  <insert id="insert" parameterType="com.shanyuan.platform.ms.dao.statistics.entity.PointDetailsTag" >
+    insert into statistics_point_details_tag (member_id, union_id, union_name, 
+      channel, total_point_tag, valid_point_tag, 
+      total_point, valid_point, member_mobile, 
+      member_truename, member_disp_name, member_name
+      )
+    values (#{memberId,jdbcType=INTEGER}, #{unionId,jdbcType=INTEGER}, #{unionName,jdbcType=VARCHAR}, 
+      #{channel,jdbcType=VARCHAR}, #{totalPointTag,jdbcType=BIGINT}, #{validPointTag,jdbcType=BIGINT}, 
+      #{totalPoint,jdbcType=DECIMAL}, #{validPoint,jdbcType=DECIMAL}, #{memberMobile,jdbcType=VARCHAR}, 
+      #{memberTruename,jdbcType=VARCHAR}, #{memberDispName,jdbcType=VARCHAR}, #{memberName,jdbcType=VARCHAR}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="com.shanyuan.platform.ms.dao.statistics.entity.PointDetailsTag" >
+    insert into statistics_point_details_tag
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="memberId != null" >
+        member_id,
+      </if>
+      <if test="unionId != null" >
+        union_id,
+      </if>
+      <if test="unionName != null" >
+        union_name,
+      </if>
+      <if test="channel != null" >
+        channel,
+      </if>
+      <if test="totalPointTag != null" >
+        total_point_tag,
+      </if>
+      <if test="validPointTag != null" >
+        valid_point_tag,
+      </if>
+      <if test="totalPoint != null" >
+        total_point,
+      </if>
+      <if test="validPoint != null" >
+        valid_point,
+      </if>
+      <if test="memberMobile != null" >
+        member_mobile,
+      </if>
+      <if test="memberTruename != null" >
+        member_truename,
+      </if>
+      <if test="memberDispName != null" >
+        member_disp_name,
+      </if>
+      <if test="memberName != null" >
+        member_name,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="memberId != null" >
+        #{memberId,jdbcType=INTEGER},
+      </if>
+      <if test="unionId != null" >
+        #{unionId,jdbcType=INTEGER},
+      </if>
+      <if test="unionName != null" >
+        #{unionName,jdbcType=VARCHAR},
+      </if>
+      <if test="channel != null" >
+        #{channel,jdbcType=VARCHAR},
+      </if>
+      <if test="totalPointTag != null" >
+        #{totalPointTag,jdbcType=BIGINT},
+      </if>
+      <if test="validPointTag != null" >
+        #{validPointTag,jdbcType=BIGINT},
+      </if>
+      <if test="totalPoint != null" >
+        #{totalPoint,jdbcType=DECIMAL},
+      </if>
+      <if test="validPoint != null" >
+        #{validPoint,jdbcType=DECIMAL},
+      </if>
+      <if test="memberMobile != null" >
+        #{memberMobile,jdbcType=VARCHAR},
+      </if>
+      <if test="memberTruename != null" >
+        #{memberTruename,jdbcType=VARCHAR},
+      </if>
+      <if test="memberDispName != null" >
+        #{memberDispName,jdbcType=VARCHAR},
+      </if>
+      <if test="memberName != null" >
+        #{memberName,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <select id="countByExample" parameterType="com.shanyuan.platform.ms.dao.statistics.entity.PointDetailsTagExample" resultType="java.lang.Integer" >
+    select count(*) from statistics_point_details_tag
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </select>
+  <update id="updateByExampleSelective" parameterType="map" >
+    update statistics_point_details_tag
+    <set >
+      <if test="record.memberId != null" >
+        member_id = #{record.memberId,jdbcType=INTEGER},
+      </if>
+      <if test="record.unionId != null" >
+        union_id = #{record.unionId,jdbcType=INTEGER},
+      </if>
+      <if test="record.unionName != null" >
+        union_name = #{record.unionName,jdbcType=VARCHAR},
+      </if>
+      <if test="record.channel != null" >
+        channel = #{record.channel,jdbcType=VARCHAR},
+      </if>
+      <if test="record.totalPointTag != null" >
+        total_point_tag = #{record.totalPointTag,jdbcType=BIGINT},
+      </if>
+      <if test="record.validPointTag != null" >
+        valid_point_tag = #{record.validPointTag,jdbcType=BIGINT},
+      </if>
+      <if test="record.totalPoint != null" >
+        total_point = #{record.totalPoint,jdbcType=DECIMAL},
+      </if>
+      <if test="record.validPoint != null" >
+        valid_point = #{record.validPoint,jdbcType=DECIMAL},
+      </if>
+      <if test="record.memberMobile != null" >
+        member_mobile = #{record.memberMobile,jdbcType=VARCHAR},
+      </if>
+      <if test="record.memberTruename != null" >
+        member_truename = #{record.memberTruename,jdbcType=VARCHAR},
+      </if>
+      <if test="record.memberDispName != null" >
+        member_disp_name = #{record.memberDispName,jdbcType=VARCHAR},
+      </if>
+      <if test="record.memberName != null" >
+        member_name = #{record.memberName,jdbcType=VARCHAR},
+      </if>
+    </set>
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByExample" parameterType="map" >
+    update statistics_point_details_tag
+    set member_id = #{record.memberId,jdbcType=INTEGER},
+      union_id = #{record.unionId,jdbcType=INTEGER},
+      union_name = #{record.unionName,jdbcType=VARCHAR},
+      channel = #{record.channel,jdbcType=VARCHAR},
+      total_point_tag = #{record.totalPointTag,jdbcType=BIGINT},
+      valid_point_tag = #{record.validPointTag,jdbcType=BIGINT},
+      total_point = #{record.totalPoint,jdbcType=DECIMAL},
+      valid_point = #{record.validPoint,jdbcType=DECIMAL},
+      member_mobile = #{record.memberMobile,jdbcType=VARCHAR},
+      member_truename = #{record.memberTruename,jdbcType=VARCHAR},
+      member_disp_name = #{record.memberDispName,jdbcType=VARCHAR},
+      member_name = #{record.memberName,jdbcType=VARCHAR}
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByPrimaryKeySelective" parameterType="com.shanyuan.platform.ms.dao.statistics.entity.PointDetailsTag" >
+    update statistics_point_details_tag
+    <set >
+      <if test="unionId != null" >
+        union_id = #{unionId,jdbcType=INTEGER},
+      </if>
+      <if test="unionName != null" >
+        union_name = #{unionName,jdbcType=VARCHAR},
+      </if>
+      <if test="channel != null" >
+        channel = #{channel,jdbcType=VARCHAR},
+      </if>
+      <if test="totalPointTag != null" >
+        total_point_tag = #{totalPointTag,jdbcType=BIGINT},
+      </if>
+      <if test="validPointTag != null" >
+        valid_point_tag = #{validPointTag,jdbcType=BIGINT},
+      </if>
+      <if test="totalPoint != null" >
+        total_point = #{totalPoint,jdbcType=DECIMAL},
+      </if>
+      <if test="validPoint != null" >
+        valid_point = #{validPoint,jdbcType=DECIMAL},
+      </if>
+      <if test="memberMobile != null" >
+        member_mobile = #{memberMobile,jdbcType=VARCHAR},
+      </if>
+      <if test="memberTruename != null" >
+        member_truename = #{memberTruename,jdbcType=VARCHAR},
+      </if>
+      <if test="memberDispName != null" >
+        member_disp_name = #{memberDispName,jdbcType=VARCHAR},
+      </if>
+      <if test="memberName != null" >
+        member_name = #{memberName,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where member_id = #{memberId,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.shanyuan.platform.ms.dao.statistics.entity.PointDetailsTag" >
+    update statistics_point_details_tag
+    set union_id = #{unionId,jdbcType=INTEGER},
+      union_name = #{unionName,jdbcType=VARCHAR},
+      channel = #{channel,jdbcType=VARCHAR},
+      total_point_tag = #{totalPointTag,jdbcType=BIGINT},
+      valid_point_tag = #{validPointTag,jdbcType=BIGINT},
+      total_point = #{totalPoint,jdbcType=DECIMAL},
+      valid_point = #{validPoint,jdbcType=DECIMAL},
+      member_mobile = #{memberMobile,jdbcType=VARCHAR},
+      member_truename = #{memberTruename,jdbcType=VARCHAR},
+      member_disp_name = #{memberDispName,jdbcType=VARCHAR},
+      member_name = #{memberName,jdbcType=VARCHAR}
+    where member_id = #{memberId,jdbcType=INTEGER}
+  </update>
+  <insert id="batchInsert" parameterType="map">
+		<selectKey keyProperty="id" order="AFTER" resultType="java.lang.Integer">
+			SELECT LAST_INSERT_ID()
+		</selectKey>
+		insert into statistics_point_details_tag_temp
+		(member_id,union_id ,union_name,channel,total_point_tag,valid_point_tag,total_point,valid_point,member_mobile,
+		member_truename,member_disp_name,member_name)
+		values 
+		<foreach collection="records" item="item" index="index" separator=",">
+        	(#{item.memberId,jdbcType=INTEGER}, 
+        	#{item.unionId,jdbcType=INTEGER},
+			#{item.unionName,jdbcType=VARCHAR},
+			#{item.channel,jdbcType=VARCHAR},
+			#{item.totalPointTag,jdbcType=BIGINT},
+			#{item.validPointTag,jdbcType=BIGINT},
+			#{item.totalPoint,jdbcType=DECIMAL},
+			#{item.validPoint,jdbcType=DECIMAL},
+			#{item.memberMobile,jdbcType=VARCHAR},
+      		#{item.memberTruename,jdbcType=VARCHAR},
+      		#{item.memberDispName,jdbcType=VARCHAR},
+      		#{item.memberName,jdbcType=VARCHAR})
+		</foreach>
+	</insert>
+	<update id="createNewTable" parameterType="com.shanyuan.platform.ms.dao.statistics.entity.StatisticsTable">
+		CREATE TABLE IF NOT
+		EXISTS ${tableName} (
+		  `member_id` int(11) NOT NULL,
+		  `union_id` int(11) NOT NULL DEFAULT '0' COMMENT '联盟id',
+		  `union_name` varchar(20) NOT NULL DEFAULT '' COMMENT '联盟名称',
+		  `channel` varchar(20) NOT NULL DEFAULT '' COMMENT '联盟标识',
+		  `total_point_tag` bigint(20) NOT NULL DEFAULT '0' COMMENT '累计积分标签',
+		  `valid_point_tag` bigint(20) NOT NULL DEFAULT '0' COMMENT '可用积分标签',
+		  `total_point` decimal(12,0) NOT NULL DEFAULT '0' COMMENT '累计积分',
+		  `valid_point` decimal(12,0) NOT NULL DEFAULT '0' COMMENT '可用积分',
+		  `member_mobile` varchar(14) NOT NULL COMMENT '手机号',
+		  `member_truename` varchar(50) DEFAULT NULL COMMENT '用户真实姓名',
+		  `member_disp_name` varchar(50) DEFAULT NULL COMMENT '会员显示名称',
+		  `member_name` varchar(100) NOT NULL COMMENT '会员名称',
+		  PRIMARY KEY (`member_id`),
+		  KEY `member_id` (`member_id`) USING BTREE,
+		  KEY `union_id` (`union_id`) USING BTREE,
+		  KEY `channel` (`channel`) USING BTREE,
+		  KEY `total_point_tag` (`total_point_tag`) USING BTREE,
+		  KEY `valid_point_tag` (`valid_point_tag`) USING BTREE,
+		  KEY `member_mobile` (`member_mobile`) USING BTREE,
+		  KEY `member_name` (`member_name`) USING BTREE,
+		  KEY `member_truename` (`member_truename`) USING BTREE,
+		  KEY `member_disp_name` (`member_disp_name`) USING BTREE
+		) ENGINE=InnoDB DEFAULT CHARSET=utf8 COMMENT='积分标签表'
+
+	</update>
+	<update id="alterTempTable" parameterType="com.shanyuan.platform.ms.dao.statistics.entity.StatisticsTable">
+		ALTER TABLE statistics_point_details_tag_temp RENAME ${tableName};
+	</update>
+	<update id="dropTempTable" parameterType="com.shanyuan.platform.ms.dao.statistics.entity.StatisticsTable">
+		DROP TABLE ${tableName};
+	</update>
+	<select id="selectAllInfosByConditoin" parameterType="com.shanyuan.platform.ms.dao.statistics.entity.PointDetailsTag" resultMap="BaseResultMap">
+		select member_id,union_id,union_name,channel,total_point_tag,valid_point_tag,total_point,valid_point,member_mobile,member_truename,member_disp_name,member_name
+			from statistics_point_details_tag where 1=1
+			  <if test="unionId != null" >
+	        	 and union_id = #{unionId,jdbcType=INTEGER}
+		      </if>
+		      <if test="totalPointTag != null" >
+		        and total_point_tag = #{totalPointTag,jdbcType=BIGINT}
+		      </if>
+		      <if test="validPointTag != null" >
+		        and valid_point_tag = #{validPointTag,jdbcType=BIGINT}
+		      </if>
+		      <if test="memberMobile != null" >
+		        and member_mobile = #{memberMobile,jdbcType=VARCHAR}
+		      </if>
+		      <if test="memberTruename != null" >
+		        and member_truename = #{memberTruename,jdbcType=VARCHAR}
+		      </if>
+	</select>
+</mapper>

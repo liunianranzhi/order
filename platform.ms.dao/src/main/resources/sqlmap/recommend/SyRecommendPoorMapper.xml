@@ -1,0 +1,211 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.shanyuan.platform.ms.dao.recommend.mapper.SyRecommendPoorMapper" >
+  <resultMap id="BaseResultMap" type="com.shanyuan.platform.ms.dao.recommend.entity.SyRecommendPoor" >
+    <id column="recommend_pid" property="recommendPid" jdbcType="INTEGER" />
+    <result column="poor_mid" property="poorMid" jdbcType="INTEGER" />
+    <result column="poor_name" property="poorName" jdbcType="VARCHAR" />
+    <result column="recommend_time" property="recommendTime" jdbcType="INTEGER" />
+    <result column="channel" property="channel" jdbcType="VARCHAR" />
+  </resultMap>
+  <sql id="Example_Where_Clause" >
+    <where >
+      <foreach collection="oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Update_By_Example_Where_Clause" >
+    <where >
+      <foreach collection="example.oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Base_Column_List" >
+    recommend_pid, poor_mid, poor_name, recommend_time, channel
+  </sql>
+  <select id="selectByExample" resultMap="BaseResultMap" parameterType="com.shanyuan.platform.ms.dao.recommend.entity.SyRecommendPoorExample" >
+    select
+    <if test="distinct" >
+      distinct
+    </if>
+    <include refid="Base_Column_List" />
+    from sy_recommend_poor
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null" >
+      order by ${orderByClause}
+    </if>
+  </select>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+    select 
+    <include refid="Base_Column_List" />
+    from sy_recommend_poor
+    where recommend_pid = #{recommendPid,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+    delete from sy_recommend_poor
+    where recommend_pid = #{recommendPid,jdbcType=INTEGER}
+  </delete>
+  <delete id="deleteByExample" parameterType="com.shanyuan.platform.ms.dao.recommend.entity.SyRecommendPoorExample" >
+    delete from sy_recommend_poor
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </delete>
+  <insert id="insert" parameterType="com.shanyuan.platform.ms.dao.recommend.entity.SyRecommendPoor" >
+    <selectKey resultType="java.lang.Integer" keyProperty="recommendPid" order="AFTER" >
+      SELECT LAST_INSERT_ID()
+    </selectKey>
+    insert into sy_recommend_poor (poor_mid, poor_name, recommend_time, 
+      channel)
+    values (#{poorMid,jdbcType=INTEGER}, #{poorName,jdbcType=VARCHAR}, #{recommendTime,jdbcType=INTEGER}, 
+      #{channel,jdbcType=VARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="com.shanyuan.platform.ms.dao.recommend.entity.SyRecommendPoor" >
+    <selectKey resultType="java.lang.Integer" keyProperty="recommendPid" order="AFTER" >
+      SELECT LAST_INSERT_ID()
+    </selectKey>
+    insert into sy_recommend_poor
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="poorMid != null" >
+        poor_mid,
+      </if>
+      <if test="poorName != null" >
+        poor_name,
+      </if>
+      <if test="recommendTime != null" >
+        recommend_time,
+      </if>
+      <if test="channel != null" >
+        channel,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="poorMid != null" >
+        #{poorMid,jdbcType=INTEGER},
+      </if>
+      <if test="poorName != null" >
+        #{poorName,jdbcType=VARCHAR},
+      </if>
+      <if test="recommendTime != null" >
+        #{recommendTime,jdbcType=INTEGER},
+      </if>
+      <if test="channel != null" >
+        #{channel,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <select id="countByExample" parameterType="com.shanyuan.platform.ms.dao.recommend.entity.SyRecommendPoorExample" resultType="java.lang.Integer" >
+    select count(*) from sy_recommend_poor
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </select>
+  <update id="updateByExampleSelective" parameterType="map" >
+    update sy_recommend_poor
+    <set >
+      <if test="record.recommendPid != null" >
+        recommend_pid = #{record.recommendPid,jdbcType=INTEGER},
+      </if>
+      <if test="record.poorMid != null" >
+        poor_mid = #{record.poorMid,jdbcType=INTEGER},
+      </if>
+      <if test="record.poorName != null" >
+        poor_name = #{record.poorName,jdbcType=VARCHAR},
+      </if>
+      <if test="record.recommendTime != null" >
+        recommend_time = #{record.recommendTime,jdbcType=INTEGER},
+      </if>
+      <if test="record.channel != null" >
+        channel = #{record.channel,jdbcType=VARCHAR},
+      </if>
+    </set>
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByExample" parameterType="map" >
+    update sy_recommend_poor
+    set recommend_pid = #{record.recommendPid,jdbcType=INTEGER},
+      poor_mid = #{record.poorMid,jdbcType=INTEGER},
+      poor_name = #{record.poorName,jdbcType=VARCHAR},
+      recommend_time = #{record.recommendTime,jdbcType=INTEGER},
+      channel = #{record.channel,jdbcType=VARCHAR}
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByPrimaryKeySelective" parameterType="com.shanyuan.platform.ms.dao.recommend.entity.SyRecommendPoor" >
+    update sy_recommend_poor
+    <set >
+      <if test="poorMid != null" >
+        poor_mid = #{poorMid,jdbcType=INTEGER},
+      </if>
+      <if test="poorName != null" >
+        poor_name = #{poorName,jdbcType=VARCHAR},
+      </if>
+      <if test="recommendTime != null" >
+        recommend_time = #{recommendTime,jdbcType=INTEGER},
+      </if>
+      <if test="channel != null" >
+        channel = #{channel,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where recommend_pid = #{recommendPid,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.shanyuan.platform.ms.dao.recommend.entity.SyRecommendPoor" >
+    update sy_recommend_poor
+    set poor_mid = #{poorMid,jdbcType=INTEGER},
+      poor_name = #{poorName,jdbcType=VARCHAR},
+      recommend_time = #{recommendTime,jdbcType=INTEGER},
+      channel = #{channel,jdbcType=VARCHAR}
+    where recommend_pid = #{recommendPid,jdbcType=INTEGER}
+  </update>
+</mapper>

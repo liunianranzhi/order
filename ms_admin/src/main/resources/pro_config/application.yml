@@ -1,0 +1,37 @@
+server:
+  port: 8762                   # 指定该Admin实例的端口
+spring:
+  application:
+    name: admin-sever
+  boot: 
+      monitor:
+        period: 10000
+      discovery: 
+        enabled: true
+security:
+  user:
+    name: wCNVQXhV
+    password: kqxE8fETWlEy2MVk
+
+
+management:
+  security:
+    enabled:  false
+     
+eureka:
+  instance:
+    metadata-map:
+      user.name: llUSsXXR1ke23KBh
+      user.password: JtOqja2DkSogUXG7
+    prefer-ip-address: true 
+  client:
+    registryFetchIntervalSeconds: 5
+    serviceUrl:
+      defaultZone: http://llUSsXXR1ke23KBh:JtOqja2DkSogUXG7@172.16.33.57:8761/eureka/
+
+
+info:
+  owner: Lee
+  version: 1.0
+  
+  

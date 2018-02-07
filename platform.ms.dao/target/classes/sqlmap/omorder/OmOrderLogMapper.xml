@@ -1,0 +1,416 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.shanyuan.platform.ms.dao.omorder.mapper.OmOrderLogMapper" >
+  <resultMap id="BaseResultMap" type="com.shanyuan.platform.ms.dao.omorder.entity.OmOrderLog" >
+    <id column="rec_id" property="recId" jdbcType="INTEGER" />
+    <result column="order_id" property="orderId" jdbcType="VARCHAR" />
+    <result column="main_id" property="mainId" jdbcType="VARCHAR" />
+    <result column="reciver_addr_id" property="reciverAddrId" jdbcType="INTEGER" />
+    <result column="reciver_name" property="reciverName" jdbcType="VARCHAR" />
+    <result column="reciver_phone" property="reciverPhone" jdbcType="VARCHAR" />
+    <result column="reciver_prov_id" property="reciverProvId" jdbcType="INTEGER" />
+    <result column="reciver_city_id" property="reciverCityId" jdbcType="INTEGER" />
+    <result column="reciver_area_id" property="reciverAreaId" jdbcType="INTEGER" />
+    <result column="reciver_addr_info" property="reciverAddrInfo" jdbcType="VARCHAR" />
+    <result column="deliver_addr_id" property="deliverAddrId" jdbcType="INTEGER" />
+    <result column="deliver_msg" property="deliverMsg" jdbcType="VARCHAR" />
+    <result column="deliver_time" property="deliverTime" jdbcType="TIMESTAMP" />
+    <result column="shipping_id" property="shippingId" jdbcType="VARCHAR" />
+    <result column="shipping_sn" property="shippingSn" jdbcType="VARCHAR" />
+    <result column="remark" property="remark" jdbcType="VARCHAR" />
+    <result column="create_time" property="createTime" jdbcType="TIMESTAMP" />
+    <result column="update_time" property="updateTime" jdbcType="TIMESTAMP" />
+  </resultMap>
+  <sql id="Example_Where_Clause" >
+    <where >
+      <foreach collection="oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Update_By_Example_Where_Clause" >
+    <where >
+      <foreach collection="example.oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Base_Column_List" >
+    rec_id, order_id, main_id, reciver_addr_id, reciver_name, reciver_phone, reciver_prov_id, 
+    reciver_city_id, reciver_area_id, reciver_addr_info, deliver_addr_id, deliver_msg, 
+    deliver_time, shipping_id, shipping_sn, remark, create_time, update_time
+  </sql>
+  <select id="selectByExample" resultMap="BaseResultMap" parameterType="com.shanyuan.platform.ms.dao.omorder.entity.OmOrderLogExample" >
+    select
+    <if test="distinct" >
+      distinct
+    </if>
+    <include refid="Base_Column_List" />
+    from om_order_logist
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null" >
+      order by ${orderByClause}
+    </if>
+  </select>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+    select 
+    <include refid="Base_Column_List" />
+    from om_order_logist
+    where rec_id = #{recId,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+    delete from om_order_logist
+    where rec_id = #{recId,jdbcType=INTEGER}
+  </delete>
+  <delete id="deleteByExample" parameterType="com.shanyuan.platform.ms.dao.omorder.entity.OmOrderLogExample" >
+    delete from om_order_logist
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </delete>
+  <insert id="insert" parameterType="com.shanyuan.platform.ms.dao.omorder.entity.OmOrderLog" >
+    <selectKey resultType="java.lang.Integer" keyProperty="recId" order="AFTER" >
+      SELECT LAST_INSERT_ID()
+    </selectKey>
+    insert into om_order_logist (order_id, main_id, reciver_addr_id, 
+      reciver_name, reciver_phone, reciver_prov_id, 
+      reciver_city_id, reciver_area_id, reciver_addr_info, 
+      deliver_addr_id, deliver_msg, deliver_time, 
+      shipping_id, shipping_sn, remark, 
+      create_time, update_time)
+    values (#{orderId,jdbcType=VARCHAR}, #{mainId,jdbcType=VARCHAR}, #{reciverAddrId,jdbcType=INTEGER}, 
+      #{reciverName,jdbcType=VARCHAR}, #{reciverPhone,jdbcType=VARCHAR}, #{reciverProvId,jdbcType=INTEGER}, 
+      #{reciverCityId,jdbcType=INTEGER}, #{reciverAreaId,jdbcType=INTEGER}, #{reciverAddrInfo,jdbcType=VARCHAR}, 
+      #{deliverAddrId,jdbcType=INTEGER}, #{deliverMsg,jdbcType=VARCHAR}, #{deliverTime,jdbcType=TIMESTAMP}, 
+      #{shippingId,jdbcType=VARCHAR}, #{shippingSn,jdbcType=VARCHAR}, #{remark,jdbcType=VARCHAR}, 
+      #{createTime,jdbcType=TIMESTAMP}, #{updateTime,jdbcType=TIMESTAMP})
+  </insert>
+  <insert id="insertSelective" parameterType="com.shanyuan.platform.ms.dao.omorder.entity.OmOrderLog" >
+    <selectKey resultType="java.lang.Integer" keyProperty="recId" order="AFTER" >
+      SELECT LAST_INSERT_ID()
+    </selectKey>
+    insert into om_order_logist
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="orderId != null" >
+        order_id,
+      </if>
+      <if test="mainId != null" >
+        main_id,
+      </if>
+      <if test="reciverAddrId != null" >
+        reciver_addr_id,
+      </if>
+      <if test="reciverName != null" >
+        reciver_name,
+      </if>
+      <if test="reciverPhone != null" >
+        reciver_phone,
+      </if>
+      <if test="reciverProvId != null" >
+        reciver_prov_id,
+      </if>
+      <if test="reciverCityId != null" >
+        reciver_city_id,
+      </if>
+      <if test="reciverAreaId != null" >
+        reciver_area_id,
+      </if>
+      <if test="reciverAddrInfo != null" >
+        reciver_addr_info,
+      </if>
+      <if test="deliverAddrId != null" >
+        deliver_addr_id,
+      </if>
+      <if test="deliverMsg != null" >
+        deliver_msg,
+      </if>
+      <if test="deliverTime != null" >
+        deliver_time,
+      </if>
+      <if test="shippingId != null" >
+        shipping_id,
+      </if>
+      <if test="shippingSn != null" >
+        shipping_sn,
+      </if>
+      <if test="remark != null" >
+        remark,
+      </if>
+      <if test="createTime != null" >
+        create_time,
+      </if>
+      <if test="updateTime != null" >
+        update_time,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="orderId != null" >
+        #{orderId,jdbcType=VARCHAR},
+      </if>
+      <if test="mainId != null" >
+        #{mainId,jdbcType=VARCHAR},
+      </if>
+      <if test="reciverAddrId != null" >
+        #{reciverAddrId,jdbcType=INTEGER},
+      </if>
+      <if test="reciverName != null" >
+        #{reciverName,jdbcType=VARCHAR},
+      </if>
+      <if test="reciverPhone != null" >
+        #{reciverPhone,jdbcType=VARCHAR},
+      </if>
+      <if test="reciverProvId != null" >
+        #{reciverProvId,jdbcType=INTEGER},
+      </if>
+      <if test="reciverCityId != null" >
+        #{reciverCityId,jdbcType=INTEGER},
+      </if>
+      <if test="reciverAreaId != null" >
+        #{reciverAreaId,jdbcType=INTEGER},
+      </if>
+      <if test="reciverAddrInfo != null" >
+        #{reciverAddrInfo,jdbcType=VARCHAR},
+      </if>
+      <if test="deliverAddrId != null" >
+        #{deliverAddrId,jdbcType=INTEGER},
+      </if>
+      <if test="deliverMsg != null" >
+        #{deliverMsg,jdbcType=VARCHAR},
+      </if>
+      <if test="deliverTime != null" >
+        #{deliverTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="shippingId != null" >
+        #{shippingId,jdbcType=VARCHAR},
+      </if>
+      <if test="shippingSn != null" >
+        #{shippingSn,jdbcType=VARCHAR},
+      </if>
+      <if test="remark != null" >
+        #{remark,jdbcType=VARCHAR},
+      </if>
+      <if test="createTime != null" >
+        #{createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updateTime != null" >
+        #{updateTime,jdbcType=TIMESTAMP},
+      </if>
+    </trim>
+  </insert>
+  <select id="countByExample" parameterType="com.shanyuan.platform.ms.dao.omorder.entity.OmOrderLogExample" resultType="java.lang.Integer" >
+    select count(*) from om_order_logist
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </select>
+  <update id="updateByExampleSelective" parameterType="map" >
+    update om_order_logist
+    <set >
+      <if test="record.recId != null" >
+        rec_id = #{record.recId,jdbcType=INTEGER},
+      </if>
+      <if test="record.orderId != null" >
+        order_id = #{record.orderId,jdbcType=VARCHAR},
+      </if>
+      <if test="record.mainId != null" >
+        main_id = #{record.mainId,jdbcType=VARCHAR},
+      </if>
+      <if test="record.reciverAddrId != null" >
+        reciver_addr_id = #{record.reciverAddrId,jdbcType=INTEGER},
+      </if>
+      <if test="record.reciverName != null" >
+        reciver_name = #{record.reciverName,jdbcType=VARCHAR},
+      </if>
+      <if test="record.reciverPhone != null" >
+        reciver_phone = #{record.reciverPhone,jdbcType=VARCHAR},
+      </if>
+      <if test="record.reciverProvId != null" >
+        reciver_prov_id = #{record.reciverProvId,jdbcType=INTEGER},
+      </if>
+      <if test="record.reciverCityId != null" >
+        reciver_city_id = #{record.reciverCityId,jdbcType=INTEGER},
+      </if>
+      <if test="record.reciverAreaId != null" >
+        reciver_area_id = #{record.reciverAreaId,jdbcType=INTEGER},
+      </if>
+      <if test="record.reciverAddrInfo != null" >
+        reciver_addr_info = #{record.reciverAddrInfo,jdbcType=VARCHAR},
+      </if>
+      <if test="record.deliverAddrId != null" >
+        deliver_addr_id = #{record.deliverAddrId,jdbcType=INTEGER},
+      </if>
+      <if test="record.deliverMsg != null" >
+        deliver_msg = #{record.deliverMsg,jdbcType=VARCHAR},
+      </if>
+      <if test="record.deliverTime != null" >
+        deliver_time = #{record.deliverTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="record.shippingId != null" >
+        shipping_id = #{record.shippingId,jdbcType=VARCHAR},
+      </if>
+      <if test="record.shippingSn != null" >
+        shipping_sn = #{record.shippingSn,jdbcType=VARCHAR},
+      </if>
+      <if test="record.remark != null" >
+        remark = #{record.remark,jdbcType=VARCHAR},
+      </if>
+      <if test="record.createTime != null" >
+        create_time = #{record.createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="record.updateTime != null" >
+        update_time = #{record.updateTime,jdbcType=TIMESTAMP},
+      </if>
+    </set>
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByExample" parameterType="map" >
+    update om_order_logist
+    set rec_id = #{record.recId,jdbcType=INTEGER},
+      order_id = #{record.orderId,jdbcType=VARCHAR},
+      main_id = #{record.mainId,jdbcType=VARCHAR},
+      reciver_addr_id = #{record.reciverAddrId,jdbcType=INTEGER},
+      reciver_name = #{record.reciverName,jdbcType=VARCHAR},
+      reciver_phone = #{record.reciverPhone,jdbcType=VARCHAR},
+      reciver_prov_id = #{record.reciverProvId,jdbcType=INTEGER},
+      reciver_city_id = #{record.reciverCityId,jdbcType=INTEGER},
+      reciver_area_id = #{record.reciverAreaId,jdbcType=INTEGER},
+      reciver_addr_info = #{record.reciverAddrInfo,jdbcType=VARCHAR},
+      deliver_addr_id = #{record.deliverAddrId,jdbcType=INTEGER},
+      deliver_msg = #{record.deliverMsg,jdbcType=VARCHAR},
+      deliver_time = #{record.deliverTime,jdbcType=TIMESTAMP},
+      shipping_id = #{record.shippingId,jdbcType=VARCHAR},
+      shipping_sn = #{record.shippingSn,jdbcType=VARCHAR},
+      remark = #{record.remark,jdbcType=VARCHAR},
+      create_time = #{record.createTime,jdbcType=TIMESTAMP},
+      update_time = #{record.updateTime,jdbcType=TIMESTAMP}
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByPrimaryKeySelective" parameterType="com.shanyuan.platform.ms.dao.omorder.entity.OmOrderLog" >
+    update om_order_logist
+    <set >
+      <if test="orderId != null" >
+        order_id = #{orderId,jdbcType=VARCHAR},
+      </if>
+      <if test="mainId != null" >
+        main_id = #{mainId,jdbcType=VARCHAR},
+      </if>
+      <if test="reciverAddrId != null" >
+        reciver_addr_id = #{reciverAddrId,jdbcType=INTEGER},
+      </if>
+      <if test="reciverName != null" >
+        reciver_name = #{reciverName,jdbcType=VARCHAR},
+      </if>
+      <if test="reciverPhone != null" >
+        reciver_phone = #{reciverPhone,jdbcType=VARCHAR},
+      </if>
+      <if test="reciverProvId != null" >
+        reciver_prov_id = #{reciverProvId,jdbcType=INTEGER},
+      </if>
+      <if test="reciverCityId != null" >
+        reciver_city_id = #{reciverCityId,jdbcType=INTEGER},
+      </if>
+      <if test="reciverAreaId != null" >
+        reciver_area_id = #{reciverAreaId,jdbcType=INTEGER},
+      </if>
+      <if test="reciverAddrInfo != null" >
+        reciver_addr_info = #{reciverAddrInfo,jdbcType=VARCHAR},
+      </if>
+      <if test="deliverAddrId != null" >
+        deliver_addr_id = #{deliverAddrId,jdbcType=INTEGER},
+      </if>
+      <if test="deliverMsg != null" >
+        deliver_msg = #{deliverMsg,jdbcType=VARCHAR},
+      </if>
+      <if test="deliverTime != null" >
+        deliver_time = #{deliverTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="shippingId != null" >
+        shipping_id = #{shippingId,jdbcType=VARCHAR},
+      </if>
+      <if test="shippingSn != null" >
+        shipping_sn = #{shippingSn,jdbcType=VARCHAR},
+      </if>
+      <if test="remark != null" >
+        remark = #{remark,jdbcType=VARCHAR},
+      </if>
+      <if test="createTime != null" >
+        create_time = #{createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updateTime != null" >
+        update_time = #{updateTime,jdbcType=TIMESTAMP},
+      </if>
+    </set>
+    where rec_id = #{recId,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.shanyuan.platform.ms.dao.omorder.entity.OmOrderLog" >
+    update om_order_logist
+    set order_id = #{orderId,jdbcType=VARCHAR},
+      main_id = #{mainId,jdbcType=VARCHAR},
+      reciver_addr_id = #{reciverAddrId,jdbcType=INTEGER},
+      reciver_name = #{reciverName,jdbcType=VARCHAR},
+      reciver_phone = #{reciverPhone,jdbcType=VARCHAR},
+      reciver_prov_id = #{reciverProvId,jdbcType=INTEGER},
+      reciver_city_id = #{reciverCityId,jdbcType=INTEGER},
+      reciver_area_id = #{reciverAreaId,jdbcType=INTEGER},
+      reciver_addr_info = #{reciverAddrInfo,jdbcType=VARCHAR},
+      deliver_addr_id = #{deliverAddrId,jdbcType=INTEGER},
+      deliver_msg = #{deliverMsg,jdbcType=VARCHAR},
+      deliver_time = #{deliverTime,jdbcType=TIMESTAMP},
+      shipping_id = #{shippingId,jdbcType=VARCHAR},
+      shipping_sn = #{shippingSn,jdbcType=VARCHAR},
+      remark = #{remark,jdbcType=VARCHAR},
+      create_time = #{createTime,jdbcType=TIMESTAMP},
+      update_time = #{updateTime,jdbcType=TIMESTAMP}
+    where rec_id = #{recId,jdbcType=INTEGER}
+  </update>
+</mapper>

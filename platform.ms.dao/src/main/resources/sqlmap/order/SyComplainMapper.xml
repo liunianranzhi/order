@@ -1,0 +1,574 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.shanyuan.platform.ms.dao.order.mapper.SyComplainMapper" >
+  <resultMap id="BaseResultMap" type="com.shanyuan.platform.ms.dao.order.entity.SyComplain" >
+    <id column="complain_id" property="complainId" jdbcType="INTEGER" />
+    <result column="order_id" property="orderId" jdbcType="INTEGER" />
+    <result column="accuser_id" property="accuserId" jdbcType="INTEGER" />
+    <result column="accuser_name" property="accuserName" jdbcType="VARCHAR" />
+    <result column="accused_id" property="accusedId" jdbcType="INTEGER" />
+    <result column="accused_name" property="accusedName" jdbcType="VARCHAR" />
+    <result column="complain_subject_content" property="complainSubjectContent" jdbcType="VARCHAR" />
+    <result column="complain_subject_id" property="complainSubjectId" jdbcType="INTEGER" />
+    <result column="complain_content" property="complainContent" jdbcType="VARCHAR" />
+    <result column="complain_pic1" property="complainPic1" jdbcType="VARCHAR" />
+    <result column="complain_pic2" property="complainPic2" jdbcType="VARCHAR" />
+    <result column="complain_pic3" property="complainPic3" jdbcType="VARCHAR" />
+    <result column="complain_datetime" property="complainDatetime" jdbcType="INTEGER" />
+    <result column="complain_handle_datetime" property="complainHandleDatetime" jdbcType="INTEGER" />
+    <result column="complain_handle_member_id" property="complainHandleMemberId" jdbcType="INTEGER" />
+    <result column="appeal_message" property="appealMessage" jdbcType="VARCHAR" />
+    <result column="appeal_datetime" property="appealDatetime" jdbcType="INTEGER" />
+    <result column="appeal_pic1" property="appealPic1" jdbcType="VARCHAR" />
+    <result column="appeal_pic2" property="appealPic2" jdbcType="VARCHAR" />
+    <result column="appeal_pic3" property="appealPic3" jdbcType="VARCHAR" />
+    <result column="final_handle_message" property="finalHandleMessage" jdbcType="VARCHAR" />
+    <result column="final_handle_datetime" property="finalHandleDatetime" jdbcType="INTEGER" />
+    <result column="final_handle_member_id" property="finalHandleMemberId" jdbcType="INTEGER" />
+    <result column="complain_state" property="complainState" jdbcType="TINYINT" />
+    <result column="complain_result" property="complainResult" jdbcType="TINYINT" />
+    <result column="complain_active" property="complainActive" jdbcType="TINYINT" />
+    <result column="order_sn" property="orderSn" jdbcType="BIGINT" />
+  </resultMap>
+  <sql id="Example_Where_Clause" >
+    <where >
+      <foreach collection="oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Update_By_Example_Where_Clause" >
+    <where >
+      <foreach collection="example.oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Base_Column_List" >
+    complain_id, order_id, accuser_id, accuser_name, accused_id, accused_name, complain_subject_content, 
+    complain_subject_id, complain_content, complain_pic1, complain_pic2, complain_pic3, 
+    complain_datetime, complain_handle_datetime, complain_handle_member_id, appeal_message, 
+    appeal_datetime, appeal_pic1, appeal_pic2, appeal_pic3, final_handle_message, final_handle_datetime, 
+    final_handle_member_id, complain_state, complain_result, complain_active, order_sn
+  </sql>
+  <select id="selectByExample" resultMap="BaseResultMap" parameterType="com.shanyuan.platform.ms.dao.order.entity.SyComplainExample" >
+    select
+    <if test="distinct" >
+      distinct
+    </if>
+    <include refid="Base_Column_List" />
+    from sy_complain
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null" >
+      order by ${orderByClause}
+    </if>
+  </select>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+    select 
+    <include refid="Base_Column_List" />
+    from sy_complain
+    where complain_id = #{complainId,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+    delete from sy_complain
+    where complain_id = #{complainId,jdbcType=INTEGER}
+  </delete>
+  <delete id="deleteByExample" parameterType="com.shanyuan.platform.ms.dao.order.entity.SyComplainExample" >
+    delete from sy_complain
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </delete>
+  <insert id="insert" parameterType="com.shanyuan.platform.ms.dao.order.entity.SyComplain" >
+    <selectKey resultType="java.lang.Integer" keyProperty="complainId" order="AFTER" >
+      SELECT LAST_INSERT_ID()
+    </selectKey>
+    insert into sy_complain (order_id, accuser_id, accuser_name, 
+      accused_id, accused_name, complain_subject_content, 
+      complain_subject_id, complain_content, complain_pic1, 
+      complain_pic2, complain_pic3, complain_datetime, 
+      complain_handle_datetime, complain_handle_member_id, 
+      appeal_message, appeal_datetime, appeal_pic1, 
+      appeal_pic2, appeal_pic3, final_handle_message, 
+      final_handle_datetime, final_handle_member_id, 
+      complain_state, complain_result, complain_active, 
+      order_sn)
+    values (#{orderId,jdbcType=INTEGER}, #{accuserId,jdbcType=INTEGER}, #{accuserName,jdbcType=VARCHAR}, 
+      #{accusedId,jdbcType=INTEGER}, #{accusedName,jdbcType=VARCHAR}, #{complainSubjectContent,jdbcType=VARCHAR}, 
+      #{complainSubjectId,jdbcType=INTEGER}, #{complainContent,jdbcType=VARCHAR}, #{complainPic1,jdbcType=VARCHAR}, 
+      #{complainPic2,jdbcType=VARCHAR}, #{complainPic3,jdbcType=VARCHAR}, #{complainDatetime,jdbcType=INTEGER}, 
+      #{complainHandleDatetime,jdbcType=INTEGER}, #{complainHandleMemberId,jdbcType=INTEGER}, 
+      #{appealMessage,jdbcType=VARCHAR}, #{appealDatetime,jdbcType=INTEGER}, #{appealPic1,jdbcType=VARCHAR}, 
+      #{appealPic2,jdbcType=VARCHAR}, #{appealPic3,jdbcType=VARCHAR}, #{finalHandleMessage,jdbcType=VARCHAR}, 
+      #{finalHandleDatetime,jdbcType=INTEGER}, #{finalHandleMemberId,jdbcType=INTEGER}, 
+      #{complainState,jdbcType=TINYINT}, #{complainResult,jdbcType=TINYINT}, #{complainActive,jdbcType=TINYINT}, 
+      #{orderSn,jdbcType=BIGINT})
+  </insert>
+  <insert id="insertSelective" parameterType="com.shanyuan.platform.ms.dao.order.entity.SyComplain" >
+    <selectKey resultType="java.lang.Integer" keyProperty="complainId" order="AFTER" >
+      SELECT LAST_INSERT_ID()
+    </selectKey>
+    insert into sy_complain
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="orderId != null" >
+        order_id,
+      </if>
+      <if test="accuserId != null" >
+        accuser_id,
+      </if>
+      <if test="accuserName != null" >
+        accuser_name,
+      </if>
+      <if test="accusedId != null" >
+        accused_id,
+      </if>
+      <if test="accusedName != null" >
+        accused_name,
+      </if>
+      <if test="complainSubjectContent != null" >
+        complain_subject_content,
+      </if>
+      <if test="complainSubjectId != null" >
+        complain_subject_id,
+      </if>
+      <if test="complainContent != null" >
+        complain_content,
+      </if>
+      <if test="complainPic1 != null" >
+        complain_pic1,
+      </if>
+      <if test="complainPic2 != null" >
+        complain_pic2,
+      </if>
+      <if test="complainPic3 != null" >
+        complain_pic3,
+      </if>
+      <if test="complainDatetime != null" >
+        complain_datetime,
+      </if>
+      <if test="complainHandleDatetime != null" >
+        complain_handle_datetime,
+      </if>
+      <if test="complainHandleMemberId != null" >
+        complain_handle_member_id,
+      </if>
+      <if test="appealMessage != null" >
+        appeal_message,
+      </if>
+      <if test="appealDatetime != null" >
+        appeal_datetime,
+      </if>
+      <if test="appealPic1 != null" >
+        appeal_pic1,
+      </if>
+      <if test="appealPic2 != null" >
+        appeal_pic2,
+      </if>
+      <if test="appealPic3 != null" >
+        appeal_pic3,
+      </if>
+      <if test="finalHandleMessage != null" >
+        final_handle_message,
+      </if>
+      <if test="finalHandleDatetime != null" >
+        final_handle_datetime,
+      </if>
+      <if test="finalHandleMemberId != null" >
+        final_handle_member_id,
+      </if>
+      <if test="complainState != null" >
+        complain_state,
+      </if>
+      <if test="complainResult != null" >
+        complain_result,
+      </if>
+      <if test="complainActive != null" >
+        complain_active,
+      </if>
+      <if test="orderSn != null" >
+        order_sn,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="orderId != null" >
+        #{orderId,jdbcType=INTEGER},
+      </if>
+      <if test="accuserId != null" >
+        #{accuserId,jdbcType=INTEGER},
+      </if>
+      <if test="accuserName != null" >
+        #{accuserName,jdbcType=VARCHAR},
+      </if>
+      <if test="accusedId != null" >
+        #{accusedId,jdbcType=INTEGER},
+      </if>
+      <if test="accusedName != null" >
+        #{accusedName,jdbcType=VARCHAR},
+      </if>
+      <if test="complainSubjectContent != null" >
+        #{complainSubjectContent,jdbcType=VARCHAR},
+      </if>
+      <if test="complainSubjectId != null" >
+        #{complainSubjectId,jdbcType=INTEGER},
+      </if>
+      <if test="complainContent != null" >
+        #{complainContent,jdbcType=VARCHAR},
+      </if>
+      <if test="complainPic1 != null" >
+        #{complainPic1,jdbcType=VARCHAR},
+      </if>
+      <if test="complainPic2 != null" >
+        #{complainPic2,jdbcType=VARCHAR},
+      </if>
+      <if test="complainPic3 != null" >
+        #{complainPic3,jdbcType=VARCHAR},
+      </if>
+      <if test="complainDatetime != null" >
+        #{complainDatetime,jdbcType=INTEGER},
+      </if>
+      <if test="complainHandleDatetime != null" >
+        #{complainHandleDatetime,jdbcType=INTEGER},
+      </if>
+      <if test="complainHandleMemberId != null" >
+        #{complainHandleMemberId,jdbcType=INTEGER},
+      </if>
+      <if test="appealMessage != null" >
+        #{appealMessage,jdbcType=VARCHAR},
+      </if>
+      <if test="appealDatetime != null" >
+        #{appealDatetime,jdbcType=INTEGER},
+      </if>
+      <if test="appealPic1 != null" >
+        #{appealPic1,jdbcType=VARCHAR},
+      </if>
+      <if test="appealPic2 != null" >
+        #{appealPic2,jdbcType=VARCHAR},
+      </if>
+      <if test="appealPic3 != null" >
+        #{appealPic3,jdbcType=VARCHAR},
+      </if>
+      <if test="finalHandleMessage != null" >
+        #{finalHandleMessage,jdbcType=VARCHAR},
+      </if>
+      <if test="finalHandleDatetime != null" >
+        #{finalHandleDatetime,jdbcType=INTEGER},
+      </if>
+      <if test="finalHandleMemberId != null" >
+        #{finalHandleMemberId,jdbcType=INTEGER},
+      </if>
+      <if test="complainState != null" >
+        #{complainState,jdbcType=TINYINT},
+      </if>
+      <if test="complainResult != null" >
+        #{complainResult,jdbcType=TINYINT},
+      </if>
+      <if test="complainActive != null" >
+        #{complainActive,jdbcType=TINYINT},
+      </if>
+      <if test="orderSn != null" >
+        #{orderSn,jdbcType=BIGINT},
+      </if>
+    </trim>
+  </insert>
+  <select id="countByExample" parameterType="com.shanyuan.platform.ms.dao.order.entity.SyComplainExample" resultType="java.lang.Integer" >
+    select count(*) from sy_complain
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </select>
+  <update id="updateByExampleSelective" parameterType="map" >
+    update sy_complain
+    <set >
+      <if test="record.complainId != null" >
+        complain_id = #{record.complainId,jdbcType=INTEGER},
+      </if>
+      <if test="record.orderId != null" >
+        order_id = #{record.orderId,jdbcType=INTEGER},
+      </if>
+      <if test="record.accuserId != null" >
+        accuser_id = #{record.accuserId,jdbcType=INTEGER},
+      </if>
+      <if test="record.accuserName != null" >
+        accuser_name = #{record.accuserName,jdbcType=VARCHAR},
+      </if>
+      <if test="record.accusedId != null" >
+        accused_id = #{record.accusedId,jdbcType=INTEGER},
+      </if>
+      <if test="record.accusedName != null" >
+        accused_name = #{record.accusedName,jdbcType=VARCHAR},
+      </if>
+      <if test="record.complainSubjectContent != null" >
+        complain_subject_content = #{record.complainSubjectContent,jdbcType=VARCHAR},
+      </if>
+      <if test="record.complainSubjectId != null" >
+        complain_subject_id = #{record.complainSubjectId,jdbcType=INTEGER},
+      </if>
+      <if test="record.complainContent != null" >
+        complain_content = #{record.complainContent,jdbcType=VARCHAR},
+      </if>
+      <if test="record.complainPic1 != null" >
+        complain_pic1 = #{record.complainPic1,jdbcType=VARCHAR},
+      </if>
+      <if test="record.complainPic2 != null" >
+        complain_pic2 = #{record.complainPic2,jdbcType=VARCHAR},
+      </if>
+      <if test="record.complainPic3 != null" >
+        complain_pic3 = #{record.complainPic3,jdbcType=VARCHAR},
+      </if>
+      <if test="record.complainDatetime != null" >
+        complain_datetime = #{record.complainDatetime,jdbcType=INTEGER},
+      </if>
+      <if test="record.complainHandleDatetime != null" >
+        complain_handle_datetime = #{record.complainHandleDatetime,jdbcType=INTEGER},
+      </if>
+      <if test="record.complainHandleMemberId != null" >
+        complain_handle_member_id = #{record.complainHandleMemberId,jdbcType=INTEGER},
+      </if>
+      <if test="record.appealMessage != null" >
+        appeal_message = #{record.appealMessage,jdbcType=VARCHAR},
+      </if>
+      <if test="record.appealDatetime != null" >
+        appeal_datetime = #{record.appealDatetime,jdbcType=INTEGER},
+      </if>
+      <if test="record.appealPic1 != null" >
+        appeal_pic1 = #{record.appealPic1,jdbcType=VARCHAR},
+      </if>
+      <if test="record.appealPic2 != null" >
+        appeal_pic2 = #{record.appealPic2,jdbcType=VARCHAR},
+      </if>
+      <if test="record.appealPic3 != null" >
+        appeal_pic3 = #{record.appealPic3,jdbcType=VARCHAR},
+      </if>
+      <if test="record.finalHandleMessage != null" >
+        final_handle_message = #{record.finalHandleMessage,jdbcType=VARCHAR},
+      </if>
+      <if test="record.finalHandleDatetime != null" >
+        final_handle_datetime = #{record.finalHandleDatetime,jdbcType=INTEGER},
+      </if>
+      <if test="record.finalHandleMemberId != null" >
+        final_handle_member_id = #{record.finalHandleMemberId,jdbcType=INTEGER},
+      </if>
+      <if test="record.complainState != null" >
+        complain_state = #{record.complainState,jdbcType=TINYINT},
+      </if>
+      <if test="record.complainResult != null" >
+        complain_result = #{record.complainResult,jdbcType=TINYINT},
+      </if>
+      <if test="record.complainActive != null" >
+        complain_active = #{record.complainActive,jdbcType=TINYINT},
+      </if>
+      <if test="record.orderSn != null" >
+        order_sn = #{record.orderSn,jdbcType=BIGINT},
+      </if>
+    </set>
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByExample" parameterType="map" >
+    update sy_complain
+    set complain_id = #{record.complainId,jdbcType=INTEGER},
+      order_id = #{record.orderId,jdbcType=INTEGER},
+      accuser_id = #{record.accuserId,jdbcType=INTEGER},
+      accuser_name = #{record.accuserName,jdbcType=VARCHAR},
+      accused_id = #{record.accusedId,jdbcType=INTEGER},
+      accused_name = #{record.accusedName,jdbcType=VARCHAR},
+      complain_subject_content = #{record.complainSubjectContent,jdbcType=VARCHAR},
+      complain_subject_id = #{record.complainSubjectId,jdbcType=INTEGER},
+      complain_content = #{record.complainContent,jdbcType=VARCHAR},
+      complain_pic1 = #{record.complainPic1,jdbcType=VARCHAR},
+      complain_pic2 = #{record.complainPic2,jdbcType=VARCHAR},
+      complain_pic3 = #{record.complainPic3,jdbcType=VARCHAR},
+      complain_datetime = #{record.complainDatetime,jdbcType=INTEGER},
+      complain_handle_datetime = #{record.complainHandleDatetime,jdbcType=INTEGER},
+      complain_handle_member_id = #{record.complainHandleMemberId,jdbcType=INTEGER},
+      appeal_message = #{record.appealMessage,jdbcType=VARCHAR},
+      appeal_datetime = #{record.appealDatetime,jdbcType=INTEGER},
+      appeal_pic1 = #{record.appealPic1,jdbcType=VARCHAR},
+      appeal_pic2 = #{record.appealPic2,jdbcType=VARCHAR},
+      appeal_pic3 = #{record.appealPic3,jdbcType=VARCHAR},
+      final_handle_message = #{record.finalHandleMessage,jdbcType=VARCHAR},
+      final_handle_datetime = #{record.finalHandleDatetime,jdbcType=INTEGER},
+      final_handle_member_id = #{record.finalHandleMemberId,jdbcType=INTEGER},
+      complain_state = #{record.complainState,jdbcType=TINYINT},
+      complain_result = #{record.complainResult,jdbcType=TINYINT},
+      complain_active = #{record.complainActive,jdbcType=TINYINT},
+      order_sn = #{record.orderSn,jdbcType=BIGINT}
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByPrimaryKeySelective" parameterType="com.shanyuan.platform.ms.dao.order.entity.SyComplain" >
+    update sy_complain
+    <set >
+      <if test="orderId != null" >
+        order_id = #{orderId,jdbcType=INTEGER},
+      </if>
+      <if test="accuserId != null" >
+        accuser_id = #{accuserId,jdbcType=INTEGER},
+      </if>
+      <if test="accuserName != null" >
+        accuser_name = #{accuserName,jdbcType=VARCHAR},
+      </if>
+      <if test="accusedId != null" >
+        accused_id = #{accusedId,jdbcType=INTEGER},
+      </if>
+      <if test="accusedName != null" >
+        accused_name = #{accusedName,jdbcType=VARCHAR},
+      </if>
+      <if test="complainSubjectContent != null" >
+        complain_subject_content = #{complainSubjectContent,jdbcType=VARCHAR},
+      </if>
+      <if test="complainSubjectId != null" >
+        complain_subject_id = #{complainSubjectId,jdbcType=INTEGER},
+      </if>
+      <if test="complainContent != null" >
+        complain_content = #{complainContent,jdbcType=VARCHAR},
+      </if>
+      <if test="complainPic1 != null" >
+        complain_pic1 = #{complainPic1,jdbcType=VARCHAR},
+      </if>
+      <if test="complainPic2 != null" >
+        complain_pic2 = #{complainPic2,jdbcType=VARCHAR},
+      </if>
+      <if test="complainPic3 != null" >
+        complain_pic3 = #{complainPic3,jdbcType=VARCHAR},
+      </if>
+      <if test="complainDatetime != null" >
+        complain_datetime = #{complainDatetime,jdbcType=INTEGER},
+      </if>
+      <if test="complainHandleDatetime != null" >
+        complain_handle_datetime = #{complainHandleDatetime,jdbcType=INTEGER},
+      </if>
+      <if test="complainHandleMemberId != null" >
+        complain_handle_member_id = #{complainHandleMemberId,jdbcType=INTEGER},
+      </if>
+      <if test="appealMessage != null" >
+        appeal_message = #{appealMessage,jdbcType=VARCHAR},
+      </if>
+      <if test="appealDatetime != null" >
+        appeal_datetime = #{appealDatetime,jdbcType=INTEGER},
+      </if>
+      <if test="appealPic1 != null" >
+        appeal_pic1 = #{appealPic1,jdbcType=VARCHAR},
+      </if>
+      <if test="appealPic2 != null" >
+        appeal_pic2 = #{appealPic2,jdbcType=VARCHAR},
+      </if>
+      <if test="appealPic3 != null" >
+        appeal_pic3 = #{appealPic3,jdbcType=VARCHAR},
+      </if>
+      <if test="finalHandleMessage != null" >
+        final_handle_message = #{finalHandleMessage,jdbcType=VARCHAR},
+      </if>
+      <if test="finalHandleDatetime != null" >
+        final_handle_datetime = #{finalHandleDatetime,jdbcType=INTEGER},
+      </if>
+      <if test="finalHandleMemberId != null" >
+        final_handle_member_id = #{finalHandleMemberId,jdbcType=INTEGER},
+      </if>
+      <if test="complainState != null" >
+        complain_state = #{complainState,jdbcType=TINYINT},
+      </if>
+      <if test="complainResult != null" >
+        complain_result = #{complainResult,jdbcType=TINYINT},
+      </if>
+      <if test="complainActive != null" >
+        complain_active = #{complainActive,jdbcType=TINYINT},
+      </if>
+      <if test="orderSn != null" >
+        order_sn = #{orderSn,jdbcType=BIGINT},
+      </if>
+    </set>
+    where complain_id = #{complainId,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.shanyuan.platform.ms.dao.order.entity.SyComplain" >
+    update sy_complain
+    set order_id = #{orderId,jdbcType=INTEGER},
+      accuser_id = #{accuserId,jdbcType=INTEGER},
+      accuser_name = #{accuserName,jdbcType=VARCHAR},
+      accused_id = #{accusedId,jdbcType=INTEGER},
+      accused_name = #{accusedName,jdbcType=VARCHAR},
+      complain_subject_content = #{complainSubjectContent,jdbcType=VARCHAR},
+      complain_subject_id = #{complainSubjectId,jdbcType=INTEGER},
+      complain_content = #{complainContent,jdbcType=VARCHAR},
+      complain_pic1 = #{complainPic1,jdbcType=VARCHAR},
+      complain_pic2 = #{complainPic2,jdbcType=VARCHAR},
+      complain_pic3 = #{complainPic3,jdbcType=VARCHAR},
+      complain_datetime = #{complainDatetime,jdbcType=INTEGER},
+      complain_handle_datetime = #{complainHandleDatetime,jdbcType=INTEGER},
+      complain_handle_member_id = #{complainHandleMemberId,jdbcType=INTEGER},
+      appeal_message = #{appealMessage,jdbcType=VARCHAR},
+      appeal_datetime = #{appealDatetime,jdbcType=INTEGER},
+      appeal_pic1 = #{appealPic1,jdbcType=VARCHAR},
+      appeal_pic2 = #{appealPic2,jdbcType=VARCHAR},
+      appeal_pic3 = #{appealPic3,jdbcType=VARCHAR},
+      final_handle_message = #{finalHandleMessage,jdbcType=VARCHAR},
+      final_handle_datetime = #{finalHandleDatetime,jdbcType=INTEGER},
+      final_handle_member_id = #{finalHandleMemberId,jdbcType=INTEGER},
+      complain_state = #{complainState,jdbcType=TINYINT},
+      complain_result = #{complainResult,jdbcType=TINYINT},
+      complain_active = #{complainActive,jdbcType=TINYINT},
+      order_sn = #{orderSn,jdbcType=BIGINT}
+    where complain_id = #{complainId,jdbcType=INTEGER}
+  </update>
+  
+  <select id="selectComplainCount" resultType="java.lang.Integer" >
+    select 
+    count(complain_id)
+    from sy_complain
+    where accuser_id = #{memberId,jdbcType=INTEGER}
+    <if test="startTime != null">
+	AND complain_datetime > #{startTime} 
+	</if>
+	<if test="endTime != null">
+	AND complain_datetime &lt; #{endTime} 
+	</if>
+  </select>
+</mapper>

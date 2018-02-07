@@ -1,0 +1,211 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.shanyuan.platform.ms.dao.store.mapper.SyAreaFullMapper" >
+  <resultMap id="BaseResultMap" type="com.shanyuan.platform.ms.dao.store.entity.SyAreaFull" >
+    <id column="area_id" property="areaId" jdbcType="BIGINT" />
+    <result column="area_name" property="areaName" jdbcType="VARCHAR" />
+    <result column="area_parent_id" property="areaParentId" jdbcType="BIGINT" />
+    <result column="area_sort" property="areaSort" jdbcType="TINYINT" />
+    <result column="area_deep" property="areaDeep" jdbcType="TINYINT" />
+  </resultMap>
+  <sql id="Example_Where_Clause" >
+    <where >
+      <foreach collection="oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Update_By_Example_Where_Clause" >
+    <where >
+      <foreach collection="example.oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Base_Column_List" >
+    area_id, area_name, area_parent_id, area_sort, area_deep
+  </sql>
+  <select id="selectByExample" resultMap="BaseResultMap" parameterType="com.shanyuan.platform.ms.dao.store.entity.SyAreaFullExample" >
+    select
+    <if test="distinct" >
+      distinct
+    </if>
+    <include refid="Base_Column_List" />
+    from sy_area_full
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null" >
+      order by ${orderByClause}
+    </if>
+  </select>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Long" >
+    select 
+    <include refid="Base_Column_List" />
+    from sy_area_full
+    where area_id = #{areaId,jdbcType=BIGINT}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Long" >
+    delete from sy_area_full
+    where area_id = #{areaId,jdbcType=BIGINT}
+  </delete>
+  <delete id="deleteByExample" parameterType="com.shanyuan.platform.ms.dao.store.entity.SyAreaFullExample" >
+    delete from sy_area_full
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </delete>
+  <insert id="insert" parameterType="com.shanyuan.platform.ms.dao.store.entity.SyAreaFull" >
+    <selectKey resultType="java.lang.Long" keyProperty="areaId" order="AFTER" >
+      SELECT LAST_INSERT_ID()
+    </selectKey>
+    insert into sy_area_full (area_name, area_parent_id, area_sort, 
+      area_deep)
+    values (#{areaName,jdbcType=VARCHAR}, #{areaParentId,jdbcType=BIGINT}, #{areaSort,jdbcType=TINYINT}, 
+      #{areaDeep,jdbcType=TINYINT})
+  </insert>
+  <insert id="insertSelective" parameterType="com.shanyuan.platform.ms.dao.store.entity.SyAreaFull" >
+    <selectKey resultType="java.lang.Long" keyProperty="areaId" order="AFTER" >
+      SELECT LAST_INSERT_ID()
+    </selectKey>
+    insert into sy_area_full
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="areaName != null" >
+        area_name,
+      </if>
+      <if test="areaParentId != null" >
+        area_parent_id,
+      </if>
+      <if test="areaSort != null" >
+        area_sort,
+      </if>
+      <if test="areaDeep != null" >
+        area_deep,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="areaName != null" >
+        #{areaName,jdbcType=VARCHAR},
+      </if>
+      <if test="areaParentId != null" >
+        #{areaParentId,jdbcType=BIGINT},
+      </if>
+      <if test="areaSort != null" >
+        #{areaSort,jdbcType=TINYINT},
+      </if>
+      <if test="areaDeep != null" >
+        #{areaDeep,jdbcType=TINYINT},
+      </if>
+    </trim>
+  </insert>
+  <select id="countByExample" parameterType="com.shanyuan.platform.ms.dao.store.entity.SyAreaFullExample" resultType="java.lang.Integer" >
+    select count(*) from sy_area_full
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </select>
+  <update id="updateByExampleSelective" parameterType="map" >
+    update sy_area_full
+    <set >
+      <if test="record.areaId != null" >
+        area_id = #{record.areaId,jdbcType=BIGINT},
+      </if>
+      <if test="record.areaName != null" >
+        area_name = #{record.areaName,jdbcType=VARCHAR},
+      </if>
+      <if test="record.areaParentId != null" >
+        area_parent_id = #{record.areaParentId,jdbcType=BIGINT},
+      </if>
+      <if test="record.areaSort != null" >
+        area_sort = #{record.areaSort,jdbcType=TINYINT},
+      </if>
+      <if test="record.areaDeep != null" >
+        area_deep = #{record.areaDeep,jdbcType=TINYINT},
+      </if>
+    </set>
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByExample" parameterType="map" >
+    update sy_area_full
+    set area_id = #{record.areaId,jdbcType=BIGINT},
+      area_name = #{record.areaName,jdbcType=VARCHAR},
+      area_parent_id = #{record.areaParentId,jdbcType=BIGINT},
+      area_sort = #{record.areaSort,jdbcType=TINYINT},
+      area_deep = #{record.areaDeep,jdbcType=TINYINT}
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByPrimaryKeySelective" parameterType="com.shanyuan.platform.ms.dao.store.entity.SyAreaFull" >
+    update sy_area_full
+    <set >
+      <if test="areaName != null" >
+        area_name = #{areaName,jdbcType=VARCHAR},
+      </if>
+      <if test="areaParentId != null" >
+        area_parent_id = #{areaParentId,jdbcType=BIGINT},
+      </if>
+      <if test="areaSort != null" >
+        area_sort = #{areaSort,jdbcType=TINYINT},
+      </if>
+      <if test="areaDeep != null" >
+        area_deep = #{areaDeep,jdbcType=TINYINT},
+      </if>
+    </set>
+    where area_id = #{areaId,jdbcType=BIGINT}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.shanyuan.platform.ms.dao.store.entity.SyAreaFull" >
+    update sy_area_full
+    set area_name = #{areaName,jdbcType=VARCHAR},
+      area_parent_id = #{areaParentId,jdbcType=BIGINT},
+      area_sort = #{areaSort,jdbcType=TINYINT},
+      area_deep = #{areaDeep,jdbcType=TINYINT}
+    where area_id = #{areaId,jdbcType=BIGINT}
+  </update>
+</mapper>

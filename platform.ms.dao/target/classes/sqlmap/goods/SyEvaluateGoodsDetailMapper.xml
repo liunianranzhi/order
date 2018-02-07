@@ -1,0 +1,291 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.shanyuan.platform.ms.dao.goods.mapper.SyEvaluateGoodsDetailMapper" >
+  <resultMap id="BaseResultMap" type="com.shanyuan.platform.ms.dao.goods.entity.SyEvaluateGoodsDetail" >
+    <id column="geval_detail_id" property="gevalDetailId" jdbcType="INTEGER" />
+    <result column="geval_id" property="gevalId" jdbcType="INTEGER" />
+    <result column="content" property="content" jdbcType="VARCHAR" />
+    <result column="addtime" property="addtime" jdbcType="INTEGER" />
+    <result column="edittime" property="edittime" jdbcType="INTEGER" />
+    <result column="replyer_id" property="replyerId" jdbcType="INTEGER" />
+    <result column="replyer_name" property="replyerName" jdbcType="VARCHAR" />
+    <result column="to_id" property="toId" jdbcType="INTEGER" />
+    <result column="to_name" property="toName" jdbcType="VARCHAR" />
+    <result column="state" property="state" jdbcType="TINYINT" />
+  </resultMap>
+  <sql id="Example_Where_Clause" >
+    <where >
+      <foreach collection="oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Update_By_Example_Where_Clause" >
+    <where >
+      <foreach collection="example.oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Base_Column_List" >
+    geval_detail_id, geval_id, content, addtime, edittime, replyer_id, replyer_name, 
+    to_id, to_name, state
+  </sql>
+  <select id="selectByExample" resultMap="BaseResultMap" parameterType="com.shanyuan.platform.ms.dao.goods.entity.SyEvaluateGoodsDetailExample" >
+    select
+    <if test="distinct" >
+      distinct
+    </if>
+    <include refid="Base_Column_List" />
+    from sy_evaluate_goods_detail
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null" >
+      order by ${orderByClause}
+    </if>
+  </select>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+    select 
+    <include refid="Base_Column_List" />
+    from sy_evaluate_goods_detail
+    where geval_detail_id = #{gevalDetailId,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+    delete from sy_evaluate_goods_detail
+    where geval_detail_id = #{gevalDetailId,jdbcType=INTEGER}
+  </delete>
+  <delete id="deleteByExample" parameterType="com.shanyuan.platform.ms.dao.goods.entity.SyEvaluateGoodsDetailExample" >
+    delete from sy_evaluate_goods_detail
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </delete>
+  <insert id="insert" parameterType="com.shanyuan.platform.ms.dao.goods.entity.SyEvaluateGoodsDetail" >
+    <selectKey resultType="java.lang.Integer" keyProperty="gevalDetailId" order="AFTER" >
+      SELECT LAST_INSERT_ID()
+    </selectKey>
+    insert into sy_evaluate_goods_detail (geval_id, content, addtime, 
+      edittime, replyer_id, replyer_name, 
+      to_id, to_name, state
+      )
+    values (#{gevalId,jdbcType=INTEGER}, #{content,jdbcType=VARCHAR}, #{addtime,jdbcType=INTEGER}, 
+      #{edittime,jdbcType=INTEGER}, #{replyerId,jdbcType=INTEGER}, #{replyerName,jdbcType=VARCHAR}, 
+      #{toId,jdbcType=INTEGER}, #{toName,jdbcType=VARCHAR}, #{state,jdbcType=TINYINT}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="com.shanyuan.platform.ms.dao.goods.entity.SyEvaluateGoodsDetail" >
+    <selectKey resultType="java.lang.Integer" keyProperty="gevalDetailId" order="AFTER" >
+      SELECT LAST_INSERT_ID()
+    </selectKey>
+    insert into sy_evaluate_goods_detail
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="gevalId != null" >
+        geval_id,
+      </if>
+      <if test="content != null" >
+        content,
+      </if>
+      <if test="addtime != null" >
+        addtime,
+      </if>
+      <if test="edittime != null" >
+        edittime,
+      </if>
+      <if test="replyerId != null" >
+        replyer_id,
+      </if>
+      <if test="replyerName != null" >
+        replyer_name,
+      </if>
+      <if test="toId != null" >
+        to_id,
+      </if>
+      <if test="toName != null" >
+        to_name,
+      </if>
+      <if test="state != null" >
+        state,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="gevalId != null" >
+        #{gevalId,jdbcType=INTEGER},
+      </if>
+      <if test="content != null" >
+        #{content,jdbcType=VARCHAR},
+      </if>
+      <if test="addtime != null" >
+        #{addtime,jdbcType=INTEGER},
+      </if>
+      <if test="edittime != null" >
+        #{edittime,jdbcType=INTEGER},
+      </if>
+      <if test="replyerId != null" >
+        #{replyerId,jdbcType=INTEGER},
+      </if>
+      <if test="replyerName != null" >
+        #{replyerName,jdbcType=VARCHAR},
+      </if>
+      <if test="toId != null" >
+        #{toId,jdbcType=INTEGER},
+      </if>
+      <if test="toName != null" >
+        #{toName,jdbcType=VARCHAR},
+      </if>
+      <if test="state != null" >
+        #{state,jdbcType=TINYINT},
+      </if>
+    </trim>
+  </insert>
+  <select id="countByExample" parameterType="com.shanyuan.platform.ms.dao.goods.entity.SyEvaluateGoodsDetailExample" resultType="java.lang.Integer" >
+    select count(*) from sy_evaluate_goods_detail
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </select>
+  <update id="updateByExampleSelective" parameterType="map" >
+    update sy_evaluate_goods_detail
+    <set >
+      <if test="record.gevalDetailId != null" >
+        geval_detail_id = #{record.gevalDetailId,jdbcType=INTEGER},
+      </if>
+      <if test="record.gevalId != null" >
+        geval_id = #{record.gevalId,jdbcType=INTEGER},
+      </if>
+      <if test="record.content != null" >
+        content = #{record.content,jdbcType=VARCHAR},
+      </if>
+      <if test="record.addtime != null" >
+        addtime = #{record.addtime,jdbcType=INTEGER},
+      </if>
+      <if test="record.edittime != null" >
+        edittime = #{record.edittime,jdbcType=INTEGER},
+      </if>
+      <if test="record.replyerId != null" >
+        replyer_id = #{record.replyerId,jdbcType=INTEGER},
+      </if>
+      <if test="record.replyerName != null" >
+        replyer_name = #{record.replyerName,jdbcType=VARCHAR},
+      </if>
+      <if test="record.toId != null" >
+        to_id = #{record.toId,jdbcType=INTEGER},
+      </if>
+      <if test="record.toName != null" >
+        to_name = #{record.toName,jdbcType=VARCHAR},
+      </if>
+      <if test="record.state != null" >
+        state = #{record.state,jdbcType=TINYINT},
+      </if>
+    </set>
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByExample" parameterType="map" >
+    update sy_evaluate_goods_detail
+    set geval_detail_id = #{record.gevalDetailId,jdbcType=INTEGER},
+      geval_id = #{record.gevalId,jdbcType=INTEGER},
+      content = #{record.content,jdbcType=VARCHAR},
+      addtime = #{record.addtime,jdbcType=INTEGER},
+      edittime = #{record.edittime,jdbcType=INTEGER},
+      replyer_id = #{record.replyerId,jdbcType=INTEGER},
+      replyer_name = #{record.replyerName,jdbcType=VARCHAR},
+      to_id = #{record.toId,jdbcType=INTEGER},
+      to_name = #{record.toName,jdbcType=VARCHAR},
+      state = #{record.state,jdbcType=TINYINT}
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByPrimaryKeySelective" parameterType="com.shanyuan.platform.ms.dao.goods.entity.SyEvaluateGoodsDetail" >
+    update sy_evaluate_goods_detail
+    <set >
+      <if test="gevalId != null" >
+        geval_id = #{gevalId,jdbcType=INTEGER},
+      </if>
+      <if test="content != null" >
+        content = #{content,jdbcType=VARCHAR},
+      </if>
+      <if test="addtime != null" >
+        addtime = #{addtime,jdbcType=INTEGER},
+      </if>
+      <if test="edittime != null" >
+        edittime = #{edittime,jdbcType=INTEGER},
+      </if>
+      <if test="replyerId != null" >
+        replyer_id = #{replyerId,jdbcType=INTEGER},
+      </if>
+      <if test="replyerName != null" >
+        replyer_name = #{replyerName,jdbcType=VARCHAR},
+      </if>
+      <if test="toId != null" >
+        to_id = #{toId,jdbcType=INTEGER},
+      </if>
+      <if test="toName != null" >
+        to_name = #{toName,jdbcType=VARCHAR},
+      </if>
+      <if test="state != null" >
+        state = #{state,jdbcType=TINYINT},
+      </if>
+    </set>
+    where geval_detail_id = #{gevalDetailId,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.shanyuan.platform.ms.dao.goods.entity.SyEvaluateGoodsDetail" >
+    update sy_evaluate_goods_detail
+    set geval_id = #{gevalId,jdbcType=INTEGER},
+      content = #{content,jdbcType=VARCHAR},
+      addtime = #{addtime,jdbcType=INTEGER},
+      edittime = #{edittime,jdbcType=INTEGER},
+      replyer_id = #{replyerId,jdbcType=INTEGER},
+      replyer_name = #{replyerName,jdbcType=VARCHAR},
+      to_id = #{toId,jdbcType=INTEGER},
+      to_name = #{toName,jdbcType=VARCHAR},
+      state = #{state,jdbcType=TINYINT}
+    where geval_detail_id = #{gevalDetailId,jdbcType=INTEGER}
+  </update>
+</mapper>

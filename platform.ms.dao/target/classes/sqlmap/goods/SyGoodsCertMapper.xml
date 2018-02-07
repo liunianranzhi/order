@@ -1,0 +1,211 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.shanyuan.platform.ms.dao.goods.mapper.SyGoodsCertMapper" >
+  <resultMap id="BaseResultMap" type="com.shanyuan.platform.ms.dao.goods.entity.SyGoodsCert" >
+    <id column="goods_cert_id" property="goodsCertId" jdbcType="INTEGER" />
+    <result column="goods_commonid" property="goodsCommonid" jdbcType="INTEGER" />
+    <result column="goods_cert_type" property="goodsCertType" jdbcType="CHAR" />
+    <result column="goods_cert_image" property="goodsCertImage" jdbcType="VARCHAR" />
+    <result column="goods_cert_no" property="goodsCertNo" jdbcType="VARCHAR" />
+  </resultMap>
+  <sql id="Example_Where_Clause" >
+    <where >
+      <foreach collection="oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Update_By_Example_Where_Clause" >
+    <where >
+      <foreach collection="example.oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Base_Column_List" >
+    goods_cert_id, goods_commonid, goods_cert_type, goods_cert_image, goods_cert_no
+  </sql>
+  <select id="selectByExample" resultMap="BaseResultMap" parameterType="com.shanyuan.platform.ms.dao.goods.entity.SyGoodsCertExample" >
+    select
+    <if test="distinct" >
+      distinct
+    </if>
+    <include refid="Base_Column_List" />
+    from sy_goods_cert
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null" >
+      order by ${orderByClause}
+    </if>
+  </select>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+    select 
+    <include refid="Base_Column_List" />
+    from sy_goods_cert
+    where goods_cert_id = #{goodsCertId,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+    delete from sy_goods_cert
+    where goods_cert_id = #{goodsCertId,jdbcType=INTEGER}
+  </delete>
+  <delete id="deleteByExample" parameterType="com.shanyuan.platform.ms.dao.goods.entity.SyGoodsCertExample" >
+    delete from sy_goods_cert
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </delete>
+  <insert id="insert" parameterType="com.shanyuan.platform.ms.dao.goods.entity.SyGoodsCert" >
+    <selectKey resultType="java.lang.Integer" keyProperty="goodsCertId" order="AFTER" >
+      SELECT LAST_INSERT_ID()
+    </selectKey>
+    insert into sy_goods_cert (goods_commonid, goods_cert_type, goods_cert_image, 
+      goods_cert_no)
+    values (#{goodsCommonid,jdbcType=INTEGER}, #{goodsCertType,jdbcType=CHAR}, #{goodsCertImage,jdbcType=VARCHAR}, 
+      #{goodsCertNo,jdbcType=VARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="com.shanyuan.platform.ms.dao.goods.entity.SyGoodsCert" >
+    <selectKey resultType="java.lang.Integer" keyProperty="goodsCertId" order="AFTER" >
+      SELECT LAST_INSERT_ID()
+    </selectKey>
+    insert into sy_goods_cert
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="goodsCommonid != null" >
+        goods_commonid,
+      </if>
+      <if test="goodsCertType != null" >
+        goods_cert_type,
+      </if>
+      <if test="goodsCertImage != null" >
+        goods_cert_image,
+      </if>
+      <if test="goodsCertNo != null" >
+        goods_cert_no,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="goodsCommonid != null" >
+        #{goodsCommonid,jdbcType=INTEGER},
+      </if>
+      <if test="goodsCertType != null" >
+        #{goodsCertType,jdbcType=CHAR},
+      </if>
+      <if test="goodsCertImage != null" >
+        #{goodsCertImage,jdbcType=VARCHAR},
+      </if>
+      <if test="goodsCertNo != null" >
+        #{goodsCertNo,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <select id="countByExample" parameterType="com.shanyuan.platform.ms.dao.goods.entity.SyGoodsCertExample" resultType="java.lang.Integer" >
+    select count(*) from sy_goods_cert
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </select>
+  <update id="updateByExampleSelective" parameterType="map" >
+    update sy_goods_cert
+    <set >
+      <if test="record.goodsCertId != null" >
+        goods_cert_id = #{record.goodsCertId,jdbcType=INTEGER},
+      </if>
+      <if test="record.goodsCommonid != null" >
+        goods_commonid = #{record.goodsCommonid,jdbcType=INTEGER},
+      </if>
+      <if test="record.goodsCertType != null" >
+        goods_cert_type = #{record.goodsCertType,jdbcType=CHAR},
+      </if>
+      <if test="record.goodsCertImage != null" >
+        goods_cert_image = #{record.goodsCertImage,jdbcType=VARCHAR},
+      </if>
+      <if test="record.goodsCertNo != null" >
+        goods_cert_no = #{record.goodsCertNo,jdbcType=VARCHAR},
+      </if>
+    </set>
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByExample" parameterType="map" >
+    update sy_goods_cert
+    set goods_cert_id = #{record.goodsCertId,jdbcType=INTEGER},
+      goods_commonid = #{record.goodsCommonid,jdbcType=INTEGER},
+      goods_cert_type = #{record.goodsCertType,jdbcType=CHAR},
+      goods_cert_image = #{record.goodsCertImage,jdbcType=VARCHAR},
+      goods_cert_no = #{record.goodsCertNo,jdbcType=VARCHAR}
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByPrimaryKeySelective" parameterType="com.shanyuan.platform.ms.dao.goods.entity.SyGoodsCert" >
+    update sy_goods_cert
+    <set >
+      <if test="goodsCommonid != null" >
+        goods_commonid = #{goodsCommonid,jdbcType=INTEGER},
+      </if>
+      <if test="goodsCertType != null" >
+        goods_cert_type = #{goodsCertType,jdbcType=CHAR},
+      </if>
+      <if test="goodsCertImage != null" >
+        goods_cert_image = #{goodsCertImage,jdbcType=VARCHAR},
+      </if>
+      <if test="goodsCertNo != null" >
+        goods_cert_no = #{goodsCertNo,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where goods_cert_id = #{goodsCertId,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.shanyuan.platform.ms.dao.goods.entity.SyGoodsCert" >
+    update sy_goods_cert
+    set goods_commonid = #{goodsCommonid,jdbcType=INTEGER},
+      goods_cert_type = #{goodsCertType,jdbcType=CHAR},
+      goods_cert_image = #{goodsCertImage,jdbcType=VARCHAR},
+      goods_cert_no = #{goodsCertNo,jdbcType=VARCHAR}
+    where goods_cert_id = #{goodsCertId,jdbcType=INTEGER}
+  </update>
+</mapper>

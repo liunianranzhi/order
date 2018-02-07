@@ -1,0 +1,686 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.shanyuan.platform.ms.dao.omorder.mapper.OmOrderMapper" >
+  <resultMap id="BaseResultMap" type="com.shanyuan.platform.ms.dao.omorder.entity.OmOrder" >
+    <id column="order_id" property="orderId" jdbcType="VARCHAR" />
+    <result column="main_id" property="mainId" jdbcType="VARCHAR" />
+    <result column="order_code" property="orderCode" jdbcType="BIGINT" />
+    <result column="member_id" property="memberId" jdbcType="INTEGER" />
+    <result column="store_id" property="storeId" jdbcType="INTEGER" />
+    <result column="seller_id" property="sellerId" jdbcType="INTEGER" />
+    <result column="agent_id" property="agentId" jdbcType="INTEGER" />
+    <result column="poor_id" property="poorId" jdbcType="INTEGER" />
+    <result column="ope_center_id" property="opeCenterId" jdbcType="INTEGER" />
+    <result column="order_type" property="orderType" jdbcType="TINYINT" />
+    <result column="order_channel" property="orderChannel" jdbcType="VARCHAR" />
+    <result column="goods_project_type" property="goodsProjectType" jdbcType="TINYINT" />
+    <result column="order_status" property="orderStatus" jdbcType="TINYINT" />
+    <result column="order_cancle_reason" property="orderCancleReason" jdbcType="VARCHAR" />
+    <result column="pay_type" property="payType" jdbcType="TINYINT" />
+    <result column="pay_center" property="payCenter" jdbcType="VARCHAR" />
+    <result column="pay_status" property="payStatus" jdbcType="TINYINT" />
+    <result column="order_message" property="orderMessage" jdbcType="VARCHAR" />
+    <result column="cust_service_status" property="custServiceStatus" jdbcType="TINYINT" />
+    <result column="order_all_price" property="orderAllPrice" jdbcType="INTEGER" />
+    <result column="order_goods_price" property="orderGoodsPrice" jdbcType="INTEGER" />
+    <result column="order_logist_price" property="orderLogistPrice" jdbcType="INTEGER" />
+    <result column="order_voucher_price" property="orderVoucherPrice" jdbcType="INTEGER" />
+    <result column="order_coupon_price" property="orderCouponPrice" jdbcType="INTEGER" />
+    <result column="order_used_point" property="orderUsedPoint" jdbcType="INTEGER" />
+    <result column="order_pay_fee" property="orderPayFee" jdbcType="INTEGER" />
+    <result column="order_create_time" property="orderCreateTime" jdbcType="TIMESTAMP" />
+    <result column="order_pay_time" property="orderPayTime" jdbcType="TIMESTAMP" />
+    <result column="order_send_time" property="orderSendTime" jdbcType="TIMESTAMP" />
+    <result column="order_check_time" property="orderCheckTime" jdbcType="TIMESTAMP" />
+    <result column="order_eva_status" property="orderEvaStatus" jdbcType="TINYINT" />
+    <result column="is_delete" property="isDelete" jdbcType="TINYINT" />
+    <result column="update_time" property="updateTime" jdbcType="TIMESTAMP" />
+    <result column="other_info1" property="otherInfo1" jdbcType="VARCHAR" />
+    <result column="other_info2" property="otherInfo2" jdbcType="VARCHAR" />
+  </resultMap>
+  <sql id="Example_Where_Clause" >
+    <where >
+      <foreach collection="oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Update_By_Example_Where_Clause" >
+    <where >
+      <foreach collection="example.oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Base_Column_List" >
+    order_id, main_id, order_code, member_id, store_id, seller_id, agent_id, poor_id, 
+    ope_center_id, order_type, order_channel, goods_project_type, order_status, order_cancle_reason, 
+    pay_type, pay_center, pay_status, order_message, cust_service_status, order_all_price, 
+    order_goods_price, order_logist_price, order_voucher_price, order_coupon_price, order_used_point, 
+    order_pay_fee, order_create_time, order_pay_time, order_send_time, order_check_time, 
+    order_eva_status, is_delete, update_time, other_info1, other_info2
+  </sql>
+  <select id="selectByExample" resultMap="BaseResultMap" parameterType="com.shanyuan.platform.ms.dao.omorder.entity.OmOrderExample" >
+    select
+    <if test="distinct" >
+      distinct
+    </if>
+    <include refid="Base_Column_List" />
+    from om_order
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null" >
+      order by ${orderByClause}
+    </if>
+  </select>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.String" >
+    select 
+    <include refid="Base_Column_List" />
+    from om_order
+    where order_id = #{orderId,jdbcType=VARCHAR}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.String" >
+    delete from om_order
+    where order_id = #{orderId,jdbcType=VARCHAR}
+  </delete>
+  <delete id="deleteByExample" parameterType="com.shanyuan.platform.ms.dao.omorder.entity.OmOrderExample" >
+    delete from om_order
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </delete>
+  <insert id="insert" parameterType="com.shanyuan.platform.ms.dao.omorder.entity.OmOrder" >
+    insert into om_order (order_id, main_id, order_code, 
+      member_id, store_id, seller_id, 
+      agent_id, poor_id, ope_center_id, 
+      order_type, order_channel, goods_project_type, 
+      order_status, order_cancle_reason, pay_type, 
+      pay_center, pay_status, order_message, 
+      cust_service_status, order_all_price, order_goods_price, 
+      order_logist_price, order_voucher_price, order_coupon_price, 
+      order_used_point, order_pay_fee, order_create_time, 
+      order_pay_time, order_send_time, order_check_time, 
+      order_eva_status, is_delete, update_time, 
+      other_info1, other_info2)
+    values (#{orderId,jdbcType=VARCHAR}, #{mainId,jdbcType=VARCHAR}, #{orderCode,jdbcType=BIGINT}, 
+      #{memberId,jdbcType=INTEGER}, #{storeId,jdbcType=INTEGER}, #{sellerId,jdbcType=INTEGER}, 
+      #{agentId,jdbcType=INTEGER}, #{poorId,jdbcType=INTEGER}, #{opeCenterId,jdbcType=INTEGER}, 
+      #{orderType,jdbcType=TINYINT}, #{orderChannel,jdbcType=VARCHAR}, #{goodsProjectType,jdbcType=TINYINT}, 
+      #{orderStatus,jdbcType=TINYINT}, #{orderCancleReason,jdbcType=VARCHAR}, #{payType,jdbcType=TINYINT}, 
+      #{payCenter,jdbcType=VARCHAR}, #{payStatus,jdbcType=TINYINT}, #{orderMessage,jdbcType=VARCHAR}, 
+      #{custServiceStatus,jdbcType=TINYINT}, #{orderAllPrice,jdbcType=INTEGER}, #{orderGoodsPrice,jdbcType=INTEGER}, 
+      #{orderLogistPrice,jdbcType=INTEGER}, #{orderVoucherPrice,jdbcType=INTEGER}, #{orderCouponPrice,jdbcType=INTEGER}, 
+      #{orderUsedPoint,jdbcType=INTEGER}, #{orderPayFee,jdbcType=INTEGER}, #{orderCreateTime,jdbcType=TIMESTAMP}, 
+      #{orderPayTime,jdbcType=TIMESTAMP}, #{orderSendTime,jdbcType=TIMESTAMP}, #{orderCheckTime,jdbcType=TIMESTAMP}, 
+      #{orderEvaStatus,jdbcType=TINYINT}, #{isDelete,jdbcType=TINYINT}, #{updateTime,jdbcType=TIMESTAMP}, 
+      #{otherInfo1,jdbcType=VARCHAR}, #{otherInfo2,jdbcType=VARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="com.shanyuan.platform.ms.dao.omorder.entity.OmOrder" >
+    insert into om_order
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="orderId != null" >
+        order_id,
+      </if>
+      <if test="mainId != null" >
+        main_id,
+      </if>
+      <if test="orderCode != null" >
+        order_code,
+      </if>
+      <if test="memberId != null" >
+        member_id,
+      </if>
+      <if test="storeId != null" >
+        store_id,
+      </if>
+      <if test="sellerId != null" >
+        seller_id,
+      </if>
+      <if test="agentId != null" >
+        agent_id,
+      </if>
+      <if test="poorId != null" >
+        poor_id,
+      </if>
+      <if test="opeCenterId != null" >
+        ope_center_id,
+      </if>
+      <if test="orderType != null" >
+        order_type,
+      </if>
+      <if test="orderChannel != null" >
+        order_channel,
+      </if>
+      <if test="goodsProjectType != null" >
+        goods_project_type,
+      </if>
+      <if test="orderStatus != null" >
+        order_status,
+      </if>
+      <if test="orderCancleReason != null" >
+        order_cancle_reason,
+      </if>
+      <if test="payType != null" >
+        pay_type,
+      </if>
+      <if test="payCenter != null" >
+        pay_center,
+      </if>
+      <if test="payStatus != null" >
+        pay_status,
+      </if>
+      <if test="orderMessage != null" >
+        order_message,
+      </if>
+      <if test="custServiceStatus != null" >
+        cust_service_status,
+      </if>
+      <if test="orderAllPrice != null" >
+        order_all_price,
+      </if>
+      <if test="orderGoodsPrice != null" >
+        order_goods_price,
+      </if>
+      <if test="orderLogistPrice != null" >
+        order_logist_price,
+      </if>
+      <if test="orderVoucherPrice != null" >
+        order_voucher_price,
+      </if>
+      <if test="orderCouponPrice != null" >
+        order_coupon_price,
+      </if>
+      <if test="orderUsedPoint != null" >
+        order_used_point,
+      </if>
+      <if test="orderPayFee != null" >
+        order_pay_fee,
+      </if>
+      <if test="orderCreateTime != null" >
+        order_create_time,
+      </if>
+      <if test="orderPayTime != null" >
+        order_pay_time,
+      </if>
+      <if test="orderSendTime != null" >
+        order_send_time,
+      </if>
+      <if test="orderCheckTime != null" >
+        order_check_time,
+      </if>
+      <if test="orderEvaStatus != null" >
+        order_eva_status,
+      </if>
+      <if test="isDelete != null" >
+        is_delete,
+      </if>
+      <if test="updateTime != null" >
+        update_time,
+      </if>
+      <if test="otherInfo1 != null" >
+        other_info1,
+      </if>
+      <if test="otherInfo2 != null" >
+        other_info2,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="orderId != null" >
+        #{orderId,jdbcType=VARCHAR},
+      </if>
+      <if test="mainId != null" >
+        #{mainId,jdbcType=VARCHAR},
+      </if>
+      <if test="orderCode != null" >
+        #{orderCode,jdbcType=BIGINT},
+      </if>
+      <if test="memberId != null" >
+        #{memberId,jdbcType=INTEGER},
+      </if>
+      <if test="storeId != null" >
+        #{storeId,jdbcType=INTEGER},
+      </if>
+      <if test="sellerId != null" >
+        #{sellerId,jdbcType=INTEGER},
+      </if>
+      <if test="agentId != null" >
+        #{agentId,jdbcType=INTEGER},
+      </if>
+      <if test="poorId != null" >
+        #{poorId,jdbcType=INTEGER},
+      </if>
+      <if test="opeCenterId != null" >
+        #{opeCenterId,jdbcType=INTEGER},
+      </if>
+      <if test="orderType != null" >
+        #{orderType,jdbcType=TINYINT},
+      </if>
+      <if test="orderChannel != null" >
+        #{orderChannel,jdbcType=VARCHAR},
+      </if>
+      <if test="goodsProjectType != null" >
+        #{goodsProjectType,jdbcType=TINYINT},
+      </if>
+      <if test="orderStatus != null" >
+        #{orderStatus,jdbcType=TINYINT},
+      </if>
+      <if test="orderCancleReason != null" >
+        #{orderCancleReason,jdbcType=VARCHAR},
+      </if>
+      <if test="payType != null" >
+        #{payType,jdbcType=TINYINT},
+      </if>
+      <if test="payCenter != null" >
+        #{payCenter,jdbcType=VARCHAR},
+      </if>
+      <if test="payStatus != null" >
+        #{payStatus,jdbcType=TINYINT},
+      </if>
+      <if test="orderMessage != null" >
+        #{orderMessage,jdbcType=VARCHAR},
+      </if>
+      <if test="custServiceStatus != null" >
+        #{custServiceStatus,jdbcType=TINYINT},
+      </if>
+      <if test="orderAllPrice != null" >
+        #{orderAllPrice,jdbcType=INTEGER},
+      </if>
+      <if test="orderGoodsPrice != null" >
+        #{orderGoodsPrice,jdbcType=INTEGER},
+      </if>
+      <if test="orderLogistPrice != null" >
+        #{orderLogistPrice,jdbcType=INTEGER},
+      </if>
+      <if test="orderVoucherPrice != null" >
+        #{orderVoucherPrice,jdbcType=INTEGER},
+      </if>
+      <if test="orderCouponPrice != null" >
+        #{orderCouponPrice,jdbcType=INTEGER},
+      </if>
+      <if test="orderUsedPoint != null" >
+        #{orderUsedPoint,jdbcType=INTEGER},
+      </if>
+      <if test="orderPayFee != null" >
+        #{orderPayFee,jdbcType=INTEGER},
+      </if>
+      <if test="orderCreateTime != null" >
+        #{orderCreateTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="orderPayTime != null" >
+        #{orderPayTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="orderSendTime != null" >
+        #{orderSendTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="orderCheckTime != null" >
+        #{orderCheckTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="orderEvaStatus != null" >
+        #{orderEvaStatus,jdbcType=TINYINT},
+      </if>
+      <if test="isDelete != null" >
+        #{isDelete,jdbcType=TINYINT},
+      </if>
+      <if test="updateTime != null" >
+        #{updateTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="otherInfo1 != null" >
+        #{otherInfo1,jdbcType=VARCHAR},
+      </if>
+      <if test="otherInfo2 != null" >
+        #{otherInfo2,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <select id="countByExample" parameterType="com.shanyuan.platform.ms.dao.omorder.entity.OmOrderExample" resultType="java.lang.Integer" >
+    select count(*) from om_order
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </select>
+  <update id="updateByExampleSelective" parameterType="map" >
+    update om_order
+    <set >
+      <if test="record.orderId != null" >
+        order_id = #{record.orderId,jdbcType=VARCHAR},
+      </if>
+      <if test="record.mainId != null" >
+        main_id = #{record.mainId,jdbcType=VARCHAR},
+      </if>
+      <if test="record.orderCode != null" >
+        order_code = #{record.orderCode,jdbcType=BIGINT},
+      </if>
+      <if test="record.memberId != null" >
+        member_id = #{record.memberId,jdbcType=INTEGER},
+      </if>
+      <if test="record.storeId != null" >
+        store_id = #{record.storeId,jdbcType=INTEGER},
+      </if>
+      <if test="record.sellerId != null" >
+        seller_id = #{record.sellerId,jdbcType=INTEGER},
+      </if>
+      <if test="record.agentId != null" >
+        agent_id = #{record.agentId,jdbcType=INTEGER},
+      </if>
+      <if test="record.poorId != null" >
+        poor_id = #{record.poorId,jdbcType=INTEGER},
+      </if>
+      <if test="record.opeCenterId != null" >
+        ope_center_id = #{record.opeCenterId,jdbcType=INTEGER},
+      </if>
+      <if test="record.orderType != null" >
+        order_type = #{record.orderType,jdbcType=TINYINT},
+      </if>
+      <if test="record.orderChannel != null" >
+        order_channel = #{record.orderChannel,jdbcType=VARCHAR},
+      </if>
+      <if test="record.goodsProjectType != null" >
+        goods_project_type = #{record.goodsProjectType,jdbcType=TINYINT},
+      </if>
+      <if test="record.orderStatus != null" >
+        order_status = #{record.orderStatus,jdbcType=TINYINT},
+      </if>
+      <if test="record.orderCancleReason != null" >
+        order_cancle_reason = #{record.orderCancleReason,jdbcType=VARCHAR},
+      </if>
+      <if test="record.payType != null" >
+        pay_type = #{record.payType,jdbcType=TINYINT},
+      </if>
+      <if test="record.payCenter != null" >
+        pay_center = #{record.payCenter,jdbcType=VARCHAR},
+      </if>
+      <if test="record.payStatus != null" >
+        pay_status = #{record.payStatus,jdbcType=TINYINT},
+      </if>
+      <if test="record.orderMessage != null" >
+        order_message = #{record.orderMessage,jdbcType=VARCHAR},
+      </if>
+      <if test="record.custServiceStatus != null" >
+        cust_service_status = #{record.custServiceStatus,jdbcType=TINYINT},
+      </if>
+      <if test="record.orderAllPrice != null" >
+        order_all_price = #{record.orderAllPrice,jdbcType=INTEGER},
+      </if>
+      <if test="record.orderGoodsPrice != null" >
+        order_goods_price = #{record.orderGoodsPrice,jdbcType=INTEGER},
+      </if>
+      <if test="record.orderLogistPrice != null" >
+        order_logist_price = #{record.orderLogistPrice,jdbcType=INTEGER},
+      </if>
+      <if test="record.orderVoucherPrice != null" >
+        order_voucher_price = #{record.orderVoucherPrice,jdbcType=INTEGER},
+      </if>
+      <if test="record.orderCouponPrice != null" >
+        order_coupon_price = #{record.orderCouponPrice,jdbcType=INTEGER},
+      </if>
+      <if test="record.orderUsedPoint != null" >
+        order_used_point = #{record.orderUsedPoint,jdbcType=INTEGER},
+      </if>
+      <if test="record.orderPayFee != null" >
+        order_pay_fee = #{record.orderPayFee,jdbcType=INTEGER},
+      </if>
+      <if test="record.orderCreateTime != null" >
+        order_create_time = #{record.orderCreateTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="record.orderPayTime != null" >
+        order_pay_time = #{record.orderPayTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="record.orderSendTime != null" >
+        order_send_time = #{record.orderSendTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="record.orderCheckTime != null" >
+        order_check_time = #{record.orderCheckTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="record.orderEvaStatus != null" >
+        order_eva_status = #{record.orderEvaStatus,jdbcType=TINYINT},
+      </if>
+      <if test="record.isDelete != null" >
+        is_delete = #{record.isDelete,jdbcType=TINYINT},
+      </if>
+      <if test="record.updateTime != null" >
+        update_time = #{record.updateTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="record.otherInfo1 != null" >
+        other_info1 = #{record.otherInfo1,jdbcType=VARCHAR},
+      </if>
+      <if test="record.otherInfo2 != null" >
+        other_info2 = #{record.otherInfo2,jdbcType=VARCHAR},
+      </if>
+    </set>
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByExample" parameterType="map" >
+    update om_order
+    set order_id = #{record.orderId,jdbcType=VARCHAR},
+      main_id = #{record.mainId,jdbcType=VARCHAR},
+      order_code = #{record.orderCode,jdbcType=BIGINT},
+      member_id = #{record.memberId,jdbcType=INTEGER},
+      store_id = #{record.storeId,jdbcType=INTEGER},
+      seller_id = #{record.sellerId,jdbcType=INTEGER},
+      agent_id = #{record.agentId,jdbcType=INTEGER},
+      poor_id = #{record.poorId,jdbcType=INTEGER},
+      ope_center_id = #{record.opeCenterId,jdbcType=INTEGER},
+      order_type = #{record.orderType,jdbcType=TINYINT},
+      order_channel = #{record.orderChannel,jdbcType=VARCHAR},
+      goods_project_type = #{record.goodsProjectType,jdbcType=TINYINT},
+      order_status = #{record.orderStatus,jdbcType=TINYINT},
+      order_cancle_reason = #{record.orderCancleReason,jdbcType=VARCHAR},
+      pay_type = #{record.payType,jdbcType=TINYINT},
+      pay_center = #{record.payCenter,jdbcType=VARCHAR},
+      pay_status = #{record.payStatus,jdbcType=TINYINT},
+      order_message = #{record.orderMessage,jdbcType=VARCHAR},
+      cust_service_status = #{record.custServiceStatus,jdbcType=TINYINT},
+      order_all_price = #{record.orderAllPrice,jdbcType=INTEGER},
+      order_goods_price = #{record.orderGoodsPrice,jdbcType=INTEGER},
+      order_logist_price = #{record.orderLogistPrice,jdbcType=INTEGER},
+      order_voucher_price = #{record.orderVoucherPrice,jdbcType=INTEGER},
+      order_coupon_price = #{record.orderCouponPrice,jdbcType=INTEGER},
+      order_used_point = #{record.orderUsedPoint,jdbcType=INTEGER},
+      order_pay_fee = #{record.orderPayFee,jdbcType=INTEGER},
+      order_create_time = #{record.orderCreateTime,jdbcType=TIMESTAMP},
+      order_pay_time = #{record.orderPayTime,jdbcType=TIMESTAMP},
+      order_send_time = #{record.orderSendTime,jdbcType=TIMESTAMP},
+      order_check_time = #{record.orderCheckTime,jdbcType=TIMESTAMP},
+      order_eva_status = #{record.orderEvaStatus,jdbcType=TINYINT},
+      is_delete = #{record.isDelete,jdbcType=TINYINT},
+      update_time = #{record.updateTime,jdbcType=TIMESTAMP},
+      other_info1 = #{record.otherInfo1,jdbcType=VARCHAR},
+      other_info2 = #{record.otherInfo2,jdbcType=VARCHAR}
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByPrimaryKeySelective" parameterType="com.shanyuan.platform.ms.dao.omorder.entity.OmOrder" >
+    update om_order
+    <set >
+      <if test="mainId != null" >
+        main_id = #{mainId,jdbcType=VARCHAR},
+      </if>
+      <if test="orderCode != null" >
+        order_code = #{orderCode,jdbcType=BIGINT},
+      </if>
+      <if test="memberId != null" >
+        member_id = #{memberId,jdbcType=INTEGER},
+      </if>
+      <if test="storeId != null" >
+        store_id = #{storeId,jdbcType=INTEGER},
+      </if>
+      <if test="sellerId != null" >
+        seller_id = #{sellerId,jdbcType=INTEGER},
+      </if>
+      <if test="agentId != null" >
+        agent_id = #{agentId,jdbcType=INTEGER},
+      </if>
+      <if test="poorId != null" >
+        poor_id = #{poorId,jdbcType=INTEGER},
+      </if>
+      <if test="opeCenterId != null" >
+        ope_center_id = #{opeCenterId,jdbcType=INTEGER},
+      </if>
+      <if test="orderType != null" >
+        order_type = #{orderType,jdbcType=TINYINT},
+      </if>
+      <if test="orderChannel != null" >
+        order_channel = #{orderChannel,jdbcType=VARCHAR},
+      </if>
+      <if test="goodsProjectType != null" >
+        goods_project_type = #{goodsProjectType,jdbcType=TINYINT},
+      </if>
+      <if test="orderStatus != null" >
+        order_status = #{orderStatus,jdbcType=TINYINT},
+      </if>
+      <if test="orderCancleReason != null" >
+        order_cancle_reason = #{orderCancleReason,jdbcType=VARCHAR},
+      </if>
+      <if test="payType != null" >
+        pay_type = #{payType,jdbcType=TINYINT},
+      </if>
+      <if test="payCenter != null" >
+        pay_center = #{payCenter,jdbcType=VARCHAR},
+      </if>
+      <if test="payStatus != null" >
+        pay_status = #{payStatus,jdbcType=TINYINT},
+      </if>
+      <if test="orderMessage != null" >
+        order_message = #{orderMessage,jdbcType=VARCHAR},
+      </if>
+      <if test="custServiceStatus != null" >
+        cust_service_status = #{custServiceStatus,jdbcType=TINYINT},
+      </if>
+      <if test="orderAllPrice != null" >
+        order_all_price = #{orderAllPrice,jdbcType=INTEGER},
+      </if>
+      <if test="orderGoodsPrice != null" >
+        order_goods_price = #{orderGoodsPrice,jdbcType=INTEGER},
+      </if>
+      <if test="orderLogistPrice != null" >
+        order_logist_price = #{orderLogistPrice,jdbcType=INTEGER},
+      </if>
+      <if test="orderVoucherPrice != null" >
+        order_voucher_price = #{orderVoucherPrice,jdbcType=INTEGER},
+      </if>
+      <if test="orderCouponPrice != null" >
+        order_coupon_price = #{orderCouponPrice,jdbcType=INTEGER},
+      </if>
+      <if test="orderUsedPoint != null" >
+        order_used_point = #{orderUsedPoint,jdbcType=INTEGER},
+      </if>
+      <if test="orderPayFee != null" >
+        order_pay_fee = #{orderPayFee,jdbcType=INTEGER},
+      </if>
+      <if test="orderCreateTime != null" >
+        order_create_time = #{orderCreateTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="orderPayTime != null" >
+        order_pay_time = #{orderPayTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="orderSendTime != null" >
+        order_send_time = #{orderSendTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="orderCheckTime != null" >
+        order_check_time = #{orderCheckTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="orderEvaStatus != null" >
+        order_eva_status = #{orderEvaStatus,jdbcType=TINYINT},
+      </if>
+      <if test="isDelete != null" >
+        is_delete = #{isDelete,jdbcType=TINYINT},
+      </if>
+      <if test="updateTime != null" >
+        update_time = #{updateTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="otherInfo1 != null" >
+        other_info1 = #{otherInfo1,jdbcType=VARCHAR},
+      </if>
+      <if test="otherInfo2 != null" >
+        other_info2 = #{otherInfo2,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where order_id = #{orderId,jdbcType=VARCHAR}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.shanyuan.platform.ms.dao.omorder.entity.OmOrder" >
+    update om_order
+    set main_id = #{mainId,jdbcType=VARCHAR},
+      order_code = #{orderCode,jdbcType=BIGINT},
+      member_id = #{memberId,jdbcType=INTEGER},
+      store_id = #{storeId,jdbcType=INTEGER},
+      seller_id = #{sellerId,jdbcType=INTEGER},
+      agent_id = #{agentId,jdbcType=INTEGER},
+      poor_id = #{poorId,jdbcType=INTEGER},
+      ope_center_id = #{opeCenterId,jdbcType=INTEGER},
+      order_type = #{orderType,jdbcType=TINYINT},
+      order_channel = #{orderChannel,jdbcType=VARCHAR},
+      goods_project_type = #{goodsProjectType,jdbcType=TINYINT},
+      order_status = #{orderStatus,jdbcType=TINYINT},
+      order_cancle_reason = #{orderCancleReason,jdbcType=VARCHAR},
+      pay_type = #{payType,jdbcType=TINYINT},
+      pay_center = #{payCenter,jdbcType=VARCHAR},
+      pay_status = #{payStatus,jdbcType=TINYINT},
+      order_message = #{orderMessage,jdbcType=VARCHAR},
+      cust_service_status = #{custServiceStatus,jdbcType=TINYINT},
+      order_all_price = #{orderAllPrice,jdbcType=INTEGER},
+      order_goods_price = #{orderGoodsPrice,jdbcType=INTEGER},
+      order_logist_price = #{orderLogistPrice,jdbcType=INTEGER},
+      order_voucher_price = #{orderVoucherPrice,jdbcType=INTEGER},
+      order_coupon_price = #{orderCouponPrice,jdbcType=INTEGER},
+      order_used_point = #{orderUsedPoint,jdbcType=INTEGER},
+      order_pay_fee = #{orderPayFee,jdbcType=INTEGER},
+      order_create_time = #{orderCreateTime,jdbcType=TIMESTAMP},
+      order_pay_time = #{orderPayTime,jdbcType=TIMESTAMP},
+      order_send_time = #{orderSendTime,jdbcType=TIMESTAMP},
+      order_check_time = #{orderCheckTime,jdbcType=TIMESTAMP},
+      order_eva_status = #{orderEvaStatus,jdbcType=TINYINT},
+      is_delete = #{isDelete,jdbcType=TINYINT},
+      update_time = #{updateTime,jdbcType=TIMESTAMP},
+      other_info1 = #{otherInfo1,jdbcType=VARCHAR},
+      other_info2 = #{otherInfo2,jdbcType=VARCHAR}
+    where order_id = #{orderId,jdbcType=VARCHAR}
+  </update>
+</mapper>

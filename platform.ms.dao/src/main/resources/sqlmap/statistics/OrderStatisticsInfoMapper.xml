@@ -1,0 +1,1774 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.shanyuan.platform.ms.dao.statistics.mapper.OrderStatisticsInfoMapper" >
+  <resultMap id="BaseResultMap" type="com.shanyuan.platform.ms.dao.statistics.entity.OrderStatisticsInfo" >
+    <id column="id" property="id" jdbcType="INTEGER" />
+    <result column="order_id" property="orderId" jdbcType="INTEGER" />
+    <result column="finished_time" property="finishedTime" jdbcType="INTEGER" />
+    <result column="order_amount" property="orderAmount" jdbcType="DECIMAL" />
+    <result column="goods_amount" property="goodsAmount" jdbcType="DECIMAL" />
+    <result column="pd_amount" property="pdAmount" jdbcType="DECIMAL" />
+    <result column="order_from" property="orderFrom" jdbcType="CHAR" />
+    <result column="circle_id_deep_1" property="circleIdDeep1" jdbcType="INTEGER" />
+    <result column="circle_id_deep_2" property="circleIdDeep2" jdbcType="INTEGER" />
+    <result column="circle_id_deep_3" property="circleIdDeep3" jdbcType="INTEGER" />
+    <result column="circle_id_deep_4" property="circleIdDeep4" jdbcType="INTEGER" />
+    <result column="circle_id_deep_5" property="circleIdDeep5" jdbcType="INTEGER" />
+    <result column="circle_id_deep_6" property="circleIdDeep6" jdbcType="INTEGER" />
+    <result column="circle_id_deep_7" property="circleIdDeep7" jdbcType="INTEGER" />
+    <result column="circle_name" property="circleName" jdbcType="VARCHAR" />
+    <result column="s_union_id" property="sUnionId" jdbcType="INTEGER" />
+    <result column="s_union_name" property="sUnionName" jdbcType="VARCHAR" />
+    <result column="s_channel" property="sChannel" jdbcType="VARCHAR" />
+    <result column="s_circle_id_deep_1" property="sCircleIdDeep1" jdbcType="INTEGER" />
+    <result column="s_circle_id_deep_2" property="sCircleIdDeep2" jdbcType="INTEGER" />
+    <result column="s_circle_id_deep_3" property="sCircleIdDeep3" jdbcType="INTEGER" />
+    <result column="s_circle_id_deep_4" property="sCircleIdDeep4" jdbcType="INTEGER" />
+    <result column="s_circle_id_deep_5" property="sCircleIdDeep5" jdbcType="INTEGER" />
+    <result column="s_circle_id_deep_6" property="sCircleIdDeep6" jdbcType="INTEGER" />
+    <result column="s_circle_id_deep_7" property="sCircleIdDeep7" jdbcType="INTEGER" />
+    <result column="s_circle_name" property="sCircleName" jdbcType="VARCHAR" />
+    <result column="province_id" property="provinceId" jdbcType="BIGINT" />
+    <result column="province_name" property="provinceName" jdbcType="VARCHAR" />
+    <result column="city_id" property="cityId" jdbcType="BIGINT" />
+    <result column="city_name" property="cityName" jdbcType="VARCHAR" />
+    <result column="country_id" property="countryId" jdbcType="BIGINT" />
+    <result column="country_name" property="countryName" jdbcType="VARCHAR" />
+    <result column="township_id" property="townshipId" jdbcType="BIGINT" />
+    <result column="township_name" property="townshipName" jdbcType="VARCHAR" />
+    <result column="village_id" property="villageId" jdbcType="BIGINT" />
+    <result column="village_name" property="villageName" jdbcType="VARCHAR" />
+    <result column="p_province_id" property="pProvinceId" jdbcType="BIGINT" />
+    <result column="p_province_name" property="pProvinceName" jdbcType="VARCHAR" />
+    <result column="p_city_id" property="pCityId" jdbcType="BIGINT" />
+    <result column="p_city_name" property="pCityName" jdbcType="VARCHAR" />
+    <result column="p_country_id" property="pCountryId" jdbcType="BIGINT" />
+    <result column="p_country_name" property="pCountryName" jdbcType="VARCHAR" />
+    <result column="p_township_id" property="pTownshipId" jdbcType="BIGINT" />
+    <result column="p_township_name" property="pTownshipName" jdbcType="VARCHAR" />
+    <result column="p_village_id" property="pVillageId" jdbcType="BIGINT" />
+    <result column="p_village_name" property="pVillageName" jdbcType="VARCHAR" />
+    <result column="help_price" property="helpPrice" jdbcType="DECIMAL" />
+    <result column="seller_id" property="sellerId" jdbcType="INTEGER" />
+    <result column="seller_name" property="sellerName" jdbcType="VARCHAR" />
+    <result column="seller_type" property="sellerType" jdbcType="BIT" />
+    <result column="store_id" property="storeId" jdbcType="INTEGER" />
+    <result column="buyer_id" property="buyerId" jdbcType="INTEGER" />
+    <result column="buyer_name" property="buyerName" jdbcType="VARCHAR" />
+    <result column="goods_num" property="goodsNum" jdbcType="INTEGER" />
+    <result column="goods_project_type" property="goodsProjectType" jdbcType="INTEGER" />
+    <result column="sy_points" property="syPoints" jdbcType="DECIMAL" />
+    <result column="union_id" property="unionId" jdbcType="INTEGER" />
+    <result column="union_name" property="unionName" jdbcType="VARCHAR" />
+    <result column="channel" property="channel" jdbcType="VARCHAR" />
+    <result column="coupon_pay" property="couponPay" jdbcType="DECIMAL" />
+    <result column="money_pay" property="moneyPay" jdbcType="DECIMAL" />
+    <result column="assist_id" property="assistId" jdbcType="INTEGER" />
+    <result column="app_variant" property="appVariant" jdbcType="VARCHAR" />
+    <result column="support_county_id" property="supportCountyId" jdbcType="BIGINT" />
+    <result column="discount_amount" property="discountAmount" jdbcType="DECIMAL" />
+    <result column="biz_operation_mid" property="bizOperationMid" jdbcType="INTEGER" />
+    <result column="platform_pay" property="platformPay" jdbcType="DECIMAL" />
+    <result column="service_fee_rate" property="serviceFeeRate" jdbcType="SMALLINT" />
+    <result column="service_fee" property="serviceFee" jdbcType="DECIMAL" />
+    <result column="agent_fee" property="agentFee" jdbcType="DECIMAL" />
+    <result column="fund_fee_rate" property="fundFeeRate" jdbcType="SMALLINT" />
+    <result column="fund_fee" property="fundFee" jdbcType="DECIMAL" />
+    <result column="c_time" property="cTime" jdbcType="INTEGER" />
+  </resultMap>
+  <sql id="Example_Where_Clause" >
+    <where >
+      <foreach collection="oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Update_By_Example_Where_Clause" >
+    <where >
+      <foreach collection="example.oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Base_Column_List" >
+    id, order_id, finished_time, order_amount, goods_amount, pd_amount, order_from, circle_id_deep_1, 
+    circle_id_deep_2, circle_id_deep_3, circle_id_deep_4, circle_id_deep_5, circle_id_deep_6, 
+    circle_id_deep_7, circle_name, s_union_id, s_union_name, s_channel, s_circle_id_deep_1, 
+    s_circle_id_deep_2, s_circle_id_deep_3, s_circle_id_deep_4, s_circle_id_deep_5, s_circle_id_deep_6, 
+    s_circle_id_deep_7, s_circle_name, province_id, province_name, city_id, city_name, 
+    country_id, country_name, township_id, township_name, village_id, village_name, p_province_id, 
+    p_province_name, p_city_id, p_city_name, p_country_id, p_country_name, p_township_id, 
+    p_township_name, p_village_id, p_village_name, help_price, seller_id, seller_name, 
+    seller_type, store_id, buyer_id, buyer_name, goods_num, goods_project_type, sy_points, 
+    union_id, union_name, channel, coupon_pay, money_pay, assist_id, app_variant, support_county_id, 
+    discount_amount, biz_operation_mid, platform_pay, service_fee_rate, service_fee, 
+    agent_fee, fund_fee_rate, fund_fee, c_time
+  </sql>
+  <select id="selectByExample" resultMap="BaseResultMap" parameterType="com.shanyuan.platform.ms.dao.statistics.entity.OrderStatisticsInfoExample" >
+    select
+    <if test="distinct" >
+      distinct
+    </if>
+    <include refid="Base_Column_List" />
+    from statistics_order_base_data
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null" >
+      order by ${orderByClause}
+    </if>
+  </select>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+    select 
+    <include refid="Base_Column_List" />
+    from statistics_order_base_data
+    where id = #{id,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+    delete from statistics_order_base_data
+    where id = #{id,jdbcType=INTEGER}
+  </delete>
+  <delete id="deleteByExample" parameterType="com.shanyuan.platform.ms.dao.statistics.entity.OrderStatisticsInfoExample" >
+    delete from statistics_order_base_data
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </delete>
+  <insert id="insert" parameterType="com.shanyuan.platform.ms.dao.statistics.entity.OrderStatisticsInfo" >
+    <selectKey resultType="java.lang.Integer" keyProperty="id" order="AFTER" >
+      SELECT LAST_INSERT_ID()
+    </selectKey>
+    insert into statistics_order_base_data (order_id, finished_time, order_amount, 
+      goods_amount, pd_amount, order_from, 
+      circle_id_deep_1, circle_id_deep_2, circle_id_deep_3, 
+      circle_id_deep_4, circle_id_deep_5, circle_id_deep_6, 
+      circle_id_deep_7, circle_name, s_union_id, 
+      s_union_name, s_channel, s_circle_id_deep_1, 
+      s_circle_id_deep_2, s_circle_id_deep_3, s_circle_id_deep_4, 
+      s_circle_id_deep_5, s_circle_id_deep_6, s_circle_id_deep_7, 
+      s_circle_name, province_id, province_name, 
+      city_id, city_name, country_id, 
+      country_name, township_id, township_name, 
+      village_id, village_name, p_province_id, 
+      p_province_name, p_city_id, p_city_name, 
+      p_country_id, p_country_name, p_township_id, 
+      p_township_name, p_village_id, p_village_name, 
+      help_price, seller_id, seller_name, 
+      seller_type, store_id, buyer_id, 
+      buyer_name, goods_num, goods_project_type, 
+      sy_points, union_id, union_name, 
+      channel, coupon_pay, money_pay, 
+      assist_id, app_variant, support_county_id, 
+      discount_amount, biz_operation_mid, platform_pay, 
+      service_fee_rate, service_fee, agent_fee, 
+      fund_fee_rate, fund_fee, c_time
+      )
+    values (#{orderId,jdbcType=INTEGER}, #{finishedTime,jdbcType=INTEGER}, #{orderAmount,jdbcType=DECIMAL}, 
+      #{goodsAmount,jdbcType=DECIMAL}, #{pdAmount,jdbcType=DECIMAL}, #{orderFrom,jdbcType=CHAR}, 
+      #{circleIdDeep1,jdbcType=INTEGER}, #{circleIdDeep2,jdbcType=INTEGER}, #{circleIdDeep3,jdbcType=INTEGER}, 
+      #{circleIdDeep4,jdbcType=INTEGER}, #{circleIdDeep5,jdbcType=INTEGER}, #{circleIdDeep6,jdbcType=INTEGER}, 
+      #{circleIdDeep7,jdbcType=INTEGER}, #{circleName,jdbcType=VARCHAR}, #{sUnionId,jdbcType=INTEGER}, 
+      #{sUnionName,jdbcType=VARCHAR}, #{sChannel,jdbcType=VARCHAR}, #{sCircleIdDeep1,jdbcType=INTEGER}, 
+      #{sCircleIdDeep2,jdbcType=INTEGER}, #{sCircleIdDeep3,jdbcType=INTEGER}, #{sCircleIdDeep4,jdbcType=INTEGER}, 
+      #{sCircleIdDeep5,jdbcType=INTEGER}, #{sCircleIdDeep6,jdbcType=INTEGER}, #{sCircleIdDeep7,jdbcType=INTEGER}, 
+      #{sCircleName,jdbcType=VARCHAR}, #{provinceId,jdbcType=BIGINT}, #{provinceName,jdbcType=VARCHAR}, 
+      #{cityId,jdbcType=BIGINT}, #{cityName,jdbcType=VARCHAR}, #{countryId,jdbcType=BIGINT}, 
+      #{countryName,jdbcType=VARCHAR}, #{townshipId,jdbcType=BIGINT}, #{townshipName,jdbcType=VARCHAR}, 
+      #{villageId,jdbcType=BIGINT}, #{villageName,jdbcType=VARCHAR}, #{pProvinceId,jdbcType=BIGINT}, 
+      #{pProvinceName,jdbcType=VARCHAR}, #{pCityId,jdbcType=BIGINT}, #{pCityName,jdbcType=VARCHAR}, 
+      #{pCountryId,jdbcType=BIGINT}, #{pCountryName,jdbcType=VARCHAR}, #{pTownshipId,jdbcType=BIGINT}, 
+      #{pTownshipName,jdbcType=VARCHAR}, #{pVillageId,jdbcType=BIGINT}, #{pVillageName,jdbcType=VARCHAR}, 
+      #{helpPrice,jdbcType=DECIMAL}, #{sellerId,jdbcType=INTEGER}, #{sellerName,jdbcType=VARCHAR}, 
+      #{sellerType,jdbcType=BIT}, #{storeId,jdbcType=INTEGER}, #{buyerId,jdbcType=INTEGER}, 
+      #{buyerName,jdbcType=VARCHAR}, #{goodsNum,jdbcType=INTEGER}, #{goodsProjectType,jdbcType=INTEGER}, 
+      #{syPoints,jdbcType=DECIMAL}, #{unionId,jdbcType=INTEGER}, #{unionName,jdbcType=VARCHAR}, 
+      #{channel,jdbcType=VARCHAR}, #{couponPay,jdbcType=DECIMAL}, #{moneyPay,jdbcType=DECIMAL}, 
+      #{assistId,jdbcType=INTEGER}, #{appVariant,jdbcType=VARCHAR}, #{supportCountyId,jdbcType=BIGINT}, 
+      #{discountAmount,jdbcType=DECIMAL}, #{bizOperationMid,jdbcType=INTEGER}, #{platformPay,jdbcType=DECIMAL}, 
+      #{serviceFeeRate,jdbcType=SMALLINT}, #{serviceFee,jdbcType=DECIMAL}, #{agentFee,jdbcType=DECIMAL}, 
+      #{fundFeeRate,jdbcType=SMALLINT}, #{fundFee,jdbcType=DECIMAL}, #{cTime,jdbcType=INTEGER}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="com.shanyuan.platform.ms.dao.statistics.entity.OrderStatisticsInfo" >
+    <selectKey resultType="java.lang.Integer" keyProperty="id" order="AFTER" >
+      SELECT LAST_INSERT_ID()
+    </selectKey>
+    insert into statistics_order_base_data
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="orderId != null" >
+        order_id,
+      </if>
+      <if test="finishedTime != null" >
+        finished_time,
+      </if>
+      <if test="orderAmount != null" >
+        order_amount,
+      </if>
+      <if test="goodsAmount != null" >
+        goods_amount,
+      </if>
+      <if test="pdAmount != null" >
+        pd_amount,
+      </if>
+      <if test="orderFrom != null" >
+        order_from,
+      </if>
+      <if test="circleIdDeep1 != null" >
+        circle_id_deep_1,
+      </if>
+      <if test="circleIdDeep2 != null" >
+        circle_id_deep_2,
+      </if>
+      <if test="circleIdDeep3 != null" >
+        circle_id_deep_3,
+      </if>
+      <if test="circleIdDeep4 != null" >
+        circle_id_deep_4,
+      </if>
+      <if test="circleIdDeep5 != null" >
+        circle_id_deep_5,
+      </if>
+      <if test="circleIdDeep6 != null" >
+        circle_id_deep_6,
+      </if>
+      <if test="circleIdDeep7 != null" >
+        circle_id_deep_7,
+      </if>
+      <if test="circleName != null" >
+        circle_name,
+      </if>
+      <if test="sUnionId != null" >
+        s_union_id,
+      </if>
+      <if test="sUnionName != null" >
+        s_union_name,
+      </if>
+      <if test="sChannel != null" >
+        s_channel,
+      </if>
+      <if test="sCircleIdDeep1 != null" >
+        s_circle_id_deep_1,
+      </if>
+      <if test="sCircleIdDeep2 != null" >
+        s_circle_id_deep_2,
+      </if>
+      <if test="sCircleIdDeep3 != null" >
+        s_circle_id_deep_3,
+      </if>
+      <if test="sCircleIdDeep4 != null" >
+        s_circle_id_deep_4,
+      </if>
+      <if test="sCircleIdDeep5 != null" >
+        s_circle_id_deep_5,
+      </if>
+      <if test="sCircleIdDeep6 != null" >
+        s_circle_id_deep_6,
+      </if>
+      <if test="sCircleIdDeep7 != null" >
+        s_circle_id_deep_7,
+      </if>
+      <if test="sCircleName != null" >
+        s_circle_name,
+      </if>
+      <if test="provinceId != null" >
+        province_id,
+      </if>
+      <if test="provinceName != null" >
+        province_name,
+      </if>
+      <if test="cityId != null" >
+        city_id,
+      </if>
+      <if test="cityName != null" >
+        city_name,
+      </if>
+      <if test="countryId != null" >
+        country_id,
+      </if>
+      <if test="countryName != null" >
+        country_name,
+      </if>
+      <if test="townshipId != null" >
+        township_id,
+      </if>
+      <if test="townshipName != null" >
+        township_name,
+      </if>
+      <if test="villageId != null" >
+        village_id,
+      </if>
+      <if test="villageName != null" >
+        village_name,
+      </if>
+      <if test="pProvinceId != null" >
+        p_province_id,
+      </if>
+      <if test="pProvinceName != null" >
+        p_province_name,
+      </if>
+      <if test="pCityId != null" >
+        p_city_id,
+      </if>
+      <if test="pCityName != null" >
+        p_city_name,
+      </if>
+      <if test="pCountryId != null" >
+        p_country_id,
+      </if>
+      <if test="pCountryName != null" >
+        p_country_name,
+      </if>
+      <if test="pTownshipId != null" >
+        p_township_id,
+      </if>
+      <if test="pTownshipName != null" >
+        p_township_name,
+      </if>
+      <if test="pVillageId != null" >
+        p_village_id,
+      </if>
+      <if test="pVillageName != null" >
+        p_village_name,
+      </if>
+      <if test="helpPrice != null" >
+        help_price,
+      </if>
+      <if test="sellerId != null" >
+        seller_id,
+      </if>
+      <if test="sellerName != null" >
+        seller_name,
+      </if>
+      <if test="sellerType != null" >
+        seller_type,
+      </if>
+      <if test="storeId != null" >
+        store_id,
+      </if>
+      <if test="buyerId != null" >
+        buyer_id,
+      </if>
+      <if test="buyerName != null" >
+        buyer_name,
+      </if>
+      <if test="goodsNum != null" >
+        goods_num,
+      </if>
+      <if test="goodsProjectType != null" >
+        goods_project_type,
+      </if>
+      <if test="syPoints != null" >
+        sy_points,
+      </if>
+      <if test="unionId != null" >
+        union_id,
+      </if>
+      <if test="unionName != null" >
+        union_name,
+      </if>
+      <if test="channel != null" >
+        channel,
+      </if>
+      <if test="couponPay != null" >
+        coupon_pay,
+      </if>
+      <if test="moneyPay != null" >
+        money_pay,
+      </if>
+      <if test="assistId != null" >
+        assist_id,
+      </if>
+      <if test="appVariant != null" >
+        app_variant,
+      </if>
+      <if test="supportCountyId != null" >
+        support_county_id,
+      </if>
+      <if test="discountAmount != null" >
+        discount_amount,
+      </if>
+      <if test="bizOperationMid != null" >
+        biz_operation_mid,
+      </if>
+      <if test="platformPay != null" >
+        platform_pay,
+      </if>
+      <if test="serviceFeeRate != null" >
+        service_fee_rate,
+      </if>
+      <if test="serviceFee != null" >
+        service_fee,
+      </if>
+      <if test="agentFee != null" >
+        agent_fee,
+      </if>
+      <if test="fundFeeRate != null" >
+        fund_fee_rate,
+      </if>
+      <if test="fundFee != null" >
+        fund_fee,
+      </if>
+      <if test="cTime != null" >
+        c_time,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="orderId != null" >
+        #{orderId,jdbcType=INTEGER},
+      </if>
+      <if test="finishedTime != null" >
+        #{finishedTime,jdbcType=INTEGER},
+      </if>
+      <if test="orderAmount != null" >
+        #{orderAmount,jdbcType=DECIMAL},
+      </if>
+      <if test="goodsAmount != null" >
+        #{goodsAmount,jdbcType=DECIMAL},
+      </if>
+      <if test="pdAmount != null" >
+        #{pdAmount,jdbcType=DECIMAL},
+      </if>
+      <if test="orderFrom != null" >
+        #{orderFrom,jdbcType=CHAR},
+      </if>
+      <if test="circleIdDeep1 != null" >
+        #{circleIdDeep1,jdbcType=INTEGER},
+      </if>
+      <if test="circleIdDeep2 != null" >
+        #{circleIdDeep2,jdbcType=INTEGER},
+      </if>
+      <if test="circleIdDeep3 != null" >
+        #{circleIdDeep3,jdbcType=INTEGER},
+      </if>
+      <if test="circleIdDeep4 != null" >
+        #{circleIdDeep4,jdbcType=INTEGER},
+      </if>
+      <if test="circleIdDeep5 != null" >
+        #{circleIdDeep5,jdbcType=INTEGER},
+      </if>
+      <if test="circleIdDeep6 != null" >
+        #{circleIdDeep6,jdbcType=INTEGER},
+      </if>
+      <if test="circleIdDeep7 != null" >
+        #{circleIdDeep7,jdbcType=INTEGER},
+      </if>
+      <if test="circleName != null" >
+        #{circleName,jdbcType=VARCHAR},
+      </if>
+      <if test="sUnionId != null" >
+        #{sUnionId,jdbcType=INTEGER},
+      </if>
+      <if test="sUnionName != null" >
+        #{sUnionName,jdbcType=VARCHAR},
+      </if>
+      <if test="sChannel != null" >
+        #{sChannel,jdbcType=VARCHAR},
+      </if>
+      <if test="sCircleIdDeep1 != null" >
+        #{sCircleIdDeep1,jdbcType=INTEGER},
+      </if>
+      <if test="sCircleIdDeep2 != null" >
+        #{sCircleIdDeep2,jdbcType=INTEGER},
+      </if>
+      <if test="sCircleIdDeep3 != null" >
+        #{sCircleIdDeep3,jdbcType=INTEGER},
+      </if>
+      <if test="sCircleIdDeep4 != null" >
+        #{sCircleIdDeep4,jdbcType=INTEGER},
+      </if>
+      <if test="sCircleIdDeep5 != null" >
+        #{sCircleIdDeep5,jdbcType=INTEGER},
+      </if>
+      <if test="sCircleIdDeep6 != null" >
+        #{sCircleIdDeep6,jdbcType=INTEGER},
+      </if>
+      <if test="sCircleIdDeep7 != null" >
+        #{sCircleIdDeep7,jdbcType=INTEGER},
+      </if>
+      <if test="sCircleName != null" >
+        #{sCircleName,jdbcType=VARCHAR},
+      </if>
+      <if test="provinceId != null" >
+        #{provinceId,jdbcType=BIGINT},
+      </if>
+      <if test="provinceName != null" >
+        #{provinceName,jdbcType=VARCHAR},
+      </if>
+      <if test="cityId != null" >
+        #{cityId,jdbcType=BIGINT},
+      </if>
+      <if test="cityName != null" >
+        #{cityName,jdbcType=VARCHAR},
+      </if>
+      <if test="countryId != null" >
+        #{countryId,jdbcType=BIGINT},
+      </if>
+      <if test="countryName != null" >
+        #{countryName,jdbcType=VARCHAR},
+      </if>
+      <if test="townshipId != null" >
+        #{townshipId,jdbcType=BIGINT},
+      </if>
+      <if test="townshipName != null" >
+        #{townshipName,jdbcType=VARCHAR},
+      </if>
+      <if test="villageId != null" >
+        #{villageId,jdbcType=BIGINT},
+      </if>
+      <if test="villageName != null" >
+        #{villageName,jdbcType=VARCHAR},
+      </if>
+      <if test="pProvinceId != null" >
+        #{pProvinceId,jdbcType=BIGINT},
+      </if>
+      <if test="pProvinceName != null" >
+        #{pProvinceName,jdbcType=VARCHAR},
+      </if>
+      <if test="pCityId != null" >
+        #{pCityId,jdbcType=BIGINT},
+      </if>
+      <if test="pCityName != null" >
+        #{pCityName,jdbcType=VARCHAR},
+      </if>
+      <if test="pCountryId != null" >
+        #{pCountryId,jdbcType=BIGINT},
+      </if>
+      <if test="pCountryName != null" >
+        #{pCountryName,jdbcType=VARCHAR},
+      </if>
+      <if test="pTownshipId != null" >
+        #{pTownshipId,jdbcType=BIGINT},
+      </if>
+      <if test="pTownshipName != null" >
+        #{pTownshipName,jdbcType=VARCHAR},
+      </if>
+      <if test="pVillageId != null" >
+        #{pVillageId,jdbcType=BIGINT},
+      </if>
+      <if test="pVillageName != null" >
+        #{pVillageName,jdbcType=VARCHAR},
+      </if>
+      <if test="helpPrice != null" >
+        #{helpPrice,jdbcType=DECIMAL},
+      </if>
+      <if test="sellerId != null" >
+        #{sellerId,jdbcType=INTEGER},
+      </if>
+      <if test="sellerName != null" >
+        #{sellerName,jdbcType=VARCHAR},
+      </if>
+      <if test="sellerType != null" >
+        #{sellerType,jdbcType=BIT},
+      </if>
+      <if test="storeId != null" >
+        #{storeId,jdbcType=INTEGER},
+      </if>
+      <if test="buyerId != null" >
+        #{buyerId,jdbcType=INTEGER},
+      </if>
+      <if test="buyerName != null" >
+        #{buyerName,jdbcType=VARCHAR},
+      </if>
+      <if test="goodsNum != null" >
+        #{goodsNum,jdbcType=INTEGER},
+      </if>
+      <if test="goodsProjectType != null" >
+        #{goodsProjectType,jdbcType=INTEGER},
+      </if>
+      <if test="syPoints != null" >
+        #{syPoints,jdbcType=DECIMAL},
+      </if>
+      <if test="unionId != null" >
+        #{unionId,jdbcType=INTEGER},
+      </if>
+      <if test="unionName != null" >
+        #{unionName,jdbcType=VARCHAR},
+      </if>
+      <if test="channel != null" >
+        #{channel,jdbcType=VARCHAR},
+      </if>
+      <if test="couponPay != null" >
+        #{couponPay,jdbcType=DECIMAL},
+      </if>
+      <if test="moneyPay != null" >
+        #{moneyPay,jdbcType=DECIMAL},
+      </if>
+      <if test="assistId != null" >
+        #{assistId,jdbcType=INTEGER},
+      </if>
+      <if test="appVariant != null" >
+        #{appVariant,jdbcType=VARCHAR},
+      </if>
+      <if test="supportCountyId != null" >
+        #{supportCountyId,jdbcType=BIGINT},
+      </if>
+      <if test="discountAmount != null" >
+        #{discountAmount,jdbcType=DECIMAL},
+      </if>
+      <if test="bizOperationMid != null" >
+        #{bizOperationMid,jdbcType=INTEGER},
+      </if>
+      <if test="platformPay != null" >
+        #{platformPay,jdbcType=DECIMAL},
+      </if>
+      <if test="serviceFeeRate != null" >
+        #{serviceFeeRate,jdbcType=SMALLINT},
+      </if>
+      <if test="serviceFee != null" >
+        #{serviceFee,jdbcType=DECIMAL},
+      </if>
+      <if test="agentFee != null" >
+        #{agentFee,jdbcType=DECIMAL},
+      </if>
+      <if test="fundFeeRate != null" >
+        #{fundFeeRate,jdbcType=SMALLINT},
+      </if>
+      <if test="fundFee != null" >
+        #{fundFee,jdbcType=DECIMAL},
+      </if>
+      <if test="cTime != null" >
+        #{cTime,jdbcType=INTEGER},
+      </if>
+    </trim>
+  </insert>
+  <select id="countByExample" parameterType="com.shanyuan.platform.ms.dao.statistics.entity.OrderStatisticsInfoExample" resultType="java.lang.Integer" >
+    select count(*) from statistics_order_base_data
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </select>
+  <update id="updateByExampleSelective" parameterType="map" >
+    update statistics_order_base_data
+    <set >
+      <if test="record.id != null" >
+        id = #{record.id,jdbcType=INTEGER},
+      </if>
+      <if test="record.orderId != null" >
+        order_id = #{record.orderId,jdbcType=INTEGER},
+      </if>
+      <if test="record.finishedTime != null" >
+        finished_time = #{record.finishedTime,jdbcType=INTEGER},
+      </if>
+      <if test="record.orderAmount != null" >
+        order_amount = #{record.orderAmount,jdbcType=DECIMAL},
+      </if>
+      <if test="record.goodsAmount != null" >
+        goods_amount = #{record.goodsAmount,jdbcType=DECIMAL},
+      </if>
+      <if test="record.pdAmount != null" >
+        pd_amount = #{record.pdAmount,jdbcType=DECIMAL},
+      </if>
+      <if test="record.orderFrom != null" >
+        order_from = #{record.orderFrom,jdbcType=CHAR},
+      </if>
+      <if test="record.circleIdDeep1 != null" >
+        circle_id_deep_1 = #{record.circleIdDeep1,jdbcType=INTEGER},
+      </if>
+      <if test="record.circleIdDeep2 != null" >
+        circle_id_deep_2 = #{record.circleIdDeep2,jdbcType=INTEGER},
+      </if>
+      <if test="record.circleIdDeep3 != null" >
+        circle_id_deep_3 = #{record.circleIdDeep3,jdbcType=INTEGER},
+      </if>
+      <if test="record.circleIdDeep4 != null" >
+        circle_id_deep_4 = #{record.circleIdDeep4,jdbcType=INTEGER},
+      </if>
+      <if test="record.circleIdDeep5 != null" >
+        circle_id_deep_5 = #{record.circleIdDeep5,jdbcType=INTEGER},
+      </if>
+      <if test="record.circleIdDeep6 != null" >
+        circle_id_deep_6 = #{record.circleIdDeep6,jdbcType=INTEGER},
+      </if>
+      <if test="record.circleIdDeep7 != null" >
+        circle_id_deep_7 = #{record.circleIdDeep7,jdbcType=INTEGER},
+      </if>
+      <if test="record.circleName != null" >
+        circle_name = #{record.circleName,jdbcType=VARCHAR},
+      </if>
+      <if test="record.sUnionId != null" >
+        s_union_id = #{record.sUnionId,jdbcType=INTEGER},
+      </if>
+      <if test="record.sUnionName != null" >
+        s_union_name = #{record.sUnionName,jdbcType=VARCHAR},
+      </if>
+      <if test="record.sChannel != null" >
+        s_channel = #{record.sChannel,jdbcType=VARCHAR},
+      </if>
+      <if test="record.sCircleIdDeep1 != null" >
+        s_circle_id_deep_1 = #{record.sCircleIdDeep1,jdbcType=INTEGER},
+      </if>
+      <if test="record.sCircleIdDeep2 != null" >
+        s_circle_id_deep_2 = #{record.sCircleIdDeep2,jdbcType=INTEGER},
+      </if>
+      <if test="record.sCircleIdDeep3 != null" >
+        s_circle_id_deep_3 = #{record.sCircleIdDeep3,jdbcType=INTEGER},
+      </if>
+      <if test="record.sCircleIdDeep4 != null" >
+        s_circle_id_deep_4 = #{record.sCircleIdDeep4,jdbcType=INTEGER},
+      </if>
+      <if test="record.sCircleIdDeep5 != null" >
+        s_circle_id_deep_5 = #{record.sCircleIdDeep5,jdbcType=INTEGER},
+      </if>
+      <if test="record.sCircleIdDeep6 != null" >
+        s_circle_id_deep_6 = #{record.sCircleIdDeep6,jdbcType=INTEGER},
+      </if>
+      <if test="record.sCircleIdDeep7 != null" >
+        s_circle_id_deep_7 = #{record.sCircleIdDeep7,jdbcType=INTEGER},
+      </if>
+      <if test="record.sCircleName != null" >
+        s_circle_name = #{record.sCircleName,jdbcType=VARCHAR},
+      </if>
+      <if test="record.provinceId != null" >
+        province_id = #{record.provinceId,jdbcType=BIGINT},
+      </if>
+      <if test="record.provinceName != null" >
+        province_name = #{record.provinceName,jdbcType=VARCHAR},
+      </if>
+      <if test="record.cityId != null" >
+        city_id = #{record.cityId,jdbcType=BIGINT},
+      </if>
+      <if test="record.cityName != null" >
+        city_name = #{record.cityName,jdbcType=VARCHAR},
+      </if>
+      <if test="record.countryId != null" >
+        country_id = #{record.countryId,jdbcType=BIGINT},
+      </if>
+      <if test="record.countryName != null" >
+        country_name = #{record.countryName,jdbcType=VARCHAR},
+      </if>
+      <if test="record.townshipId != null" >
+        township_id = #{record.townshipId,jdbcType=BIGINT},
+      </if>
+      <if test="record.townshipName != null" >
+        township_name = #{record.townshipName,jdbcType=VARCHAR},
+      </if>
+      <if test="record.villageId != null" >
+        village_id = #{record.villageId,jdbcType=BIGINT},
+      </if>
+      <if test="record.villageName != null" >
+        village_name = #{record.villageName,jdbcType=VARCHAR},
+      </if>
+      <if test="record.pProvinceId != null" >
+        p_province_id = #{record.pProvinceId,jdbcType=BIGINT},
+      </if>
+      <if test="record.pProvinceName != null" >
+        p_province_name = #{record.pProvinceName,jdbcType=VARCHAR},
+      </if>
+      <if test="record.pCityId != null" >
+        p_city_id = #{record.pCityId,jdbcType=BIGINT},
+      </if>
+      <if test="record.pCityName != null" >
+        p_city_name = #{record.pCityName,jdbcType=VARCHAR},
+      </if>
+      <if test="record.pCountryId != null" >
+        p_country_id = #{record.pCountryId,jdbcType=BIGINT},
+      </if>
+      <if test="record.pCountryName != null" >
+        p_country_name = #{record.pCountryName,jdbcType=VARCHAR},
+      </if>
+      <if test="record.pTownshipId != null" >
+        p_township_id = #{record.pTownshipId,jdbcType=BIGINT},
+      </if>
+      <if test="record.pTownshipName != null" >
+        p_township_name = #{record.pTownshipName,jdbcType=VARCHAR},
+      </if>
+      <if test="record.pVillageId != null" >
+        p_village_id = #{record.pVillageId,jdbcType=BIGINT},
+      </if>
+      <if test="record.pVillageName != null" >
+        p_village_name = #{record.pVillageName,jdbcType=VARCHAR},
+      </if>
+      <if test="record.helpPrice != null" >
+        help_price = #{record.helpPrice,jdbcType=DECIMAL},
+      </if>
+      <if test="record.sellerId != null" >
+        seller_id = #{record.sellerId,jdbcType=INTEGER},
+      </if>
+      <if test="record.sellerName != null" >
+        seller_name = #{record.sellerName,jdbcType=VARCHAR},
+      </if>
+      <if test="record.sellerType != null" >
+        seller_type = #{record.sellerType,jdbcType=BIT},
+      </if>
+      <if test="record.storeId != null" >
+        store_id = #{record.storeId,jdbcType=INTEGER},
+      </if>
+      <if test="record.buyerId != null" >
+        buyer_id = #{record.buyerId,jdbcType=INTEGER},
+      </if>
+      <if test="record.buyerName != null" >
+        buyer_name = #{record.buyerName,jdbcType=VARCHAR},
+      </if>
+      <if test="record.goodsNum != null" >
+        goods_num = #{record.goodsNum,jdbcType=INTEGER},
+      </if>
+      <if test="record.goodsProjectType != null" >
+        goods_project_type = #{record.goodsProjectType,jdbcType=INTEGER},
+      </if>
+      <if test="record.syPoints != null" >
+        sy_points = #{record.syPoints,jdbcType=DECIMAL},
+      </if>
+      <if test="record.unionId != null" >
+        union_id = #{record.unionId,jdbcType=INTEGER},
+      </if>
+      <if test="record.unionName != null" >
+        union_name = #{record.unionName,jdbcType=VARCHAR},
+      </if>
+      <if test="record.channel != null" >
+        channel = #{record.channel,jdbcType=VARCHAR},
+      </if>
+      <if test="record.couponPay != null" >
+        coupon_pay = #{record.couponPay,jdbcType=DECIMAL},
+      </if>
+      <if test="record.moneyPay != null" >
+        money_pay = #{record.moneyPay,jdbcType=DECIMAL},
+      </if>
+      <if test="record.assistId != null" >
+        assist_id = #{record.assistId,jdbcType=INTEGER},
+      </if>
+      <if test="record.appVariant != null" >
+        app_variant = #{record.appVariant,jdbcType=VARCHAR},
+      </if>
+      <if test="record.supportCountyId != null" >
+        support_county_id = #{record.supportCountyId,jdbcType=BIGINT},
+      </if>
+      <if test="record.discountAmount != null" >
+        discount_amount = #{record.discountAmount,jdbcType=DECIMAL},
+      </if>
+      <if test="record.bizOperationMid != null" >
+        biz_operation_mid = #{record.bizOperationMid,jdbcType=INTEGER},
+      </if>
+      <if test="record.platformPay != null" >
+        platform_pay = #{record.platformPay,jdbcType=DECIMAL},
+      </if>
+      <if test="record.serviceFeeRate != null" >
+        service_fee_rate = #{record.serviceFeeRate,jdbcType=SMALLINT},
+      </if>
+      <if test="record.serviceFee != null" >
+        service_fee = #{record.serviceFee,jdbcType=DECIMAL},
+      </if>
+      <if test="record.agentFee != null" >
+        agent_fee = #{record.agentFee,jdbcType=DECIMAL},
+      </if>
+      <if test="record.fundFeeRate != null" >
+        fund_fee_rate = #{record.fundFeeRate,jdbcType=SMALLINT},
+      </if>
+      <if test="record.fundFee != null" >
+        fund_fee = #{record.fundFee,jdbcType=DECIMAL},
+      </if>
+      <if test="record.cTime != null" >
+        c_time = #{record.cTime,jdbcType=INTEGER},
+      </if>
+    </set>
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByExample" parameterType="map" >
+    update statistics_order_base_data
+    set id = #{record.id,jdbcType=INTEGER},
+      order_id = #{record.orderId,jdbcType=INTEGER},
+      finished_time = #{record.finishedTime,jdbcType=INTEGER},
+      order_amount = #{record.orderAmount,jdbcType=DECIMAL},
+      goods_amount = #{record.goodsAmount,jdbcType=DECIMAL},
+      pd_amount = #{record.pdAmount,jdbcType=DECIMAL},
+      order_from = #{record.orderFrom,jdbcType=CHAR},
+      circle_id_deep_1 = #{record.circleIdDeep1,jdbcType=INTEGER},
+      circle_id_deep_2 = #{record.circleIdDeep2,jdbcType=INTEGER},
+      circle_id_deep_3 = #{record.circleIdDeep3,jdbcType=INTEGER},
+      circle_id_deep_4 = #{record.circleIdDeep4,jdbcType=INTEGER},
+      circle_id_deep_5 = #{record.circleIdDeep5,jdbcType=INTEGER},
+      circle_id_deep_6 = #{record.circleIdDeep6,jdbcType=INTEGER},
+      circle_id_deep_7 = #{record.circleIdDeep7,jdbcType=INTEGER},
+      circle_name = #{record.circleName,jdbcType=VARCHAR},
+      s_union_id = #{record.sUnionId,jdbcType=INTEGER},
+      s_union_name = #{record.sUnionName,jdbcType=VARCHAR},
+      s_channel = #{record.sChannel,jdbcType=VARCHAR},
+      s_circle_id_deep_1 = #{record.sCircleIdDeep1,jdbcType=INTEGER},
+      s_circle_id_deep_2 = #{record.sCircleIdDeep2,jdbcType=INTEGER},
+      s_circle_id_deep_3 = #{record.sCircleIdDeep3,jdbcType=INTEGER},
+      s_circle_id_deep_4 = #{record.sCircleIdDeep4,jdbcType=INTEGER},
+      s_circle_id_deep_5 = #{record.sCircleIdDeep5,jdbcType=INTEGER},
+      s_circle_id_deep_6 = #{record.sCircleIdDeep6,jdbcType=INTEGER},
+      s_circle_id_deep_7 = #{record.sCircleIdDeep7,jdbcType=INTEGER},
+      s_circle_name = #{record.sCircleName,jdbcType=VARCHAR},
+      province_id = #{record.provinceId,jdbcType=BIGINT},
+      province_name = #{record.provinceName,jdbcType=VARCHAR},
+      city_id = #{record.cityId,jdbcType=BIGINT},
+      city_name = #{record.cityName,jdbcType=VARCHAR},
+      country_id = #{record.countryId,jdbcType=BIGINT},
+      country_name = #{record.countryName,jdbcType=VARCHAR},
+      township_id = #{record.townshipId,jdbcType=BIGINT},
+      township_name = #{record.townshipName,jdbcType=VARCHAR},
+      village_id = #{record.villageId,jdbcType=BIGINT},
+      village_name = #{record.villageName,jdbcType=VARCHAR},
+      p_province_id = #{record.pProvinceId,jdbcType=BIGINT},
+      p_province_name = #{record.pProvinceName,jdbcType=VARCHAR},
+      p_city_id = #{record.pCityId,jdbcType=BIGINT},
+      p_city_name = #{record.pCityName,jdbcType=VARCHAR},
+      p_country_id = #{record.pCountryId,jdbcType=BIGINT},
+      p_country_name = #{record.pCountryName,jdbcType=VARCHAR},
+      p_township_id = #{record.pTownshipId,jdbcType=BIGINT},
+      p_township_name = #{record.pTownshipName,jdbcType=VARCHAR},
+      p_village_id = #{record.pVillageId,jdbcType=BIGINT},
+      p_village_name = #{record.pVillageName,jdbcType=VARCHAR},
+      help_price = #{record.helpPrice,jdbcType=DECIMAL},
+      seller_id = #{record.sellerId,jdbcType=INTEGER},
+      seller_name = #{record.sellerName,jdbcType=VARCHAR},
+      seller_type = #{record.sellerType,jdbcType=BIT},
+      store_id = #{record.storeId,jdbcType=INTEGER},
+      buyer_id = #{record.buyerId,jdbcType=INTEGER},
+      buyer_name = #{record.buyerName,jdbcType=VARCHAR},
+      goods_num = #{record.goodsNum,jdbcType=INTEGER},
+      goods_project_type = #{record.goodsProjectType,jdbcType=INTEGER},
+      sy_points = #{record.syPoints,jdbcType=DECIMAL},
+      union_id = #{record.unionId,jdbcType=INTEGER},
+      union_name = #{record.unionName,jdbcType=VARCHAR},
+      channel = #{record.channel,jdbcType=VARCHAR},
+      coupon_pay = #{record.couponPay,jdbcType=DECIMAL},
+      money_pay = #{record.moneyPay,jdbcType=DECIMAL},
+      assist_id = #{record.assistId,jdbcType=INTEGER},
+      app_variant = #{record.appVariant,jdbcType=VARCHAR},
+      support_county_id = #{record.supportCountyId,jdbcType=BIGINT},
+      discount_amount = #{record.discountAmount,jdbcType=DECIMAL},
+      biz_operation_mid = #{record.bizOperationMid,jdbcType=INTEGER},
+      platform_pay = #{record.platformPay,jdbcType=DECIMAL},
+      service_fee_rate = #{record.serviceFeeRate,jdbcType=SMALLINT},
+      service_fee = #{record.serviceFee,jdbcType=DECIMAL},
+      agent_fee = #{record.agentFee,jdbcType=DECIMAL},
+      fund_fee_rate = #{record.fundFeeRate,jdbcType=SMALLINT},
+      fund_fee = #{record.fundFee,jdbcType=DECIMAL},
+      c_time = #{record.cTime,jdbcType=INTEGER}
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByPrimaryKeySelective" parameterType="com.shanyuan.platform.ms.dao.statistics.entity.OrderStatisticsInfo" >
+    update statistics_order_base_data
+    <set >
+      <if test="orderId != null" >
+        order_id = #{orderId,jdbcType=INTEGER},
+      </if>
+      <if test="finishedTime != null" >
+        finished_time = #{finishedTime,jdbcType=INTEGER},
+      </if>
+      <if test="orderAmount != null" >
+        order_amount = #{orderAmount,jdbcType=DECIMAL},
+      </if>
+      <if test="goodsAmount != null" >
+        goods_amount = #{goodsAmount,jdbcType=DECIMAL},
+      </if>
+      <if test="pdAmount != null" >
+        pd_amount = #{pdAmount,jdbcType=DECIMAL},
+      </if>
+      <if test="orderFrom != null" >
+        order_from = #{orderFrom,jdbcType=CHAR},
+      </if>
+      <if test="circleIdDeep1 != null" >
+        circle_id_deep_1 = #{circleIdDeep1,jdbcType=INTEGER},
+      </if>
+      <if test="circleIdDeep2 != null" >
+        circle_id_deep_2 = #{circleIdDeep2,jdbcType=INTEGER},
+      </if>
+      <if test="circleIdDeep3 != null" >
+        circle_id_deep_3 = #{circleIdDeep3,jdbcType=INTEGER},
+      </if>
+      <if test="circleIdDeep4 != null" >
+        circle_id_deep_4 = #{circleIdDeep4,jdbcType=INTEGER},
+      </if>
+      <if test="circleIdDeep5 != null" >
+        circle_id_deep_5 = #{circleIdDeep5,jdbcType=INTEGER},
+      </if>
+      <if test="circleIdDeep6 != null" >
+        circle_id_deep_6 = #{circleIdDeep6,jdbcType=INTEGER},
+      </if>
+      <if test="circleIdDeep7 != null" >
+        circle_id_deep_7 = #{circleIdDeep7,jdbcType=INTEGER},
+      </if>
+      <if test="circleName != null" >
+        circle_name = #{circleName,jdbcType=VARCHAR},
+      </if>
+      <if test="sUnionId != null" >
+        s_union_id = #{sUnionId,jdbcType=INTEGER},
+      </if>
+      <if test="sUnionName != null" >
+        s_union_name = #{sUnionName,jdbcType=VARCHAR},
+      </if>
+      <if test="sChannel != null" >
+        s_channel = #{sChannel,jdbcType=VARCHAR},
+      </if>
+      <if test="sCircleIdDeep1 != null" >
+        s_circle_id_deep_1 = #{sCircleIdDeep1,jdbcType=INTEGER},
+      </if>
+      <if test="sCircleIdDeep2 != null" >
+        s_circle_id_deep_2 = #{sCircleIdDeep2,jdbcType=INTEGER},
+      </if>
+      <if test="sCircleIdDeep3 != null" >
+        s_circle_id_deep_3 = #{sCircleIdDeep3,jdbcType=INTEGER},
+      </if>
+      <if test="sCircleIdDeep4 != null" >
+        s_circle_id_deep_4 = #{sCircleIdDeep4,jdbcType=INTEGER},
+      </if>
+      <if test="sCircleIdDeep5 != null" >
+        s_circle_id_deep_5 = #{sCircleIdDeep5,jdbcType=INTEGER},
+      </if>
+      <if test="sCircleIdDeep6 != null" >
+        s_circle_id_deep_6 = #{sCircleIdDeep6,jdbcType=INTEGER},
+      </if>
+      <if test="sCircleIdDeep7 != null" >
+        s_circle_id_deep_7 = #{sCircleIdDeep7,jdbcType=INTEGER},
+      </if>
+      <if test="sCircleName != null" >
+        s_circle_name = #{sCircleName,jdbcType=VARCHAR},
+      </if>
+      <if test="provinceId != null" >
+        province_id = #{provinceId,jdbcType=BIGINT},
+      </if>
+      <if test="provinceName != null" >
+        province_name = #{provinceName,jdbcType=VARCHAR},
+      </if>
+      <if test="cityId != null" >
+        city_id = #{cityId,jdbcType=BIGINT},
+      </if>
+      <if test="cityName != null" >
+        city_name = #{cityName,jdbcType=VARCHAR},
+      </if>
+      <if test="countryId != null" >
+        country_id = #{countryId,jdbcType=BIGINT},
+      </if>
+      <if test="countryName != null" >
+        country_name = #{countryName,jdbcType=VARCHAR},
+      </if>
+      <if test="townshipId != null" >
+        township_id = #{townshipId,jdbcType=BIGINT},
+      </if>
+      <if test="townshipName != null" >
+        township_name = #{townshipName,jdbcType=VARCHAR},
+      </if>
+      <if test="villageId != null" >
+        village_id = #{villageId,jdbcType=BIGINT},
+      </if>
+      <if test="villageName != null" >
+        village_name = #{villageName,jdbcType=VARCHAR},
+      </if>
+      <if test="pProvinceId != null" >
+        p_province_id = #{pProvinceId,jdbcType=BIGINT},
+      </if>
+      <if test="pProvinceName != null" >
+        p_province_name = #{pProvinceName,jdbcType=VARCHAR},
+      </if>
+      <if test="pCityId != null" >
+        p_city_id = #{pCityId,jdbcType=BIGINT},
+      </if>
+      <if test="pCityName != null" >
+        p_city_name = #{pCityName,jdbcType=VARCHAR},
+      </if>
+      <if test="pCountryId != null" >
+        p_country_id = #{pCountryId,jdbcType=BIGINT},
+      </if>
+      <if test="pCountryName != null" >
+        p_country_name = #{pCountryName,jdbcType=VARCHAR},
+      </if>
+      <if test="pTownshipId != null" >
+        p_township_id = #{pTownshipId,jdbcType=BIGINT},
+      </if>
+      <if test="pTownshipName != null" >
+        p_township_name = #{pTownshipName,jdbcType=VARCHAR},
+      </if>
+      <if test="pVillageId != null" >
+        p_village_id = #{pVillageId,jdbcType=BIGINT},
+      </if>
+      <if test="pVillageName != null" >
+        p_village_name = #{pVillageName,jdbcType=VARCHAR},
+      </if>
+      <if test="helpPrice != null" >
+        help_price = #{helpPrice,jdbcType=DECIMAL},
+      </if>
+      <if test="sellerId != null" >
+        seller_id = #{sellerId,jdbcType=INTEGER},
+      </if>
+      <if test="sellerName != null" >
+        seller_name = #{sellerName,jdbcType=VARCHAR},
+      </if>
+      <if test="sellerType != null" >
+        seller_type = #{sellerType,jdbcType=BIT},
+      </if>
+      <if test="storeId != null" >
+        store_id = #{storeId,jdbcType=INTEGER},
+      </if>
+      <if test="buyerId != null" >
+        buyer_id = #{buyerId,jdbcType=INTEGER},
+      </if>
+      <if test="buyerName != null" >
+        buyer_name = #{buyerName,jdbcType=VARCHAR},
+      </if>
+      <if test="goodsNum != null" >
+        goods_num = #{goodsNum,jdbcType=INTEGER},
+      </if>
+      <if test="goodsProjectType != null" >
+        goods_project_type = #{goodsProjectType,jdbcType=INTEGER},
+      </if>
+      <if test="syPoints != null" >
+        sy_points = #{syPoints,jdbcType=DECIMAL},
+      </if>
+      <if test="unionId != null" >
+        union_id = #{unionId,jdbcType=INTEGER},
+      </if>
+      <if test="unionName != null" >
+        union_name = #{unionName,jdbcType=VARCHAR},
+      </if>
+      <if test="channel != null" >
+        channel = #{channel,jdbcType=VARCHAR},
+      </if>
+      <if test="couponPay != null" >
+        coupon_pay = #{couponPay,jdbcType=DECIMAL},
+      </if>
+      <if test="moneyPay != null" >
+        money_pay = #{moneyPay,jdbcType=DECIMAL},
+      </if>
+      <if test="assistId != null" >
+        assist_id = #{assistId,jdbcType=INTEGER},
+      </if>
+      <if test="appVariant != null" >
+        app_variant = #{appVariant,jdbcType=VARCHAR},
+      </if>
+      <if test="supportCountyId != null" >
+        support_county_id = #{supportCountyId,jdbcType=BIGINT},
+      </if>
+      <if test="discountAmount != null" >
+        discount_amount = #{discountAmount,jdbcType=DECIMAL},
+      </if>
+      <if test="bizOperationMid != null" >
+        biz_operation_mid = #{bizOperationMid,jdbcType=INTEGER},
+      </if>
+      <if test="platformPay != null" >
+        platform_pay = #{platformPay,jdbcType=DECIMAL},
+      </if>
+      <if test="serviceFeeRate != null" >
+        service_fee_rate = #{serviceFeeRate,jdbcType=SMALLINT},
+      </if>
+      <if test="serviceFee != null" >
+        service_fee = #{serviceFee,jdbcType=DECIMAL},
+      </if>
+      <if test="agentFee != null" >
+        agent_fee = #{agentFee,jdbcType=DECIMAL},
+      </if>
+      <if test="fundFeeRate != null" >
+        fund_fee_rate = #{fundFeeRate,jdbcType=SMALLINT},
+      </if>
+      <if test="fundFee != null" >
+        fund_fee = #{fundFee,jdbcType=DECIMAL},
+      </if>
+      <if test="cTime != null" >
+        c_time = #{cTime,jdbcType=INTEGER},
+      </if>
+    </set>
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.shanyuan.platform.ms.dao.statistics.entity.OrderStatisticsInfo" >
+    update statistics_order_base_data
+    set order_id = #{orderId,jdbcType=INTEGER},
+      finished_time = #{finishedTime,jdbcType=INTEGER},
+      order_amount = #{orderAmount,jdbcType=DECIMAL},
+      goods_amount = #{goodsAmount,jdbcType=DECIMAL},
+      pd_amount = #{pdAmount,jdbcType=DECIMAL},
+      order_from = #{orderFrom,jdbcType=CHAR},
+      circle_id_deep_1 = #{circleIdDeep1,jdbcType=INTEGER},
+      circle_id_deep_2 = #{circleIdDeep2,jdbcType=INTEGER},
+      circle_id_deep_3 = #{circleIdDeep3,jdbcType=INTEGER},
+      circle_id_deep_4 = #{circleIdDeep4,jdbcType=INTEGER},
+      circle_id_deep_5 = #{circleIdDeep5,jdbcType=INTEGER},
+      circle_id_deep_6 = #{circleIdDeep6,jdbcType=INTEGER},
+      circle_id_deep_7 = #{circleIdDeep7,jdbcType=INTEGER},
+      circle_name = #{circleName,jdbcType=VARCHAR},
+      s_union_id = #{sUnionId,jdbcType=INTEGER},
+      s_union_name = #{sUnionName,jdbcType=VARCHAR},
+      s_channel = #{sChannel,jdbcType=VARCHAR},
+      s_circle_id_deep_1 = #{sCircleIdDeep1,jdbcType=INTEGER},
+      s_circle_id_deep_2 = #{sCircleIdDeep2,jdbcType=INTEGER},
+      s_circle_id_deep_3 = #{sCircleIdDeep3,jdbcType=INTEGER},
+      s_circle_id_deep_4 = #{sCircleIdDeep4,jdbcType=INTEGER},
+      s_circle_id_deep_5 = #{sCircleIdDeep5,jdbcType=INTEGER},
+      s_circle_id_deep_6 = #{sCircleIdDeep6,jdbcType=INTEGER},
+      s_circle_id_deep_7 = #{sCircleIdDeep7,jdbcType=INTEGER},
+      s_circle_name = #{sCircleName,jdbcType=VARCHAR},
+      province_id = #{provinceId,jdbcType=BIGINT},
+      province_name = #{provinceName,jdbcType=VARCHAR},
+      city_id = #{cityId,jdbcType=BIGINT},
+      city_name = #{cityName,jdbcType=VARCHAR},
+      country_id = #{countryId,jdbcType=BIGINT},
+      country_name = #{countryName,jdbcType=VARCHAR},
+      township_id = #{townshipId,jdbcType=BIGINT},
+      township_name = #{townshipName,jdbcType=VARCHAR},
+      village_id = #{villageId,jdbcType=BIGINT},
+      village_name = #{villageName,jdbcType=VARCHAR},
+      p_province_id = #{pProvinceId,jdbcType=BIGINT},
+      p_province_name = #{pProvinceName,jdbcType=VARCHAR},
+      p_city_id = #{pCityId,jdbcType=BIGINT},
+      p_city_name = #{pCityName,jdbcType=VARCHAR},
+      p_country_id = #{pCountryId,jdbcType=BIGINT},
+      p_country_name = #{pCountryName,jdbcType=VARCHAR},
+      p_township_id = #{pTownshipId,jdbcType=BIGINT},
+      p_township_name = #{pTownshipName,jdbcType=VARCHAR},
+      p_village_id = #{pVillageId,jdbcType=BIGINT},
+      p_village_name = #{pVillageName,jdbcType=VARCHAR},
+      help_price = #{helpPrice,jdbcType=DECIMAL},
+      seller_id = #{sellerId,jdbcType=INTEGER},
+      seller_name = #{sellerName,jdbcType=VARCHAR},
+      seller_type = #{sellerType,jdbcType=BIT},
+      store_id = #{storeId,jdbcType=INTEGER},
+      buyer_id = #{buyerId,jdbcType=INTEGER},
+      buyer_name = #{buyerName,jdbcType=VARCHAR},
+      goods_num = #{goodsNum,jdbcType=INTEGER},
+      goods_project_type = #{goodsProjectType,jdbcType=INTEGER},
+      sy_points = #{syPoints,jdbcType=DECIMAL},
+      union_id = #{unionId,jdbcType=INTEGER},
+      union_name = #{unionName,jdbcType=VARCHAR},
+      channel = #{channel,jdbcType=VARCHAR},
+      coupon_pay = #{couponPay,jdbcType=DECIMAL},
+      money_pay = #{moneyPay,jdbcType=DECIMAL},
+      assist_id = #{assistId,jdbcType=INTEGER},
+      app_variant = #{appVariant,jdbcType=VARCHAR},
+      support_county_id = #{supportCountyId,jdbcType=BIGINT},
+      discount_amount = #{discountAmount,jdbcType=DECIMAL},
+      biz_operation_mid = #{bizOperationMid,jdbcType=INTEGER},
+      platform_pay = #{platformPay,jdbcType=DECIMAL},
+      service_fee_rate = #{serviceFeeRate,jdbcType=SMALLINT},
+      service_fee = #{serviceFee,jdbcType=DECIMAL},
+      agent_fee = #{agentFee,jdbcType=DECIMAL},
+      fund_fee_rate = #{fundFeeRate,jdbcType=SMALLINT},
+      fund_fee = #{fundFee,jdbcType=DECIMAL},
+      c_time = #{cTime,jdbcType=INTEGER}
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+  <insert id="insertSelectiveByTableName" parameterType="map">
+		<selectKey keyProperty="id" order="AFTER" resultType="java.lang.Integer">
+			SELECT LAST_INSERT_ID()
+		</selectKey>
+		insert into ${tableName}
+		<trim prefix="(" suffix=")" suffixOverrides=",">
+			<if test="orderId != null">
+				order_id,
+			</if>
+			<if test="finishedTime != null">
+				finished_time,
+			</if>
+			<if test="orderAmount != null">
+				order_amount,
+			</if>
+			<if test="goodsAmount != null">
+				goods_amount,
+			</if>
+			<if test="pdAmount != null">
+				pd_amount,
+			</if>
+			<if test="orderFrom != null">
+				order_from,
+			</if>
+			<if test="circleIdDeep1 != null">
+				circle_id_deep_1,
+			</if>
+			<if test="circleIdDeep2 != null">
+				circle_id_deep_2,
+			</if>
+			<if test="circleIdDeep3 != null">
+				circle_id_deep_3,
+			</if>
+			<if test="circleIdDeep4 != null">
+				circle_id_deep_4,
+			</if>
+			<if test="circleIdDeep5 != null">
+				circle_id_deep_5,
+			</if>
+			<if test="circleIdDeep6 != null">
+				circle_id_deep_6,
+			</if>
+			<if test="circleIdDeep7 != null">
+				circle_id_deep_7,
+			</if>
+			<if test="provinceId != null">
+				province_id,
+			</if>
+			<if test="provinceName != null">
+				province_name,
+			</if>
+			<if test="cityId != null">
+				city_id,
+			</if>
+			<if test="cityName != null">
+				city_name,
+			</if>
+			<if test="countryId != null">
+				country_id,
+			</if>
+			<if test="countryName != null">
+				country_name,
+			</if>
+			<if test="townshipId != null">
+				township_id,
+			</if>
+			<if test="townshipName != null">
+				township_name,
+			</if>
+			<if test="villageId != null">
+				village_id,
+			</if>
+			<if test="villageName != null">
+				village_name,
+			</if>
+			<if test="pProvinceId != null">
+				p_province_id,
+			</if>
+			<if test="pProvinceName != null">
+				p_province_name,
+			</if>
+			<if test="pCityId != null">
+				p_city_id,
+			</if>
+			<if test="pCityName != null">
+				p_city_name,
+			</if>
+			<if test="pCountryId != null">
+				p_country_id,
+			</if>
+			<if test="pCountryName != null">
+				p_country_name,
+			</if>
+			<if test="pTownshipId != null">
+				p_township_id,
+			</if>
+			<if test="pTownshipName != null">
+				p_township_name,
+			</if>
+			<if test="pVillageId != null">
+				p_village_id,
+			</if>
+			<if test="pVillageName != null">
+				p_village_name,
+			</if>
+			<if test="helpPrice != null">
+				help_price,
+			</if>
+			<if test="sellerId != null">
+				seller_id,
+			</if>
+			<if test="sellerName != null">
+				seller_name,
+			</if>
+			<if test="sellerType != null">
+				seller_type,
+			</if>
+			<if test="storeId != null">
+				store_id,
+			</if>
+			<if test="buyerId != null">
+				buyer_id,
+			</if>
+			<if test="buyerName != null">
+				buyer_name,
+			</if>
+			<if test="goodsNum != null">
+				goods_num,
+			</if>
+			<if test="goodsProjectType != null">
+				goods_project_type,
+			</if>
+			<if test="syPoints != null">
+				sy_points,
+			</if>
+			<if test="channel != null">
+				channel,
+			</if>
+			<if test="couponPay != null">
+				coupon_pay,
+			</if>
+			<if test="moneyPay != null">
+				money_pay,
+			</if>
+			<if test="assistId != null">
+				assist_id,
+			</if>
+			<if test="appVariant != null">
+				app_variant,
+			</if>
+			<if test="supportCountyId != null">
+				support_county_id,
+			</if>
+			<if test="discountAmount != null">
+				discount_amount,
+			</if>
+			<if test="bizOperationMid != null">
+				biz_operation_mid,
+			</if>
+			<if test="platformPay != null">
+				platform_pay,
+			</if>
+			<if test="serviceFeeRate != null">
+				service_fee_rate,
+			</if>
+			<if test="serviceFee != null">
+				service_fee,
+			</if>
+			<if test="agentFee != null">
+				agent_fee,
+			</if>
+			<if test="fundFeeRate != null">
+				fund_fee_rate,
+			</if>
+			<if test="fundFee != null">
+				fund_fee,
+			</if>
+			<if test="cTime != null">
+				c_time,
+			</if>
+			<if test="unionId != null">
+				union_id,
+			</if>
+			<if test="unionName != null">
+				union_name,
+			</if>
+			<if test="sUnionId != null">
+				s_union_id,
+			</if>
+			<if test="sUnionName != null">
+				s_union_name,
+			</if>
+		</trim>
+		<trim prefix="values (" suffix=")" suffixOverrides=",">
+			<if test="orderId != null">
+				#{orderId,jdbcType=INTEGER},
+			</if>
+			<if test="finishedTime != null">
+				#{finishedTime,jdbcType=INTEGER},
+			</if>
+			<if test="orderAmount != null">
+				#{orderAmount,jdbcType=DECIMAL},
+			</if>
+			<if test="goodsAmount != null">
+				#{goodsAmount,jdbcType=DECIMAL},
+			</if>
+			<if test="pdAmount != null">
+				#{pdAmount,jdbcType=DECIMAL},
+			</if>
+			<if test="orderFrom != null">
+				#{orderFrom,jdbcType=CHAR},
+			</if>
+			<if test="circleIdDeep1 != null">
+				#{circleIdDeep1,jdbcType=INTEGER},
+			</if>
+			<if test="circleIdDeep2 != null">
+				#{circleIdDeep2,jdbcType=INTEGER},
+			</if>
+			<if test="circleIdDeep3 != null">
+				#{circleIdDeep3,jdbcType=INTEGER},
+			</if>
+			<if test="circleIdDeep4 != null">
+				#{circleIdDeep4,jdbcType=INTEGER},
+			</if>
+			<if test="circleIdDeep5 != null">
+				#{circleIdDeep5,jdbcType=INTEGER},
+			</if>
+			<if test="circleIdDeep6 != null">
+				#{circleIdDeep6,jdbcType=INTEGER},
+			</if>
+			<if test="circleIdDeep7 != null">
+				#{circleIdDeep7,jdbcType=INTEGER},
+			</if>
+			<if test="provinceId != null">
+				#{provinceId,jdbcType=BIGINT},
+			</if>
+			<if test="provinceName != null">
+				#{provinceName,jdbcType=VARCHAR},
+			</if>
+			<if test="cityId != null">
+				#{cityId,jdbcType=BIGINT},
+			</if>
+			<if test="cityName != null">
+				#{cityName,jdbcType=VARCHAR},
+			</if>
+			<if test="countryId != null">
+				#{countryId,jdbcType=BIGINT},
+			</if>
+			<if test="countryName != null">
+				#{countryName,jdbcType=VARCHAR},
+			</if>
+			<if test="townshipId != null">
+				#{townshipId,jdbcType=BIGINT},
+			</if>
+			<if test="townshipName != null">
+				#{townshipName,jdbcType=VARCHAR},
+			</if>
+			<if test="villageId != null">
+				#{villageId,jdbcType=BIGINT},
+			</if>
+			<if test="villageName != null">
+				#{villageName,jdbcType=VARCHAR},
+			</if>
+			<if test="pProvinceId != null">
+				#{pProvinceId,jdbcType=BIGINT},
+			</if>
+			<if test="pProvinceName != null">
+				#{pProvinceName,jdbcType=VARCHAR},
+			</if>
+			<if test="pCityId != null">
+				#{pCityId,jdbcType=BIGINT},
+			</if>
+			<if test="pCityName != null">
+				#{pCityName,jdbcType=VARCHAR},
+			</if>
+			<if test="pCountryId != null">
+				#{pCountryId,jdbcType=BIGINT},
+			</if>
+			<if test="pCountryName != null">
+				#{pCountryName,jdbcType=VARCHAR},
+			</if>
+			<if test="pTownshipId != null">
+				#{pTownshipId,jdbcType=BIGINT},
+			</if>
+			<if test="pTownshipName != null">
+				#{pTownshipName,jdbcType=VARCHAR},
+			</if>
+			<if test="pVillageId != null">
+				#{pVillageId,jdbcType=BIGINT},
+			</if>
+			<if test="pVillageName != null">
+				#{pVillageName,jdbcType=VARCHAR},
+			</if>
+			<if test="helpPrice != null">
+				#{helpPrice,jdbcType=DECIMAL},
+			</if>
+			<if test="sellerId != null">
+				#{sellerId,jdbcType=INTEGER},
+			</if>
+			<if test="sellerName != null">
+				#{sellerName,jdbcType=VARCHAR},
+			</if>
+			<if test="sellerType != null">
+				#{sellerType,jdbcType=BIT},
+			</if>
+			<if test="storeId != null">
+				#{storeId,jdbcType=INTEGER},
+			</if>
+			<if test="buyerId != null">
+				#{buyerId,jdbcType=INTEGER},
+			</if>
+			<if test="buyerName != null">
+				#{buyerName,jdbcType=VARCHAR},
+			</if>
+			<if test="goodsNum != null">
+				#{goodsNum,jdbcType=INTEGER},
+			</if>
+			<if test="goodsProjectType != null">
+				#{goodsProjectType,jdbcType=INTEGER},
+			</if>
+			<if test="syPoints != null">
+				#{syPoints,jdbcType=DECIMAL},
+			</if>
+			<if test="channel != null">
+				#{channel,jdbcType=VARCHAR},
+			</if>
+			<if test="couponPay != null">
+				#{couponPay,jdbcType=DECIMAL},
+			</if>
+			<if test="moneyPay != null">
+				#{moneyPay,jdbcType=DECIMAL},
+			</if>
+			<if test="assistId != null">
+				#{assistId,jdbcType=INTEGER},
+			</if>
+			<if test="appVariant != null">
+				#{appVariant,jdbcType=VARCHAR},
+			</if>
+			<if test="supportCountyId != null">
+				#{supportCountyId,jdbcType=BIGINT},
+			</if>
+			<if test="discountAmount != null">
+				#{discountAmount,jdbcType=DECIMAL},
+			</if>
+			<if test="bizOperationMid != null">
+				#{bizOperationMid,jdbcType=INTEGER},
+			</if>
+			<if test="platformPay != null">
+				#{platformPay,jdbcType=DECIMAL},
+			</if>
+			<if test="serviceFeeRate != null">
+				#{serviceFeeRate,jdbcType=SMALLINT},
+			</if>
+			<if test="serviceFee != null">
+				#{serviceFee,jdbcType=DECIMAL},
+			</if>
+			<if test="agentFee != null">
+				#{agentFee,jdbcType=DECIMAL},
+			</if>
+			<if test="fundFeeRate != null">
+				#{fundFeeRate,jdbcType=SMALLINT},
+			</if>
+			<if test="fundFee != null">
+				#{fundFee,jdbcType=DECIMAL},
+			</if>
+			<if test="cTime != null">
+				#{cTime,jdbcType=INTEGER},
+			</if>
+			<if test="unionId != null">
+				#{unionId,jdbcType=INTEGER},
+			</if>
+			<if test="unionName != null">
+				#{unionName,jdbcType=VARCHAR},
+			</if>
+			<if test="sUnionId != null">
+				#{sUnionId,jdbcType=INTEGER},
+			</if>
+			<if test="sUnionName != null">
+				#{sUnionName,jdbcType=VARCHAR},
+			</if>
+		</trim>
+	</insert>
+	
+	<insert id="batchInsert" parameterType="map">
+		<selectKey keyProperty="id" order="AFTER" resultType="java.lang.Integer">
+			SELECT LAST_INSERT_ID()
+		</selectKey>
+		insert into ${tableName}
+		(order_id, finished_time,
+		order_amount,union_id,union_name,s_union_id,s_union_name,s_channel,
+		goods_amount, pd_amount, order_from,
+		circle_id_deep_1, circle_id_deep_2, circle_id_deep_3,
+		circle_id_deep_4, circle_id_deep_5, circle_id_deep_6,
+		circle_id_deep_7, circle_name, 
+		s_circle_id_deep_1, s_circle_id_deep_2, s_circle_id_deep_3,
+		s_circle_id_deep_4, s_circle_id_deep_5, s_circle_id_deep_6,
+		s_circle_id_deep_7, s_circle_name, 
+		province_id,
+		province_name, city_id, city_name,
+		country_id, country_name, township_id,
+		township_name, village_id, village_name,
+		p_province_id, p_province_name, p_city_id,
+		p_city_name, p_country_id, p_country_name,
+		p_township_id, p_township_name, p_village_id,
+		p_village_name, help_price, seller_id,
+		seller_name, seller_type, store_id,
+		buyer_id, buyer_name, goods_num,
+		goods_project_type, sy_points, channel,
+		coupon_pay, money_pay, assist_id,
+		app_variant, support_county_id, discount_amount,
+		biz_operation_mid, platform_pay, service_fee_rate,
+		service_fee, agent_fee, fund_fee_rate,
+		fund_fee, c_time)
+		values 
+		<foreach collection="records" item="item" index="index" separator=",">
+        	(#{item.orderId,jdbcType=INTEGER}, 
+        	#{item.finishedTime,jdbcType=INTEGER},
+			#{item.orderAmount,jdbcType=DECIMAL},
+			#{item.unionId,jdbcType=INTEGER},
+			#{item.unionName,jdbcType=VARCHAR},
+			#{item.sUnionId,jdbcType=INTEGER},
+			#{item.sUnionName,jdbcType=VARCHAR},
+			#{item.sUnionChannel,jdbcType=VARCHAR},
+			#{item.goodsAmount,jdbcType=DECIMAL}, 
+			#{item.pdAmount,jdbcType=DECIMAL}, 
+			#{item.orderFrom,jdbcType=CHAR},
+			#{item.circleIdDeep1,jdbcType=INTEGER}, 
+			#{item.circleIdDeep2,jdbcType=INTEGER},
+			#{item.circleIdDeep3,jdbcType=INTEGER},
+			#{item.circleIdDeep4,jdbcType=INTEGER}, 
+			#{item.circleIdDeep5,jdbcType=INTEGER}, 
+			#{item.circleIdDeep6,jdbcType=INTEGER},
+			#{item.circleIdDeep7,jdbcType=INTEGER},
+			#{item.circleName,jdbcType=VARCHAR},
+			#{item.sCircleIdDeep1,jdbcType=INTEGER}, 
+			#{item.sCircleIdDeep2,jdbcType=INTEGER},
+			#{item.sCircleIdDeep3,jdbcType=INTEGER},
+			#{item.sCircleIdDeep4,jdbcType=INTEGER}, 
+			#{item.sCircleIdDeep5,jdbcType=INTEGER}, 
+			#{item.sCircleIdDeep6,jdbcType=INTEGER},
+			#{item.sCircleIdDeep7,jdbcType=INTEGER},
+			#{item.sCircleName,jdbcType=VARCHAR},
+			#{item.provinceId,jdbcType=BIGINT},
+			#{item.provinceName,jdbcType=VARCHAR}, #{item.cityId,jdbcType=BIGINT}, #{item.cityName,jdbcType=VARCHAR},
+			#{item.countryId,jdbcType=BIGINT}, #{item.countryName,jdbcType=VARCHAR},
+			#{item.townshipId,jdbcType=BIGINT},
+			#{item.townshipName,jdbcType=VARCHAR}, #{item.villageId,jdbcType=BIGINT}, #{item.villageName,jdbcType=VARCHAR},
+			#{item.pProvinceId,jdbcType=BIGINT}, #{item.pProvinceName,jdbcType=VARCHAR},
+			#{item.pCityId,jdbcType=BIGINT},
+			#{item.pCityName,jdbcType=VARCHAR}, #{item.pCountryId,jdbcType=BIGINT}, #{item.pCountryName,jdbcType=VARCHAR},
+			#{item.pTownshipId,jdbcType=BIGINT}, #{item.pTownshipName,jdbcType=VARCHAR},
+			#{item.pVillageId,jdbcType=BIGINT},
+			#{item.pVillageName,jdbcType=VARCHAR}, #{item.helpPrice,jdbcType=DECIMAL}, #{item.sellerId,jdbcType=INTEGER},
+			#{item.sellerName,jdbcType=VARCHAR}, #{item.sellerType,jdbcType=BIT},
+			#{item.storeId,jdbcType=INTEGER},
+			#{item.buyerId,jdbcType=INTEGER}, #{item.buyerName,jdbcType=VARCHAR}, #{item.goodsNum,jdbcType=INTEGER},
+			#{item.goodsProjectType,jdbcType=INTEGER}, #{item.syPoints,jdbcType=DECIMAL},
+			#{item.channel,jdbcType=VARCHAR},
+			#{item.couponPay,jdbcType=DECIMAL}, #{item.moneyPay,jdbcType=DECIMAL}, #{item.assistId,jdbcType=INTEGER},
+			#{item.appVariant,jdbcType=VARCHAR}, #{item.supportCountyId,jdbcType=BIGINT},
+			#{item.discountAmount,jdbcType=DECIMAL},
+			#{item.bizOperationMid,jdbcType=INTEGER}, #{item.platformPay,jdbcType=DECIMAL},
+			#{item.serviceFeeRate,jdbcType=SMALLINT},
+			#{item.serviceFee,jdbcType=DECIMAL}, #{item.agentFee,jdbcType=DECIMAL}, #{item.fundFeeRate,jdbcType=SMALLINT},
+			#{item.fundFee,jdbcType=DECIMAL}, #{item.cTime,jdbcType=INTEGER})  
+		</foreach>
+	</insert>
+	
+	<select id="existTable" parameterType="com.shanyuan.platform.ms.dao.statistics.entity.StatisticsTable" resultType="Integer">  
+        SELECT COUNT(1) FROM information_schema.tables WHERE table_name = #{tableName}
+    </select>
+    
+    <select id="selectByBuyerExample" parameterType="com.shanyuan.platform.ms.dao.statistics.entity.OrderStatisticsInfoExample" resultMap="BaseResultMap">
+		select COUNT(1) AS order_Num,  SUM(goods_num) AS goods_Num, SUM(order_amount) AS order_Amount, SUM(help_price) AS help_Price,c_time
+		<if test="distinct">
+			distinct
+		</if>
+		<include refid="Base_Column_List" />
+		from statistics_order_base_data
+		<if test="_parameter != null">
+			<include refid="Example_Where_Clause" />
+		</if>
+		<if test="orderByClause != null">
+			order by ${orderByClause}
+		</if>
+	</select>
+</mapper>

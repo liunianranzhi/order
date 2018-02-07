@@ -1,0 +1,278 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.shanyuan.platform.ms.dao.union.mapper.SyAreaChannelMapper" >
+  <resultMap id="BaseResultMap" type="com.shanyuan.platform.ms.dao.union.entity.SyAreaChannel" >
+    <id column="ac_id" property="acId" jdbcType="INTEGER" />
+    <result column="union_id" property="unionId" jdbcType="INTEGER" />
+    <result column="union_channel" property="unionChannel" jdbcType="VARCHAR" />
+    <result column="area_id" property="areaId" jdbcType="BIGINT" />
+    <result column="area_name" property="areaName" jdbcType="VARCHAR" />
+    <result column="add_time" property="addTime" jdbcType="INTEGER" />
+    <result column="type" property="type" jdbcType="TINYINT" />
+    <result column="specialty_store" property="specialtyStore" jdbcType="CHAR" />
+    <result column="store_score" property="storeScore" jdbcType="SMALLINT" />
+  </resultMap>
+  <sql id="Example_Where_Clause" >
+    <where >
+      <foreach collection="oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Update_By_Example_Where_Clause" >
+    <where >
+      <foreach collection="example.oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Base_Column_List" >
+    ac_id, union_id, union_channel, area_id, area_name, add_time, type, specialty_store, 
+    store_score
+  </sql>
+  <select id="selectByExample" resultMap="BaseResultMap" parameterType="com.shanyuan.platform.ms.dao.union.entity.SyAreaChannelExample" >
+    select
+    <if test="distinct" >
+      distinct
+    </if>
+    <include refid="Base_Column_List" />
+    from sy_area_channel
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null" >
+      order by ${orderByClause}
+    </if>
+  </select>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+    select 
+    <include refid="Base_Column_List" />
+    from sy_area_channel
+    where ac_id = #{acId,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+    delete from sy_area_channel
+    where ac_id = #{acId,jdbcType=INTEGER}
+  </delete>
+  <delete id="deleteByExample" parameterType="com.shanyuan.platform.ms.dao.union.entity.SyAreaChannelExample" >
+    delete from sy_area_channel
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </delete>
+  <insert id="insert" parameterType="com.shanyuan.platform.ms.dao.union.entity.SyAreaChannel" >
+    <selectKey resultType="java.lang.Integer" keyProperty="acId" order="AFTER" >
+      SELECT LAST_INSERT_ID()
+    </selectKey>
+    insert into sy_area_channel (union_id, union_channel, area_id, 
+      area_name, add_time, type, 
+      specialty_store, store_score)
+    values (#{unionId,jdbcType=INTEGER}, #{unionChannel,jdbcType=VARCHAR}, #{areaId,jdbcType=BIGINT}, 
+      #{areaName,jdbcType=VARCHAR}, #{addTime,jdbcType=INTEGER}, #{type,jdbcType=TINYINT}, 
+      #{specialtyStore,jdbcType=CHAR}, #{storeScore,jdbcType=SMALLINT})
+  </insert>
+  <insert id="insertSelective" parameterType="com.shanyuan.platform.ms.dao.union.entity.SyAreaChannel" >
+    <selectKey resultType="java.lang.Integer" keyProperty="acId" order="AFTER" >
+      SELECT LAST_INSERT_ID()
+    </selectKey>
+    insert into sy_area_channel
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="unionId != null" >
+        union_id,
+      </if>
+      <if test="unionChannel != null" >
+        union_channel,
+      </if>
+      <if test="areaId != null" >
+        area_id,
+      </if>
+      <if test="areaName != null" >
+        area_name,
+      </if>
+      <if test="addTime != null" >
+        add_time,
+      </if>
+      <if test="type != null" >
+        type,
+      </if>
+      <if test="specialtyStore != null" >
+        specialty_store,
+      </if>
+      <if test="storeScore != null" >
+        store_score,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="unionId != null" >
+        #{unionId,jdbcType=INTEGER},
+      </if>
+      <if test="unionChannel != null" >
+        #{unionChannel,jdbcType=VARCHAR},
+      </if>
+      <if test="areaId != null" >
+        #{areaId,jdbcType=BIGINT},
+      </if>
+      <if test="areaName != null" >
+        #{areaName,jdbcType=VARCHAR},
+      </if>
+      <if test="addTime != null" >
+        #{addTime,jdbcType=INTEGER},
+      </if>
+      <if test="type != null" >
+        #{type,jdbcType=TINYINT},
+      </if>
+      <if test="specialtyStore != null" >
+        #{specialtyStore,jdbcType=CHAR},
+      </if>
+      <if test="storeScore != null" >
+        #{storeScore,jdbcType=SMALLINT},
+      </if>
+    </trim>
+  </insert>
+  <select id="countByExample" parameterType="com.shanyuan.platform.ms.dao.union.entity.SyAreaChannelExample" resultType="java.lang.Integer" >
+    select count(*) from sy_area_channel
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </select>
+  <update id="updateByExampleSelective" parameterType="map" >
+    update sy_area_channel
+    <set >
+      <if test="record.acId != null" >
+        ac_id = #{record.acId,jdbcType=INTEGER},
+      </if>
+      <if test="record.unionId != null" >
+        union_id = #{record.unionId,jdbcType=INTEGER},
+      </if>
+      <if test="record.unionChannel != null" >
+        union_channel = #{record.unionChannel,jdbcType=VARCHAR},
+      </if>
+      <if test="record.areaId != null" >
+        area_id = #{record.areaId,jdbcType=BIGINT},
+      </if>
+      <if test="record.areaName != null" >
+        area_name = #{record.areaName,jdbcType=VARCHAR},
+      </if>
+      <if test="record.addTime != null" >
+        add_time = #{record.addTime,jdbcType=INTEGER},
+      </if>
+      <if test="record.type != null" >
+        type = #{record.type,jdbcType=TINYINT},
+      </if>
+      <if test="record.specialtyStore != null" >
+        specialty_store = #{record.specialtyStore,jdbcType=CHAR},
+      </if>
+      <if test="record.storeScore != null" >
+        store_score = #{record.storeScore,jdbcType=SMALLINT},
+      </if>
+    </set>
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByExample" parameterType="map" >
+    update sy_area_channel
+    set ac_id = #{record.acId,jdbcType=INTEGER},
+      union_id = #{record.unionId,jdbcType=INTEGER},
+      union_channel = #{record.unionChannel,jdbcType=VARCHAR},
+      area_id = #{record.areaId,jdbcType=BIGINT},
+      area_name = #{record.areaName,jdbcType=VARCHAR},
+      add_time = #{record.addTime,jdbcType=INTEGER},
+      type = #{record.type,jdbcType=TINYINT},
+      specialty_store = #{record.specialtyStore,jdbcType=CHAR},
+      store_score = #{record.storeScore,jdbcType=SMALLINT}
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByPrimaryKeySelective" parameterType="com.shanyuan.platform.ms.dao.union.entity.SyAreaChannel" >
+    update sy_area_channel
+    <set >
+      <if test="unionId != null" >
+        union_id = #{unionId,jdbcType=INTEGER},
+      </if>
+      <if test="unionChannel != null" >
+        union_channel = #{unionChannel,jdbcType=VARCHAR},
+      </if>
+      <if test="areaId != null" >
+        area_id = #{areaId,jdbcType=BIGINT},
+      </if>
+      <if test="areaName != null" >
+        area_name = #{areaName,jdbcType=VARCHAR},
+      </if>
+      <if test="addTime != null" >
+        add_time = #{addTime,jdbcType=INTEGER},
+      </if>
+      <if test="type != null" >
+        type = #{type,jdbcType=TINYINT},
+      </if>
+      <if test="specialtyStore != null" >
+        specialty_store = #{specialtyStore,jdbcType=CHAR},
+      </if>
+      <if test="storeScore != null" >
+        store_score = #{storeScore,jdbcType=SMALLINT},
+      </if>
+    </set>
+    where ac_id = #{acId,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.shanyuan.platform.ms.dao.union.entity.SyAreaChannel" >
+    update sy_area_channel
+    set union_id = #{unionId,jdbcType=INTEGER},
+      union_channel = #{unionChannel,jdbcType=VARCHAR},
+      area_id = #{areaId,jdbcType=BIGINT},
+      area_name = #{areaName,jdbcType=VARCHAR},
+      add_time = #{addTime,jdbcType=INTEGER},
+      type = #{type,jdbcType=TINYINT},
+      specialty_store = #{specialtyStore,jdbcType=CHAR},
+      store_score = #{storeScore,jdbcType=SMALLINT}
+    where ac_id = #{acId,jdbcType=INTEGER}
+  </update>
+  
+  <select id="getDistinctAreaId" parameterType="java.lang.Byte" resultType="java.lang.Long">
+  		SELECT DISTINCT area_id FROM sy_area_channel WHERE type = #{type, jdbcType=TINYINT}
+  </select>
+</mapper>

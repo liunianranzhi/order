@@ -1,0 +1,581 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.shanyuan.platform.ms.dao.union.mapper.SyBocMemberStatsMapper" >
+  <resultMap id="BaseResultMap" type="com.shanyuan.platform.ms.dao.union.entity.SyBocMemberStats" >
+    <id column="rec_id" property="recId" jdbcType="INTEGER" />
+    <result column="circle_id" property="circleId" jdbcType="INTEGER" />
+    <result column="circle_name" property="circleName" jdbcType="VARCHAR" />
+    <result column="party_total_order_amount" property="partyTotalOrderAmount" jdbcType="INTEGER" />
+    <result column="party_total_paired" property="partyTotalPaired" jdbcType="INTEGER" />
+    <result column="party_total_member" property="partyTotalMember" jdbcType="INTEGER" />
+    <result column="full_total_order_amount" property="fullTotalOrderAmount" jdbcType="BIGINT" />
+    <result column="full_total_paired" property="fullTotalPaired" jdbcType="INTEGER" />
+    <result column="full_total_member" property="fullTotalMember" jdbcType="INTEGER" />
+    <result column="full_party_total_order_amount" property="fullPartyTotalOrderAmount" jdbcType="INTEGER" />
+    <result column="full_party_total_paired" property="fullPartyTotalPaired" jdbcType="INTEGER" />
+    <result column="full_party_total_member" property="fullPartyTotalMember" jdbcType="INTEGER" />
+    <result column="add_time" property="addTime" jdbcType="INTEGER" />
+    <result column="parent_circle_id" property="parentCircleId" jdbcType="INTEGER" />
+    <result column="full_total_pay_order_amount" property="fullTotalPayOrderAmount" jdbcType="BIGINT" />
+    <result column="biz_offline_amount" property="bizOfflineAmount" jdbcType="INTEGER" />
+    <result column="full_total_member_boc_points" property="fullTotalMemberBocPoints" jdbcType="DECIMAL" />
+    <result column="biz_offline_points" property="bizOfflinePoints" jdbcType="DECIMAL" />
+    <result column="day_order_amount" property="dayOrderAmount" jdbcType="DECIMAL" />
+    <result column="day_order_num" property="dayOrderNum" jdbcType="INTEGER" />
+    <result column="invite_amount" property="inviteAmount" jdbcType="BIGINT" />
+    <result column="invite_boc_points" property="inviteBocPoints" jdbcType="DECIMAL" />
+    <result column="biz_online_amount" property="bizOnlineAmount" jdbcType="DECIMAL" />
+    <result column="biz_all_amount" property="bizAllAmount" jdbcType="BIGINT" />
+    <result column="invite_num" property="inviteNum" jdbcType="INTEGER" />
+    <result column="code" property="code" jdbcType="VARCHAR" />
+    <result column="full_total_support_county_amount" property="fullTotalSupportCountyAmount" jdbcType="BIGINT" />
+    <result column="staffs_amount" property="staffsAmount" jdbcType="BIGINT" />
+  </resultMap>
+  <sql id="Example_Where_Clause" >
+    <where >
+      <foreach collection="oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Update_By_Example_Where_Clause" >
+    <where >
+      <foreach collection="example.oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Base_Column_List" >
+    rec_id, circle_id, circle_name, party_total_order_amount, party_total_paired, party_total_member, 
+    full_total_order_amount, full_total_paired, full_total_member, full_party_total_order_amount, 
+    full_party_total_paired, full_party_total_member, add_time, parent_circle_id, full_total_pay_order_amount, 
+    biz_offline_amount, full_total_member_boc_points, biz_offline_points, day_order_amount, 
+    day_order_num, invite_amount, invite_boc_points, biz_online_amount, biz_all_amount, 
+    invite_num, code, full_total_support_county_amount, staffs_amount
+  </sql>
+  <select id="selectByExample" resultMap="BaseResultMap" parameterType="com.shanyuan.platform.ms.dao.union.entity.SyBocMemberStatsExample" >
+    select
+    <if test="distinct" >
+      distinct
+    </if>
+    <include refid="Base_Column_List" />
+    from sy_boc_member_stats
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null" >
+      order by ${orderByClause}
+    </if>
+  </select>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+    select 
+    <include refid="Base_Column_List" />
+    from sy_boc_member_stats
+    where rec_id = #{recId,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+    delete from sy_boc_member_stats
+    where rec_id = #{recId,jdbcType=INTEGER}
+  </delete>
+  <delete id="deleteByExample" parameterType="com.shanyuan.platform.ms.dao.union.entity.SyBocMemberStatsExample" >
+    delete from sy_boc_member_stats
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </delete>
+  <insert id="insert" parameterType="com.shanyuan.platform.ms.dao.union.entity.SyBocMemberStats" >
+    insert into sy_boc_member_stats (rec_id, circle_id, circle_name, 
+      party_total_order_amount, party_total_paired, 
+      party_total_member, full_total_order_amount, 
+      full_total_paired, full_total_member, full_party_total_order_amount, 
+      full_party_total_paired, full_party_total_member, 
+      add_time, parent_circle_id, full_total_pay_order_amount, 
+      biz_offline_amount, full_total_member_boc_points, 
+      biz_offline_points, day_order_amount, day_order_num, 
+      invite_amount, invite_boc_points, biz_online_amount, 
+      biz_all_amount, invite_num, code, 
+      full_total_support_county_amount, staffs_amount
+      )
+    values (#{recId,jdbcType=INTEGER}, #{circleId,jdbcType=INTEGER}, #{circleName,jdbcType=VARCHAR}, 
+      #{partyTotalOrderAmount,jdbcType=INTEGER}, #{partyTotalPaired,jdbcType=INTEGER}, 
+      #{partyTotalMember,jdbcType=INTEGER}, #{fullTotalOrderAmount,jdbcType=BIGINT}, 
+      #{fullTotalPaired,jdbcType=INTEGER}, #{fullTotalMember,jdbcType=INTEGER}, #{fullPartyTotalOrderAmount,jdbcType=INTEGER}, 
+      #{fullPartyTotalPaired,jdbcType=INTEGER}, #{fullPartyTotalMember,jdbcType=INTEGER}, 
+      #{addTime,jdbcType=INTEGER}, #{parentCircleId,jdbcType=INTEGER}, #{fullTotalPayOrderAmount,jdbcType=BIGINT}, 
+      #{bizOfflineAmount,jdbcType=INTEGER}, #{fullTotalMemberBocPoints,jdbcType=DECIMAL}, 
+      #{bizOfflinePoints,jdbcType=DECIMAL}, #{dayOrderAmount,jdbcType=DECIMAL}, #{dayOrderNum,jdbcType=INTEGER}, 
+      #{inviteAmount,jdbcType=BIGINT}, #{inviteBocPoints,jdbcType=DECIMAL}, #{bizOnlineAmount,jdbcType=DECIMAL}, 
+      #{bizAllAmount,jdbcType=BIGINT}, #{inviteNum,jdbcType=INTEGER}, #{code,jdbcType=VARCHAR}, 
+      #{fullTotalSupportCountyAmount,jdbcType=BIGINT}, #{staffsAmount,jdbcType=BIGINT}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="com.shanyuan.platform.ms.dao.union.entity.SyBocMemberStats" >
+    insert into sy_boc_member_stats
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="recId != null" >
+        rec_id,
+      </if>
+      <if test="circleId != null" >
+        circle_id,
+      </if>
+      <if test="circleName != null" >
+        circle_name,
+      </if>
+      <if test="partyTotalOrderAmount != null" >
+        party_total_order_amount,
+      </if>
+      <if test="partyTotalPaired != null" >
+        party_total_paired,
+      </if>
+      <if test="partyTotalMember != null" >
+        party_total_member,
+      </if>
+      <if test="fullTotalOrderAmount != null" >
+        full_total_order_amount,
+      </if>
+      <if test="fullTotalPaired != null" >
+        full_total_paired,
+      </if>
+      <if test="fullTotalMember != null" >
+        full_total_member,
+      </if>
+      <if test="fullPartyTotalOrderAmount != null" >
+        full_party_total_order_amount,
+      </if>
+      <if test="fullPartyTotalPaired != null" >
+        full_party_total_paired,
+      </if>
+      <if test="fullPartyTotalMember != null" >
+        full_party_total_member,
+      </if>
+      <if test="addTime != null" >
+        add_time,
+      </if>
+      <if test="parentCircleId != null" >
+        parent_circle_id,
+      </if>
+      <if test="fullTotalPayOrderAmount != null" >
+        full_total_pay_order_amount,
+      </if>
+      <if test="bizOfflineAmount != null" >
+        biz_offline_amount,
+      </if>
+      <if test="fullTotalMemberBocPoints != null" >
+        full_total_member_boc_points,
+      </if>
+      <if test="bizOfflinePoints != null" >
+        biz_offline_points,
+      </if>
+      <if test="dayOrderAmount != null" >
+        day_order_amount,
+      </if>
+      <if test="dayOrderNum != null" >
+        day_order_num,
+      </if>
+      <if test="inviteAmount != null" >
+        invite_amount,
+      </if>
+      <if test="inviteBocPoints != null" >
+        invite_boc_points,
+      </if>
+      <if test="bizOnlineAmount != null" >
+        biz_online_amount,
+      </if>
+      <if test="bizAllAmount != null" >
+        biz_all_amount,
+      </if>
+      <if test="inviteNum != null" >
+        invite_num,
+      </if>
+      <if test="code != null" >
+        code,
+      </if>
+      <if test="fullTotalSupportCountyAmount != null" >
+        full_total_support_county_amount,
+      </if>
+      <if test="staffsAmount != null" >
+        staffs_amount,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="recId != null" >
+        #{recId,jdbcType=INTEGER},
+      </if>
+      <if test="circleId != null" >
+        #{circleId,jdbcType=INTEGER},
+      </if>
+      <if test="circleName != null" >
+        #{circleName,jdbcType=VARCHAR},
+      </if>
+      <if test="partyTotalOrderAmount != null" >
+        #{partyTotalOrderAmount,jdbcType=INTEGER},
+      </if>
+      <if test="partyTotalPaired != null" >
+        #{partyTotalPaired,jdbcType=INTEGER},
+      </if>
+      <if test="partyTotalMember != null" >
+        #{partyTotalMember,jdbcType=INTEGER},
+      </if>
+      <if test="fullTotalOrderAmount != null" >
+        #{fullTotalOrderAmount,jdbcType=BIGINT},
+      </if>
+      <if test="fullTotalPaired != null" >
+        #{fullTotalPaired,jdbcType=INTEGER},
+      </if>
+      <if test="fullTotalMember != null" >
+        #{fullTotalMember,jdbcType=INTEGER},
+      </if>
+      <if test="fullPartyTotalOrderAmount != null" >
+        #{fullPartyTotalOrderAmount,jdbcType=INTEGER},
+      </if>
+      <if test="fullPartyTotalPaired != null" >
+        #{fullPartyTotalPaired,jdbcType=INTEGER},
+      </if>
+      <if test="fullPartyTotalMember != null" >
+        #{fullPartyTotalMember,jdbcType=INTEGER},
+      </if>
+      <if test="addTime != null" >
+        #{addTime,jdbcType=INTEGER},
+      </if>
+      <if test="parentCircleId != null" >
+        #{parentCircleId,jdbcType=INTEGER},
+      </if>
+      <if test="fullTotalPayOrderAmount != null" >
+        #{fullTotalPayOrderAmount,jdbcType=BIGINT},
+      </if>
+      <if test="bizOfflineAmount != null" >
+        #{bizOfflineAmount,jdbcType=INTEGER},
+      </if>
+      <if test="fullTotalMemberBocPoints != null" >
+        #{fullTotalMemberBocPoints,jdbcType=DECIMAL},
+      </if>
+      <if test="bizOfflinePoints != null" >
+        #{bizOfflinePoints,jdbcType=DECIMAL},
+      </if>
+      <if test="dayOrderAmount != null" >
+        #{dayOrderAmount,jdbcType=DECIMAL},
+      </if>
+      <if test="dayOrderNum != null" >
+        #{dayOrderNum,jdbcType=INTEGER},
+      </if>
+      <if test="inviteAmount != null" >
+        #{inviteAmount,jdbcType=BIGINT},
+      </if>
+      <if test="inviteBocPoints != null" >
+        #{inviteBocPoints,jdbcType=DECIMAL},
+      </if>
+      <if test="bizOnlineAmount != null" >
+        #{bizOnlineAmount,jdbcType=DECIMAL},
+      </if>
+      <if test="bizAllAmount != null" >
+        #{bizAllAmount,jdbcType=BIGINT},
+      </if>
+      <if test="inviteNum != null" >
+        #{inviteNum,jdbcType=INTEGER},
+      </if>
+      <if test="code != null" >
+        #{code,jdbcType=VARCHAR},
+      </if>
+      <if test="fullTotalSupportCountyAmount != null" >
+        #{fullTotalSupportCountyAmount,jdbcType=BIGINT},
+      </if>
+      <if test="staffsAmount != null" >
+        #{staffsAmount,jdbcType=BIGINT},
+      </if>
+    </trim>
+  </insert>
+  <select id="countByExample" parameterType="com.shanyuan.platform.ms.dao.union.entity.SyBocMemberStatsExample" resultType="java.lang.Integer" >
+    select count(*) from sy_boc_member_stats
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </select>
+  <update id="updateByExampleSelective" parameterType="map" >
+    update sy_boc_member_stats
+    <set >
+      <if test="record.recId != null" >
+        rec_id = #{record.recId,jdbcType=INTEGER},
+      </if>
+      <if test="record.circleId != null" >
+        circle_id = #{record.circleId,jdbcType=INTEGER},
+      </if>
+      <if test="record.circleName != null" >
+        circle_name = #{record.circleName,jdbcType=VARCHAR},
+      </if>
+      <if test="record.partyTotalOrderAmount != null" >
+        party_total_order_amount = #{record.partyTotalOrderAmount,jdbcType=INTEGER},
+      </if>
+      <if test="record.partyTotalPaired != null" >
+        party_total_paired = #{record.partyTotalPaired,jdbcType=INTEGER},
+      </if>
+      <if test="record.partyTotalMember != null" >
+        party_total_member = #{record.partyTotalMember,jdbcType=INTEGER},
+      </if>
+      <if test="record.fullTotalOrderAmount != null" >
+        full_total_order_amount = #{record.fullTotalOrderAmount,jdbcType=BIGINT},
+      </if>
+      <if test="record.fullTotalPaired != null" >
+        full_total_paired = #{record.fullTotalPaired,jdbcType=INTEGER},
+      </if>
+      <if test="record.fullTotalMember != null" >
+        full_total_member = #{record.fullTotalMember,jdbcType=INTEGER},
+      </if>
+      <if test="record.fullPartyTotalOrderAmount != null" >
+        full_party_total_order_amount = #{record.fullPartyTotalOrderAmount,jdbcType=INTEGER},
+      </if>
+      <if test="record.fullPartyTotalPaired != null" >
+        full_party_total_paired = #{record.fullPartyTotalPaired,jdbcType=INTEGER},
+      </if>
+      <if test="record.fullPartyTotalMember != null" >
+        full_party_total_member = #{record.fullPartyTotalMember,jdbcType=INTEGER},
+      </if>
+      <if test="record.addTime != null" >
+        add_time = #{record.addTime,jdbcType=INTEGER},
+      </if>
+      <if test="record.parentCircleId != null" >
+        parent_circle_id = #{record.parentCircleId,jdbcType=INTEGER},
+      </if>
+      <if test="record.fullTotalPayOrderAmount != null" >
+        full_total_pay_order_amount = #{record.fullTotalPayOrderAmount,jdbcType=BIGINT},
+      </if>
+      <if test="record.bizOfflineAmount != null" >
+        biz_offline_amount = #{record.bizOfflineAmount,jdbcType=INTEGER},
+      </if>
+      <if test="record.fullTotalMemberBocPoints != null" >
+        full_total_member_boc_points = #{record.fullTotalMemberBocPoints,jdbcType=DECIMAL},
+      </if>
+      <if test="record.bizOfflinePoints != null" >
+        biz_offline_points = #{record.bizOfflinePoints,jdbcType=DECIMAL},
+      </if>
+      <if test="record.dayOrderAmount != null" >
+        day_order_amount = #{record.dayOrderAmount,jdbcType=DECIMAL},
+      </if>
+      <if test="record.dayOrderNum != null" >
+        day_order_num = #{record.dayOrderNum,jdbcType=INTEGER},
+      </if>
+      <if test="record.inviteAmount != null" >
+        invite_amount = #{record.inviteAmount,jdbcType=BIGINT},
+      </if>
+      <if test="record.inviteBocPoints != null" >
+        invite_boc_points = #{record.inviteBocPoints,jdbcType=DECIMAL},
+      </if>
+      <if test="record.bizOnlineAmount != null" >
+        biz_online_amount = #{record.bizOnlineAmount,jdbcType=DECIMAL},
+      </if>
+      <if test="record.bizAllAmount != null" >
+        biz_all_amount = #{record.bizAllAmount,jdbcType=BIGINT},
+      </if>
+      <if test="record.inviteNum != null" >
+        invite_num = #{record.inviteNum,jdbcType=INTEGER},
+      </if>
+      <if test="record.code != null" >
+        code = #{record.code,jdbcType=VARCHAR},
+      </if>
+      <if test="record.fullTotalSupportCountyAmount != null" >
+        full_total_support_county_amount = #{record.fullTotalSupportCountyAmount,jdbcType=BIGINT},
+      </if>
+      <if test="record.staffsAmount != null" >
+        staffs_amount = #{record.staffsAmount,jdbcType=BIGINT},
+      </if>
+    </set>
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByExample" parameterType="map" >
+    update sy_boc_member_stats
+    set rec_id = #{record.recId,jdbcType=INTEGER},
+      circle_id = #{record.circleId,jdbcType=INTEGER},
+      circle_name = #{record.circleName,jdbcType=VARCHAR},
+      party_total_order_amount = #{record.partyTotalOrderAmount,jdbcType=INTEGER},
+      party_total_paired = #{record.partyTotalPaired,jdbcType=INTEGER},
+      party_total_member = #{record.partyTotalMember,jdbcType=INTEGER},
+      full_total_order_amount = #{record.fullTotalOrderAmount,jdbcType=BIGINT},
+      full_total_paired = #{record.fullTotalPaired,jdbcType=INTEGER},
+      full_total_member = #{record.fullTotalMember,jdbcType=INTEGER},
+      full_party_total_order_amount = #{record.fullPartyTotalOrderAmount,jdbcType=INTEGER},
+      full_party_total_paired = #{record.fullPartyTotalPaired,jdbcType=INTEGER},
+      full_party_total_member = #{record.fullPartyTotalMember,jdbcType=INTEGER},
+      add_time = #{record.addTime,jdbcType=INTEGER},
+      parent_circle_id = #{record.parentCircleId,jdbcType=INTEGER},
+      full_total_pay_order_amount = #{record.fullTotalPayOrderAmount,jdbcType=BIGINT},
+      biz_offline_amount = #{record.bizOfflineAmount,jdbcType=INTEGER},
+      full_total_member_boc_points = #{record.fullTotalMemberBocPoints,jdbcType=DECIMAL},
+      biz_offline_points = #{record.bizOfflinePoints,jdbcType=DECIMAL},
+      day_order_amount = #{record.dayOrderAmount,jdbcType=DECIMAL},
+      day_order_num = #{record.dayOrderNum,jdbcType=INTEGER},
+      invite_amount = #{record.inviteAmount,jdbcType=BIGINT},
+      invite_boc_points = #{record.inviteBocPoints,jdbcType=DECIMAL},
+      biz_online_amount = #{record.bizOnlineAmount,jdbcType=DECIMAL},
+      biz_all_amount = #{record.bizAllAmount,jdbcType=BIGINT},
+      invite_num = #{record.inviteNum,jdbcType=INTEGER},
+      code = #{record.code,jdbcType=VARCHAR},
+      full_total_support_county_amount = #{record.fullTotalSupportCountyAmount,jdbcType=BIGINT},
+      staffs_amount = #{record.staffsAmount,jdbcType=BIGINT}
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByPrimaryKeySelective" parameterType="com.shanyuan.platform.ms.dao.union.entity.SyBocMemberStats" >
+    update sy_boc_member_stats
+    <set >
+      <if test="circleId != null" >
+        circle_id = #{circleId,jdbcType=INTEGER},
+      </if>
+      <if test="circleName != null" >
+        circle_name = #{circleName,jdbcType=VARCHAR},
+      </if>
+      <if test="partyTotalOrderAmount != null" >
+        party_total_order_amount = #{partyTotalOrderAmount,jdbcType=INTEGER},
+      </if>
+      <if test="partyTotalPaired != null" >
+        party_total_paired = #{partyTotalPaired,jdbcType=INTEGER},
+      </if>
+      <if test="partyTotalMember != null" >
+        party_total_member = #{partyTotalMember,jdbcType=INTEGER},
+      </if>
+      <if test="fullTotalOrderAmount != null" >
+        full_total_order_amount = #{fullTotalOrderAmount,jdbcType=BIGINT},
+      </if>
+      <if test="fullTotalPaired != null" >
+        full_total_paired = #{fullTotalPaired,jdbcType=INTEGER},
+      </if>
+      <if test="fullTotalMember != null" >
+        full_total_member = #{fullTotalMember,jdbcType=INTEGER},
+      </if>
+      <if test="fullPartyTotalOrderAmount != null" >
+        full_party_total_order_amount = #{fullPartyTotalOrderAmount,jdbcType=INTEGER},
+      </if>
+      <if test="fullPartyTotalPaired != null" >
+        full_party_total_paired = #{fullPartyTotalPaired,jdbcType=INTEGER},
+      </if>
+      <if test="fullPartyTotalMember != null" >
+        full_party_total_member = #{fullPartyTotalMember,jdbcType=INTEGER},
+      </if>
+      <if test="addTime != null" >
+        add_time = #{addTime,jdbcType=INTEGER},
+      </if>
+      <if test="parentCircleId != null" >
+        parent_circle_id = #{parentCircleId,jdbcType=INTEGER},
+      </if>
+      <if test="fullTotalPayOrderAmount != null" >
+        full_total_pay_order_amount = #{fullTotalPayOrderAmount,jdbcType=BIGINT},
+      </if>
+      <if test="bizOfflineAmount != null" >
+        biz_offline_amount = #{bizOfflineAmount,jdbcType=INTEGER},
+      </if>
+      <if test="fullTotalMemberBocPoints != null" >
+        full_total_member_boc_points = #{fullTotalMemberBocPoints,jdbcType=DECIMAL},
+      </if>
+      <if test="bizOfflinePoints != null" >
+        biz_offline_points = #{bizOfflinePoints,jdbcType=DECIMAL},
+      </if>
+      <if test="dayOrderAmount != null" >
+        day_order_amount = #{dayOrderAmount,jdbcType=DECIMAL},
+      </if>
+      <if test="dayOrderNum != null" >
+        day_order_num = #{dayOrderNum,jdbcType=INTEGER},
+      </if>
+      <if test="inviteAmount != null" >
+        invite_amount = #{inviteAmount,jdbcType=BIGINT},
+      </if>
+      <if test="inviteBocPoints != null" >
+        invite_boc_points = #{inviteBocPoints,jdbcType=DECIMAL},
+      </if>
+      <if test="bizOnlineAmount != null" >
+        biz_online_amount = #{bizOnlineAmount,jdbcType=DECIMAL},
+      </if>
+      <if test="bizAllAmount != null" >
+        biz_all_amount = #{bizAllAmount,jdbcType=BIGINT},
+      </if>
+      <if test="inviteNum != null" >
+        invite_num = #{inviteNum,jdbcType=INTEGER},
+      </if>
+      <if test="code != null" >
+        code = #{code,jdbcType=VARCHAR},
+      </if>
+      <if test="fullTotalSupportCountyAmount != null" >
+        full_total_support_county_amount = #{fullTotalSupportCountyAmount,jdbcType=BIGINT},
+      </if>
+      <if test="staffsAmount != null" >
+        staffs_amount = #{staffsAmount,jdbcType=BIGINT},
+      </if>
+    </set>
+    where rec_id = #{recId,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.shanyuan.platform.ms.dao.union.entity.SyBocMemberStats" >
+    update sy_boc_member_stats
+    set circle_id = #{circleId,jdbcType=INTEGER},
+      circle_name = #{circleName,jdbcType=VARCHAR},
+      party_total_order_amount = #{partyTotalOrderAmount,jdbcType=INTEGER},
+      party_total_paired = #{partyTotalPaired,jdbcType=INTEGER},
+      party_total_member = #{partyTotalMember,jdbcType=INTEGER},
+      full_total_order_amount = #{fullTotalOrderAmount,jdbcType=BIGINT},
+      full_total_paired = #{fullTotalPaired,jdbcType=INTEGER},
+      full_total_member = #{fullTotalMember,jdbcType=INTEGER},
+      full_party_total_order_amount = #{fullPartyTotalOrderAmount,jdbcType=INTEGER},
+      full_party_total_paired = #{fullPartyTotalPaired,jdbcType=INTEGER},
+      full_party_total_member = #{fullPartyTotalMember,jdbcType=INTEGER},
+      add_time = #{addTime,jdbcType=INTEGER},
+      parent_circle_id = #{parentCircleId,jdbcType=INTEGER},
+      full_total_pay_order_amount = #{fullTotalPayOrderAmount,jdbcType=BIGINT},
+      biz_offline_amount = #{bizOfflineAmount,jdbcType=INTEGER},
+      full_total_member_boc_points = #{fullTotalMemberBocPoints,jdbcType=DECIMAL},
+      biz_offline_points = #{bizOfflinePoints,jdbcType=DECIMAL},
+      day_order_amount = #{dayOrderAmount,jdbcType=DECIMAL},
+      day_order_num = #{dayOrderNum,jdbcType=INTEGER},
+      invite_amount = #{inviteAmount,jdbcType=BIGINT},
+      invite_boc_points = #{inviteBocPoints,jdbcType=DECIMAL},
+      biz_online_amount = #{bizOnlineAmount,jdbcType=DECIMAL},
+      biz_all_amount = #{bizAllAmount,jdbcType=BIGINT},
+      invite_num = #{inviteNum,jdbcType=INTEGER},
+      code = #{code,jdbcType=VARCHAR},
+      full_total_support_county_amount = #{fullTotalSupportCountyAmount,jdbcType=BIGINT},
+      staffs_amount = #{staffsAmount,jdbcType=BIGINT}
+    where rec_id = #{recId,jdbcType=INTEGER}
+  </update>
+</mapper>

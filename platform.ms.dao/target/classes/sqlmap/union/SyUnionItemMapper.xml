@@ -1,0 +1,330 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.shanyuan.platform.ms.dao.union.mapper.SyUnionItemMapper" >
+  <resultMap id="BaseResultMap" type="com.shanyuan.platform.ms.dao.union.entity.SyUnionItem" >
+    <id column="union_item_id" property="unionItemId" jdbcType="INTEGER" />
+    <result column="union_item_name" property="unionItemName" jdbcType="CHAR" />
+    <result column="union_code" property="unionCode" jdbcType="CHAR" />
+    <result column="create_member_id" property="createMemberId" jdbcType="INTEGER" />
+    <result column="create_time" property="createTime" jdbcType="INTEGER" />
+    <result column="circle_id" property="circleId" jdbcType="INTEGER" />
+    <result column="index_tag" property="indexTag" jdbcType="CHAR" />
+    <result column="showpage_tag" property="showpageTag" jdbcType="CHAR" />
+    <result column="sort_num" property="sortNum" jdbcType="INTEGER" />
+    <result column="is_enabled" property="isEnabled" jdbcType="TINYINT" />
+    <result column="update_member_id" property="updateMemberId" jdbcType="INTEGER" />
+    <result column="update_time" property="updateTime" jdbcType="INTEGER" />
+  </resultMap>
+  
+  <sql id="Example_Where_Clause" >
+    <where >
+      <foreach collection="oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Update_By_Example_Where_Clause" >
+    <where >
+      <foreach collection="example.oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Base_Column_List" >
+    union_item_id, union_item_name, union_code, create_member_id, create_time, circle_id, 
+    index_tag, showpage_tag, sort_num, is_enabled, update_member_id, update_time
+  </sql>
+  <select id="selectByExample" resultMap="BaseResultMap" parameterType="com.shanyuan.platform.ms.dao.union.entity.SyUnionItemExample" >
+    select
+    <if test="distinct" >
+      distinct
+    </if>
+    <include refid="Base_Column_List" />
+    from sy_union_item
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null" >
+      order by ${orderByClause}
+    </if>
+  </select>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+    select 
+    <include refid="Base_Column_List" />
+    from sy_union_item
+    where union_item_id = #{unionItemId,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+    delete from sy_union_item
+    where union_item_id = #{unionItemId,jdbcType=INTEGER}
+  </delete>
+  <delete id="deleteByExample" parameterType="com.shanyuan.platform.ms.dao.union.entity.SyUnionItemExample" >
+    delete from sy_union_item
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </delete>
+  <insert id="insert" parameterType="com.shanyuan.platform.ms.dao.union.entity.SyUnionItem" >
+    <selectKey resultType="java.lang.Integer" keyProperty="unionItemId" order="AFTER" >
+      SELECT LAST_INSERT_ID()
+    </selectKey>
+    insert into sy_union_item (union_item_name, union_code, create_member_id, 
+      create_time, circle_id, index_tag, 
+      showpage_tag, sort_num, is_enabled, 
+      update_member_id, update_time)
+    values (#{unionItemName,jdbcType=CHAR}, #{unionCode,jdbcType=CHAR}, #{createMemberId,jdbcType=INTEGER}, 
+      #{createTime,jdbcType=INTEGER}, #{circleId,jdbcType=INTEGER}, #{indexTag,jdbcType=CHAR}, 
+      #{showpageTag,jdbcType=CHAR}, #{sortNum,jdbcType=INTEGER}, #{isEnabled,jdbcType=TINYINT}, 
+      #{updateMemberId,jdbcType=INTEGER}, #{updateTime,jdbcType=INTEGER})
+  </insert>
+  <insert id="insertSelective" parameterType="com.shanyuan.platform.ms.dao.union.entity.SyUnionItem" >
+    <selectKey resultType="java.lang.Integer" keyProperty="unionItemId" order="AFTER" >
+      SELECT LAST_INSERT_ID()
+    </selectKey>
+    insert into sy_union_item
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="unionItemName != null" >
+        union_item_name,
+      </if>
+      <if test="unionCode != null" >
+        union_code,
+      </if>
+      <if test="createMemberId != null" >
+        create_member_id,
+      </if>
+      <if test="createTime != null" >
+        create_time,
+      </if>
+      <if test="circleId != null" >
+        circle_id,
+      </if>
+      <if test="indexTag != null" >
+        index_tag,
+      </if>
+      <if test="showpageTag != null" >
+        showpage_tag,
+      </if>
+      <if test="sortNum != null" >
+        sort_num,
+      </if>
+      <if test="isEnabled != null" >
+        is_enabled,
+      </if>
+      <if test="updateMemberId != null" >
+        update_member_id,
+      </if>
+      <if test="updateTime != null" >
+        update_time,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="unionItemName != null" >
+        #{unionItemName,jdbcType=CHAR},
+      </if>
+      <if test="unionCode != null" >
+        #{unionCode,jdbcType=CHAR},
+      </if>
+      <if test="createMemberId != null" >
+        #{createMemberId,jdbcType=INTEGER},
+      </if>
+      <if test="createTime != null" >
+        #{createTime,jdbcType=INTEGER},
+      </if>
+      <if test="circleId != null" >
+        #{circleId,jdbcType=INTEGER},
+      </if>
+      <if test="indexTag != null" >
+        #{indexTag,jdbcType=CHAR},
+      </if>
+      <if test="showpageTag != null" >
+        #{showpageTag,jdbcType=CHAR},
+      </if>
+      <if test="sortNum != null" >
+        #{sortNum,jdbcType=INTEGER},
+      </if>
+      <if test="isEnabled != null" >
+        #{isEnabled,jdbcType=TINYINT},
+      </if>
+      <if test="updateMemberId != null" >
+        #{updateMemberId,jdbcType=INTEGER},
+      </if>
+      <if test="updateTime != null" >
+        #{updateTime,jdbcType=INTEGER},
+      </if>
+    </trim>
+  </insert>
+  <select id="countByExample" parameterType="com.shanyuan.platform.ms.dao.union.entity.SyUnionItemExample" resultType="java.lang.Integer" >
+    select count(*) from sy_union_item
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </select>
+  <update id="updateByExampleSelective" parameterType="map" >
+    update sy_union_item
+    <set >
+      <if test="record.unionItemId != null" >
+        union_item_id = #{record.unionItemId,jdbcType=INTEGER},
+      </if>
+      <if test="record.unionItemName != null" >
+        union_item_name = #{record.unionItemName,jdbcType=CHAR},
+      </if>
+      <if test="record.unionCode != null" >
+        union_code = #{record.unionCode,jdbcType=CHAR},
+      </if>
+      <if test="record.createMemberId != null" >
+        create_member_id = #{record.createMemberId,jdbcType=INTEGER},
+      </if>
+      <if test="record.createTime != null" >
+        create_time = #{record.createTime,jdbcType=INTEGER},
+      </if>
+      <if test="record.circleId != null" >
+        circle_id = #{record.circleId,jdbcType=INTEGER},
+      </if>
+      <if test="record.indexTag != null" >
+        index_tag = #{record.indexTag,jdbcType=CHAR},
+      </if>
+      <if test="record.showpageTag != null" >
+        showpage_tag = #{record.showpageTag,jdbcType=CHAR},
+      </if>
+      <if test="record.sortNum != null" >
+        sort_num = #{record.sortNum,jdbcType=INTEGER},
+      </if>
+      <if test="record.isEnabled != null" >
+        is_enabled = #{record.isEnabled,jdbcType=TINYINT},
+      </if>
+      <if test="record.updateMemberId != null" >
+        update_member_id = #{record.updateMemberId,jdbcType=INTEGER},
+      </if>
+      <if test="record.updateTime != null" >
+        update_time = #{record.updateTime,jdbcType=INTEGER},
+      </if>
+    </set>
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByExample" parameterType="map" >
+    update sy_union_item
+    set union_item_id = #{record.unionItemId,jdbcType=INTEGER},
+      union_item_name = #{record.unionItemName,jdbcType=CHAR},
+      union_code = #{record.unionCode,jdbcType=CHAR},
+      create_member_id = #{record.createMemberId,jdbcType=INTEGER},
+      create_time = #{record.createTime,jdbcType=INTEGER},
+      circle_id = #{record.circleId,jdbcType=INTEGER},
+      index_tag = #{record.indexTag,jdbcType=CHAR},
+      showpage_tag = #{record.showpageTag,jdbcType=CHAR},
+      sort_num = #{record.sortNum,jdbcType=INTEGER},
+      is_enabled = #{record.isEnabled,jdbcType=TINYINT},
+      update_member_id = #{record.updateMemberId,jdbcType=INTEGER},
+      update_time = #{record.updateTime,jdbcType=INTEGER}
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByPrimaryKeySelective" parameterType="com.shanyuan.platform.ms.dao.union.entity.SyUnionItem" >
+    update sy_union_item
+    <set >
+      <if test="unionItemName != null" >
+        union_item_name = #{unionItemName,jdbcType=CHAR},
+      </if>
+      <if test="unionCode != null" >
+        union_code = #{unionCode,jdbcType=CHAR},
+      </if>
+      <if test="createMemberId != null" >
+        create_member_id = #{createMemberId,jdbcType=INTEGER},
+      </if>
+      <if test="createTime != null" >
+        create_time = #{createTime,jdbcType=INTEGER},
+      </if>
+      <if test="circleId != null" >
+        circle_id = #{circleId,jdbcType=INTEGER},
+      </if>
+      <if test="indexTag != null" >
+        index_tag = #{indexTag,jdbcType=CHAR},
+      </if>
+      <if test="showpageTag != null" >
+        showpage_tag = #{showpageTag,jdbcType=CHAR},
+      </if>
+      <if test="sortNum != null" >
+        sort_num = #{sortNum,jdbcType=INTEGER},
+      </if>
+      <if test="isEnabled != null" >
+        is_enabled = #{isEnabled,jdbcType=TINYINT},
+      </if>
+      <if test="updateMemberId != null" >
+        update_member_id = #{updateMemberId,jdbcType=INTEGER},
+      </if>
+      <if test="updateTime != null" >
+        update_time = #{updateTime,jdbcType=INTEGER},
+      </if>
+    </set>
+    where union_item_id = #{unionItemId,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.shanyuan.platform.ms.dao.union.entity.SyUnionItem" >
+    update sy_union_item
+    set union_item_name = #{unionItemName,jdbcType=CHAR},
+      union_code = #{unionCode,jdbcType=CHAR},
+      create_member_id = #{createMemberId,jdbcType=INTEGER},
+      create_time = #{createTime,jdbcType=INTEGER},
+      circle_id = #{circleId,jdbcType=INTEGER},
+      index_tag = #{indexTag,jdbcType=CHAR},
+      showpage_tag = #{showpageTag,jdbcType=CHAR},
+      sort_num = #{sortNum,jdbcType=INTEGER},
+      is_enabled = #{isEnabled,jdbcType=TINYINT},
+      update_member_id = #{updateMemberId,jdbcType=INTEGER},
+      update_time = #{updateTime,jdbcType=INTEGER}
+    where union_item_id = #{unionItemId,jdbcType=INTEGER}
+  </update>
+  
+  <select id="selectUnionItemInfo" resultMap="BaseResultMap">
+  	SELECT union_item_id,union_item_name,index_tag  
+  	FROM sy_union_item WHERE  is_enabled=1 AND union_code=#{unionCode}
+  	ORDER BY  sort_num DESC LIMIT 1 
+  </select>
+  
+
+</mapper>

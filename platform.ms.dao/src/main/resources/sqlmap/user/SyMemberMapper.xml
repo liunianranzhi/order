@@ -1,0 +1,1427 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.shanyuan.platform.ms.dao.user.mapper.SyMemberMapper" >
+  <resultMap id="BaseResultMap" type="com.shanyuan.platform.ms.dao.user.entity.SyMember" >
+    <id column="member_id" property="memberId" jdbcType="INTEGER" />
+    <result column="sy_id" property="syId" jdbcType="INTEGER" />
+    <result column="member_name" property="memberName" jdbcType="VARCHAR" />
+    <result column="member_disp_name" property="memberDispName" jdbcType="VARCHAR" />
+    <result column="member_truename" property="memberTruename" jdbcType="VARCHAR" />
+    <result column="member_type" property="memberType" jdbcType="TINYINT" />
+    <result column="member_id_type" property="memberIdType" jdbcType="TINYINT" />
+    <result column="member_id_value" property="memberIdValue" jdbcType="VARCHAR" />
+    <result column="member_parent_id" property="memberParentId" jdbcType="INTEGER" />
+    <result column="member_intro" property="memberIntro" jdbcType="VARCHAR" />
+    <result column="member_avatar" property="memberAvatar" jdbcType="VARCHAR" />
+    <result column="member_sex" property="memberSex" jdbcType="TINYINT" />
+    <result column="member_birthday" property="memberBirthday" jdbcType="DATE" />
+    <result column="member_passwd" property="memberPasswd" jdbcType="VARCHAR" />
+    <result column="member_mobile" property="memberMobile" jdbcType="VARCHAR" />
+    <result column="member_email" property="memberEmail" jdbcType="VARCHAR" />
+    <result column="member_qq" property="memberQq" jdbcType="VARCHAR" />
+    <result column="member_ww" property="memberWw" jdbcType="VARCHAR" />
+    <result column="member_login_num" property="memberLoginNum" jdbcType="INTEGER" />
+    <result column="member_time" property="memberTime" jdbcType="VARCHAR" />
+    <result column="member_login_time" property="memberLoginTime" jdbcType="VARCHAR" />
+    <result column="member_old_login_time" property="memberOldLoginTime" jdbcType="VARCHAR" />
+    <result column="member_login_ip" property="memberLoginIp" jdbcType="VARCHAR" />
+    <result column="member_old_login_ip" property="memberOldLoginIp" jdbcType="VARCHAR" />
+    <result column="member_qqopenid" property="memberQqopenid" jdbcType="VARCHAR" />
+    <result column="member_sinaopenid" property="memberSinaopenid" jdbcType="VARCHAR" />
+    <result column="member_points" property="memberPoints" jdbcType="INTEGER" />
+    <result column="available_predeposit" property="availablePredeposit" jdbcType="DECIMAL" />
+    <result column="available_giftdeposit" property="availableGiftdeposit" jdbcType="DECIMAL" />
+    <result column="freeze_predeposit" property="freezePredeposit" jdbcType="DECIMAL" />
+    <result column="inform_allow" property="informAllow" jdbcType="TINYINT" />
+    <result column="is_buy" property="isBuy" jdbcType="TINYINT" />
+    <result column="is_allowtalk" property="isAllowtalk" jdbcType="TINYINT" />
+    <result column="member_state" property="memberState" jdbcType="TINYINT" />
+    <result column="member_credit" property="memberCredit" jdbcType="INTEGER" />
+    <result column="member_snsvisitnum" property="memberSnsvisitnum" jdbcType="INTEGER" />
+    <result column="member_areaid" property="memberAreaid" jdbcType="INTEGER" />
+    <result column="member_cityid" property="memberCityid" jdbcType="INTEGER" />
+    <result column="member_provinceid" property="memberProvinceid" jdbcType="INTEGER" />
+    <result column="member_areainfo" property="memberAreainfo" jdbcType="VARCHAR" />
+    <result column="member_id_image" property="memberIdImage" jdbcType="VARCHAR" />
+    <result column="member_authentication_comment" property="memberAuthenticationComment" jdbcType="VARCHAR" />
+    <result column="member_contribute_sy_num" property="memberContributeSyNum" jdbcType="INTEGER" />
+    <result column="member_used_sy_num" property="memberUsedSyNum" jdbcType="INTEGER" />
+    <result column="member_contribute_money" property="memberContributeMoney" jdbcType="DECIMAL" />
+    <result column="show_goods_donation_agreement" property="showGoodsDonationAgreement" jdbcType="TINYINT" />
+    <result column="member_wxopenid" property="memberWxopenid" jdbcType="VARCHAR" />
+    <result column="sy_points" property="syPoints" jdbcType="DECIMAL" />
+    <result column="sy_points_used" property="syPointsUsed" jdbcType="DECIMAL" />
+    <result column="extra_lucky_draw_num" property="extraLuckyDrawNum" jdbcType="INTEGER" />
+    <result column="lucky_draw_num_used" property="luckyDrawNumUsed" jdbcType="INTEGER" />
+    <result column="member_ic_id" property="memberIcId" jdbcType="INTEGER" />
+    <result column="member_url" property="memberUrl" jdbcType="VARCHAR" />
+    <result column="member_family_id" property="memberFamilyId" jdbcType="INTEGER" />
+    <result column="native_place" property="nativePlace" jdbcType="VARCHAR" />
+    <result column="cm_level" property="cmLevel" jdbcType="INTEGER" />
+    <result column="boc_points" property="bocPoints" jdbcType="DECIMAL" />
+    <result column="boc_points_used" property="bocPointsUsed" jdbcType="DECIMAL" />
+    <result column="boc_points_rank" property="bocPointsRank" jdbcType="INTEGER" />
+    <result column="boc_points_dept_rank" property="bocPointsDeptRank" jdbcType="INTEGER" />
+    <result column="boc_level" property="bocLevel" jdbcType="INTEGER" />
+    <result column="boc_level_time" property="bocLevelTime" jdbcType="VARCHAR" />
+    <result column="member_id_back_image" property="memberIdBackImage" jdbcType="VARCHAR" />
+    <result column="store_id" property="storeId" jdbcType="INTEGER" />
+  </resultMap>
+  <resultMap id="ResultMapWithBLOBs" type="com.shanyuan.platform.ms.dao.user.entity.SyMemberWithBLOBs" extends="BaseResultMap" >
+    <result column="member_qqinfo" property="memberQqinfo" jdbcType="LONGVARCHAR" />
+    <result column="member_sinainfo" property="memberSinainfo" jdbcType="LONGVARCHAR" />
+    <result column="member_privacy" property="memberPrivacy" jdbcType="LONGVARCHAR" />
+  </resultMap>
+  
+  <resultMap id="ResultMemberInfo" type="com.shanyuan.platform.ms.dao.user.entity.AgentBo" extends="BaseResultMap" >
+    <id column="member_id" property="memberId" jdbcType="INTEGER" />
+     <result column="member_truename" property="memberTruename" jdbcType="VARCHAR" />
+     <result column="recommend_reason" property="recommendReason" jdbcType="VARCHAR" />
+     <result column="imageUrl" property="imageUrl" jdbcType="VARCHAR" />
+     <result column="member_sex" property="memberSex" jdbcType="TINYINT" />
+     <result column="storeScore" property="storeScore" jdbcType="DOUBLE" />
+  </resultMap>
+  <sql id="Example_Where_Clause" >
+    <where >
+      <foreach collection="oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Update_By_Example_Where_Clause" >
+    <where >
+      <foreach collection="example.oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Base_Column_List" >
+    member_id, sy_id, member_name, member_disp_name, member_truename, member_type, member_id_type, 
+    member_id_value, member_parent_id, member_intro, member_avatar, member_sex, member_birthday, 
+    member_passwd, member_mobile, member_email, member_qq, member_ww, member_login_num, 
+    member_time, member_login_time, member_old_login_time, member_login_ip, member_old_login_ip, 
+    member_qqopenid, member_sinaopenid, member_points, available_predeposit, available_giftdeposit, 
+    freeze_predeposit, inform_allow, is_buy, is_allowtalk, member_state, member_credit, 
+    member_snsvisitnum, member_areaid, member_cityid, member_provinceid, member_areainfo, 
+    member_id_image, member_authentication_comment, member_contribute_sy_num, member_used_sy_num, 
+    member_contribute_money, show_goods_donation_agreement, member_wxopenid, sy_points, 
+    sy_points_used, extra_lucky_draw_num, lucky_draw_num_used, member_ic_id, member_url, 
+    member_family_id, native_place, cm_level, boc_points, boc_points_used, boc_points_rank, 
+    boc_points_dept_rank, boc_level, boc_level_time, member_id_back_image
+  </sql>
+  <sql id="Blob_Column_List" >
+   member_id
+  </sql>
+  <select id="selectByExampleWithBLOBs" resultMap="ResultMapWithBLOBs" parameterType="com.shanyuan.platform.ms.dao.user.entity.SyMemberExample" >
+    select
+    <if test="distinct" >
+      distinct
+    </if>
+    <include refid="Base_Column_List" />
+    ,
+    <include refid="Blob_Column_List" />
+    from sy_member
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null" >
+      order by ${orderByClause}
+    </if>
+  </select>
+  <select id="selectByExample" resultMap="BaseResultMap" parameterType="com.shanyuan.platform.ms.dao.user.entity.SyMemberExample" >
+    select
+    <if test="distinct" >
+      distinct
+    </if>
+    <include refid="Base_Column_List" />
+    from sy_member
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null" >
+      order by ${orderByClause}
+    </if>
+  </select>
+  <select id="selectByPrimaryKey" resultMap="ResultMapWithBLOBs" parameterType="java.lang.Integer" >
+    select 
+    <include refid="Base_Column_List" />
+    ,
+    <include refid="Blob_Column_List" />
+    from sy_member
+    where member_id = #{memberId,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+    delete from sy_member
+    where member_id = #{memberId,jdbcType=INTEGER}
+  </delete>
+  <delete id="deleteByExample" parameterType="com.shanyuan.platform.ms.dao.user.entity.SyMemberExample" >
+    delete from sy_member
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </delete>
+  <insert id="insert" parameterType="com.shanyuan.platform.ms.dao.user.entity.SyMemberWithBLOBs" >
+    <selectKey resultType="java.lang.Integer" keyProperty="memberId" order="AFTER" >
+      SELECT LAST_INSERT_ID()
+    </selectKey>
+    insert into sy_member (sy_id, member_name, member_disp_name, 
+      member_truename, member_type, member_id_type, 
+      member_id_value, member_parent_id, member_intro, 
+      member_avatar, member_sex, member_birthday, 
+      member_passwd, member_mobile, member_email, 
+      member_qq, member_ww, member_login_num, 
+      member_time, member_login_time, member_old_login_time, 
+      member_login_ip, member_old_login_ip, member_qqopenid, 
+      member_sinaopenid, member_points, available_predeposit, 
+      available_giftdeposit, freeze_predeposit, 
+      inform_allow, is_buy, is_allowtalk, 
+      member_state, member_credit, member_snsvisitnum, 
+      member_areaid, member_cityid, member_provinceid, 
+      member_areainfo, member_id_image, member_authentication_comment, 
+      member_contribute_sy_num, member_used_sy_num, 
+      member_contribute_money, show_goods_donation_agreement, 
+      member_wxopenid, sy_points, sy_points_used, 
+      extra_lucky_draw_num, lucky_draw_num_used, member_ic_id, 
+      member_url, member_family_id, native_place, 
+      cm_level, boc_points, boc_points_used, 
+      boc_points_rank, boc_points_dept_rank, boc_level, 
+      boc_level_time, member_id_back_image, member_qqinfo, 
+      member_sinainfo, member_privacy)
+    values (#{syId,jdbcType=INTEGER}, #{memberName,jdbcType=VARCHAR}, #{memberDispName,jdbcType=VARCHAR}, 
+      #{memberTruename,jdbcType=VARCHAR}, #{memberType,jdbcType=TINYINT}, #{memberIdType,jdbcType=TINYINT}, 
+      #{memberIdValue,jdbcType=VARCHAR}, #{memberParentId,jdbcType=INTEGER}, #{memberIntro,jdbcType=VARCHAR}, 
+      #{memberAvatar,jdbcType=VARCHAR}, #{memberSex,jdbcType=TINYINT}, #{memberBirthday,jdbcType=DATE}, 
+      #{memberPasswd,jdbcType=VARCHAR}, #{memberMobile,jdbcType=VARCHAR}, #{memberEmail,jdbcType=VARCHAR}, 
+      #{memberQq,jdbcType=VARCHAR}, #{memberWw,jdbcType=VARCHAR}, #{memberLoginNum,jdbcType=INTEGER}, 
+      #{memberTime,jdbcType=VARCHAR}, #{memberLoginTime,jdbcType=VARCHAR}, #{memberOldLoginTime,jdbcType=VARCHAR}, 
+      #{memberLoginIp,jdbcType=VARCHAR}, #{memberOldLoginIp,jdbcType=VARCHAR}, #{memberQqopenid,jdbcType=VARCHAR}, 
+      #{memberSinaopenid,jdbcType=VARCHAR}, #{memberPoints,jdbcType=INTEGER}, #{availablePredeposit,jdbcType=DECIMAL}, 
+      #{availableGiftdeposit,jdbcType=DECIMAL}, #{freezePredeposit,jdbcType=DECIMAL}, 
+      #{informAllow,jdbcType=TINYINT}, #{isBuy,jdbcType=TINYINT}, #{isAllowtalk,jdbcType=TINYINT}, 
+      #{memberState,jdbcType=TINYINT}, #{memberCredit,jdbcType=INTEGER}, #{memberSnsvisitnum,jdbcType=INTEGER}, 
+      #{memberAreaid,jdbcType=INTEGER}, #{memberCityid,jdbcType=INTEGER}, #{memberProvinceid,jdbcType=INTEGER}, 
+      #{memberAreainfo,jdbcType=VARCHAR}, #{memberIdImage,jdbcType=VARCHAR}, #{memberAuthenticationComment,jdbcType=VARCHAR}, 
+      #{memberContributeSyNum,jdbcType=INTEGER}, #{memberUsedSyNum,jdbcType=INTEGER}, 
+      #{memberContributeMoney,jdbcType=DECIMAL}, #{showGoodsDonationAgreement,jdbcType=TINYINT}, 
+      #{memberWxopenid,jdbcType=VARCHAR}, #{syPoints,jdbcType=DECIMAL}, #{syPointsUsed,jdbcType=DECIMAL}, 
+      #{extraLuckyDrawNum,jdbcType=INTEGER}, #{luckyDrawNumUsed,jdbcType=INTEGER}, #{memberIcId,jdbcType=INTEGER}, 
+      #{memberUrl,jdbcType=VARCHAR}, #{memberFamilyId,jdbcType=INTEGER}, #{nativePlace,jdbcType=VARCHAR}, 
+      #{cmLevel,jdbcType=INTEGER}, #{bocPoints,jdbcType=DECIMAL}, #{bocPointsUsed,jdbcType=DECIMAL}, 
+      #{bocPointsRank,jdbcType=INTEGER}, #{bocPointsDeptRank,jdbcType=INTEGER}, #{bocLevel,jdbcType=INTEGER}, 
+      #{bocLevelTime,jdbcType=VARCHAR}, #{memberIdBackImage,jdbcType=VARCHAR}, #{memberQqinfo,jdbcType=LONGVARCHAR}, 
+      #{memberSinainfo,jdbcType=LONGVARCHAR}, #{memberPrivacy,jdbcType=LONGVARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="com.shanyuan.platform.ms.dao.user.entity.SyMemberWithBLOBs" >
+    <selectKey resultType="java.lang.Integer" keyProperty="memberId" order="AFTER" >
+      SELECT LAST_INSERT_ID()
+    </selectKey>
+    insert into sy_member
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="syId != null" >
+        sy_id,
+      </if>
+      <if test="memberName != null" >
+        member_name,
+      </if>
+      <if test="memberDispName != null" >
+        member_disp_name,
+      </if>
+      <if test="memberTruename != null" >
+        member_truename,
+      </if>
+      <if test="memberType != null" >
+        member_type,
+      </if>
+      <if test="memberIdType != null" >
+        member_id_type,
+      </if>
+      <if test="memberIdValue != null" >
+        member_id_value,
+      </if>
+      <if test="memberParentId != null" >
+        member_parent_id,
+      </if>
+      <if test="memberIntro != null" >
+        member_intro,
+      </if>
+      <if test="memberAvatar != null" >
+        member_avatar,
+      </if>
+      <if test="memberSex != null" >
+        member_sex,
+      </if>
+      <if test="memberBirthday != null" >
+        member_birthday,
+      </if>
+      <if test="memberPasswd != null" >
+        member_passwd,
+      </if>
+      <if test="memberMobile != null" >
+        member_mobile,
+      </if>
+      <if test="memberEmail != null" >
+        member_email,
+      </if>
+      <if test="memberQq != null" >
+        member_qq,
+      </if>
+      <if test="memberWw != null" >
+        member_ww,
+      </if>
+      <if test="memberLoginNum != null" >
+        member_login_num,
+      </if>
+      <if test="memberTime != null" >
+        member_time,
+      </if>
+      <if test="memberLoginTime != null" >
+        member_login_time,
+      </if>
+      <if test="memberOldLoginTime != null" >
+        member_old_login_time,
+      </if>
+      <if test="memberLoginIp != null" >
+        member_login_ip,
+      </if>
+      <if test="memberOldLoginIp != null" >
+        member_old_login_ip,
+      </if>
+      <if test="memberQqopenid != null" >
+        member_qqopenid,
+      </if>
+      <if test="memberSinaopenid != null" >
+        member_sinaopenid,
+      </if>
+      <if test="memberPoints != null" >
+        member_points,
+      </if>
+      <if test="availablePredeposit != null" >
+        available_predeposit,
+      </if>
+      <if test="availableGiftdeposit != null" >
+        available_giftdeposit,
+      </if>
+      <if test="freezePredeposit != null" >
+        freeze_predeposit,
+      </if>
+      <if test="informAllow != null" >
+        inform_allow,
+      </if>
+      <if test="isBuy != null" >
+        is_buy,
+      </if>
+      <if test="isAllowtalk != null" >
+        is_allowtalk,
+      </if>
+      <if test="memberState != null" >
+        member_state,
+      </if>
+      <if test="memberCredit != null" >
+        member_credit,
+      </if>
+      <if test="memberSnsvisitnum != null" >
+        member_snsvisitnum,
+      </if>
+      <if test="memberAreaid != null" >
+        member_areaid,
+      </if>
+      <if test="memberCityid != null" >
+        member_cityid,
+      </if>
+      <if test="memberProvinceid != null" >
+        member_provinceid,
+      </if>
+      <if test="memberAreainfo != null" >
+        member_areainfo,
+      </if>
+      <if test="memberIdImage != null" >
+        member_id_image,
+      </if>
+      <if test="memberAuthenticationComment != null" >
+        member_authentication_comment,
+      </if>
+      <if test="memberContributeSyNum != null" >
+        member_contribute_sy_num,
+      </if>
+      <if test="memberUsedSyNum != null" >
+        member_used_sy_num,
+      </if>
+      <if test="memberContributeMoney != null" >
+        member_contribute_money,
+      </if>
+      <if test="showGoodsDonationAgreement != null" >
+        show_goods_donation_agreement,
+      </if>
+      <if test="memberWxopenid != null" >
+        member_wxopenid,
+      </if>
+      <if test="syPoints != null" >
+        sy_points,
+      </if>
+      <if test="syPointsUsed != null" >
+        sy_points_used,
+      </if>
+      <if test="extraLuckyDrawNum != null" >
+        extra_lucky_draw_num,
+      </if>
+      <if test="luckyDrawNumUsed != null" >
+        lucky_draw_num_used,
+      </if>
+      <if test="memberIcId != null" >
+        member_ic_id,
+      </if>
+      <if test="memberUrl != null" >
+        member_url,
+      </if>
+      <if test="memberFamilyId != null" >
+        member_family_id,
+      </if>
+      <if test="nativePlace != null" >
+        native_place,
+      </if>
+      <if test="cmLevel != null" >
+        cm_level,
+      </if>
+      <if test="bocPoints != null" >
+        boc_points,
+      </if>
+      <if test="bocPointsUsed != null" >
+        boc_points_used,
+      </if>
+      <if test="bocPointsRank != null" >
+        boc_points_rank,
+      </if>
+      <if test="bocPointsDeptRank != null" >
+        boc_points_dept_rank,
+      </if>
+      <if test="bocLevel != null" >
+        boc_level,
+      </if>
+      <if test="bocLevelTime != null" >
+        boc_level_time,
+      </if>
+      <if test="memberIdBackImage != null" >
+        member_id_back_image,
+      </if>
+      <if test="memberQqinfo != null" >
+        member_qqinfo,
+      </if>
+      <if test="memberSinainfo != null" >
+        member_sinainfo,
+      </if>
+      <if test="memberPrivacy != null" >
+        member_privacy,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="syId != null" >
+        #{syId,jdbcType=INTEGER},
+      </if>
+      <if test="memberName != null" >
+        #{memberName,jdbcType=VARCHAR},
+      </if>
+      <if test="memberDispName != null" >
+        #{memberDispName,jdbcType=VARCHAR},
+      </if>
+      <if test="memberTruename != null" >
+        #{memberTruename,jdbcType=VARCHAR},
+      </if>
+      <if test="memberType != null" >
+        #{memberType,jdbcType=TINYINT},
+      </if>
+      <if test="memberIdType != null" >
+        #{memberIdType,jdbcType=TINYINT},
+      </if>
+      <if test="memberIdValue != null" >
+        #{memberIdValue,jdbcType=VARCHAR},
+      </if>
+      <if test="memberParentId != null" >
+        #{memberParentId,jdbcType=INTEGER},
+      </if>
+      <if test="memberIntro != null" >
+        #{memberIntro,jdbcType=VARCHAR},
+      </if>
+      <if test="memberAvatar != null" >
+        #{memberAvatar,jdbcType=VARCHAR},
+      </if>
+      <if test="memberSex != null" >
+        #{memberSex,jdbcType=TINYINT},
+      </if>
+      <if test="memberBirthday != null" >
+        #{memberBirthday,jdbcType=DATE},
+      </if>
+      <if test="memberPasswd != null" >
+        #{memberPasswd,jdbcType=VARCHAR},
+      </if>
+      <if test="memberMobile != null" >
+        #{memberMobile,jdbcType=VARCHAR},
+      </if>
+      <if test="memberEmail != null" >
+        #{memberEmail,jdbcType=VARCHAR},
+      </if>
+      <if test="memberQq != null" >
+        #{memberQq,jdbcType=VARCHAR},
+      </if>
+      <if test="memberWw != null" >
+        #{memberWw,jdbcType=VARCHAR},
+      </if>
+      <if test="memberLoginNum != null" >
+        #{memberLoginNum,jdbcType=INTEGER},
+      </if>
+      <if test="memberTime != null" >
+        #{memberTime,jdbcType=VARCHAR},
+      </if>
+      <if test="memberLoginTime != null" >
+        #{memberLoginTime,jdbcType=VARCHAR},
+      </if>
+      <if test="memberOldLoginTime != null" >
+        #{memberOldLoginTime,jdbcType=VARCHAR},
+      </if>
+      <if test="memberLoginIp != null" >
+        #{memberLoginIp,jdbcType=VARCHAR},
+      </if>
+      <if test="memberOldLoginIp != null" >
+        #{memberOldLoginIp,jdbcType=VARCHAR},
+      </if>
+      <if test="memberQqopenid != null" >
+        #{memberQqopenid,jdbcType=VARCHAR},
+      </if>
+      <if test="memberSinaopenid != null" >
+        #{memberSinaopenid,jdbcType=VARCHAR},
+      </if>
+      <if test="memberPoints != null" >
+        #{memberPoints,jdbcType=INTEGER},
+      </if>
+      <if test="availablePredeposit != null" >
+        #{availablePredeposit,jdbcType=DECIMAL},
+      </if>
+      <if test="availableGiftdeposit != null" >
+        #{availableGiftdeposit,jdbcType=DECIMAL},
+      </if>
+      <if test="freezePredeposit != null" >
+        #{freezePredeposit,jdbcType=DECIMAL},
+      </if>
+      <if test="informAllow != null" >
+        #{informAllow,jdbcType=TINYINT},
+      </if>
+      <if test="isBuy != null" >
+        #{isBuy,jdbcType=TINYINT},
+      </if>
+      <if test="isAllowtalk != null" >
+        #{isAllowtalk,jdbcType=TINYINT},
+      </if>
+      <if test="memberState != null" >
+        #{memberState,jdbcType=TINYINT},
+      </if>
+      <if test="memberCredit != null" >
+        #{memberCredit,jdbcType=INTEGER},
+      </if>
+      <if test="memberSnsvisitnum != null" >
+        #{memberSnsvisitnum,jdbcType=INTEGER},
+      </if>
+      <if test="memberAreaid != null" >
+        #{memberAreaid,jdbcType=INTEGER},
+      </if>
+      <if test="memberCityid != null" >
+        #{memberCityid,jdbcType=INTEGER},
+      </if>
+      <if test="memberProvinceid != null" >
+        #{memberProvinceid,jdbcType=INTEGER},
+      </if>
+      <if test="memberAreainfo != null" >
+        #{memberAreainfo,jdbcType=VARCHAR},
+      </if>
+      <if test="memberIdImage != null" >
+        #{memberIdImage,jdbcType=VARCHAR},
+      </if>
+      <if test="memberAuthenticationComment != null" >
+        #{memberAuthenticationComment,jdbcType=VARCHAR},
+      </if>
+      <if test="memberContributeSyNum != null" >
+        #{memberContributeSyNum,jdbcType=INTEGER},
+      </if>
+      <if test="memberUsedSyNum != null" >
+        #{memberUsedSyNum,jdbcType=INTEGER},
+      </if>
+      <if test="memberContributeMoney != null" >
+        #{memberContributeMoney,jdbcType=DECIMAL},
+      </if>
+      <if test="showGoodsDonationAgreement != null" >
+        #{showGoodsDonationAgreement,jdbcType=TINYINT},
+      </if>
+      <if test="memberWxopenid != null" >
+        #{memberWxopenid,jdbcType=VARCHAR},
+      </if>
+      <if test="syPoints != null" >
+        #{syPoints,jdbcType=DECIMAL},
+      </if>
+      <if test="syPointsUsed != null" >
+        #{syPointsUsed,jdbcType=DECIMAL},
+      </if>
+      <if test="extraLuckyDrawNum != null" >
+        #{extraLuckyDrawNum,jdbcType=INTEGER},
+      </if>
+      <if test="luckyDrawNumUsed != null" >
+        #{luckyDrawNumUsed,jdbcType=INTEGER},
+      </if>
+      <if test="memberIcId != null" >
+        #{memberIcId,jdbcType=INTEGER},
+      </if>
+      <if test="memberUrl != null" >
+        #{memberUrl,jdbcType=VARCHAR},
+      </if>
+      <if test="memberFamilyId != null" >
+        #{memberFamilyId,jdbcType=INTEGER},
+      </if>
+      <if test="nativePlace != null" >
+        #{nativePlace,jdbcType=VARCHAR},
+      </if>
+      <if test="cmLevel != null" >
+        #{cmLevel,jdbcType=INTEGER},
+      </if>
+      <if test="bocPoints != null" >
+        #{bocPoints,jdbcType=DECIMAL},
+      </if>
+      <if test="bocPointsUsed != null" >
+        #{bocPointsUsed,jdbcType=DECIMAL},
+      </if>
+      <if test="bocPointsRank != null" >
+        #{bocPointsRank,jdbcType=INTEGER},
+      </if>
+      <if test="bocPointsDeptRank != null" >
+        #{bocPointsDeptRank,jdbcType=INTEGER},
+      </if>
+      <if test="bocLevel != null" >
+        #{bocLevel,jdbcType=INTEGER},
+      </if>
+      <if test="bocLevelTime != null" >
+        #{bocLevelTime,jdbcType=VARCHAR},
+      </if>
+      <if test="memberIdBackImage != null" >
+        #{memberIdBackImage,jdbcType=VARCHAR},
+      </if>
+      <if test="memberQqinfo != null" >
+        #{memberQqinfo,jdbcType=LONGVARCHAR},
+      </if>
+      <if test="memberSinainfo != null" >
+        #{memberSinainfo,jdbcType=LONGVARCHAR},
+      </if>
+      <if test="memberPrivacy != null" >
+        #{memberPrivacy,jdbcType=LONGVARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <select id="countByExample" parameterType="com.shanyuan.platform.ms.dao.user.entity.SyMemberExample" resultType="java.lang.Integer" >
+    select count(*) from sy_member
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </select>
+  <update id="updateByExampleSelective" parameterType="map" >
+    update sy_member
+    <set >
+      <if test="record.memberId != null" >
+        member_id = #{record.memberId,jdbcType=INTEGER},
+      </if>
+      <if test="record.syId != null" >
+        sy_id = #{record.syId,jdbcType=INTEGER},
+      </if>
+      <if test="record.memberName != null" >
+        member_name = #{record.memberName,jdbcType=VARCHAR},
+      </if>
+      <if test="record.memberDispName != null" >
+        member_disp_name = #{record.memberDispName,jdbcType=VARCHAR},
+      </if>
+      <if test="record.memberTruename != null" >
+        member_truename = #{record.memberTruename,jdbcType=VARCHAR},
+      </if>
+      <if test="record.memberType != null" >
+        member_type = #{record.memberType,jdbcType=TINYINT},
+      </if>
+      <if test="record.memberIdType != null" >
+        member_id_type = #{record.memberIdType,jdbcType=TINYINT},
+      </if>
+      <if test="record.memberIdValue != null" >
+        member_id_value = #{record.memberIdValue,jdbcType=VARCHAR},
+      </if>
+      <if test="record.memberParentId != null" >
+        member_parent_id = #{record.memberParentId,jdbcType=INTEGER},
+      </if>
+      <if test="record.memberIntro != null" >
+        member_intro = #{record.memberIntro,jdbcType=VARCHAR},
+      </if>
+      <if test="record.memberAvatar != null" >
+        member_avatar = #{record.memberAvatar,jdbcType=VARCHAR},
+      </if>
+      <if test="record.memberSex != null" >
+        member_sex = #{record.memberSex,jdbcType=TINYINT},
+      </if>
+      <if test="record.memberBirthday != null" >
+        member_birthday = #{record.memberBirthday,jdbcType=DATE},
+      </if>
+      <if test="record.memberPasswd != null" >
+        member_passwd = #{record.memberPasswd,jdbcType=VARCHAR},
+      </if>
+      <if test="record.memberMobile != null" >
+        member_mobile = #{record.memberMobile,jdbcType=VARCHAR},
+      </if>
+      <if test="record.memberEmail != null" >
+        member_email = #{record.memberEmail,jdbcType=VARCHAR},
+      </if>
+      <if test="record.memberQq != null" >
+        member_qq = #{record.memberQq,jdbcType=VARCHAR},
+      </if>
+      <if test="record.memberWw != null" >
+        member_ww = #{record.memberWw,jdbcType=VARCHAR},
+      </if>
+      <if test="record.memberLoginNum != null" >
+        member_login_num = #{record.memberLoginNum,jdbcType=INTEGER},
+      </if>
+      <if test="record.memberTime != null" >
+        member_time = #{record.memberTime,jdbcType=VARCHAR},
+      </if>
+      <if test="record.memberLoginTime != null" >
+        member_login_time = #{record.memberLoginTime,jdbcType=VARCHAR},
+      </if>
+      <if test="record.memberOldLoginTime != null" >
+        member_old_login_time = #{record.memberOldLoginTime,jdbcType=VARCHAR},
+      </if>
+      <if test="record.memberLoginIp != null" >
+        member_login_ip = #{record.memberLoginIp,jdbcType=VARCHAR},
+      </if>
+      <if test="record.memberOldLoginIp != null" >
+        member_old_login_ip = #{record.memberOldLoginIp,jdbcType=VARCHAR},
+      </if>
+      <if test="record.memberQqopenid != null" >
+        member_qqopenid = #{record.memberQqopenid,jdbcType=VARCHAR},
+      </if>
+      <if test="record.memberSinaopenid != null" >
+        member_sinaopenid = #{record.memberSinaopenid,jdbcType=VARCHAR},
+      </if>
+      <if test="record.memberPoints != null" >
+        member_points = #{record.memberPoints,jdbcType=INTEGER},
+      </if>
+      <if test="record.availablePredeposit != null" >
+        available_predeposit = #{record.availablePredeposit,jdbcType=DECIMAL},
+      </if>
+      <if test="record.availableGiftdeposit != null" >
+        available_giftdeposit = #{record.availableGiftdeposit,jdbcType=DECIMAL},
+      </if>
+      <if test="record.freezePredeposit != null" >
+        freeze_predeposit = #{record.freezePredeposit,jdbcType=DECIMAL},
+      </if>
+      <if test="record.informAllow != null" >
+        inform_allow = #{record.informAllow,jdbcType=TINYINT},
+      </if>
+      <if test="record.isBuy != null" >
+        is_buy = #{record.isBuy,jdbcType=TINYINT},
+      </if>
+      <if test="record.isAllowtalk != null" >
+        is_allowtalk = #{record.isAllowtalk,jdbcType=TINYINT},
+      </if>
+      <if test="record.memberState != null" >
+        member_state = #{record.memberState,jdbcType=TINYINT},
+      </if>
+      <if test="record.memberCredit != null" >
+        member_credit = #{record.memberCredit,jdbcType=INTEGER},
+      </if>
+      <if test="record.memberSnsvisitnum != null" >
+        member_snsvisitnum = #{record.memberSnsvisitnum,jdbcType=INTEGER},
+      </if>
+      <if test="record.memberAreaid != null" >
+        member_areaid = #{record.memberAreaid,jdbcType=INTEGER},
+      </if>
+      <if test="record.memberCityid != null" >
+        member_cityid = #{record.memberCityid,jdbcType=INTEGER},
+      </if>
+      <if test="record.memberProvinceid != null" >
+        member_provinceid = #{record.memberProvinceid,jdbcType=INTEGER},
+      </if>
+      <if test="record.memberAreainfo != null" >
+        member_areainfo = #{record.memberAreainfo,jdbcType=VARCHAR},
+      </if>
+      <if test="record.memberIdImage != null" >
+        member_id_image = #{record.memberIdImage,jdbcType=VARCHAR},
+      </if>
+      <if test="record.memberAuthenticationComment != null" >
+        member_authentication_comment = #{record.memberAuthenticationComment,jdbcType=VARCHAR},
+      </if>
+      <if test="record.memberContributeSyNum != null" >
+        member_contribute_sy_num = #{record.memberContributeSyNum,jdbcType=INTEGER},
+      </if>
+      <if test="record.memberUsedSyNum != null" >
+        member_used_sy_num = #{record.memberUsedSyNum,jdbcType=INTEGER},
+      </if>
+      <if test="record.memberContributeMoney != null" >
+        member_contribute_money = #{record.memberContributeMoney,jdbcType=DECIMAL},
+      </if>
+      <if test="record.showGoodsDonationAgreement != null" >
+        show_goods_donation_agreement = #{record.showGoodsDonationAgreement,jdbcType=TINYINT},
+      </if>
+      <if test="record.memberWxopenid != null" >
+        member_wxopenid = #{record.memberWxopenid,jdbcType=VARCHAR},
+      </if>
+      <if test="record.syPoints != null" >
+        sy_points = #{record.syPoints,jdbcType=DECIMAL},
+      </if>
+      <if test="record.syPointsUsed != null" >
+        sy_points_used = #{record.syPointsUsed,jdbcType=DECIMAL},
+      </if>
+      <if test="record.extraLuckyDrawNum != null" >
+        extra_lucky_draw_num = #{record.extraLuckyDrawNum,jdbcType=INTEGER},
+      </if>
+      <if test="record.luckyDrawNumUsed != null" >
+        lucky_draw_num_used = #{record.luckyDrawNumUsed,jdbcType=INTEGER},
+      </if>
+      <if test="record.memberIcId != null" >
+        member_ic_id = #{record.memberIcId,jdbcType=INTEGER},
+      </if>
+      <if test="record.memberUrl != null" >
+        member_url = #{record.memberUrl,jdbcType=VARCHAR},
+      </if>
+      <if test="record.memberFamilyId != null" >
+        member_family_id = #{record.memberFamilyId,jdbcType=INTEGER},
+      </if>
+      <if test="record.nativePlace != null" >
+        native_place = #{record.nativePlace,jdbcType=VARCHAR},
+      </if>
+      <if test="record.cmLevel != null" >
+        cm_level = #{record.cmLevel,jdbcType=INTEGER},
+      </if>
+      <if test="record.bocPoints != null" >
+        boc_points = #{record.bocPoints,jdbcType=DECIMAL},
+      </if>
+      <if test="record.bocPointsUsed != null" >
+        boc_points_used = #{record.bocPointsUsed,jdbcType=DECIMAL},
+      </if>
+      <if test="record.bocPointsRank != null" >
+        boc_points_rank = #{record.bocPointsRank,jdbcType=INTEGER},
+      </if>
+      <if test="record.bocPointsDeptRank != null" >
+        boc_points_dept_rank = #{record.bocPointsDeptRank,jdbcType=INTEGER},
+      </if>
+      <if test="record.bocLevel != null" >
+        boc_level = #{record.bocLevel,jdbcType=INTEGER},
+      </if>
+      <if test="record.bocLevelTime != null" >
+        boc_level_time = #{record.bocLevelTime,jdbcType=VARCHAR},
+      </if>
+      <if test="record.memberIdBackImage != null" >
+        member_id_back_image = #{record.memberIdBackImage,jdbcType=VARCHAR},
+      </if>
+      <if test="record.memberQqinfo != null" >
+        member_qqinfo = #{record.memberQqinfo,jdbcType=LONGVARCHAR},
+      </if>
+      <if test="record.memberSinainfo != null" >
+        member_sinainfo = #{record.memberSinainfo,jdbcType=LONGVARCHAR},
+      </if>
+      <if test="record.memberPrivacy != null" >
+        member_privacy = #{record.memberPrivacy,jdbcType=LONGVARCHAR},
+      </if>
+    </set>
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByExampleWithBLOBs" parameterType="map" >
+    update sy_member
+    set member_id = #{record.memberId,jdbcType=INTEGER},
+      sy_id = #{record.syId,jdbcType=INTEGER},
+      member_name = #{record.memberName,jdbcType=VARCHAR},
+      member_disp_name = #{record.memberDispName,jdbcType=VARCHAR},
+      member_truename = #{record.memberTruename,jdbcType=VARCHAR},
+      member_type = #{record.memberType,jdbcType=TINYINT},
+      member_id_type = #{record.memberIdType,jdbcType=TINYINT},
+      member_id_value = #{record.memberIdValue,jdbcType=VARCHAR},
+      member_parent_id = #{record.memberParentId,jdbcType=INTEGER},
+      member_intro = #{record.memberIntro,jdbcType=VARCHAR},
+      member_avatar = #{record.memberAvatar,jdbcType=VARCHAR},
+      member_sex = #{record.memberSex,jdbcType=TINYINT},
+      member_birthday = #{record.memberBirthday,jdbcType=DATE},
+      member_passwd = #{record.memberPasswd,jdbcType=VARCHAR},
+      member_mobile = #{record.memberMobile,jdbcType=VARCHAR},
+      member_email = #{record.memberEmail,jdbcType=VARCHAR},
+      member_qq = #{record.memberQq,jdbcType=VARCHAR},
+      member_ww = #{record.memberWw,jdbcType=VARCHAR},
+      member_login_num = #{record.memberLoginNum,jdbcType=INTEGER},
+      member_time = #{record.memberTime,jdbcType=VARCHAR},
+      member_login_time = #{record.memberLoginTime,jdbcType=VARCHAR},
+      member_old_login_time = #{record.memberOldLoginTime,jdbcType=VARCHAR},
+      member_login_ip = #{record.memberLoginIp,jdbcType=VARCHAR},
+      member_old_login_ip = #{record.memberOldLoginIp,jdbcType=VARCHAR},
+      member_qqopenid = #{record.memberQqopenid,jdbcType=VARCHAR},
+      member_sinaopenid = #{record.memberSinaopenid,jdbcType=VARCHAR},
+      member_points = #{record.memberPoints,jdbcType=INTEGER},
+      available_predeposit = #{record.availablePredeposit,jdbcType=DECIMAL},
+      available_giftdeposit = #{record.availableGiftdeposit,jdbcType=DECIMAL},
+      freeze_predeposit = #{record.freezePredeposit,jdbcType=DECIMAL},
+      inform_allow = #{record.informAllow,jdbcType=TINYINT},
+      is_buy = #{record.isBuy,jdbcType=TINYINT},
+      is_allowtalk = #{record.isAllowtalk,jdbcType=TINYINT},
+      member_state = #{record.memberState,jdbcType=TINYINT},
+      member_credit = #{record.memberCredit,jdbcType=INTEGER},
+      member_snsvisitnum = #{record.memberSnsvisitnum,jdbcType=INTEGER},
+      member_areaid = #{record.memberAreaid,jdbcType=INTEGER},
+      member_cityid = #{record.memberCityid,jdbcType=INTEGER},
+      member_provinceid = #{record.memberProvinceid,jdbcType=INTEGER},
+      member_areainfo = #{record.memberAreainfo,jdbcType=VARCHAR},
+      member_id_image = #{record.memberIdImage,jdbcType=VARCHAR},
+      member_authentication_comment = #{record.memberAuthenticationComment,jdbcType=VARCHAR},
+      member_contribute_sy_num = #{record.memberContributeSyNum,jdbcType=INTEGER},
+      member_used_sy_num = #{record.memberUsedSyNum,jdbcType=INTEGER},
+      member_contribute_money = #{record.memberContributeMoney,jdbcType=DECIMAL},
+      show_goods_donation_agreement = #{record.showGoodsDonationAgreement,jdbcType=TINYINT},
+      member_wxopenid = #{record.memberWxopenid,jdbcType=VARCHAR},
+      sy_points = #{record.syPoints,jdbcType=DECIMAL},
+      sy_points_used = #{record.syPointsUsed,jdbcType=DECIMAL},
+      extra_lucky_draw_num = #{record.extraLuckyDrawNum,jdbcType=INTEGER},
+      lucky_draw_num_used = #{record.luckyDrawNumUsed,jdbcType=INTEGER},
+      member_ic_id = #{record.memberIcId,jdbcType=INTEGER},
+      member_url = #{record.memberUrl,jdbcType=VARCHAR},
+      member_family_id = #{record.memberFamilyId,jdbcType=INTEGER},
+      native_place = #{record.nativePlace,jdbcType=VARCHAR},
+      cm_level = #{record.cmLevel,jdbcType=INTEGER},
+      boc_points = #{record.bocPoints,jdbcType=DECIMAL},
+      boc_points_used = #{record.bocPointsUsed,jdbcType=DECIMAL},
+      boc_points_rank = #{record.bocPointsRank,jdbcType=INTEGER},
+      boc_points_dept_rank = #{record.bocPointsDeptRank,jdbcType=INTEGER},
+      boc_level = #{record.bocLevel,jdbcType=INTEGER},
+      boc_level_time = #{record.bocLevelTime,jdbcType=VARCHAR},
+      member_id_back_image = #{record.memberIdBackImage,jdbcType=VARCHAR},
+      member_qqinfo = #{record.memberQqinfo,jdbcType=LONGVARCHAR},
+      member_sinainfo = #{record.memberSinainfo,jdbcType=LONGVARCHAR},
+      member_privacy = #{record.memberPrivacy,jdbcType=LONGVARCHAR}
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByExample" parameterType="map" >
+    update sy_member
+    set member_id = #{record.memberId,jdbcType=INTEGER},
+      sy_id = #{record.syId,jdbcType=INTEGER},
+      member_name = #{record.memberName,jdbcType=VARCHAR},
+      member_disp_name = #{record.memberDispName,jdbcType=VARCHAR},
+      member_truename = #{record.memberTruename,jdbcType=VARCHAR},
+      member_type = #{record.memberType,jdbcType=TINYINT},
+      member_id_type = #{record.memberIdType,jdbcType=TINYINT},
+      member_id_value = #{record.memberIdValue,jdbcType=VARCHAR},
+      member_parent_id = #{record.memberParentId,jdbcType=INTEGER},
+      member_intro = #{record.memberIntro,jdbcType=VARCHAR},
+      member_avatar = #{record.memberAvatar,jdbcType=VARCHAR},
+      member_sex = #{record.memberSex,jdbcType=TINYINT},
+      member_birthday = #{record.memberBirthday,jdbcType=DATE},
+      member_passwd = #{record.memberPasswd,jdbcType=VARCHAR},
+      member_mobile = #{record.memberMobile,jdbcType=VARCHAR},
+      member_email = #{record.memberEmail,jdbcType=VARCHAR},
+      member_qq = #{record.memberQq,jdbcType=VARCHAR},
+      member_ww = #{record.memberWw,jdbcType=VARCHAR},
+      member_login_num = #{record.memberLoginNum,jdbcType=INTEGER},
+      member_time = #{record.memberTime,jdbcType=VARCHAR},
+      member_login_time = #{record.memberLoginTime,jdbcType=VARCHAR},
+      member_old_login_time = #{record.memberOldLoginTime,jdbcType=VARCHAR},
+      member_login_ip = #{record.memberLoginIp,jdbcType=VARCHAR},
+      member_old_login_ip = #{record.memberOldLoginIp,jdbcType=VARCHAR},
+      member_qqopenid = #{record.memberQqopenid,jdbcType=VARCHAR},
+      member_sinaopenid = #{record.memberSinaopenid,jdbcType=VARCHAR},
+      member_points = #{record.memberPoints,jdbcType=INTEGER},
+      available_predeposit = #{record.availablePredeposit,jdbcType=DECIMAL},
+      available_giftdeposit = #{record.availableGiftdeposit,jdbcType=DECIMAL},
+      freeze_predeposit = #{record.freezePredeposit,jdbcType=DECIMAL},
+      inform_allow = #{record.informAllow,jdbcType=TINYINT},
+      is_buy = #{record.isBuy,jdbcType=TINYINT},
+      is_allowtalk = #{record.isAllowtalk,jdbcType=TINYINT},
+      member_state = #{record.memberState,jdbcType=TINYINT},
+      member_credit = #{record.memberCredit,jdbcType=INTEGER},
+      member_snsvisitnum = #{record.memberSnsvisitnum,jdbcType=INTEGER},
+      member_areaid = #{record.memberAreaid,jdbcType=INTEGER},
+      member_cityid = #{record.memberCityid,jdbcType=INTEGER},
+      member_provinceid = #{record.memberProvinceid,jdbcType=INTEGER},
+      member_areainfo = #{record.memberAreainfo,jdbcType=VARCHAR},
+      member_id_image = #{record.memberIdImage,jdbcType=VARCHAR},
+      member_authentication_comment = #{record.memberAuthenticationComment,jdbcType=VARCHAR},
+      member_contribute_sy_num = #{record.memberContributeSyNum,jdbcType=INTEGER},
+      member_used_sy_num = #{record.memberUsedSyNum,jdbcType=INTEGER},
+      member_contribute_money = #{record.memberContributeMoney,jdbcType=DECIMAL},
+      show_goods_donation_agreement = #{record.showGoodsDonationAgreement,jdbcType=TINYINT},
+      member_wxopenid = #{record.memberWxopenid,jdbcType=VARCHAR},
+      sy_points = #{record.syPoints,jdbcType=DECIMAL},
+      sy_points_used = #{record.syPointsUsed,jdbcType=DECIMAL},
+      extra_lucky_draw_num = #{record.extraLuckyDrawNum,jdbcType=INTEGER},
+      lucky_draw_num_used = #{record.luckyDrawNumUsed,jdbcType=INTEGER},
+      member_ic_id = #{record.memberIcId,jdbcType=INTEGER},
+      member_url = #{record.memberUrl,jdbcType=VARCHAR},
+      member_family_id = #{record.memberFamilyId,jdbcType=INTEGER},
+      native_place = #{record.nativePlace,jdbcType=VARCHAR},
+      cm_level = #{record.cmLevel,jdbcType=INTEGER},
+      boc_points = #{record.bocPoints,jdbcType=DECIMAL},
+      boc_points_used = #{record.bocPointsUsed,jdbcType=DECIMAL},
+      boc_points_rank = #{record.bocPointsRank,jdbcType=INTEGER},
+      boc_points_dept_rank = #{record.bocPointsDeptRank,jdbcType=INTEGER},
+      boc_level = #{record.bocLevel,jdbcType=INTEGER},
+      boc_level_time = #{record.bocLevelTime,jdbcType=VARCHAR},
+      member_id_back_image = #{record.memberIdBackImage,jdbcType=VARCHAR}
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByPrimaryKeySelective" parameterType="com.shanyuan.platform.ms.dao.user.entity.SyMemberWithBLOBs" >
+    update sy_member
+    <set >
+      <if test="syId != null" >
+        sy_id = #{syId,jdbcType=INTEGER},
+      </if>
+      <if test="memberName != null" >
+        member_name = #{memberName,jdbcType=VARCHAR},
+      </if>
+      <if test="memberDispName != null" >
+        member_disp_name = #{memberDispName,jdbcType=VARCHAR},
+      </if>
+      <if test="memberTruename != null" >
+        member_truename = #{memberTruename,jdbcType=VARCHAR},
+      </if>
+      <if test="memberType != null" >
+        member_type = #{memberType,jdbcType=TINYINT},
+      </if>
+      <if test="memberIdType != null" >
+        member_id_type = #{memberIdType,jdbcType=TINYINT},
+      </if>
+      <if test="memberIdValue != null" >
+        member_id_value = #{memberIdValue,jdbcType=VARCHAR},
+      </if>
+      <if test="memberParentId != null" >
+        member_parent_id = #{memberParentId,jdbcType=INTEGER},
+      </if>
+      <if test="memberIntro != null" >
+        member_intro = #{memberIntro,jdbcType=VARCHAR},
+      </if>
+      <if test="memberAvatar != null" >
+        member_avatar = #{memberAvatar,jdbcType=VARCHAR},
+      </if>
+      <if test="memberSex != null" >
+        member_sex = #{memberSex,jdbcType=TINYINT},
+      </if>
+      <if test="memberBirthday != null" >
+        member_birthday = #{memberBirthday,jdbcType=DATE},
+      </if>
+      <if test="memberPasswd != null" >
+        member_passwd = #{memberPasswd,jdbcType=VARCHAR},
+      </if>
+      <if test="memberMobile != null" >
+        member_mobile = #{memberMobile,jdbcType=VARCHAR},
+      </if>
+      <if test="memberEmail != null" >
+        member_email = #{memberEmail,jdbcType=VARCHAR},
+      </if>
+      <if test="memberQq != null" >
+        member_qq = #{memberQq,jdbcType=VARCHAR},
+      </if>
+      <if test="memberWw != null" >
+        member_ww = #{memberWw,jdbcType=VARCHAR},
+      </if>
+      <if test="memberLoginNum != null" >
+        member_login_num = #{memberLoginNum,jdbcType=INTEGER},
+      </if>
+      <if test="memberTime != null" >
+        member_time = #{memberTime,jdbcType=VARCHAR},
+      </if>
+      <if test="memberLoginTime != null" >
+        member_login_time = #{memberLoginTime,jdbcType=VARCHAR},
+      </if>
+      <if test="memberOldLoginTime != null" >
+        member_old_login_time = #{memberOldLoginTime,jdbcType=VARCHAR},
+      </if>
+      <if test="memberLoginIp != null" >
+        member_login_ip = #{memberLoginIp,jdbcType=VARCHAR},
+      </if>
+      <if test="memberOldLoginIp != null" >
+        member_old_login_ip = #{memberOldLoginIp,jdbcType=VARCHAR},
+      </if>
+      <if test="memberQqopenid != null" >
+        member_qqopenid = #{memberQqopenid,jdbcType=VARCHAR},
+      </if>
+      <if test="memberSinaopenid != null" >
+        member_sinaopenid = #{memberSinaopenid,jdbcType=VARCHAR},
+      </if>
+      <if test="memberPoints != null" >
+        member_points = #{memberPoints,jdbcType=INTEGER},
+      </if>
+      <if test="availablePredeposit != null" >
+        available_predeposit = #{availablePredeposit,jdbcType=DECIMAL},
+      </if>
+      <if test="availableGiftdeposit != null" >
+        available_giftdeposit = #{availableGiftdeposit,jdbcType=DECIMAL},
+      </if>
+      <if test="freezePredeposit != null" >
+        freeze_predeposit = #{freezePredeposit,jdbcType=DECIMAL},
+      </if>
+      <if test="informAllow != null" >
+        inform_allow = #{informAllow,jdbcType=TINYINT},
+      </if>
+      <if test="isBuy != null" >
+        is_buy = #{isBuy,jdbcType=TINYINT},
+      </if>
+      <if test="isAllowtalk != null" >
+        is_allowtalk = #{isAllowtalk,jdbcType=TINYINT},
+      </if>
+      <if test="memberState != null" >
+        member_state = #{memberState,jdbcType=TINYINT},
+      </if>
+      <if test="memberCredit != null" >
+        member_credit = #{memberCredit,jdbcType=INTEGER},
+      </if>
+      <if test="memberSnsvisitnum != null" >
+        member_snsvisitnum = #{memberSnsvisitnum,jdbcType=INTEGER},
+      </if>
+      <if test="memberAreaid != null" >
+        member_areaid = #{memberAreaid,jdbcType=INTEGER},
+      </if>
+      <if test="memberCityid != null" >
+        member_cityid = #{memberCityid,jdbcType=INTEGER},
+      </if>
+      <if test="memberProvinceid != null" >
+        member_provinceid = #{memberProvinceid,jdbcType=INTEGER},
+      </if>
+      <if test="memberAreainfo != null" >
+        member_areainfo = #{memberAreainfo,jdbcType=VARCHAR},
+      </if>
+      <if test="memberIdImage != null" >
+        member_id_image = #{memberIdImage,jdbcType=VARCHAR},
+      </if>
+      <if test="memberAuthenticationComment != null" >
+        member_authentication_comment = #{memberAuthenticationComment,jdbcType=VARCHAR},
+      </if>
+      <if test="memberContributeSyNum != null" >
+        member_contribute_sy_num = #{memberContributeSyNum,jdbcType=INTEGER},
+      </if>
+      <if test="memberUsedSyNum != null" >
+        member_used_sy_num = #{memberUsedSyNum,jdbcType=INTEGER},
+      </if>
+      <if test="memberContributeMoney != null" >
+        member_contribute_money = #{memberContributeMoney,jdbcType=DECIMAL},
+      </if>
+      <if test="showGoodsDonationAgreement != null" >
+        show_goods_donation_agreement = #{showGoodsDonationAgreement,jdbcType=TINYINT},
+      </if>
+      <if test="memberWxopenid != null" >
+        member_wxopenid = #{memberWxopenid,jdbcType=VARCHAR},
+      </if>
+      <if test="syPoints != null" >
+        sy_points = #{syPoints,jdbcType=DECIMAL},
+      </if>
+      <if test="syPointsUsed != null" >
+        sy_points_used = #{syPointsUsed,jdbcType=DECIMAL},
+      </if>
+      <if test="extraLuckyDrawNum != null" >
+        extra_lucky_draw_num = #{extraLuckyDrawNum,jdbcType=INTEGER},
+      </if>
+      <if test="luckyDrawNumUsed != null" >
+        lucky_draw_num_used = #{luckyDrawNumUsed,jdbcType=INTEGER},
+      </if>
+      <if test="memberIcId != null" >
+        member_ic_id = #{memberIcId,jdbcType=INTEGER},
+      </if>
+      <if test="memberUrl != null" >
+        member_url = #{memberUrl,jdbcType=VARCHAR},
+      </if>
+      <if test="memberFamilyId != null" >
+        member_family_id = #{memberFamilyId,jdbcType=INTEGER},
+      </if>
+      <if test="nativePlace != null" >
+        native_place = #{nativePlace,jdbcType=VARCHAR},
+      </if>
+      <if test="cmLevel != null" >
+        cm_level = #{cmLevel,jdbcType=INTEGER},
+      </if>
+      <if test="bocPoints != null" >
+        boc_points = #{bocPoints,jdbcType=DECIMAL},
+      </if>
+      <if test="bocPointsUsed != null" >
+        boc_points_used = #{bocPointsUsed,jdbcType=DECIMAL},
+      </if>
+      <if test="bocPointsRank != null" >
+        boc_points_rank = #{bocPointsRank,jdbcType=INTEGER},
+      </if>
+      <if test="bocPointsDeptRank != null" >
+        boc_points_dept_rank = #{bocPointsDeptRank,jdbcType=INTEGER},
+      </if>
+      <if test="bocLevel != null" >
+        boc_level = #{bocLevel,jdbcType=INTEGER},
+      </if>
+      <if test="bocLevelTime != null" >
+        boc_level_time = #{bocLevelTime,jdbcType=VARCHAR},
+      </if>
+      <if test="memberIdBackImage != null" >
+        member_id_back_image = #{memberIdBackImage,jdbcType=VARCHAR},
+      </if>
+      <if test="memberQqinfo != null" >
+        member_qqinfo = #{memberQqinfo,jdbcType=LONGVARCHAR},
+      </if>
+      <if test="memberSinainfo != null" >
+        member_sinainfo = #{memberSinainfo,jdbcType=LONGVARCHAR},
+      </if>
+      <if test="memberPrivacy != null" >
+        member_privacy = #{memberPrivacy,jdbcType=LONGVARCHAR},
+      </if>
+    </set>
+    where member_id = #{memberId,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKeyWithBLOBs" parameterType="com.shanyuan.platform.ms.dao.user.entity.SyMemberWithBLOBs" >
+    update sy_member
+    set sy_id = #{syId,jdbcType=INTEGER},
+      member_name = #{memberName,jdbcType=VARCHAR},
+      member_disp_name = #{memberDispName,jdbcType=VARCHAR},
+      member_truename = #{memberTruename,jdbcType=VARCHAR},
+      member_type = #{memberType,jdbcType=TINYINT},
+      member_id_type = #{memberIdType,jdbcType=TINYINT},
+      member_id_value = #{memberIdValue,jdbcType=VARCHAR},
+      member_parent_id = #{memberParentId,jdbcType=INTEGER},
+      member_intro = #{memberIntro,jdbcType=VARCHAR},
+      member_avatar = #{memberAvatar,jdbcType=VARCHAR},
+      member_sex = #{memberSex,jdbcType=TINYINT},
+      member_birthday = #{memberBirthday,jdbcType=DATE},
+      member_passwd = #{memberPasswd,jdbcType=VARCHAR},
+      member_mobile = #{memberMobile,jdbcType=VARCHAR},
+      member_email = #{memberEmail,jdbcType=VARCHAR},
+      member_qq = #{memberQq,jdbcType=VARCHAR},
+      member_ww = #{memberWw,jdbcType=VARCHAR},
+      member_login_num = #{memberLoginNum,jdbcType=INTEGER},
+      member_time = #{memberTime,jdbcType=VARCHAR},
+      member_login_time = #{memberLoginTime,jdbcType=VARCHAR},
+      member_old_login_time = #{memberOldLoginTime,jdbcType=VARCHAR},
+      member_login_ip = #{memberLoginIp,jdbcType=VARCHAR},
+      member_old_login_ip = #{memberOldLoginIp,jdbcType=VARCHAR},
+      member_qqopenid = #{memberQqopenid,jdbcType=VARCHAR},
+      member_sinaopenid = #{memberSinaopenid,jdbcType=VARCHAR},
+      member_points = #{memberPoints,jdbcType=INTEGER},
+      available_predeposit = #{availablePredeposit,jdbcType=DECIMAL},
+      available_giftdeposit = #{availableGiftdeposit,jdbcType=DECIMAL},
+      freeze_predeposit = #{freezePredeposit,jdbcType=DECIMAL},
+      inform_allow = #{informAllow,jdbcType=TINYINT},
+      is_buy = #{isBuy,jdbcType=TINYINT},
+      is_allowtalk = #{isAllowtalk,jdbcType=TINYINT},
+      member_state = #{memberState,jdbcType=TINYINT},
+      member_credit = #{memberCredit,jdbcType=INTEGER},
+      member_snsvisitnum = #{memberSnsvisitnum,jdbcType=INTEGER},
+      member_areaid = #{memberAreaid,jdbcType=INTEGER},
+      member_cityid = #{memberCityid,jdbcType=INTEGER},
+      member_provinceid = #{memberProvinceid,jdbcType=INTEGER},
+      member_areainfo = #{memberAreainfo,jdbcType=VARCHAR},
+      member_id_image = #{memberIdImage,jdbcType=VARCHAR},
+      member_authentication_comment = #{memberAuthenticationComment,jdbcType=VARCHAR},
+      member_contribute_sy_num = #{memberContributeSyNum,jdbcType=INTEGER},
+      member_used_sy_num = #{memberUsedSyNum,jdbcType=INTEGER},
+      member_contribute_money = #{memberContributeMoney,jdbcType=DECIMAL},
+      show_goods_donation_agreement = #{showGoodsDonationAgreement,jdbcType=TINYINT},
+      member_wxopenid = #{memberWxopenid,jdbcType=VARCHAR},
+      sy_points = #{syPoints,jdbcType=DECIMAL},
+      sy_points_used = #{syPointsUsed,jdbcType=DECIMAL},
+      extra_lucky_draw_num = #{extraLuckyDrawNum,jdbcType=INTEGER},
+      lucky_draw_num_used = #{luckyDrawNumUsed,jdbcType=INTEGER},
+      member_ic_id = #{memberIcId,jdbcType=INTEGER},
+      member_url = #{memberUrl,jdbcType=VARCHAR},
+      member_family_id = #{memberFamilyId,jdbcType=INTEGER},
+      native_place = #{nativePlace,jdbcType=VARCHAR},
+      cm_level = #{cmLevel,jdbcType=INTEGER},
+      boc_points = #{bocPoints,jdbcType=DECIMAL},
+      boc_points_used = #{bocPointsUsed,jdbcType=DECIMAL},
+      boc_points_rank = #{bocPointsRank,jdbcType=INTEGER},
+      boc_points_dept_rank = #{bocPointsDeptRank,jdbcType=INTEGER},
+      boc_level = #{bocLevel,jdbcType=INTEGER},
+      boc_level_time = #{bocLevelTime,jdbcType=VARCHAR},
+      member_id_back_image = #{memberIdBackImage,jdbcType=VARCHAR},
+      member_qqinfo = #{memberQqinfo,jdbcType=LONGVARCHAR},
+      member_sinainfo = #{memberSinainfo,jdbcType=LONGVARCHAR},
+      member_privacy = #{memberPrivacy,jdbcType=LONGVARCHAR}
+    where member_id = #{memberId,jdbcType=INTEGER}
+  </update>
+  <update id="updateBocPointsByPrimaryKey" >
+   update sy_member
+     <set>
+	      <if test="bocPoints != null"  >
+			boc_points =  #{bocPoints,jdbcType=DECIMAL} + IFNULL(boc_points, 0.0),
+	      </if>
+      </set>
+     where member_id = #{memberId,jdbcType=INTEGER}
+  </update>
+  <update id="updateBocPointsUsedPoints" >
+   update sy_member
+	 <set>
+		boc_points_used = IFNULL(boc_points_used, 0.0) + #{bocPointUsed,jdbcType=DECIMAL},
+	 </set>
+     where member_id = #{memberId,jdbcType=INTEGER}
+  </update>
+
+  <update id="updateMemberAndBocPointsByPrimaryKey" >
+   update sy_member
+     <set>
+	      <if test="points != null"  >
+			member_points = #{points,jdbcType=INTEGER} + IFNULL(member_points, 0.0),
+			boc_points = #{points,jdbcType=INTEGER} + IFNULL(boc_points, 0.0)
+	      </if>
+      </set>
+     where member_id = #{memberId,jdbcType=INTEGER}
+  </update>
+
+  <update id="updateByPrimaryKey" parameterType="com.shanyuan.platform.ms.dao.user.entity.SyMember" >
+    update sy_member
+    set sy_id = #{syId,jdbcType=INTEGER},
+      member_name = #{memberName,jdbcType=VARCHAR},
+      member_disp_name = #{memberDispName,jdbcType=VARCHAR},
+      member_truename = #{memberTruename,jdbcType=VARCHAR},
+      member_type = #{memberType,jdbcType=TINYINT},
+      member_id_type = #{memberIdType,jdbcType=TINYINT},
+      member_id_value = #{memberIdValue,jdbcType=VARCHAR},
+      member_parent_id = #{memberParentId,jdbcType=INTEGER},
+      member_intro = #{memberIntro,jdbcType=VARCHAR},
+      member_avatar = #{memberAvatar,jdbcType=VARCHAR},
+      member_sex = #{memberSex,jdbcType=TINYINT},
+      member_birthday = #{memberBirthday,jdbcType=DATE},
+      member_passwd = #{memberPasswd,jdbcType=VARCHAR},
+      member_mobile = #{memberMobile,jdbcType=VARCHAR},
+      member_email = #{memberEmail,jdbcType=VARCHAR},
+      member_qq = #{memberQq,jdbcType=VARCHAR},
+      member_ww = #{memberWw,jdbcType=VARCHAR},
+      member_login_num = #{memberLoginNum,jdbcType=INTEGER},
+      member_time = #{memberTime,jdbcType=VARCHAR},
+      member_login_time = #{memberLoginTime,jdbcType=VARCHAR},
+      member_old_login_time = #{memberOldLoginTime,jdbcType=VARCHAR},
+      member_login_ip = #{memberLoginIp,jdbcType=VARCHAR},
+      member_old_login_ip = #{memberOldLoginIp,jdbcType=VARCHAR},
+      member_qqopenid = #{memberQqopenid,jdbcType=VARCHAR},
+      member_sinaopenid = #{memberSinaopenid,jdbcType=VARCHAR},
+      member_points = #{memberPoints,jdbcType=INTEGER},
+      available_predeposit = #{availablePredeposit,jdbcType=DECIMAL},
+      available_giftdeposit = #{availableGiftdeposit,jdbcType=DECIMAL},
+      freeze_predeposit = #{freezePredeposit,jdbcType=DECIMAL},
+      inform_allow = #{informAllow,jdbcType=TINYINT},
+      is_buy = #{isBuy,jdbcType=TINYINT},
+      is_allowtalk = #{isAllowtalk,jdbcType=TINYINT},
+      member_state = #{memberState,jdbcType=TINYINT},
+      member_credit = #{memberCredit,jdbcType=INTEGER},
+      member_snsvisitnum = #{memberSnsvisitnum,jdbcType=INTEGER},
+      member_areaid = #{memberAreaid,jdbcType=INTEGER},
+      member_cityid = #{memberCityid,jdbcType=INTEGER},
+      member_provinceid = #{memberProvinceid,jdbcType=INTEGER},
+      member_areainfo = #{memberAreainfo,jdbcType=VARCHAR},
+      member_id_image = #{memberIdImage,jdbcType=VARCHAR},
+      member_authentication_comment = #{memberAuthenticationComment,jdbcType=VARCHAR},
+      member_contribute_sy_num = #{memberContributeSyNum,jdbcType=INTEGER},
+      member_used_sy_num = #{memberUsedSyNum,jdbcType=INTEGER},
+      member_contribute_money = #{memberContributeMoney,jdbcType=DECIMAL},
+      show_goods_donation_agreement = #{showGoodsDonationAgreement,jdbcType=TINYINT},
+      member_wxopenid = #{memberWxopenid,jdbcType=VARCHAR},
+      sy_points = #{syPoints,jdbcType=DECIMAL},
+      sy_points_used = #{syPointsUsed,jdbcType=DECIMAL},
+      extra_lucky_draw_num = #{extraLuckyDrawNum,jdbcType=INTEGER},
+      lucky_draw_num_used = #{luckyDrawNumUsed,jdbcType=INTEGER},
+      member_ic_id = #{memberIcId,jdbcType=INTEGER},
+      member_url = #{memberUrl,jdbcType=VARCHAR},
+      member_family_id = #{memberFamilyId,jdbcType=INTEGER},
+      native_place = #{nativePlace,jdbcType=VARCHAR},
+      cm_level = #{cmLevel,jdbcType=INTEGER},
+      boc_points = #{bocPoints,jdbcType=DECIMAL},
+      boc_points_used = #{bocPointsUsed,jdbcType=DECIMAL},
+      boc_points_rank = #{bocPointsRank,jdbcType=INTEGER},
+      boc_points_dept_rank = #{bocPointsDeptRank,jdbcType=INTEGER},
+      boc_level = #{bocLevel,jdbcType=INTEGER},
+      boc_level_time = #{bocLevelTime,jdbcType=VARCHAR},
+      member_id_back_image = #{memberIdBackImage,jdbcType=VARCHAR}
+    where member_id = #{memberId,jdbcType=INTEGER}
+  </update>
+
+  <update id="increasePointsByPrimaryKey"   >
+    	 update sy_member  set member_points = member_points +#{memberPoints,jdbcType=INTEGER}
+    	     where member_id = #{memberId,jdbcType=INTEGER}
+   </update>
+
+   <!-- 获取帮扶人帮助的贫困户列表   by zhangwd AND ps.channel = #{channel}-->
+   <select id="selectPoorListBySupportMemberId"  parameterType="java.util.Map" resultMap="BaseResultMap">
+	 SELECT m.member_truename,m.member_id,m.member_avatar,m.member_sex
+		FROM sy_poor_supporter ps , sy_poor p , sy_member m
+			WHERE ps.poor_id =  p.poor_id
+			AND p.member_id = m.member_id
+			AND ps.member_id = #{memberId}
+			LIMIT 3
+   </select>
+   <select id="selectMemberInfo"   resultMap="ResultMemberInfo" >
+	SELECT m.member_id,r.recommend_reason,m.member_truename,m.member_sex,m.member_avatar AS imageUrl,ROUND(IFNULL((a.avg_desccredit+a.avg_servicecredit+a.avg_deliverycredit)/3,0),2)  AS storeScore
+	FROM sy_role r INNER JOIN  sy_member m ON r.member_id = m.member_id INNER JOIN sy_agent_stats  a ON m.member_id = a.member_id  AND a.rec_id=(SELECT MAX(rec_id) FROM sy_agent_stats WHERE member_id=r.member_id)  AND a.online_goods_count>0
+	WHERE r.role_type IN (1,2,3,4) 
+	<choose>
+           <when test="areaiId3 != null and areaiId3 !='' ">
+                 AND r.areaid_3=#{areaiId3}  
+           </when>
+           <otherwise>
+                 limit 12   
+           </otherwise>
+    </choose>
+   </select>
+   
+  <select id="selectGetMemberInfo"   resultMap="ResultMemberInfo" >
+	SELECT m.member_id,r.recommend_reason,m.member_truename,m.member_sex,m.member_avatar AS imageUrl,ROUND(IFNULL((a.avg_desccredit+a.avg_servicecredit+a.avg_deliverycredit)/3,0),2)  AS storeScore
+	FROM sy_role r INNER JOIN  sy_member m ON r.member_id = m.member_id INNER JOIN sy_agent_stats  a ON m.member_id = a.member_id  AND a.rec_id=(SELECT MAX(rec_id) FROM sy_agent_stats WHERE member_id=r.member_id)  AND a.online_goods_count>0
+	WHERE r.role_type IN (1,2,3,4) 
+		<if test="areaiId3 != null and areaiId3.size() !=0 ">
+			AND r.areaid_3 IN
+	        <foreach collection="areaiId3" item="item" index="index" open="(" close=")" separator=",">
+	            #{item}
+	        </foreach>
+    </if>
+    LIMIT 12
+   </select>
+    <!-- 获取店主信息  by zy-->
+   <select id="selectMemberByStoreIds"   resultMap="BaseResultMap" parameterType="java.util.List">
+   	SELECT 
+   		m.member_truename,m.member_id,m.member_disp_name ,m.member_name ,m.member_avatar,m.member_sex,s.store_id
+  	 FROM sy_member m LEFT JOIN sy_store s ON m.member_id =s.member_id 
+	WHERE s.store_id IN
+	<foreach collection="list" index="index"
+				item="item" open="(" separator="," close=")">
+				#{item}
+	</foreach>   
+</select>
+</mapper>

@@ -1,0 +1,298 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.shanyuan.platform.ms.dao.user.mapper.SyGloryDetailsMapper" >
+  <resultMap id="BaseResultMap" type="com.shanyuan.platform.ms.dao.user.entity.SyGloryDetails" >
+    <id column="glory_detial_id" property="gloryDetialId" jdbcType="INTEGER" />
+    <result column="glory_user_id" property="gloryUserId" jdbcType="INTEGER" />
+    <result column="glory_id_d" property="gloryIdD" jdbcType="INTEGER" />
+    <result column="achieve_state" property="achieveState" jdbcType="INTEGER" />
+    <result column="total_progress_step" property="totalProgressStep" jdbcType="INTEGER" />
+    <result column="progress_step" property="progressStep" jdbcType="INTEGER" />
+    <result column="achieve_count_index" property="achieveCountIndex" jdbcType="INTEGER" />
+    <result column="achieve_time" property="achieveTime" jdbcType="INTEGER" />
+    <result column="splash_flag" property="splashFlag" jdbcType="VARCHAR" />
+    <result column="extra_info" property="extraInfo" jdbcType="VARCHAR" />
+  </resultMap>
+  <sql id="Example_Where_Clause" >
+    <where >
+      <foreach collection="oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Update_By_Example_Where_Clause" >
+    <where >
+      <foreach collection="example.oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Base_Column_List" >
+    glory_detial_id, glory_user_id, glory_id_d, achieve_state, total_progress_step, progress_step, 
+    achieve_count_index, achieve_time, splash_flag, extra_info
+  </sql>
+  <select id="selectByExample" resultMap="BaseResultMap" parameterType="com.shanyuan.platform.ms.dao.user.entity.SyGloryDetailsExample" >
+    select
+    <if test="distinct" >
+      distinct
+    </if>
+    <include refid="Base_Column_List" />
+    from sy_glory_detials
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null" >
+      order by ${orderByClause}
+    </if>
+  </select>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+    select 
+    <include refid="Base_Column_List" />
+    from sy_glory_detials
+    where glory_detial_id = #{gloryDetialId,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+    delete from sy_glory_detials
+    where glory_detial_id = #{gloryDetialId,jdbcType=INTEGER}
+  </delete>
+  <delete id="deleteByExample" parameterType="com.shanyuan.platform.ms.dao.user.entity.SyGloryDetailsExample" >
+    delete from sy_glory_detials
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </delete>
+  <insert id="insert" parameterType="com.shanyuan.platform.ms.dao.user.entity.SyGloryDetails" >
+    <selectKey resultType="java.lang.Integer" keyProperty="gloryDetialId" order="AFTER" >
+      SELECT LAST_INSERT_ID()
+    </selectKey>
+    insert into sy_glory_detials (glory_user_id, glory_id_d, achieve_state, 
+      total_progress_step, progress_step, achieve_count_index, 
+      achieve_time, splash_flag, extra_info
+      )
+    values (#{gloryUserId,jdbcType=INTEGER}, #{gloryIdD,jdbcType=INTEGER}, #{achieveState,jdbcType=INTEGER}, 
+      #{totalProgressStep,jdbcType=INTEGER}, #{progressStep,jdbcType=INTEGER}, #{achieveCountIndex,jdbcType=INTEGER}, 
+      #{achieveTime,jdbcType=INTEGER}, #{splashFlag,jdbcType=VARCHAR}, #{extraInfo,jdbcType=VARCHAR}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="com.shanyuan.platform.ms.dao.user.entity.SyGloryDetails" >
+    <selectKey resultType="java.lang.Integer" keyProperty="gloryDetialId" order="AFTER" >
+      SELECT LAST_INSERT_ID()
+    </selectKey>
+    insert into sy_glory_detials
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="gloryUserId != null" >
+        glory_user_id,
+      </if>
+      <if test="gloryIdD != null" >
+        glory_id_d,
+      </if>
+      <if test="achieveState != null" >
+        achieve_state,
+      </if>
+      <if test="totalProgressStep != null" >
+        total_progress_step,
+      </if>
+      <if test="progressStep != null" >
+        progress_step,
+      </if>
+      <if test="achieveCountIndex != null" >
+        achieve_count_index,
+      </if>
+      <if test="achieveTime != null" >
+        achieve_time,
+      </if>
+      <if test="splashFlag != null" >
+        splash_flag,
+      </if>
+      <if test="extraInfo != null" >
+        extra_info,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="gloryUserId != null" >
+        #{gloryUserId,jdbcType=INTEGER},
+      </if>
+      <if test="gloryIdD != null" >
+        #{gloryIdD,jdbcType=INTEGER},
+      </if>
+      <if test="achieveState != null" >
+        #{achieveState,jdbcType=INTEGER},
+      </if>
+      <if test="totalProgressStep != null" >
+        #{totalProgressStep,jdbcType=INTEGER},
+      </if>
+      <if test="progressStep != null" >
+        #{progressStep,jdbcType=INTEGER},
+      </if>
+      <if test="achieveCountIndex != null" >
+        #{achieveCountIndex,jdbcType=INTEGER},
+      </if>
+      <if test="achieveTime != null" >
+        #{achieveTime,jdbcType=INTEGER},
+      </if>
+      <if test="splashFlag != null" >
+        #{splashFlag,jdbcType=VARCHAR},
+      </if>
+      <if test="extraInfo != null" >
+        #{extraInfo,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <select id="countByExample" parameterType="com.shanyuan.platform.ms.dao.user.entity.SyGloryDetailsExample" resultType="java.lang.Integer" >
+    select count(*) from sy_glory_detials
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </select>
+  <update id="updateByExampleSelective" parameterType="map" >
+    update sy_glory_detials
+    <set >
+      <if test="record.gloryDetialId != null" >
+        glory_detial_id = #{record.gloryDetialId,jdbcType=INTEGER},
+      </if>
+      <if test="record.gloryUserId != null" >
+        glory_user_id = #{record.gloryUserId,jdbcType=INTEGER},
+      </if>
+      <if test="record.gloryIdD != null" >
+        glory_id_d = #{record.gloryIdD,jdbcType=INTEGER},
+      </if>
+      <if test="record.achieveState != null" >
+        achieve_state = #{record.achieveState,jdbcType=INTEGER},
+      </if>
+      <if test="record.totalProgressStep != null" >
+        total_progress_step = #{record.totalProgressStep,jdbcType=INTEGER},
+      </if>
+      <if test="record.progressStep != null" >
+        progress_step = #{record.progressStep,jdbcType=INTEGER},
+      </if>
+      <if test="record.achieveCountIndex != null" >
+        achieve_count_index = #{record.achieveCountIndex,jdbcType=INTEGER},
+      </if>
+      <if test="record.achieveTime != null" >
+        achieve_time = #{record.achieveTime,jdbcType=INTEGER},
+      </if>
+      <if test="record.splashFlag != null" >
+        splash_flag = #{record.splashFlag,jdbcType=VARCHAR},
+      </if>
+      <if test="record.extraInfo != null" >
+        extra_info = #{record.extraInfo,jdbcType=VARCHAR},
+      </if>
+    </set>
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByExample" parameterType="map" >
+    update sy_glory_detials
+    set glory_detial_id = #{record.gloryDetialId,jdbcType=INTEGER},
+      glory_user_id = #{record.gloryUserId,jdbcType=INTEGER},
+      glory_id_d = #{record.gloryIdD,jdbcType=INTEGER},
+      achieve_state = #{record.achieveState,jdbcType=INTEGER},
+      total_progress_step = #{record.totalProgressStep,jdbcType=INTEGER},
+      progress_step = #{record.progressStep,jdbcType=INTEGER},
+      achieve_count_index = #{record.achieveCountIndex,jdbcType=INTEGER},
+      achieve_time = #{record.achieveTime,jdbcType=INTEGER},
+      splash_flag = #{record.splashFlag,jdbcType=VARCHAR},
+      extra_info = #{record.extraInfo,jdbcType=VARCHAR}
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByPrimaryKeySelective" parameterType="com.shanyuan.platform.ms.dao.user.entity.SyGloryDetails" >
+    update sy_glory_detials
+    <set >
+      <if test="gloryUserId != null" >
+        glory_user_id = #{gloryUserId,jdbcType=INTEGER},
+      </if>
+      <if test="gloryIdD != null" >
+        glory_id_d = #{gloryIdD,jdbcType=INTEGER},
+      </if>
+      <if test="achieveState != null" >
+        achieve_state = #{achieveState,jdbcType=INTEGER},
+      </if>
+      <if test="totalProgressStep != null" >
+        total_progress_step = #{totalProgressStep,jdbcType=INTEGER},
+      </if>
+      <if test="progressStep != null" >
+        progress_step = #{progressStep,jdbcType=INTEGER},
+      </if>
+      <if test="achieveCountIndex != null" >
+        achieve_count_index = #{achieveCountIndex,jdbcType=INTEGER},
+      </if>
+      <if test="achieveTime != null" >
+        achieve_time = #{achieveTime,jdbcType=INTEGER},
+      </if>
+      <if test="splashFlag != null" >
+        splash_flag = #{splashFlag,jdbcType=VARCHAR},
+      </if>
+      <if test="extraInfo != null" >
+        extra_info = #{extraInfo,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where glory_detial_id = #{gloryDetialId,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.shanyuan.platform.ms.dao.user.entity.SyGloryDetails" >
+    update sy_glory_detials
+    set glory_user_id = #{gloryUserId,jdbcType=INTEGER},
+      glory_id_d = #{gloryIdD,jdbcType=INTEGER},
+      achieve_state = #{achieveState,jdbcType=INTEGER},
+      total_progress_step = #{totalProgressStep,jdbcType=INTEGER},
+      progress_step = #{progressStep,jdbcType=INTEGER},
+      achieve_count_index = #{achieveCountIndex,jdbcType=INTEGER},
+      achieve_time = #{achieveTime,jdbcType=INTEGER},
+      splash_flag = #{splashFlag,jdbcType=VARCHAR},
+      extra_info = #{extraInfo,jdbcType=VARCHAR}
+    where glory_detial_id = #{gloryDetialId,jdbcType=INTEGER}
+  </update>
+  
+  <select id="selectGloryDetailsByMemberId" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+    select 
+    <include refid="Base_Column_List" />
+    from sy_glory_detials
+    where glory_user_id = #{memberId,jdbcType=INTEGER}
+  </select>
+</mapper>

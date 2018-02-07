@@ -1,0 +1,601 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.shanyuan.platform.ms.dao.union.mapper.SyUnionMapper" >
+  <resultMap id="BaseResultMap" type="com.shanyuan.platform.ms.dao.union.entity.SyUnion" >
+    <id column="union_id" property="unionId" jdbcType="INTEGER" />
+    <result column="union_name" property="unionName" jdbcType="VARCHAR" />
+    <result column="union_channel" property="unionChannel" jdbcType="VARCHAR" />
+    <result column="union_image" property="unionImage" jdbcType="VARCHAR" />
+    <result column="union_dis_image" property="unionDisImage" jdbcType="VARCHAR" />
+    <result column="union_type" property="unionType" jdbcType="TINYINT" />
+    <result column="union_hidden" property="unionHidden" jdbcType="TINYINT" />
+    <result column="union_free" property="unionFree" jdbcType="TINYINT" />
+    <result column="union_sort" property="unionSort" jdbcType="INTEGER" />
+    <result column="union_del" property="unionDel" jdbcType="TINYINT" />
+    <result column="union_operation" property="unionOperation" jdbcType="TINYINT" />
+    <result column="banner_url" property="bannerUrl" jdbcType="VARCHAR" />
+    <result column="registable" property="registable" jdbcType="TINYINT" />
+    <result column="union_desc" property="unionDesc" jdbcType="VARCHAR" />
+    <result column="union_circle_level" property="unionCircleLevel" jdbcType="TINYINT" />
+    <result column="union_banner" property="unionBanner" jdbcType="VARCHAR" />
+    <result column="add_time" property="addTime" jdbcType="INTEGER" />
+    <result column="union_top_list_flag" property="unionTopListFlag" jdbcType="TINYINT" />
+  </resultMap>
+  <resultMap id="ResultMapWithBLOBs" type="com.shanyuan.platform.ms.dao.union.entity.SyUnion" extends="BaseResultMap" >
+    <result column="union_introduction" property="unionIntroduction" jdbcType="LONGVARCHAR" />
+  </resultMap>
+  <sql id="Example_Where_Clause" >
+    <where >
+      <foreach collection="oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Update_By_Example_Where_Clause" >
+    <where >
+      <foreach collection="example.oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Base_Column_List" >
+    union_id, union_name, union_channel, union_image, union_dis_image, union_type, union_hidden, 
+    union_free, union_sort, union_del, union_operation, banner_url, registable, union_desc, 
+    union_circle_level, union_banner, add_time, union_top_list_flag
+  </sql>
+  <sql id="Blob_Column_List" >
+    union_introduction
+  </sql>
+  <select id="selectByExampleWithBLOBs" resultMap="ResultMapWithBLOBs" parameterType="com.shanyuan.platform.ms.dao.union.entity.SyUnionExample" >
+    select
+    <if test="distinct" >
+      distinct
+    </if>
+    <include refid="Base_Column_List" />
+    ,
+    <include refid="Blob_Column_List" />
+    from sy_union
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null" >
+      order by ${orderByClause}
+    </if>
+  </select>
+  <select id="selectByExample" resultMap="BaseResultMap" parameterType="com.shanyuan.platform.ms.dao.union.entity.SyUnionExample" >
+    select
+    <if test="distinct" >
+      distinct
+    </if>
+    <include refid="Base_Column_List" />
+    from sy_union
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null" >
+      order by ${orderByClause}
+    </if>
+  </select>
+  <select id="selectByPrimaryKey" resultMap="ResultMapWithBLOBs" parameterType="java.lang.Integer" >
+    select 
+    <include refid="Base_Column_List" />
+    ,
+    <include refid="Blob_Column_List" />
+    from sy_union
+    where union_id = #{unionId,jdbcType=INTEGER}
+  </select>
+
+   <select id="selectUnionChannel" resultType="java.lang.String" >
+   		 SELECT union_channel FROM sy_union
+   </select>
+  
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+    delete from sy_union
+    where union_id = #{unionId,jdbcType=INTEGER}
+  </delete>
+  <delete id="deleteByExample" parameterType="com.shanyuan.platform.ms.dao.union.entity.SyUnionExample" >
+    delete from sy_union
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </delete>
+  <insert id="insert" parameterType="com.shanyuan.platform.ms.dao.union.entity.SyUnion" >
+    <selectKey resultType="java.lang.Integer" keyProperty="unionId" order="AFTER" >
+      SELECT LAST_INSERT_ID()
+    </selectKey>
+    insert into sy_union (union_name, union_channel, union_image, 
+      union_dis_image, union_type, union_hidden, 
+      union_free, union_sort, union_del, 
+      union_operation, banner_url, registable, 
+      union_desc, union_circle_level, union_banner, 
+      add_time, union_top_list_flag, union_introduction
+      )
+    values (#{unionName,jdbcType=VARCHAR}, #{unionChannel,jdbcType=VARCHAR}, #{unionImage,jdbcType=VARCHAR}, 
+      #{unionDisImage,jdbcType=VARCHAR}, #{unionType,jdbcType=TINYINT}, #{unionHidden,jdbcType=TINYINT}, 
+      #{unionFree,jdbcType=TINYINT}, #{unionSort,jdbcType=INTEGER}, #{unionDel,jdbcType=TINYINT}, 
+      #{unionOperation,jdbcType=TINYINT}, #{bannerUrl,jdbcType=VARCHAR}, #{registable,jdbcType=TINYINT}, 
+      #{unionDesc,jdbcType=VARCHAR}, #{unionCircleLevel,jdbcType=TINYINT}, #{unionBanner,jdbcType=VARCHAR}, 
+      #{addTime,jdbcType=INTEGER}, #{unionTopListFlag,jdbcType=TINYINT}, #{unionIntroduction,jdbcType=LONGVARCHAR}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="com.shanyuan.platform.ms.dao.union.entity.SyUnion" >
+    <selectKey resultType="java.lang.Integer" keyProperty="unionId" order="AFTER" >
+      SELECT LAST_INSERT_ID()
+    </selectKey>
+    insert into sy_union
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="unionName != null" >
+        union_name,
+      </if>
+      <if test="unionChannel != null" >
+        union_channel,
+      </if>
+      <if test="unionImage != null" >
+        union_image,
+      </if>
+      <if test="unionDisImage != null" >
+        union_dis_image,
+      </if>
+      <if test="unionType != null" >
+        union_type,
+      </if>
+      <if test="unionHidden != null" >
+        union_hidden,
+      </if>
+      <if test="unionFree != null" >
+        union_free,
+      </if>
+      <if test="unionSort != null" >
+        union_sort,
+      </if>
+      <if test="unionDel != null" >
+        union_del,
+      </if>
+      <if test="unionOperation != null" >
+        union_operation,
+      </if>
+      <if test="bannerUrl != null" >
+        banner_url,
+      </if>
+      <if test="registable != null" >
+        registable,
+      </if>
+      <if test="unionDesc != null" >
+        union_desc,
+      </if>
+      <if test="unionCircleLevel != null" >
+        union_circle_level,
+      </if>
+      <if test="unionBanner != null" >
+        union_banner,
+      </if>
+      <if test="addTime != null" >
+        add_time,
+      </if>
+      <if test="unionTopListFlag != null" >
+        union_top_list_flag,
+      </if>
+      <if test="unionIntroduction != null" >
+        union_introduction,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="unionName != null" >
+        #{unionName,jdbcType=VARCHAR},
+      </if>
+      <if test="unionChannel != null" >
+        #{unionChannel,jdbcType=VARCHAR},
+      </if>
+      <if test="unionImage != null" >
+        #{unionImage,jdbcType=VARCHAR},
+      </if>
+      <if test="unionDisImage != null" >
+        #{unionDisImage,jdbcType=VARCHAR},
+      </if>
+      <if test="unionType != null" >
+        #{unionType,jdbcType=TINYINT},
+      </if>
+      <if test="unionHidden != null" >
+        #{unionHidden,jdbcType=TINYINT},
+      </if>
+      <if test="unionFree != null" >
+        #{unionFree,jdbcType=TINYINT},
+      </if>
+      <if test="unionSort != null" >
+        #{unionSort,jdbcType=INTEGER},
+      </if>
+      <if test="unionDel != null" >
+        #{unionDel,jdbcType=TINYINT},
+      </if>
+      <if test="unionOperation != null" >
+        #{unionOperation,jdbcType=TINYINT},
+      </if>
+      <if test="bannerUrl != null" >
+        #{bannerUrl,jdbcType=VARCHAR},
+      </if>
+      <if test="registable != null" >
+        #{registable,jdbcType=TINYINT},
+      </if>
+      <if test="unionDesc != null" >
+        #{unionDesc,jdbcType=VARCHAR},
+      </if>
+      <if test="unionCircleLevel != null" >
+        #{unionCircleLevel,jdbcType=TINYINT},
+      </if>
+      <if test="unionBanner != null" >
+        #{unionBanner,jdbcType=VARCHAR},
+      </if>
+      <if test="addTime != null" >
+        #{addTime,jdbcType=INTEGER},
+      </if>
+      <if test="unionTopListFlag != null" >
+        #{unionTopListFlag,jdbcType=TINYINT},
+      </if>
+      <if test="unionIntroduction != null" >
+        #{unionIntroduction,jdbcType=LONGVARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <select id="countByExample" parameterType="com.shanyuan.platform.ms.dao.union.entity.SyUnionExample" resultType="java.lang.Integer" >
+    select count(*) from sy_union
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </select>
+  <update id="updateByExampleSelective" parameterType="map" >
+    update sy_union
+    <set >
+      <if test="record.unionId != null" >
+        union_id = #{record.unionId,jdbcType=INTEGER},
+      </if>
+      <if test="record.unionName != null" >
+        union_name = #{record.unionName,jdbcType=VARCHAR},
+      </if>
+      <if test="record.unionChannel != null" >
+        union_channel = #{record.unionChannel,jdbcType=VARCHAR},
+      </if>
+      <if test="record.unionImage != null" >
+        union_image = #{record.unionImage,jdbcType=VARCHAR},
+      </if>
+      <if test="record.unionDisImage != null" >
+        union_dis_image = #{record.unionDisImage,jdbcType=VARCHAR},
+      </if>
+      <if test="record.unionType != null" >
+        union_type = #{record.unionType,jdbcType=TINYINT},
+      </if>
+      <if test="record.unionHidden != null" >
+        union_hidden = #{record.unionHidden,jdbcType=TINYINT},
+      </if>
+      <if test="record.unionFree != null" >
+        union_free = #{record.unionFree,jdbcType=TINYINT},
+      </if>
+      <if test="record.unionSort != null" >
+        union_sort = #{record.unionSort,jdbcType=INTEGER},
+      </if>
+      <if test="record.unionDel != null" >
+        union_del = #{record.unionDel,jdbcType=TINYINT},
+      </if>
+      <if test="record.unionOperation != null" >
+        union_operation = #{record.unionOperation,jdbcType=TINYINT},
+      </if>
+      <if test="record.bannerUrl != null" >
+        banner_url = #{record.bannerUrl,jdbcType=VARCHAR},
+      </if>
+      <if test="record.registable != null" >
+        registable = #{record.registable,jdbcType=TINYINT},
+      </if>
+      <if test="record.unionDesc != null" >
+        union_desc = #{record.unionDesc,jdbcType=VARCHAR},
+      </if>
+      <if test="record.unionCircleLevel != null" >
+        union_circle_level = #{record.unionCircleLevel,jdbcType=TINYINT},
+      </if>
+      <if test="record.unionBanner != null" >
+        union_banner = #{record.unionBanner,jdbcType=VARCHAR},
+      </if>
+      <if test="record.addTime != null" >
+        add_time = #{record.addTime,jdbcType=INTEGER},
+      </if>
+      <if test="record.unionTopListFlag != null" >
+        union_top_list_flag = #{record.unionTopListFlag,jdbcType=TINYINT},
+      </if>
+      <if test="record.unionIntroduction != null" >
+        union_introduction = #{record.unionIntroduction,jdbcType=LONGVARCHAR},
+      </if>
+    </set>
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByExampleWithBLOBs" parameterType="map" >
+    update sy_union
+    set union_id = #{record.unionId,jdbcType=INTEGER},
+      union_name = #{record.unionName,jdbcType=VARCHAR},
+      union_channel = #{record.unionChannel,jdbcType=VARCHAR},
+      union_image = #{record.unionImage,jdbcType=VARCHAR},
+      union_dis_image = #{record.unionDisImage,jdbcType=VARCHAR},
+      union_type = #{record.unionType,jdbcType=TINYINT},
+      union_hidden = #{record.unionHidden,jdbcType=TINYINT},
+      union_free = #{record.unionFree,jdbcType=TINYINT},
+      union_sort = #{record.unionSort,jdbcType=INTEGER},
+      union_del = #{record.unionDel,jdbcType=TINYINT},
+      union_operation = #{record.unionOperation,jdbcType=TINYINT},
+      banner_url = #{record.bannerUrl,jdbcType=VARCHAR},
+      registable = #{record.registable,jdbcType=TINYINT},
+      union_desc = #{record.unionDesc,jdbcType=VARCHAR},
+      union_circle_level = #{record.unionCircleLevel,jdbcType=TINYINT},
+      union_banner = #{record.unionBanner,jdbcType=VARCHAR},
+      add_time = #{record.addTime,jdbcType=INTEGER},
+      union_top_list_flag = #{record.unionTopListFlag,jdbcType=TINYINT},
+      union_introduction = #{record.unionIntroduction,jdbcType=LONGVARCHAR}
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByExample" parameterType="map" >
+    update sy_union
+    set union_id = #{record.unionId,jdbcType=INTEGER},
+      union_name = #{record.unionName,jdbcType=VARCHAR},
+      union_channel = #{record.unionChannel,jdbcType=VARCHAR},
+      union_image = #{record.unionImage,jdbcType=VARCHAR},
+      union_dis_image = #{record.unionDisImage,jdbcType=VARCHAR},
+      union_type = #{record.unionType,jdbcType=TINYINT},
+      union_hidden = #{record.unionHidden,jdbcType=TINYINT},
+      union_free = #{record.unionFree,jdbcType=TINYINT},
+      union_sort = #{record.unionSort,jdbcType=INTEGER},
+      union_del = #{record.unionDel,jdbcType=TINYINT},
+      union_operation = #{record.unionOperation,jdbcType=TINYINT},
+      banner_url = #{record.bannerUrl,jdbcType=VARCHAR},
+      registable = #{record.registable,jdbcType=TINYINT},
+      union_desc = #{record.unionDesc,jdbcType=VARCHAR},
+      union_circle_level = #{record.unionCircleLevel,jdbcType=TINYINT},
+      union_banner = #{record.unionBanner,jdbcType=VARCHAR},
+      add_time = #{record.addTime,jdbcType=INTEGER},
+      union_top_list_flag = #{record.unionTopListFlag,jdbcType=TINYINT}
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByPrimaryKeySelective" parameterType="com.shanyuan.platform.ms.dao.union.entity.SyUnion" >
+    update sy_union
+    <set >
+      <if test="unionName != null" >
+        union_name = #{unionName,jdbcType=VARCHAR},
+      </if>
+      <if test="unionChannel != null" >
+        union_channel = #{unionChannel,jdbcType=VARCHAR},
+      </if>
+      <if test="unionImage != null" >
+        union_image = #{unionImage,jdbcType=VARCHAR},
+      </if>
+      <if test="unionDisImage != null" >
+        union_dis_image = #{unionDisImage,jdbcType=VARCHAR},
+      </if>
+      <if test="unionType != null" >
+        union_type = #{unionType,jdbcType=TINYINT},
+      </if>
+      <if test="unionHidden != null" >
+        union_hidden = #{unionHidden,jdbcType=TINYINT},
+      </if>
+      <if test="unionFree != null" >
+        union_free = #{unionFree,jdbcType=TINYINT},
+      </if>
+      <if test="unionSort != null" >
+        union_sort = #{unionSort,jdbcType=INTEGER},
+      </if>
+      <if test="unionDel != null" >
+        union_del = #{unionDel,jdbcType=TINYINT},
+      </if>
+      <if test="unionOperation != null" >
+        union_operation = #{unionOperation,jdbcType=TINYINT},
+      </if>
+      <if test="bannerUrl != null" >
+        banner_url = #{bannerUrl,jdbcType=VARCHAR},
+      </if>
+      <if test="registable != null" >
+        registable = #{registable,jdbcType=TINYINT},
+      </if>
+      <if test="unionDesc != null" >
+        union_desc = #{unionDesc,jdbcType=VARCHAR},
+      </if>
+      <if test="unionCircleLevel != null" >
+        union_circle_level = #{unionCircleLevel,jdbcType=TINYINT},
+      </if>
+      <if test="unionBanner != null" >
+        union_banner = #{unionBanner,jdbcType=VARCHAR},
+      </if>
+      <if test="addTime != null" >
+        add_time = #{addTime,jdbcType=INTEGER},
+      </if>
+      <if test="unionTopListFlag != null" >
+        union_top_list_flag = #{unionTopListFlag,jdbcType=TINYINT},
+      </if>
+      <if test="unionIntroduction != null" >
+        union_introduction = #{unionIntroduction,jdbcType=LONGVARCHAR},
+      </if>
+    </set>
+    where union_id = #{unionId,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKeyWithBLOBs" parameterType="com.shanyuan.platform.ms.dao.union.entity.SyUnion" >
+    update sy_union
+    set union_name = #{unionName,jdbcType=VARCHAR},
+      union_channel = #{unionChannel,jdbcType=VARCHAR},
+      union_image = #{unionImage,jdbcType=VARCHAR},
+      union_dis_image = #{unionDisImage,jdbcType=VARCHAR},
+      union_type = #{unionType,jdbcType=TINYINT},
+      union_hidden = #{unionHidden,jdbcType=TINYINT},
+      union_free = #{unionFree,jdbcType=TINYINT},
+      union_sort = #{unionSort,jdbcType=INTEGER},
+      union_del = #{unionDel,jdbcType=TINYINT},
+      union_operation = #{unionOperation,jdbcType=TINYINT},
+      banner_url = #{bannerUrl,jdbcType=VARCHAR},
+      registable = #{registable,jdbcType=TINYINT},
+      union_desc = #{unionDesc,jdbcType=VARCHAR},
+      union_circle_level = #{unionCircleLevel,jdbcType=TINYINT},
+      union_banner = #{unionBanner,jdbcType=VARCHAR},
+      add_time = #{addTime,jdbcType=INTEGER},
+      union_top_list_flag = #{unionTopListFlag,jdbcType=TINYINT},
+      union_introduction = #{unionIntroduction,jdbcType=LONGVARCHAR}
+    where union_id = #{unionId,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.shanyuan.platform.ms.dao.union.entity.SyUnion" >
+    update sy_union
+    set union_name = #{unionName,jdbcType=VARCHAR},
+      union_channel = #{unionChannel,jdbcType=VARCHAR},
+      union_image = #{unionImage,jdbcType=VARCHAR},
+      union_dis_image = #{unionDisImage,jdbcType=VARCHAR},
+      union_type = #{unionType,jdbcType=TINYINT},
+      union_hidden = #{unionHidden,jdbcType=TINYINT},
+      union_free = #{unionFree,jdbcType=TINYINT},
+      union_sort = #{unionSort,jdbcType=INTEGER},
+      union_del = #{unionDel,jdbcType=TINYINT},
+      union_operation = #{unionOperation,jdbcType=TINYINT},
+      banner_url = #{bannerUrl,jdbcType=VARCHAR},
+      registable = #{registable,jdbcType=TINYINT},
+      union_desc = #{unionDesc,jdbcType=VARCHAR},
+      union_circle_level = #{unionCircleLevel,jdbcType=TINYINT},
+      union_banner = #{unionBanner,jdbcType=VARCHAR},
+      add_time = #{addTime,jdbcType=INTEGER},
+      union_top_list_flag = #{unionTopListFlag,jdbcType=TINYINT}
+    where union_id = #{unionId,jdbcType=INTEGER}
+  </update>
+  
+  <!--获取平台公益人士总数(除去贫困户) -->
+  <select id="selectMemberCountWithoutPoor" resultType="Integer">
+  	SELECT m.count - p.count
+		FROM (SELECT COUNT(member_id) COUNT FROM sy_member)  m, 
+			 (SELECT COUNT(poor_id) COUNT FROM sy_poor) p
+  </select>
+  
+  <!-- 获取联盟中助理人的数量 -->
+  <select id="selectUnionAgentCount" parameterType="java.util.List" resultType="Integer">
+  		SELECT COUNT(*) FROM sy_role r, sy_agent_verify av
+				WHERE r.areaid_3  IN
+				<foreach collection="list" item="areaId" open="(" close=")" separator="," >
+                    #{areaId}
+                  </foreach>
+				AND av.status = '2' 
+				AND r.member_id = av.member_id
+  </select>
+  
+  <!-- 获取联盟的捐款总金额 -->
+  <select id="selectJuanKuanOrderAmount"  parameterType="java.lang.String" resultType="java.math.BigDecimal">
+  		SELECT SUM(order_amount)/100
+			FROM sy_project_money_order pmo, sy_circle_member cm, sy_circle c
+			WHERE 	pmo.buyer_id = cm.member_id
+			AND 	cm.circle_id = c.circle_id
+			AND	c.code = #{_parameter}
+			AND order_state = 40
+  </select>
+  
+  <!-- 获取联盟的义卖总金额-->
+  <select id="selectBazaarOrderAmount"  parameterType="java.lang.String" resultType="java.math.BigDecimal">
+  		SELECT SUM(order_amount)/100
+			FROM sy_bazaar_order bo, sy_circle_member cm, sy_circle c
+			WHERE 	bo.buyer_id = cm.member_id
+			AND 	cm.circle_id = c.circle_id
+			AND	c.code =  #{_parameter}
+			AND order_state = 40	
+  </select>
+  
+  <!-- 获取联盟中所有的订单数 -->
+  <select id="selectOrderCircleTotal" parameterType="java.lang.String" resultType="Integer">
+  		SELECT COUNT(1) 
+				FROM sy_order o, sy_circle_member cm, sy_circle c
+				WHERE  o.buyer_id = cm.member_id 
+				AND 	cm.circle_id = c.circle_id
+				AND	order_state IN (15,30, 40, 50)
+				AND 	goods_project_type IN (17, 24)
+				AND 	c.code = #{_parameter}
+  </select>
+  
+  <!-- 获取联盟中爱心购买的商品数量 -->
+  <select id="selectGoodsTotalByUnion" parameterType="java.lang.String" resultType="Integer">
+  	SELECT SUM(goods_num)
+			FROM sy_order o, sy_order_goods og, sy_circle_member cm, sy_circle c
+			WHERE 	og.order_id = o.order_id
+			AND	o.buyer_id = cm.member_id 
+			AND	cm.circle_id = c.circle_id
+			AND 	c.code  = #{_parameter}
+			AND 	o.order_state IN (15,30, 40, 50)
+			AND 	o.goods_project_type IN  (17, 24)
+  </select>
+  
+  <!-- 查询昨天销售最多的4个产品(大爱超市) -->
+  <select id="selectGoodsCommonIdsTotal" parameterType="java.util.Map" resultType="java.util.Map" >
+  		SELECT og.goods_commonid , SUM(goods_num) AS goods_total
+			FROM sy_order o, sy_order_goods og, sy_goods_common gc
+				WHERE og.order_id = o.order_id
+				AND og.goods_commonid = gc.goods_commonid
+				AND order_state IN(15,30,40 )
+				AND o.goods_project_type = 17
+				AND o.assist_id = 0
+				AND payment_time between #{yestStart} and #{yestEnd}
+				AND o.support_county_id IN 
+				  <foreach collection="source" item="areaId3" open="(" close=")" separator="," >
+                    	#{areaId3}
+                  </foreach>
+				AND gc.goods_state = 1 
+				AND gc.trade_mode = 'pt' 
+				GROUP BY og.goods_commonid
+				ORDER BY goods_total DESC, goods_id DESC
+				LIMIT 4
+  </select>
+  
+  <!-- 过去7天新增注册人数最多的单位（10个） -->
+  <select id="selectNewEnrollTopCircle" parameterType="java.util.Map" resultType="java.util.Map">
+  		SELECT bms.circle_id, bms.circle_name, (MAX(full_total_member)-MIN(full_total_member)) AS count_num
+			FROM  sy_boc_member_stats bms, sy_circle c
+			WHERE bms.circle_id = c.circle_id
+			AND add_time BETWEEN #{yestStartTime} AND #{yestEndTime} 
+			AND bms.code = #{channel}
+			AND channel = #{channel}
+			AND dept_level = #{deptLevel}
+			ORDER BY count_num DESC
+			LIMIT 10
+  </select>
+</mapper>
