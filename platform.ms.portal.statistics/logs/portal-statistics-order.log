@@ -1,0 +1,321 @@
+12:31:05.634 [main] INFO  o.s.c.a.AnnotationConfigApplicationContext - Refreshing org.springframework.context.annotation.AnnotationConfigApplicationContext@69997e9d: startup date [Mon Jan 22 12:31:05 CST 2018]; root of context hierarchy
+12:31:05.755 [main] INFO  o.s.b.f.a.AutowiredAnnotationBeanPostProcessor - JSR-330 'javax.inject.Inject' annotation found and supported for autowiring
+12:31:05.793 [main] INFO  o.s.c.s.PostProcessorRegistrationDelegate$BeanPostProcessorChecker - Bean 'configurationPropertiesRebinderAutoConfiguration' of type [org.springframework.cloud.autoconfigure.ConfigurationPropertiesRebinderAutoConfiguration$$EnhancerBySpringCGLIB$$ea2645d] is not eligible for getting processed by all BeanPostProcessors (for example: not eligible for auto-proxying)
+12:31:06.030 [main] INFO  c.s.p.m.s.StatisticsOrderPortalApplication - No active profile set, falling back to default profiles: default
+12:31:06.049 [main] INFO  o.s.b.c.e.AnnotationConfigEmbeddedWebApplicationContext - Refreshing org.springframework.boot.context.embedded.AnnotationConfigEmbeddedWebApplicationContext@278bb07e: startup date [Mon Jan 22 12:31:06 CST 2018]; parent: org.springframework.context.annotation.AnnotationConfigApplicationContext@69997e9d
+12:31:07.235 [main] INFO  o.s.d.r.c.RepositoryConfigurationDelegate - Multiple Spring Data modules found, entering strict repository configuration mode!
+12:31:07.392 [main] INFO  o.s.cloud.context.scope.GenericScope - BeanFactory id=fc407549-7289-3ffb-86da-399302721660
+12:31:07.412 [main] INFO  o.s.b.f.a.AutowiredAnnotationBeanPostProcessor - JSR-330 'javax.inject.Inject' annotation found and supported for autowiring
+12:31:07.570 [main] INFO  o.s.c.s.PostProcessorRegistrationDelegate$BeanPostProcessorChecker - Bean 'redisConfig' of type [com.shanyuan.platform.ms.base.cache.config.RedisConfig$$EnhancerBySpringCGLIB$$65122e9c] is not eligible for getting processed by all BeanPostProcessors (for example: not eligible for auto-proxying)
+12:31:07.667 [main] INFO  o.s.c.s.PostProcessorRegistrationDelegate$BeanPostProcessorChecker - Bean 'org.springframework.cache.annotation.ProxyCachingConfiguration' of type [org.springframework.cache.annotation.ProxyCachingConfiguration$$EnhancerBySpringCGLIB$$3b9a977e] is not eligible for getting processed by all BeanPostProcessors (for example: not eligible for auto-proxying)
+12:31:07.697 [main] INFO  o.s.c.s.PostProcessorRegistrationDelegate$BeanPostProcessorChecker - Bean 'org.springframework.transaction.annotation.ProxyTransactionManagementConfiguration' of type [org.springframework.transaction.annotation.ProxyTransactionManagementConfiguration$$EnhancerBySpringCGLIB$$f2886160] is not eligible for getting processed by all BeanPostProcessors (for example: not eligible for auto-proxying)
+12:31:07.736 [main] INFO  o.s.c.s.PostProcessorRegistrationDelegate$BeanPostProcessorChecker - Bean 'org.springframework.cloud.netflix.metrics.MetricsInterceptorConfiguration$MetricsRestTemplateConfiguration' of type [org.springframework.cloud.netflix.metrics.MetricsInterceptorConfiguration$MetricsRestTemplateConfiguration$$EnhancerBySpringCGLIB$$24b507a1] is not eligible for getting processed by all BeanPostProcessors (for example: not eligible for auto-proxying)
+12:31:07.747 [main] INFO  o.s.c.s.PostProcessorRegistrationDelegate$BeanPostProcessorChecker - Bean 'org.springframework.cloud.autoconfigure.ConfigurationPropertiesRebinderAutoConfiguration' of type [org.springframework.cloud.autoconfigure.ConfigurationPropertiesRebinderAutoConfiguration$$EnhancerBySpringCGLIB$$ea2645d] is not eligible for getting processed by all BeanPostProcessors (for example: not eligible for auto-proxying)
+12:31:07.975 [main] INFO  org.xnio - XNIO version 3.3.6.Final
+12:31:07.988 [main] INFO  org.xnio.nio - XNIO NIO Implementation Version 3.3.6.Final
+12:31:08.019 [main] WARN  io.undertow.websockets.jsr - UT026009: XNIO worker was not set on WebSocketDeploymentInfo, the default worker will be used
+12:31:08.019 [main] WARN  io.undertow.websockets.jsr - UT026010: Buffer pool was not set on WebSocketDeploymentInfo, the default pool will be used
+12:31:08.038 [main] INFO  io.undertow.servlet - Initializing Spring embedded WebApplicationContext
+12:31:08.038 [main] INFO  o.s.web.context.ContextLoader - Root WebApplicationContext: initialization completed in 1989 ms
+12:31:08.389 [main] INFO  o.s.b.w.s.ServletRegistrationBean - Mapping servlet: 'dispatcherServlet' to [/]
+12:31:08.393 [main] INFO  o.s.b.w.s.FilterRegistrationBean - Mapping filter: 'metricsFilter' to: [/*]
+12:31:08.394 [main] INFO  o.s.b.w.s.FilterRegistrationBean - Mapping filter: 'characterEncodingFilter' to: [/*]
+12:31:08.394 [main] INFO  o.s.b.w.s.FilterRegistrationBean - Mapping filter: 'hiddenHttpMethodFilter' to: [/*]
+12:31:08.394 [main] INFO  o.s.b.w.s.FilterRegistrationBean - Mapping filter: 'httpPutFormContentFilter' to: [/*]
+12:31:08.394 [main] INFO  o.s.b.w.s.FilterRegistrationBean - Mapping filter: 'requestContextFilter' to: [/*]
+12:31:08.394 [main] INFO  o.s.b.w.s.FilterRegistrationBean - Mapping filter: 'webRequestLoggingFilter' to: [/*]
+12:31:08.394 [main] INFO  o.s.b.w.s.FilterRegistrationBean - Mapping filter: 'applicationContextIdFilter' to: [/*]
+12:31:10.646 [main] INFO  c.alibaba.druid.pool.DruidDataSource - {dataSource-1} inited
+12:31:10.813 [main] DEBUG c.s.p.m.d.u.m.S.selectByExample - ==>  Preparing: select union_id, union_name, union_channel, union_image, union_dis_image, union_type, union_hidden, union_free, union_sort, union_del, union_operation, banner_url, registable, union_desc, union_circle_level, union_banner, add_time, union_top_list_flag from sy_union 
+12:31:10.826 [main] DEBUG c.s.p.m.d.u.m.S.selectByExample - ==> Parameters: 
+12:31:10.853 [main] DEBUG c.s.p.m.d.u.m.S.selectByExample - <==      Total: 33
+12:31:10.891 [main] DEBUG c.s.p.m.d.s.m.S.selectByExample - ==>  Preparing: select area_id, area_name, area_parent_id, area_sort, area_deep from sy_area_full WHERE ( area_deep < ? ) 
+12:31:10.892 [main] DEBUG c.s.p.m.d.s.m.S.selectByExample - ==> Parameters: 4(Byte)
+12:31:11.291 [main] DEBUG c.s.p.m.d.s.m.S.selectByExample - <==      Total: 3231
+12:31:11.297 [main] DEBUG c.s.p.m.d.u.m.S.selectByExample - ==>  Preparing: select circle_id, circle_name, parent_circle_name, org_name, circle_desc, circle_masterid, circle_mastername, circle_img, class_id, circle_mcount, circle_thcount, circle_gcount, circle_pursuereason, circle_notice, circle_status, circle_statusinfo, circle_joinaudit, circle_addtime, circle_noticetime, is_recommend, is_hot, circle_tag, new_verifycount, new_informcount, mapply_open, mapply_ml, new_mapplycount, circle_type, parent_circle_id, code, resp_id, resp_name, resp_mobile, boc_sort, dept_level, org_circle_id, channel, has_child_flag, staffs_amount from sy_circle 
+12:31:11.301 [main] DEBUG c.s.p.m.d.u.m.S.selectByExample - ==> Parameters: 
+12:31:14.486 [main] DEBUG c.s.p.m.d.u.m.S.selectByExample - <==      Total: 20174
+12:31:14.495 [main] DEBUG c.s.p.m.d.u.m.S.selectByExample - ==>  Preparing: select circle_id, circle_name, parent_circle_name, org_name, circle_desc, circle_masterid, circle_mastername, circle_img, class_id, circle_mcount, circle_thcount, circle_gcount, circle_pursuereason, circle_notice, circle_status, circle_statusinfo, circle_joinaudit, circle_addtime, circle_noticetime, is_recommend, is_hot, circle_tag, new_verifycount, new_informcount, mapply_open, mapply_ml, new_mapplycount, circle_type, parent_circle_id, code, resp_id, resp_name, resp_mobile, boc_sort, dept_level, org_circle_id, channel, has_child_flag, staffs_amount from sy_circle 
+12:31:14.499 [main] DEBUG c.s.p.m.d.u.m.S.selectByExample - ==> Parameters: 
+12:31:17.328 [main] DEBUG c.s.p.m.d.u.m.S.selectByExample - <==      Total: 20174
+12:31:17.338 [main] DEBUG c.s.p.m.d.g.m.S.memberHasGoods - ==>  Preparing: SELECT DISTINCT publisher_id from sy_goods_common WHERE goods_state = 1; 
+12:31:17.342 [main] DEBUG c.s.p.m.d.g.m.S.memberHasGoods - ==> Parameters: 
+12:31:17.362 [main] DEBUG c.s.p.m.d.g.m.S.memberHasGoods - <==      Total: 459
+12:31:17.478 [main] INFO  com.yunpian.sdk.YunpianClient - YunpianClient is initing!
+12:31:17.478 [main] INFO  com.yunpian.sdk.YunpianConf - load default yunpian.properties
+12:31:17.478 [main] INFO  com.yunpian.sdk.YunpianConf - apikey-b792c1883cd87e140859625a665e7069 conf-{yp.flow.host=https://flow.yunpian.com, yp.sign.host=https://sms.yunpian.com, yp.tpl.host=https://sms.yunpian.com, http.conn.maxperroute=50, yp.user.host=https://sms.yunpian.com, yp.version=v2, yp.call.host=https://call.yunpian.com, yp.short_url.host=https://sms.yunpian.com, http.charset=utf-8, http.conn.timeout=10000, yp.voice.host=https://voice.yunpian.com, http.so.timeout=30000, yp.sms.host=https://sms.yunpian.com, http.conn.maxtotal=200}
+12:31:17.622 [main] INFO  com.yunpian.sdk.YunpianClient - YunpianClient is initing!
+12:31:17.625 [main] INFO  com.yunpian.sdk.YunpianClient - YunpianClient is closing!
+12:31:17.626 [main] INFO  com.yunpian.sdk.YunpianConf - apikey-b792c1883cd87e140859625a665e7069 conf-{yp.flow.host=https://flow.yunpian.com, yp.sign.host=https://sms.yunpian.com, yp.tpl.host=https://sms.yunpian.com, http.conn.maxperroute=50, yp.user.host=https://sms.yunpian.com, yp.version=v2, yp.call.host=https://call.yunpian.com, yp.short_url.host=https://sms.yunpian.com, http.charset=utf-8, http.conn.timeout=10000, yp.voice.host=https://voice.yunpian.com, http.so.timeout=30000, yp.sms.host=https://sms.yunpian.com, http.conn.maxtotal=200}
+12:31:19.121 [main] INFO  io.undertow.servlet - jolokia: No access restrictor found, access to any MBean is allowed
+12:31:19.381 [main] INFO  o.s.w.s.m.m.a.RequestMappingHandlerMapping - Mapped "{[/stat-order/ops-for-base],methods=[GET]}" onto public void com.shanyuan.platform.ms.statistics.controller.StatisticsOrderController.opfForBase(java.lang.Integer,java.lang.Integer,java.lang.Integer)
+12:31:19.385 [main] INFO  o.s.w.s.m.m.a.RequestMappingHandlerMapping - Mapped "{[/stat-order/ops-for-provide],methods=[GET]}" onto public void com.shanyuan.platform.ms.statistics.controller.StatisticsOrderController.opsForProvide(java.lang.Integer)
+12:31:19.387 [main] INFO  o.s.w.s.m.m.a.RequestMappingHandlerMapping - Mapped "{[/stat-order/ops-for-points],methods=[GET]}" onto public void com.shanyuan.platform.ms.statistics.controller.StatisticsOrderController.opsForPoint(java.lang.Integer)
+12:31:19.390 [main] INFO  o.s.w.s.m.m.a.RequestMappingHandlerMapping - Mapped "{[/stat-order/ops-for-assist],methods=[GET]}" onto public void com.shanyuan.platform.ms.statistics.controller.StatisticsOrderController.pofForAssist(java.lang.Integer)
+12:31:19.391 [main] INFO  o.s.w.s.m.m.a.RequestMappingHandlerMapping - Mapped "{[/stat-result/stat-last-time],methods=[GET]}" onto public com.shanyuan.platform.ms.base.common.vo.CommonVO com.shanyuan.platform.ms.statistics.controller.StatisticsResultController.getStatLastTime()
+12:31:19.394 [main] INFO  o.s.w.s.m.m.a.RequestMappingHandlerMapping - Mapped "{[/stat-result/stat-result],methods=[GET]}" onto public com.shanyuan.platform.ms.base.common.vo.CommonVO com.shanyuan.platform.ms.statistics.controller.StatisticsResultController.getStatisticsResultTime(java.lang.Integer,java.lang.Integer)
+12:31:19.398 [main] INFO  o.s.w.s.m.m.a.RequestMappingHandlerMapping - Mapped "{[/statistics/point-desc],methods=[GET]}" onto public com.shanyuan.platform.ms.base.common.vo.CommonVO com.shanyuan.platform.ms.statistics.controller.UnionStatisticsController.getPointDesc(java.lang.Integer,java.lang.Integer,java.lang.String)
+12:31:19.398 [main] INFO  o.s.w.s.m.m.a.RequestMappingHandlerMapping - Mapped "{[/statistics/export-point-desc],methods=[GET]}" onto public com.shanyuan.platform.ms.base.common.vo.CommonVO com.shanyuan.platform.ms.statistics.controller.UnionStatisticsController.exportPointDesc(java.lang.Integer,java.lang.Integer,java.lang.String)
+12:31:19.399 [main] INFO  o.s.w.s.m.m.a.RequestMappingHandlerMapping - Mapped "{[/statistics/results-overview],methods=[GET]}" onto public com.shanyuan.platform.ms.base.common.vo.CommonVO com.shanyuan.platform.ms.statistics.controller.UnionStatisticsController.getPovertyAlleviationStatisticsList(java.lang.Integer,java.lang.Integer,java.lang.Integer,java.lang.Long,java.lang.String)
+12:31:19.402 [main] INFO  o.s.w.s.m.m.a.RequestMappingHandlerMapping - Mapped "{[/statistics/export-overview],methods=[GET]}" onto public com.shanyuan.platform.ms.base.common.vo.CommonVO com.shanyuan.platform.ms.statistics.controller.UnionStatisticsController.exportPovertyAlleviationStatisticsList(java.lang.Integer,java.lang.Integer,java.lang.Long,java.lang.String)
+12:31:19.402 [main] INFO  o.s.w.s.m.m.a.RequestMappingHandlerMapping - Mapped "{[/statistics/union-buyer],methods=[GET]}" onto public com.shanyuan.platform.ms.base.common.vo.CommonVO com.shanyuan.platform.ms.statistics.controller.UnionStatisticsController.getUnionBuyerStatistics(java.lang.Integer,java.lang.Integer,java.lang.Integer,java.lang.Integer,java.lang.String)
+12:31:19.402 [main] INFO  o.s.w.s.m.m.a.RequestMappingHandlerMapping - Mapped "{[/statistics/export-union-buyer],methods=[GET]}" onto public com.shanyuan.platform.ms.base.common.vo.CommonVO com.shanyuan.platform.ms.statistics.controller.UnionStatisticsController.exportUnionBuyerStatistics(java.lang.Integer,java.lang.Integer,java.lang.Integer,java.lang.Integer,java.lang.String)
+12:31:19.403 [main] INFO  o.s.w.s.m.m.a.RequestMappingHandlerMapping - Mapped "{[/statistics/flat-seller],methods=[GET]}" onto public com.shanyuan.platform.ms.base.common.vo.CommonVO com.shanyuan.platform.ms.statistics.controller.UnionStatisticsController.getFlatSellerStatistics(java.lang.Integer,java.lang.Integer,java.lang.Integer,java.lang.Integer,java.lang.String)
+12:31:19.403 [main] INFO  o.s.w.s.m.m.a.RequestMappingHandlerMapping - Mapped "{[/statistics/provide-statistics],methods=[GET]}" onto public com.shanyuan.platform.ms.base.common.vo.CommonVO com.shanyuan.platform.ms.statistics.controller.UnionStatisticsController.getFlatSellerStatisticsList(java.lang.Integer,java.lang.Integer,java.lang.Long,java.lang.Integer,java.lang.String)
+12:31:19.403 [main] INFO  o.s.w.s.m.m.a.RequestMappingHandlerMapping - Mapped "{[/statistics/export-provide-stat],methods=[GET]}" onto public com.shanyuan.platform.ms.base.common.vo.CommonVO com.shanyuan.platform.ms.statistics.controller.UnionStatisticsController.exportProvideStatistics(java.lang.Integer,java.lang.Long,java.lang.Integer,java.lang.String)
+12:31:19.403 [main] INFO  o.s.w.s.m.m.a.RequestMappingHandlerMapping - Mapped "{[/statistics/export-union-seller],methods=[GET]}" onto public com.shanyuan.platform.ms.base.common.vo.CommonVO com.shanyuan.platform.ms.statistics.controller.UnionStatisticsController.exportUnionSellerStatistics(java.lang.Integer,java.lang.Integer,java.lang.Integer,java.lang.Integer,java.lang.Long,java.lang.String)
+12:31:19.404 [main] INFO  o.s.w.s.m.m.a.RequestMappingHandlerMapping - Mapped "{[/statistics/export-assist-stat],methods=[GET]}" onto public com.shanyuan.platform.ms.base.common.vo.CommonVO com.shanyuan.platform.ms.statistics.controller.UnionStatisticsController.exportAssistStatistics(java.lang.Integer,java.lang.Integer,java.lang.String)
+12:31:19.408 [main] INFO  o.s.w.s.m.m.a.RequestMappingHandlerMapping - Mapped "{[/statistics/union-seller],methods=[GET]}" onto public com.shanyuan.platform.ms.base.common.vo.CommonVO com.shanyuan.platform.ms.statistics.controller.UnionStatisticsController.getUnionSellerStatistics(java.lang.Integer,java.lang.Integer,java.lang.Integer,java.lang.Integer,java.lang.Long,java.lang.String)
+12:31:19.408 [main] INFO  o.s.w.s.m.m.a.RequestMappingHandlerMapping - Mapped "{[/statistics/export-point-num],methods=[GET]}" onto public com.shanyuan.platform.ms.base.common.vo.CommonVO com.shanyuan.platform.ms.statistics.controller.UnionStatisticsController.exportMemberPointsNum(java.lang.Integer,java.lang.String)
+12:31:19.408 [main] INFO  o.s.w.s.m.m.a.RequestMappingHandlerMapping - Mapped "{[/statistics/export-points-details],methods=[GET]}" onto public com.shanyuan.platform.ms.base.common.vo.CommonVO com.shanyuan.platform.ms.statistics.controller.UnionStatisticsController.exportPointsInfosStatisticsList(java.lang.String,java.lang.String,java.lang.Integer,java.lang.Integer,java.lang.Long,java.lang.String,java.lang.String)
+12:31:19.409 [main] INFO  o.s.w.s.m.m.a.RequestMappingHandlerMapping - Mapped "{[/statistics/points-details],methods=[GET]}" onto public com.shanyuan.platform.ms.base.common.vo.CommonVO com.shanyuan.platform.ms.statistics.controller.UnionStatisticsController.getPointsInfosStatisticsList(java.lang.String,java.lang.String,java.lang.Integer,java.lang.Integer,java.lang.Long,java.lang.String,java.lang.String)
+12:31:19.409 [main] INFO  o.s.w.s.m.m.a.RequestMappingHandlerMapping - Mapped "{[/statistics/point-num],methods=[GET]}" onto public com.shanyuan.platform.ms.base.common.vo.CommonVO com.shanyuan.platform.ms.statistics.controller.UnionStatisticsController.getMemberPointsNum(java.lang.Integer,java.lang.String)
+12:31:19.410 [main] INFO  o.s.w.s.m.m.a.RequestMappingHandlerMapping - Mapped "{[/statistics/assist-statistics],methods=[GET]}" onto public com.shanyuan.platform.ms.base.common.vo.CommonVO com.shanyuan.platform.ms.statistics.controller.UnionStatisticsController.getAssistStatisticsList(java.lang.Integer,java.lang.Integer,java.lang.Integer,java.lang.String)
+12:31:19.412 [main] INFO  o.s.w.s.m.m.a.RequestMappingHandlerMapping - Mapped "{[/v2/api-docs],methods=[GET],produces=[application/json || application/hal+json]}" onto public org.springframework.http.ResponseEntity<springfox.documentation.spring.web.json.Json> springfox.documentation.swagger2.web.Swagger2Controller.getDocumentation(java.lang.String,javax.servlet.http.HttpServletRequest)
+12:31:19.414 [main] INFO  o.s.w.s.m.m.a.RequestMappingHandlerMapping - Mapped "{[/configuration/ui]}" onto org.springframework.http.ResponseEntity<springfox.documentation.swagger.web.UiConfiguration> springfox.documentation.swagger.web.ApiResourceController.uiConfiguration()
+12:31:19.415 [main] INFO  o.s.w.s.m.m.a.RequestMappingHandlerMapping - Mapped "{[/swagger-resources]}" onto org.springframework.http.ResponseEntity<java.util.List<springfox.documentation.swagger.web.SwaggerResource>> springfox.documentation.swagger.web.ApiResourceController.swaggerResources()
+12:31:19.415 [main] INFO  o.s.w.s.m.m.a.RequestMappingHandlerMapping - Mapped "{[/configuration/security]}" onto org.springframework.http.ResponseEntity<springfox.documentation.swagger.web.SecurityConfiguration> springfox.documentation.swagger.web.ApiResourceController.securityConfiguration()
+12:31:19.417 [main] INFO  o.s.w.s.m.m.a.RequestMappingHandlerMapping - Mapped "{[/error]}" onto public org.springframework.http.ResponseEntity<java.util.Map<java.lang.String, java.lang.Object>> org.springframework.boot.autoconfigure.web.BasicErrorController.error(javax.servlet.http.HttpServletRequest)
+12:31:19.418 [main] INFO  o.s.w.s.m.m.a.RequestMappingHandlerMapping - Mapped "{[/error],produces=[text/html]}" onto public org.springframework.web.servlet.ModelAndView org.springframework.boot.autoconfigure.web.BasicErrorController.errorHtml(javax.servlet.http.HttpServletRequest,javax.servlet.http.HttpServletResponse)
+12:31:20.219 [main] INFO  o.s.b.a.e.mvc.EndpointHandlerMapping - Mapped "{[/heapdump || /heapdump.json],methods=[GET],produces=[application/octet-stream]}" onto public void org.springframework.boot.actuate.endpoint.mvc.HeapdumpMvcEndpoint.invoke(boolean,javax.servlet.http.HttpServletRequest,javax.servlet.http.HttpServletResponse) throws java.io.IOException,javax.servlet.ServletException
+12:31:20.223 [main] INFO  o.s.b.a.e.mvc.EndpointHandlerMapping - Mapped "{[/service-registry/instance-status],methods=[POST]}" onto public org.springframework.http.ResponseEntity<?> org.springframework.cloud.client.serviceregistry.endpoint.ServiceRegistryEndpoint.setStatus(java.lang.String)
+12:31:20.223 [main] INFO  o.s.b.a.e.mvc.EndpointHandlerMapping - Mapped "{[/service-registry/instance-status],methods=[GET]}" onto public org.springframework.http.ResponseEntity org.springframework.cloud.client.serviceregistry.endpoint.ServiceRegistryEndpoint.getStatus()
+12:31:20.223 [main] INFO  o.s.b.a.e.mvc.EndpointHandlerMapping - Mapped "{[/env/{name:.*}],methods=[GET],produces=[application/vnd.spring-boot.actuator.v1+json || application/json]}" onto public java.lang.Object org.springframework.boot.actuate.endpoint.mvc.EnvironmentMvcEndpoint.value(java.lang.String)
+12:31:20.226 [main] INFO  o.s.b.a.e.mvc.EndpointHandlerMapping - Mapped "{[/env || /env.json],methods=[GET],produces=[application/vnd.spring-boot.actuator.v1+json || application/json]}" onto public java.lang.Object org.springframework.boot.actuate.endpoint.mvc.EndpointMvcAdapter.invoke()
+12:31:20.227 [main] INFO  o.s.b.a.e.mvc.EndpointHandlerMapping - Mapped "{[/metrics/{name:.*}],methods=[GET],produces=[application/vnd.spring-boot.actuator.v1+json || application/json]}" onto public java.lang.Object org.springframework.boot.actuate.endpoint.mvc.MetricsMvcEndpoint.value(java.lang.String)
+12:31:20.227 [main] INFO  o.s.b.a.e.mvc.EndpointHandlerMapping - Mapped "{[/metrics || /metrics.json],methods=[GET],produces=[application/vnd.spring-boot.actuator.v1+json || application/json]}" onto public java.lang.Object org.springframework.boot.actuate.endpoint.mvc.EndpointMvcAdapter.invoke()
+12:31:20.227 [main] INFO  o.s.b.a.e.mvc.EndpointHandlerMapping - Mapped "{[/info || /info.json],methods=[GET],produces=[application/vnd.spring-boot.actuator.v1+json || application/json]}" onto public java.lang.Object org.springframework.boot.actuate.endpoint.mvc.EndpointMvcAdapter.invoke()
+12:31:20.227 [main] INFO  o.s.b.a.e.mvc.EndpointHandlerMapping - Mapped "{[/archaius || /archaius.json],methods=[GET],produces=[application/vnd.spring-boot.actuator.v1+json || application/json]}" onto public java.lang.Object org.springframework.boot.actuate.endpoint.mvc.EndpointMvcAdapter.invoke()
+12:31:20.228 [main] INFO  o.s.b.a.e.mvc.EndpointHandlerMapping - Mapped "{[/trace || /trace.json],methods=[GET],produces=[application/vnd.spring-boot.actuator.v1+json || application/json]}" onto public java.lang.Object org.springframework.boot.actuate.endpoint.mvc.EndpointMvcAdapter.invoke()
+12:31:20.228 [main] INFO  o.s.b.a.e.mvc.EndpointHandlerMapping - Mapped "{[/refresh || /refresh.json],methods=[POST]}" onto public java.lang.Object org.springframework.cloud.endpoint.GenericPostableMvcEndpoint.invoke()
+12:31:20.228 [main] INFO  o.s.b.a.e.mvc.EndpointHandlerMapping - Mapped "{[/pause || /pause.json],methods=[POST]}" onto public java.lang.Object org.springframework.cloud.endpoint.GenericPostableMvcEndpoint.invoke()
+12:31:20.229 [main] INFO  o.s.b.a.e.mvc.EndpointHandlerMapping - Mapped "{[/loggers/{name:.*}],methods=[GET],produces=[application/vnd.spring-boot.actuator.v1+json || application/json]}" onto public java.lang.Object org.springframework.boot.actuate.endpoint.mvc.LoggersMvcEndpoint.get(java.lang.String)
+12:31:20.229 [main] INFO  o.s.b.a.e.mvc.EndpointHandlerMapping - Mapped "{[/loggers/{name:.*}],methods=[POST],consumes=[application/vnd.spring-boot.actuator.v1+json || application/json],produces=[application/vnd.spring-boot.actuator.v1+json || application/json]}" onto public java.lang.Object org.springframework.boot.actuate.endpoint.mvc.LoggersMvcEndpoint.set(java.lang.String,java.util.Map<java.lang.String, java.lang.String>)
+12:31:20.229 [main] INFO  o.s.b.a.e.mvc.EndpointHandlerMapping - Mapped "{[/loggers || /loggers.json],methods=[GET],produces=[application/vnd.spring-boot.actuator.v1+json || application/json]}" onto public java.lang.Object org.springframework.boot.actuate.endpoint.mvc.EndpointMvcAdapter.invoke()
+12:31:20.229 [main] INFO  o.s.b.a.e.mvc.EndpointHandlerMapping - Mapped "{[/dump || /dump.json],methods=[GET],produces=[application/vnd.spring-boot.actuator.v1+json || application/json]}" onto public java.lang.Object org.springframework.boot.actuate.endpoint.mvc.EndpointMvcAdapter.invoke()
+12:31:20.230 [main] INFO  o.s.b.a.e.mvc.EndpointHandlerMapping - Mapped "{[/resume || /resume.json],methods=[POST]}" onto public java.lang.Object org.springframework.cloud.endpoint.GenericPostableMvcEndpoint.invoke()
+12:31:20.231 [main] INFO  o.s.b.a.e.mvc.EndpointHandlerMapping - Mapped "{[/beans || /beans.json],methods=[GET],produces=[application/vnd.spring-boot.actuator.v1+json || application/json]}" onto public java.lang.Object org.springframework.boot.actuate.endpoint.mvc.EndpointMvcAdapter.invoke()
+12:31:20.231 [main] INFO  o.s.b.a.e.mvc.EndpointHandlerMapping - Mapped "{[/env],methods=[POST]}" onto public java.lang.Object org.springframework.cloud.context.environment.EnvironmentManagerMvcEndpoint.value(java.util.Map<java.lang.String, java.lang.String>)
+12:31:20.231 [main] INFO  o.s.b.a.e.mvc.EndpointHandlerMapping - Mapped "{[/env/reset],methods=[POST]}" onto public java.util.Map<java.lang.String, java.lang.Object> org.springframework.cloud.context.environment.EnvironmentManagerMvcEndpoint.reset()
+12:31:20.234 [main] INFO  o.s.b.a.e.mvc.EndpointHandlerMapping - Mapped "{[/mappings || /mappings.json],methods=[GET],produces=[application/vnd.spring-boot.actuator.v1+json || application/json]}" onto public java.lang.Object org.springframework.boot.actuate.endpoint.mvc.EndpointMvcAdapter.invoke()
+12:31:20.234 [main] INFO  o.s.b.a.e.mvc.EndpointHandlerMapping - Mapped "{[/health || /health.json],methods=[GET],produces=[application/vnd.spring-boot.actuator.v1+json || application/json]}" onto public java.lang.Object org.springframework.boot.actuate.endpoint.mvc.HealthMvcEndpoint.invoke(javax.servlet.http.HttpServletRequest,java.security.Principal)
+12:31:20.235 [main] INFO  o.s.b.a.e.mvc.EndpointHandlerMapping - Mapped "{[/features || /features.json],methods=[GET],produces=[application/vnd.spring-boot.actuator.v1+json || application/json]}" onto public java.lang.Object org.springframework.boot.actuate.endpoint.mvc.EndpointMvcAdapter.invoke()
+12:31:20.235 [main] INFO  o.s.b.a.e.mvc.EndpointHandlerMapping - Mapped "{[/restart || /restart.json],methods=[POST]}" onto public java.lang.Object org.springframework.cloud.context.restart.RestartMvcEndpoint.invoke()
+12:31:20.235 [main] INFO  o.s.b.a.e.mvc.EndpointHandlerMapping - Mapped "{[/jolokia/**]}" onto public org.springframework.web.servlet.ModelAndView org.springframework.boot.actuate.endpoint.mvc.JolokiaMvcEndpoint.handle(javax.servlet.http.HttpServletRequest,javax.servlet.http.HttpServletResponse) throws java.lang.Exception
+12:31:20.235 [main] INFO  o.s.b.a.e.mvc.EndpointHandlerMapping - Mapped "{[/autoconfig || /autoconfig.json],methods=[GET],produces=[application/vnd.spring-boot.actuator.v1+json || application/json]}" onto public java.lang.Object org.springframework.boot.actuate.endpoint.mvc.EndpointMvcAdapter.invoke()
+12:31:20.236 [main] INFO  o.s.b.a.e.mvc.EndpointHandlerMapping - Mapped "{[/auditevents || /auditevents.json],methods=[GET],produces=[application/vnd.spring-boot.actuator.v1+json || application/json]}" onto public org.springframework.http.ResponseEntity<?> org.springframework.boot.actuate.endpoint.mvc.AuditEventsMvcEndpoint.findByPrincipalAndAfterAndType(java.lang.String,java.util.Date,java.lang.String)
+12:31:20.236 [main] INFO  o.s.b.a.e.mvc.EndpointHandlerMapping - Mapped "{[/configprops || /configprops.json],methods=[GET],produces=[application/vnd.spring-boot.actuator.v1+json || application/json]}" onto public java.lang.Object org.springframework.boot.actuate.endpoint.mvc.EndpointMvcAdapter.invoke()
+12:31:20.702 [main] WARN  c.n.c.sources.URLConfigurationSource - No URLs will be polled as dynamic configuration sources.
+12:31:20.702 [main] INFO  c.n.c.sources.URLConfigurationSource - To enable URLs as dynamic configuration sources, define System property archaius.configurationSource.additionalUrls or make config.properties available on classpath.
+12:31:20.705 [main] WARN  c.n.c.sources.URLConfigurationSource - No URLs will be polled as dynamic configuration sources.
+12:31:20.705 [main] INFO  c.n.c.sources.URLConfigurationSource - To enable URLs as dynamic configuration sources, define System property archaius.configurationSource.additionalUrls or make config.properties available on classpath.
+12:31:20.926 [main] INFO  o.s.w.s.m.m.a.RequestMappingHandlerAdapter - Looking for @ControllerAdvice: org.springframework.boot.context.embedded.AnnotationConfigEmbeddedWebApplicationContext@278bb07e: startup date [Mon Jan 22 12:31:06 CST 2018]; parent: org.springframework.context.annotation.AnnotationConfigApplicationContext@69997e9d
+12:31:21.008 [main] INFO  o.s.w.s.h.SimpleUrlHandlerMapping - Mapped URL path [/webjars/**] onto handler of type [class org.springframework.web.servlet.resource.ResourceHttpRequestHandler]
+12:31:21.008 [main] INFO  o.s.w.s.h.SimpleUrlHandlerMapping - Mapped URL path [/**] onto handler of type [class org.springframework.web.servlet.resource.ResourceHttpRequestHandler]
+12:31:21.053 [main] INFO  o.s.w.s.h.SimpleUrlHandlerMapping - Mapped URL path [/**/favicon.ico] onto handler of type [class org.springframework.web.servlet.resource.ResourceHttpRequestHandler]
+12:31:22.105 [main] INFO  o.s.j.e.a.AnnotationMBeanExporter - Registering beans for JMX exposure on startup
+12:31:22.110 [main] INFO  o.s.j.e.a.AnnotationMBeanExporter - Bean with name 'dataSource' has been autodetected for JMX exposure
+12:31:22.116 [main] INFO  o.s.j.e.a.AnnotationMBeanExporter - Bean with name 'constantReload' has been autodetected for JMX exposure
+12:31:22.118 [main] INFO  o.s.j.e.a.AnnotationMBeanExporter - Bean with name 'environmentManager' has been autodetected for JMX exposure
+12:31:22.123 [main] INFO  o.s.j.e.a.AnnotationMBeanExporter - Bean with name 'configurationPropertiesRebinder' has been autodetected for JMX exposure
+12:31:22.123 [main] INFO  o.s.j.e.a.AnnotationMBeanExporter - Bean with name 'refreshEndpoint' has been autodetected for JMX exposure
+12:31:22.123 [main] INFO  o.s.j.e.a.AnnotationMBeanExporter - Bean with name 'restartEndpoint' has been autodetected for JMX exposure
+12:31:22.124 [main] INFO  o.s.j.e.a.AnnotationMBeanExporter - Bean with name 'serviceRegistryEndpoint' has been autodetected for JMX exposure
+12:31:22.127 [main] INFO  o.s.j.e.a.AnnotationMBeanExporter - Bean with name 'refreshScope' has been autodetected for JMX exposure
+12:31:22.129 [main] INFO  o.s.j.e.a.AnnotationMBeanExporter - Located managed bean 'environmentManager': registering with JMX server as MBean [org.springframework.cloud.context.environment:name=environmentManager,type=EnvironmentManager]
+12:31:22.142 [main] INFO  o.s.j.e.a.AnnotationMBeanExporter - Located managed bean 'constantReload': registering with JMX server as MBean [com.shanyuan.platform.ms.core.constant:name=constantReload,type=ConstantReload]
+12:31:22.170 [main] INFO  o.s.j.e.a.AnnotationMBeanExporter - Located managed bean 'restartEndpoint': registering with JMX server as MBean [org.springframework.cloud.context.restart:name=restartEndpoint,type=RestartEndpoint]
+12:31:22.182 [main] INFO  o.s.j.e.a.AnnotationMBeanExporter - Located managed bean 'serviceRegistryEndpoint': registering with JMX server as MBean [org.springframework.cloud.client.serviceregistry.endpoint:name=serviceRegistryEndpoint,type=ServiceRegistryEndpoint]
+12:31:22.187 [main] INFO  o.s.j.e.a.AnnotationMBeanExporter - Located managed bean 'refreshScope': registering with JMX server as MBean [org.springframework.cloud.context.scope.refresh:name=refreshScope,type=RefreshScope]
+12:31:22.202 [main] INFO  o.s.j.e.a.AnnotationMBeanExporter - Located managed bean 'configurationPropertiesRebinder': registering with JMX server as MBean [org.springframework.cloud.context.properties:name=configurationPropertiesRebinder,context=278bb07e,type=ConfigurationPropertiesRebinder]
+12:31:22.207 [main] INFO  o.s.j.e.a.AnnotationMBeanExporter - Located MBean 'dataSource': registering with JMX server as MBean [com.alibaba.druid.pool:name=dataSource,type=DruidDataSource]
+12:31:22.216 [main] INFO  o.s.j.e.a.AnnotationMBeanExporter - Located managed bean 'refreshEndpoint': registering with JMX server as MBean [org.springframework.cloud.endpoint:name=refreshEndpoint,type=RefreshEndpoint]
+12:31:22.527 [main] INFO  io.undertow.servlet - jolokia: No access restrictor found, access to any MBean is allowed
+12:31:22.530 [main] INFO  io.undertow.servlet - jolokia: jolokia:type=Config is already registered. Adding it with jolokia:type=Config,uuid=68c6f5c5-a74e-436c-b0f7-45d33dd56753, but you should revise your setup in order to either use a qualifier or ensure, that only a single agent gets registered (otherwise history functionality might not work)
+12:31:22.530 [main] INFO  io.undertow.servlet - jolokia: Cannot register (legacy) MBean handler for config store with name jmx4perl:type=Config since it already exists. This is the case if another agent has been already started within the same JVM. The registration is skipped.
+12:31:22.530 [main] INFO  io.undertow.servlet - jolokia: Jolokia Discovery MBean registration is skipped because there is already one registered.
+12:31:22.626 [main] INFO  o.s.c.s.DefaultLifecycleProcessor - Starting beans in phase 0
+12:31:22.630 [main] INFO  o.s.c.n.eureka.InstanceInfoFactory - Setting initial instance status as: STARTING
+12:31:22.662 [main] INFO  c.netflix.discovery.DiscoveryClient - Initializing Eureka in region us-east-1
+12:31:22.697 [main] INFO  c.n.d.p.DiscoveryJerseyProvider - Using JSON encoding codec LegacyJacksonJson
+12:31:22.697 [main] INFO  c.n.d.p.DiscoveryJerseyProvider - Using JSON decoding codec LegacyJacksonJson
+12:31:22.768 [main] INFO  c.n.d.p.DiscoveryJerseyProvider - Using XML encoding codec XStreamXml
+12:31:22.768 [main] INFO  c.n.d.p.DiscoveryJerseyProvider - Using XML decoding codec XStreamXml
+12:31:22.881 [main] INFO  c.n.d.s.r.aws.ConfigClusterResolver - Resolving eureka endpoints via configuration
+12:31:22.897 [main] INFO  c.netflix.discovery.DiscoveryClient - Disable delta property : false
+12:31:22.897 [main] INFO  c.netflix.discovery.DiscoveryClient - Single vip registry refresh property : null
+12:31:22.898 [main] INFO  c.netflix.discovery.DiscoveryClient - Force full registry fetch : false
+12:31:22.898 [main] INFO  c.netflix.discovery.DiscoveryClient - Application is null : false
+12:31:22.898 [main] INFO  c.netflix.discovery.DiscoveryClient - Registered Applications size is zero : true
+12:31:22.898 [main] INFO  c.netflix.discovery.DiscoveryClient - Application version is -1: true
+12:31:22.898 [main] INFO  c.netflix.discovery.DiscoveryClient - Getting all instance registry info from the eureka server
+12:31:23.266 [main] INFO  c.netflix.discovery.DiscoveryClient - The response status is 200
+12:31:23.270 [main] INFO  c.netflix.discovery.DiscoveryClient - Starting heartbeat executor: renew interval is: 30
+12:31:23.271 [main] INFO  c.n.discovery.InstanceInfoReplicator - InstanceInfoReplicator onDemand update allowed rate per min is 4
+12:31:23.272 [main] INFO  c.netflix.discovery.DiscoveryClient - Discovery Client initialized at timestamp 1516595483272 with initial instances count: 2
+12:31:23.317 [main] INFO  o.s.c.n.e.s.EurekaServiceRegistry - Registering application rs-statistics with eureka with status UP
+12:31:23.318 [main] INFO  c.netflix.discovery.DiscoveryClient - Saw local status change event StatusChangeEvent [timestamp=1516595483318, current=UP, previous=STARTING]
+12:31:23.319 [DiscoveryClient-InstanceInfoReplicator-0] INFO  c.netflix.discovery.DiscoveryClient - DiscoveryClient_RS-STATISTICS/DESKTOP-FJN2G7E:rs-statistics:9084: registering service...
+12:31:23.341 [DiscoveryClient-InstanceInfoReplicator-0] INFO  c.netflix.discovery.DiscoveryClient - DiscoveryClient_RS-STATISTICS/DESKTOP-FJN2G7E:rs-statistics:9084 - registration status: 204
+12:31:23.364 [main] INFO  s.d.s.w.p.DocumentationPluginsBootstrapper - Context refreshed
+12:31:23.375 [main] INFO  s.d.s.w.p.DocumentationPluginsBootstrapper - Found 1 custom documentation plugin(s)
+12:31:23.384 [main] INFO  s.d.s.w.s.ApiListingReferenceScanner - Scanning for api listing references
+12:31:23.516 [main] WARN  s.d.s.r.o.OperationImplicitParameterReader - Coercing to be of type string. This may not even be a scalar type in actuality
+12:31:23.520 [main] WARN  s.d.s.r.o.OperationImplicitParameterReader - Coercing to be of type string. This may not even be a scalar type in actuality
+12:31:23.520 [main] WARN  s.d.s.r.o.OperationImplicitParameterReader - Coercing to be of type string. This may not even be a scalar type in actuality
+12:31:23.528 [main] WARN  s.d.s.r.o.OperationImplicitParameterReader - Coercing to be of type string. This may not even be a scalar type in actuality
+12:31:23.529 [main] WARN  s.d.s.r.o.OperationImplicitParameterReader - Coercing to be of type string. This may not even be a scalar type in actuality
+12:31:23.529 [main] WARN  s.d.s.r.o.OperationImplicitParameterReader - Coercing to be of type string. This may not even be a scalar type in actuality
+12:31:23.529 [main] WARN  s.d.s.r.o.OperationImplicitParameterReader - Coercing to be of type string. This may not even be a scalar type in actuality
+12:31:23.534 [main] WARN  s.d.s.r.o.OperationImplicitParameterReader - Coercing to be of type string. This may not even be a scalar type in actuality
+12:31:23.534 [main] WARN  s.d.s.r.o.OperationImplicitParameterReader - Coercing to be of type string. This may not even be a scalar type in actuality
+12:31:23.534 [main] WARN  s.d.s.r.o.OperationImplicitParameterReader - Coercing to be of type string. This may not even be a scalar type in actuality
+12:31:23.539 [main] WARN  s.d.s.r.o.OperationImplicitParameterReader - Coercing to be of type string. This may not even be a scalar type in actuality
+12:31:23.539 [main] WARN  s.d.s.r.o.OperationImplicitParameterReader - Coercing to be of type string. This may not even be a scalar type in actuality
+12:31:23.544 [main] WARN  s.d.s.r.o.OperationImplicitParameterReader - Coercing to be of type string. This may not even be a scalar type in actuality
+12:31:23.544 [main] WARN  s.d.s.r.o.OperationImplicitParameterReader - Coercing to be of type string. This may not even be a scalar type in actuality
+12:31:23.549 [main] WARN  s.d.s.r.o.OperationImplicitParameterReader - Coercing to be of type string. This may not even be a scalar type in actuality
+12:31:23.549 [main] WARN  s.d.s.r.o.OperationImplicitParameterReader - Coercing to be of type string. This may not even be a scalar type in actuality
+12:31:23.549 [main] WARN  s.d.s.r.o.OperationImplicitParameterReader - Coercing to be of type string. This may not even be a scalar type in actuality
+12:31:23.554 [main] WARN  s.d.s.r.o.OperationImplicitParameterReader - Coercing to be of type string. This may not even be a scalar type in actuality
+12:31:23.554 [main] WARN  s.d.s.r.o.OperationImplicitParameterReader - Coercing to be of type string. This may not even be a scalar type in actuality
+12:31:23.554 [main] WARN  s.d.s.r.o.OperationImplicitParameterReader - Coercing to be of type string. This may not even be a scalar type in actuality
+12:31:23.559 [main] WARN  s.d.s.r.o.OperationImplicitParameterReader - Coercing to be of type string. This may not even be a scalar type in actuality
+12:31:23.559 [main] WARN  s.d.s.r.o.OperationImplicitParameterReader - Coercing to be of type string. This may not even be a scalar type in actuality
+12:31:23.559 [main] WARN  s.d.s.r.o.OperationImplicitParameterReader - Coercing to be of type string. This may not even be a scalar type in actuality
+12:31:23.559 [main] WARN  s.d.s.r.o.OperationImplicitParameterReader - Coercing to be of type string. This may not even be a scalar type in actuality
+12:31:23.564 [main] WARN  s.d.s.r.o.OperationImplicitParameterReader - Coercing to be of type string. This may not even be a scalar type in actuality
+12:31:23.565 [main] WARN  s.d.s.r.o.OperationImplicitParameterReader - Coercing to be of type string. This may not even be a scalar type in actuality
+12:31:23.565 [main] WARN  s.d.s.r.o.OperationImplicitParameterReader - Coercing to be of type string. This may not even be a scalar type in actuality
+12:31:23.565 [main] WARN  s.d.s.r.o.OperationImplicitParameterReader - Coercing to be of type string. This may not even be a scalar type in actuality
+12:31:23.569 [main] WARN  s.d.s.r.o.OperationImplicitParameterReader - Coercing to be of type string. This may not even be a scalar type in actuality
+12:31:23.569 [main] WARN  s.d.s.r.o.OperationImplicitParameterReader - Coercing to be of type string. This may not even be a scalar type in actuality
+12:31:23.569 [main] WARN  s.d.s.r.o.OperationImplicitParameterReader - Coercing to be of type string. This may not even be a scalar type in actuality
+12:31:23.570 [main] WARN  s.d.s.r.o.OperationImplicitParameterReader - Coercing to be of type string. This may not even be a scalar type in actuality
+12:31:23.570 [main] WARN  s.d.s.r.o.OperationImplicitParameterReader - Coercing to be of type string. This may not even be a scalar type in actuality
+12:31:23.613 [main] INFO  o.s.b.c.e.u.UndertowEmbeddedServletContainer - Undertow started on port(s) 9084 (http)
+12:31:23.613 [main] INFO  o.s.c.n.e.s.EurekaAutoServiceRegistration - Updating port to 9084
+12:31:23.617 [main] INFO  c.s.p.m.s.StatisticsOrderPortalApplication - Started StatisticsOrderPortalApplication in 18.182 seconds (JVM running for 18.646)
+12:31:40.241 [XNIO-2 task-1] INFO  io.undertow.servlet - Initializing Spring FrameworkServlet 'dispatcherServlet'
+12:31:40.246 [XNIO-2 task-1] INFO  o.s.web.servlet.DispatcherServlet - FrameworkServlet 'dispatcherServlet': initialization started
+12:31:40.267 [XNIO-2 task-1] INFO  o.s.web.servlet.DispatcherServlet - FrameworkServlet 'dispatcherServlet': initialization completed in 21 ms
+12:36:22.900 [AsyncResolver-bootstrap-executor-0] INFO  c.n.d.s.r.aws.ConfigClusterResolver - Resolving eureka endpoints via configuration
+12:41:22.917 [AsyncResolver-bootstrap-executor-0] INFO  c.n.d.s.r.aws.ConfigClusterResolver - Resolving eureka endpoints via configuration
+12:46:22.936 [AsyncResolver-bootstrap-executor-0] INFO  c.n.d.s.r.aws.ConfigClusterResolver - Resolving eureka endpoints via configuration
+12:51:22.956 [AsyncResolver-bootstrap-executor-0] INFO  c.n.d.s.r.aws.ConfigClusterResolver - Resolving eureka endpoints via configuration
+12:56:22.974 [AsyncResolver-bootstrap-executor-0] INFO  c.n.d.s.r.aws.ConfigClusterResolver - Resolving eureka endpoints via configuration
+13:01:22.985 [AsyncResolver-bootstrap-executor-0] INFO  c.n.d.s.r.aws.ConfigClusterResolver - Resolving eureka endpoints via configuration
+13:06:22.996 [AsyncResolver-bootstrap-executor-0] INFO  c.n.d.s.r.aws.ConfigClusterResolver - Resolving eureka endpoints via configuration
+13:11:23.005 [AsyncResolver-bootstrap-executor-0] INFO  c.n.d.s.r.aws.ConfigClusterResolver - Resolving eureka endpoints via configuration
+13:16:23.023 [AsyncResolver-bootstrap-executor-0] INFO  c.n.d.s.r.aws.ConfigClusterResolver - Resolving eureka endpoints via configuration
+13:21:23.041 [AsyncResolver-bootstrap-executor-0] INFO  c.n.d.s.r.aws.ConfigClusterResolver - Resolving eureka endpoints via configuration
+13:26:23.059 [AsyncResolver-bootstrap-executor-0] INFO  c.n.d.s.r.aws.ConfigClusterResolver - Resolving eureka endpoints via configuration
+13:31:23.074 [AsyncResolver-bootstrap-executor-0] INFO  c.n.d.s.r.aws.ConfigClusterResolver - Resolving eureka endpoints via configuration
+13:36:23.091 [AsyncResolver-bootstrap-executor-0] INFO  c.n.d.s.r.aws.ConfigClusterResolver - Resolving eureka endpoints via configuration
+13:41:23.107 [AsyncResolver-bootstrap-executor-0] INFO  c.n.d.s.r.aws.ConfigClusterResolver - Resolving eureka endpoints via configuration
+13:46:23.122 [AsyncResolver-bootstrap-executor-0] INFO  c.n.d.s.r.aws.ConfigClusterResolver - Resolving eureka endpoints via configuration
+13:51:23.139 [AsyncResolver-bootstrap-executor-0] INFO  c.n.d.s.r.aws.ConfigClusterResolver - Resolving eureka endpoints via configuration
+13:56:23.154 [AsyncResolver-bootstrap-executor-0] INFO  c.n.d.s.r.aws.ConfigClusterResolver - Resolving eureka endpoints via configuration
+14:01:23.169 [AsyncResolver-bootstrap-executor-0] INFO  c.n.d.s.r.aws.ConfigClusterResolver - Resolving eureka endpoints via configuration
+14:06:23.185 [AsyncResolver-bootstrap-executor-0] INFO  c.n.d.s.r.aws.ConfigClusterResolver - Resolving eureka endpoints via configuration
+14:11:23.198 [AsyncResolver-bootstrap-executor-0] INFO  c.n.d.s.r.aws.ConfigClusterResolver - Resolving eureka endpoints via configuration
+14:16:23.211 [AsyncResolver-bootstrap-executor-0] INFO  c.n.d.s.r.aws.ConfigClusterResolver - Resolving eureka endpoints via configuration
+14:21:23.227 [AsyncResolver-bootstrap-executor-0] INFO  c.n.d.s.r.aws.ConfigClusterResolver - Resolving eureka endpoints via configuration
+14:26:23.233 [AsyncResolver-bootstrap-executor-0] INFO  c.n.d.s.r.aws.ConfigClusterResolver - Resolving eureka endpoints via configuration
+14:31:23.249 [AsyncResolver-bootstrap-executor-0] INFO  c.n.d.s.r.aws.ConfigClusterResolver - Resolving eureka endpoints via configuration
+14:36:23.256 [AsyncResolver-bootstrap-executor-0] INFO  c.n.d.s.r.aws.ConfigClusterResolver - Resolving eureka endpoints via configuration
+14:41:23.271 [AsyncResolver-bootstrap-executor-0] INFO  c.n.d.s.r.aws.ConfigClusterResolver - Resolving eureka endpoints via configuration
+14:46:23.285 [AsyncResolver-bootstrap-executor-0] INFO  c.n.d.s.r.aws.ConfigClusterResolver - Resolving eureka endpoints via configuration
+14:51:23.301 [AsyncResolver-bootstrap-executor-0] INFO  c.n.d.s.r.aws.ConfigClusterResolver - Resolving eureka endpoints via configuration
+14:56:23.319 [AsyncResolver-bootstrap-executor-0] INFO  c.n.d.s.r.aws.ConfigClusterResolver - Resolving eureka endpoints via configuration
+15:01:23.334 [AsyncResolver-bootstrap-executor-0] INFO  c.n.d.s.r.aws.ConfigClusterResolver - Resolving eureka endpoints via configuration
+15:06:23.343 [AsyncResolver-bootstrap-executor-0] INFO  c.n.d.s.r.aws.ConfigClusterResolver - Resolving eureka endpoints via configuration
+15:11:23.358 [AsyncResolver-bootstrap-executor-0] INFO  c.n.d.s.r.aws.ConfigClusterResolver - Resolving eureka endpoints via configuration
+15:16:23.371 [AsyncResolver-bootstrap-executor-0] INFO  c.n.d.s.r.aws.ConfigClusterResolver - Resolving eureka endpoints via configuration
+15:21:23.384 [AsyncResolver-bootstrap-executor-0] INFO  c.n.d.s.r.aws.ConfigClusterResolver - Resolving eureka endpoints via configuration
+15:26:23.397 [AsyncResolver-bootstrap-executor-0] INFO  c.n.d.s.r.aws.ConfigClusterResolver - Resolving eureka endpoints via configuration
+15:31:23.412 [AsyncResolver-bootstrap-executor-0] INFO  c.n.d.s.r.aws.ConfigClusterResolver - Resolving eureka endpoints via configuration
+15:36:23.426 [AsyncResolver-bootstrap-executor-0] INFO  c.n.d.s.r.aws.ConfigClusterResolver - Resolving eureka endpoints via configuration
+15:41:23.430 [AsyncResolver-bootstrap-executor-0] INFO  c.n.d.s.r.aws.ConfigClusterResolver - Resolving eureka endpoints via configuration
+15:46:23.443 [AsyncResolver-bootstrap-executor-0] INFO  c.n.d.s.r.aws.ConfigClusterResolver - Resolving eureka endpoints via configuration
+15:51:23.456 [AsyncResolver-bootstrap-executor-0] INFO  c.n.d.s.r.aws.ConfigClusterResolver - Resolving eureka endpoints via configuration
+15:56:23.470 [AsyncResolver-bootstrap-executor-0] INFO  c.n.d.s.r.aws.ConfigClusterResolver - Resolving eureka endpoints via configuration
+16:01:23.485 [AsyncResolver-bootstrap-executor-0] INFO  c.n.d.s.r.aws.ConfigClusterResolver - Resolving eureka endpoints via configuration
+16:06:23.500 [AsyncResolver-bootstrap-executor-0] INFO  c.n.d.s.r.aws.ConfigClusterResolver - Resolving eureka endpoints via configuration
+16:11:23.514 [AsyncResolver-bootstrap-executor-0] INFO  c.n.d.s.r.aws.ConfigClusterResolver - Resolving eureka endpoints via configuration
+16:16:23.521 [AsyncResolver-bootstrap-executor-0] INFO  c.n.d.s.r.aws.ConfigClusterResolver - Resolving eureka endpoints via configuration
+16:21:23.532 [AsyncResolver-bootstrap-executor-0] INFO  c.n.d.s.r.aws.ConfigClusterResolver - Resolving eureka endpoints via configuration
+16:26:23.546 [AsyncResolver-bootstrap-executor-0] INFO  c.n.d.s.r.aws.ConfigClusterResolver - Resolving eureka endpoints via configuration
+16:31:23.567 [AsyncResolver-bootstrap-executor-0] INFO  c.n.d.s.r.aws.ConfigClusterResolver - Resolving eureka endpoints via configuration
+16:36:23.580 [AsyncResolver-bootstrap-executor-0] INFO  c.n.d.s.r.aws.ConfigClusterResolver - Resolving eureka endpoints via configuration
+16:41:23.589 [AsyncResolver-bootstrap-executor-0] INFO  c.n.d.s.r.aws.ConfigClusterResolver - Resolving eureka endpoints via configuration
+16:46:23.597 [AsyncResolver-bootstrap-executor-0] INFO  c.n.d.s.r.aws.ConfigClusterResolver - Resolving eureka endpoints via configuration
+16:51:23.610 [AsyncResolver-bootstrap-executor-0] INFO  c.n.d.s.r.aws.ConfigClusterResolver - Resolving eureka endpoints via configuration
+16:56:23.624 [AsyncResolver-bootstrap-executor-0] INFO  c.n.d.s.r.aws.ConfigClusterResolver - Resolving eureka endpoints via configuration
+17:01:23.642 [AsyncResolver-bootstrap-executor-0] INFO  c.n.d.s.r.aws.ConfigClusterResolver - Resolving eureka endpoints via configuration
+17:06:23.657 [AsyncResolver-bootstrap-executor-0] INFO  c.n.d.s.r.aws.ConfigClusterResolver - Resolving eureka endpoints via configuration
+17:11:23.669 [AsyncResolver-bootstrap-executor-0] INFO  c.n.d.s.r.aws.ConfigClusterResolver - Resolving eureka endpoints via configuration
+17:16:23.686 [AsyncResolver-bootstrap-executor-0] INFO  c.n.d.s.r.aws.ConfigClusterResolver - Resolving eureka endpoints via configuration
+17:21:23.700 [AsyncResolver-bootstrap-executor-0] INFO  c.n.d.s.r.aws.ConfigClusterResolver - Resolving eureka endpoints via configuration
+17:26:23.712 [AsyncResolver-bootstrap-executor-0] INFO  c.n.d.s.r.aws.ConfigClusterResolver - Resolving eureka endpoints via configuration
+17:31:23.729 [AsyncResolver-bootstrap-executor-0] INFO  c.n.d.s.r.aws.ConfigClusterResolver - Resolving eureka endpoints via configuration
+17:36:23.742 [AsyncResolver-bootstrap-executor-0] INFO  c.n.d.s.r.aws.ConfigClusterResolver - Resolving eureka endpoints via configuration
+17:41:23.755 [AsyncResolver-bootstrap-executor-0] INFO  c.n.d.s.r.aws.ConfigClusterResolver - Resolving eureka endpoints via configuration
+17:46:23.774 [AsyncResolver-bootstrap-executor-0] INFO  c.n.d.s.r.aws.ConfigClusterResolver - Resolving eureka endpoints via configuration
+17:51:23.787 [AsyncResolver-bootstrap-executor-0] INFO  c.n.d.s.r.aws.ConfigClusterResolver - Resolving eureka endpoints via configuration
+17:56:23.796 [AsyncResolver-bootstrap-executor-0] INFO  c.n.d.s.r.aws.ConfigClusterResolver - Resolving eureka endpoints via configuration
+18:01:23.812 [AsyncResolver-bootstrap-executor-0] INFO  c.n.d.s.r.aws.ConfigClusterResolver - Resolving eureka endpoints via configuration
+18:06:23.825 [AsyncResolver-bootstrap-executor-0] INFO  c.n.d.s.r.aws.ConfigClusterResolver - Resolving eureka endpoints via configuration
+18:11:23.839 [AsyncResolver-bootstrap-executor-0] INFO  c.n.d.s.r.aws.ConfigClusterResolver - Resolving eureka endpoints via configuration
+18:16:23.856 [AsyncResolver-bootstrap-executor-0] INFO  c.n.d.s.r.aws.ConfigClusterResolver - Resolving eureka endpoints via configuration
+18:21:23.863 [AsyncResolver-bootstrap-executor-0] INFO  c.n.d.s.r.aws.ConfigClusterResolver - Resolving eureka endpoints via configuration
+18:26:23.877 [AsyncResolver-bootstrap-executor-0] INFO  c.n.d.s.r.aws.ConfigClusterResolver - Resolving eureka endpoints via configuration
+18:31:23.894 [AsyncResolver-bootstrap-executor-0] INFO  c.n.d.s.r.aws.ConfigClusterResolver - Resolving eureka endpoints via configuration
+18:36:23.903 [AsyncResolver-bootstrap-executor-0] INFO  c.n.d.s.r.aws.ConfigClusterResolver - Resolving eureka endpoints via configuration
+18:41:23.915 [AsyncResolver-bootstrap-executor-0] INFO  c.n.d.s.r.aws.ConfigClusterResolver - Resolving eureka endpoints via configuration
+18:46:23.932 [AsyncResolver-bootstrap-executor-0] INFO  c.n.d.s.r.aws.ConfigClusterResolver - Resolving eureka endpoints via configuration
+18:51:23.946 [AsyncResolver-bootstrap-executor-0] INFO  c.n.d.s.r.aws.ConfigClusterResolver - Resolving eureka endpoints via configuration
+18:56:23.959 [AsyncResolver-bootstrap-executor-0] INFO  c.n.d.s.r.aws.ConfigClusterResolver - Resolving eureka endpoints via configuration
+19:01:23.971 [AsyncResolver-bootstrap-executor-0] INFO  c.n.d.s.r.aws.ConfigClusterResolver - Resolving eureka endpoints via configuration
+19:06:23.988 [AsyncResolver-bootstrap-executor-0] INFO  c.n.d.s.r.aws.ConfigClusterResolver - Resolving eureka endpoints via configuration
+19:11:24.001 [AsyncResolver-bootstrap-executor-0] INFO  c.n.d.s.r.aws.ConfigClusterResolver - Resolving eureka endpoints via configuration
+19:16:24.020 [AsyncResolver-bootstrap-executor-0] INFO  c.n.d.s.r.aws.ConfigClusterResolver - Resolving eureka endpoints via configuration
+19:21:24.034 [AsyncResolver-bootstrap-executor-0] INFO  c.n.d.s.r.aws.ConfigClusterResolver - Resolving eureka endpoints via configuration
+19:26:24.047 [AsyncResolver-bootstrap-executor-0] INFO  c.n.d.s.r.aws.ConfigClusterResolver - Resolving eureka endpoints via configuration
+19:31:24.063 [AsyncResolver-bootstrap-executor-0] INFO  c.n.d.s.r.aws.ConfigClusterResolver - Resolving eureka endpoints via configuration
+19:36:24.076 [AsyncResolver-bootstrap-executor-0] INFO  c.n.d.s.r.aws.ConfigClusterResolver - Resolving eureka endpoints via configuration
+19:41:24.089 [AsyncResolver-bootstrap-executor-0] INFO  c.n.d.s.r.aws.ConfigClusterResolver - Resolving eureka endpoints via configuration
+19:46:24.107 [AsyncResolver-bootstrap-executor-0] INFO  c.n.d.s.r.aws.ConfigClusterResolver - Resolving eureka endpoints via configuration
+19:51:24.120 [AsyncResolver-bootstrap-executor-0] INFO  c.n.d.s.r.aws.ConfigClusterResolver - Resolving eureka endpoints via configuration
+19:56:24.135 [AsyncResolver-bootstrap-executor-0] INFO  c.n.d.s.r.aws.ConfigClusterResolver - Resolving eureka endpoints via configuration
+20:01:24.150 [AsyncResolver-bootstrap-executor-0] INFO  c.n.d.s.r.aws.ConfigClusterResolver - Resolving eureka endpoints via configuration
+20:06:24.161 [AsyncResolver-bootstrap-executor-0] INFO  c.n.d.s.r.aws.ConfigClusterResolver - Resolving eureka endpoints via configuration
+20:11:24.166 [AsyncResolver-bootstrap-executor-0] INFO  c.n.d.s.r.aws.ConfigClusterResolver - Resolving eureka endpoints via configuration
+20:16:24.175 [AsyncResolver-bootstrap-executor-0] INFO  c.n.d.s.r.aws.ConfigClusterResolver - Resolving eureka endpoints via configuration
+20:21:24.183 [AsyncResolver-bootstrap-executor-0] INFO  c.n.d.s.r.aws.ConfigClusterResolver - Resolving eureka endpoints via configuration
+20:26:24.197 [AsyncResolver-bootstrap-executor-0] INFO  c.n.d.s.r.aws.ConfigClusterResolver - Resolving eureka endpoints via configuration
+20:31:24.205 [AsyncResolver-bootstrap-executor-0] INFO  c.n.d.s.r.aws.ConfigClusterResolver - Resolving eureka endpoints via configuration
+20:36:24.212 [AsyncResolver-bootstrap-executor-0] INFO  c.n.d.s.r.aws.ConfigClusterResolver - Resolving eureka endpoints via configuration
+20:41:24.221 [AsyncResolver-bootstrap-executor-0] INFO  c.n.d.s.r.aws.ConfigClusterResolver - Resolving eureka endpoints via configuration
+20:46:24.229 [AsyncResolver-bootstrap-executor-0] INFO  c.n.d.s.r.aws.ConfigClusterResolver - Resolving eureka endpoints via configuration
+20:51:24.237 [AsyncResolver-bootstrap-executor-0] INFO  c.n.d.s.r.aws.ConfigClusterResolver - Resolving eureka endpoints via configuration
+20:56:24.245 [AsyncResolver-bootstrap-executor-0] INFO  c.n.d.s.r.aws.ConfigClusterResolver - Resolving eureka endpoints via configuration
+21:01:24.254 [AsyncResolver-bootstrap-executor-0] INFO  c.n.d.s.r.aws.ConfigClusterResolver - Resolving eureka endpoints via configuration
+21:06:24.262 [AsyncResolver-bootstrap-executor-0] INFO  c.n.d.s.r.aws.ConfigClusterResolver - Resolving eureka endpoints via configuration
+21:09:17.134 [RMI TCP Connection(2)-127.0.0.1] INFO  o.s.b.a.SpringApplicationAdminMXBeanRegistrar$SpringApplicationAdmin - Application shutdown requested.
+21:09:17.137 [RMI TCP Connection(2)-127.0.0.1] INFO  o.s.b.c.e.AnnotationConfigEmbeddedWebApplicationContext - Closing org.springframework.boot.context.embedded.AnnotationConfigEmbeddedWebApplicationContext@278bb07e: startup date [Mon Jan 22 12:31:06 CST 2018]; parent: org.springframework.context.annotation.AnnotationConfigApplicationContext@69997e9d
+21:09:17.148 [RMI TCP Connection(2)-127.0.0.1] INFO  o.s.c.n.e.s.EurekaServiceRegistry - Unregistering application rs-statistics with eureka with status DOWN
+21:09:17.151 [RMI TCP Connection(2)-127.0.0.1] WARN  c.netflix.discovery.DiscoveryClient - Saw local status change event StatusChangeEvent [timestamp=1516626557151, current=DOWN, previous=UP]
+21:09:17.152 [DiscoveryClient-InstanceInfoReplicator-0] INFO  c.netflix.discovery.DiscoveryClient - DiscoveryClient_RS-STATISTICS/DESKTOP-FJN2G7E:rs-statistics:9084: registering service...
+21:09:17.153 [RMI TCP Connection(2)-127.0.0.1] INFO  c.netflix.discovery.DiscoveryClient - Shutting down DiscoveryClient ...
+21:09:17.154 [RMI TCP Connection(2)-127.0.0.1] INFO  c.netflix.discovery.DiscoveryClient - Unregistering ...
+21:09:17.157 [DiscoveryClient-InstanceInfoReplicator-0] INFO  c.netflix.discovery.DiscoveryClient - DiscoveryClient_RS-STATISTICS/DESKTOP-FJN2G7E:rs-statistics:9084 - registration status: 204
+21:09:17.163 [RMI TCP Connection(2)-127.0.0.1] INFO  c.netflix.discovery.DiscoveryClient - DiscoveryClient_RS-STATISTICS/DESKTOP-FJN2G7E:rs-statistics:9084 - deregister  status: 200
+21:09:17.167 [RMI TCP Connection(2)-127.0.0.1] INFO  c.netflix.discovery.DiscoveryClient - Completed shut down of DiscoveryClient
+21:09:17.174 [RMI TCP Connection(3)-127.0.0.1] INFO  o.s.b.a.SpringApplicationAdminMXBeanRegistrar$SpringApplicationAdmin - Application shutdown requested.
+21:09:17.197 [RMI TCP Connection(2)-127.0.0.1] INFO  o.s.c.s.DefaultLifecycleProcessor - Stopping beans in phase 0
+21:09:17.206 [RMI TCP Connection(2)-127.0.0.1] INFO  o.s.j.e.a.AnnotationMBeanExporter - Unregistering JMX-exposed beans on shutdown
+21:09:17.206 [RMI TCP Connection(2)-127.0.0.1] INFO  o.s.j.e.a.AnnotationMBeanExporter - Unregistering JMX-exposed beans
+21:09:17.215 [RMI TCP Connection(2)-127.0.0.1] INFO  com.yunpian.sdk.YunpianClient - YunpianClient is closing!
+21:09:17.228 [RMI TCP Connection(2)-127.0.0.1] INFO  c.alibaba.druid.pool.DruidDataSource - {dataSource-1} closed
+21:09:17.230 [RMI TCP Connection(2)-127.0.0.1] INFO  io.undertow.servlet - Destroying Spring FrameworkServlet 'dispatcherServlet'

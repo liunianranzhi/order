@@ -1,0 +1,33 @@
+16:19:00.454 [main] INFO  o.s.c.a.AnnotationConfigApplicationContext - Refreshing org.springframework.context.annotation.AnnotationConfigApplicationContext@69997e9d: startup date [Fri Jan 19 16:19:00 CST 2018]; root of context hierarchy
+16:19:00.565 [main] INFO  o.s.b.f.a.AutowiredAnnotationBeanPostProcessor - JSR-330 'javax.inject.Inject' annotation found and supported for autowiring
+16:19:00.608 [main] INFO  o.s.c.s.PostProcessorRegistrationDelegate$BeanPostProcessorChecker - Bean 'configurationPropertiesRebinderAutoConfiguration' of type [org.springframework.cloud.autoconfigure.ConfigurationPropertiesRebinderAutoConfiguration$$EnhancerBySpringCGLIB$$826c997b] is not eligible for getting processed by all BeanPostProcessors (for example: not eligible for auto-proxying)
+16:19:00.834 [main] INFO  c.s.p.m.s.StatisticsOrderPortalApplication - No active profile set, falling back to default profiles: default
+16:19:00.852 [main] INFO  o.s.b.c.e.AnnotationConfigEmbeddedWebApplicationContext - Refreshing org.springframework.boot.context.embedded.AnnotationConfigEmbeddedWebApplicationContext@5644dc81: startup date [Fri Jan 19 16:19:00 CST 2018]; parent: org.springframework.context.annotation.AnnotationConfigApplicationContext@69997e9d
+16:19:02.015 [main] INFO  o.s.d.r.c.RepositoryConfigurationDelegate - Multiple Spring Data modules found, entering strict repository configuration mode!
+16:19:02.180 [main] INFO  o.s.cloud.context.scope.GenericScope - BeanFactory id=b30dc5a9-bc23-327c-9604-32c7e27293af
+16:19:02.202 [main] INFO  o.s.b.f.a.AutowiredAnnotationBeanPostProcessor - JSR-330 'javax.inject.Inject' annotation found and supported for autowiring
+16:19:02.376 [main] INFO  o.s.c.s.PostProcessorRegistrationDelegate$BeanPostProcessorChecker - Bean 'redisConfig' of type [com.shanyuan.platform.ms.base.cache.config.RedisConfig$$EnhancerBySpringCGLIB$$d8dc63ba] is not eligible for getting processed by all BeanPostProcessors (for example: not eligible for auto-proxying)
+16:19:02.502 [main] INFO  o.s.c.s.PostProcessorRegistrationDelegate$BeanPostProcessorChecker - Bean 'org.springframework.cache.annotation.ProxyCachingConfiguration' of type [org.springframework.cache.annotation.ProxyCachingConfiguration$$EnhancerBySpringCGLIB$$af64cc9c] is not eligible for getting processed by all BeanPostProcessors (for example: not eligible for auto-proxying)
+16:19:02.536 [main] INFO  o.s.c.s.PostProcessorRegistrationDelegate$BeanPostProcessorChecker - Bean 'org.springframework.transaction.annotation.ProxyTransactionManagementConfiguration' of type [org.springframework.transaction.annotation.ProxyTransactionManagementConfiguration$$EnhancerBySpringCGLIB$$6652967e] is not eligible for getting processed by all BeanPostProcessors (for example: not eligible for auto-proxying)
+16:19:02.577 [main] INFO  o.s.c.s.PostProcessorRegistrationDelegate$BeanPostProcessorChecker - Bean 'org.springframework.cloud.netflix.metrics.MetricsInterceptorConfiguration$MetricsRestTemplateConfiguration' of type [org.springframework.cloud.netflix.metrics.MetricsInterceptorConfiguration$MetricsRestTemplateConfiguration$$EnhancerBySpringCGLIB$$987f3cbf] is not eligible for getting processed by all BeanPostProcessors (for example: not eligible for auto-proxying)
+16:19:02.588 [main] INFO  o.s.c.s.PostProcessorRegistrationDelegate$BeanPostProcessorChecker - Bean 'org.springframework.cloud.autoconfigure.ConfigurationPropertiesRebinderAutoConfiguration' of type [org.springframework.cloud.autoconfigure.ConfigurationPropertiesRebinderAutoConfiguration$$EnhancerBySpringCGLIB$$826c997b] is not eligible for getting processed by all BeanPostProcessors (for example: not eligible for auto-proxying)
+16:19:02.819 [main] INFO  org.xnio - XNIO version 3.3.6.Final
+16:19:02.834 [main] INFO  org.xnio.nio - XNIO NIO Implementation Version 3.3.6.Final
+16:19:02.860 [main] WARN  io.undertow.websockets.jsr - UT026009: XNIO worker was not set on WebSocketDeploymentInfo, the default worker will be used
+16:19:02.861 [main] WARN  io.undertow.websockets.jsr - UT026010: Buffer pool was not set on WebSocketDeploymentInfo, the default pool will be used
+16:19:02.878 [main] INFO  io.undertow.servlet - Initializing Spring embedded WebApplicationContext
+16:19:02.879 [main] INFO  o.s.web.context.ContextLoader - Root WebApplicationContext: initialization completed in 2027 ms
+16:19:03.201 [main] INFO  o.s.b.w.s.ServletRegistrationBean - Mapping servlet: 'dispatcherServlet' to [/]
+16:19:03.211 [main] INFO  o.s.b.w.s.FilterRegistrationBean - Mapping filter: 'metricsFilter' to: [/*]
+16:19:03.212 [main] INFO  o.s.b.w.s.FilterRegistrationBean - Mapping filter: 'characterEncodingFilter' to: [/*]
+16:19:03.212 [main] INFO  o.s.b.w.s.FilterRegistrationBean - Mapping filter: 'hiddenHttpMethodFilter' to: [/*]
+16:19:03.212 [main] INFO  o.s.b.w.s.FilterRegistrationBean - Mapping filter: 'httpPutFormContentFilter' to: [/*]
+16:19:03.212 [main] INFO  o.s.b.w.s.FilterRegistrationBean - Mapping filter: 'requestContextFilter' to: [/*]
+16:19:03.212 [main] INFO  o.s.b.w.s.FilterRegistrationBean - Mapping filter: 'webRequestLoggingFilter' to: [/*]
+16:19:03.212 [main] INFO  o.s.b.w.s.FilterRegistrationBean - Mapping filter: 'applicationContextIdFilter' to: [/*]
+16:19:05.507 [main] INFO  c.alibaba.druid.pool.DruidDataSource - {dataSource-1} inited
+16:19:05.669 [main] DEBUG c.s.p.m.d.g.m.S.memberHasGoods - ==>  Preparing: SELECT DISTINCT publisher_id from sy_goods_common WHERE goods_state = 1; 
+16:19:05.696 [main] DEBUG c.s.p.m.d.g.m.S.memberHasGoods - ==> Parameters: 
+16:19:05.736 [main] DEBUG c.s.p.m.d.g.m.S.memberHasGoods - <==      Total: 459
+16:19:05.774 [main] DEBUG c.s.p.m.d.u.m.S.selectByExample - ==>  Preparing: select circle_id, circle_name, parent_circle_name, org_name, circle_desc, circle_masterid, circle_mastername, circle_img, class_id, circle_mcount, circle_thcount, circle_gcount, circle_pursuereason, circle_notice, circle_status, circle_statusinfo, circle_joinaudit, circle_addtime, circle_noticetime, is_recommend, is_hot, circle_tag, new_verifycount, new_informcount, mapply_open, mapply_ml, new_mapplycount, circle_type, parent_circle_id, code, resp_id, resp_name, resp_mobile, boc_sort, dept_level, org_circle_id, channel, has_child_flag, staffs_amount from sy_circle 
+16:19:05.775 [main] DEBUG c.s.p.m.d.u.m.S.selectByExample - ==> Parameters: 
